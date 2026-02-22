@@ -23,6 +23,7 @@ function render() {
     case 'match':      app.innerHTML = renderMatchScreen();  startMatchPlayback(); break;
     case 'results':    app.innerHTML = renderResults();      break;
     case 'packopen':   app.innerHTML = renderPackOpening();  break;
+    case 'gameover':   app.innerHTML = renderGameOver();     break;
     default:           app.innerHTML = '<p>Unknown screen.</p>';
   }
 }
@@ -224,8 +225,9 @@ function renderManageGear() {
   const gearSlotsHtml = gearSlots.map(gs => {
     const equippedId = player.gear[gs];
     const equipped   = equippedId ? CARDS[equippedId] : null;
-    const available  = gameState.inventory
-      .filter(i => i.quantity > 0 && CARDS[i.cardId]?.slot === gs)
+    // Show card if: it's currently in this slot, OR there are unequipped copies available
+    const available = gameState.inventory
+      .filter(i => CARDS[i.cardId]?.slot === gs && (i.cardId === equippedId || availableQty(i.cardId) > 0))
       .map(i => CARDS[i.cardId]);
 
     const equippedHtml = equipped
@@ -240,12 +242,12 @@ function renderManageGear() {
 
     const inventoryHtml = available.length
       ? available.map(c => {
-          const qty = inventoryCount(c.id);
+          const free = c.id === equippedId ? inventoryCount(c.id) : availableQty(c.id);
           const bonuses = Object.entries(c.statBonuses).map(([s,v])=>`+${v} ${s}`).join(' · ') || 'No bonus';
           return `
             <div class="inventory-card ${equippedId === c.id ? 'equipped' : ''}" onclick="equipGear('${player.id}','${gs}','${c.id}')">
               ${rarityBadge(c.rarity)}
-              <strong>${c.name}</strong> <span class="qty">×${qty}</span>
+              <strong>${c.name}</strong> <span class="qty">×${free}</span>
               <em>${c.flavourText}</em>
               <div class="bonus-list">${bonuses}</div>
             </div>`;
@@ -281,11 +283,22 @@ function renderManageGear() {
   `;
 }
 
+// How many copies of a card are currently equipped across all players
+function equippedCount(cardId) {
+  return gameState.players.reduce((n, p) =>
+    n + Object.values(p.gear).filter(id => id === cardId).length, 0);
+}
+
+// How many copies are available to equip (inventory minus already-equipped)
+function availableQty(cardId) {
+  return inventoryCount(cardId) - equippedCount(cardId);
+}
+
 function equipGear(playerId, slot, cardId) {
   const players = gameState.players.map(p => {
     if (p.id !== playerId) return p;
-    // If this card was equipped in another slot, remove it first
     const newGear = { ...p.gear };
+    // Remove from any other slot on this same player (can't double-equip one card)
     for (const s of GK_GEAR_SLOTS) {
       if (newGear[s] === cardId && s !== slot) newGear[s] = null;
     }
@@ -458,8 +471,34 @@ function startMatchPlayback() {
   if (!m || !m.events) return;
 
   let idx = 0;
-  const log = document.getElementById('event-log');
+  const processedEvents = [];
+  const log     = document.getElementById('event-log');
   const scoreEl = document.getElementById('match-score');
+  const toggle  = document.getElementById('highlights-toggle');
+
+  function eventDiv(event) {
+    const text = renderEventText(event);
+    if (!text) return null;
+    const div = document.createElement('div');
+    div.className = `event-line ${event.isHighlight ? 'highlight' : ''} ${event.team || ''}`;
+    const minLabel = (event.minute != null && event.type !== 'kickoff')
+      ? `<span class="event-min">${event.minute}'</span> ` : '';
+    div.innerHTML = `${minLabel}${text}`;
+    return div;
+  }
+
+  function rebuildLog() {
+    log.innerHTML = '';
+    const highlightsOnly = toggle?.checked;
+    for (const event of processedEvents) {
+      if (highlightsOnly && !event.isHighlight) continue;
+      const div = eventDiv(event);
+      if (div) log.appendChild(div);
+    }
+    log.scrollTop = log.scrollHeight;
+  }
+
+  toggle?.addEventListener('change', rebuildLog);
 
   function showNext() {
     if (idx >= m.events.length) {
@@ -469,25 +508,15 @@ function startMatchPlayback() {
     }
 
     const event = m.events[idx++];
-    const highlightsOnly = document.getElementById('highlights-toggle')?.checked;
-
-    // Update score display from meta
     if (event.meta?.playerScore !== undefined) {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
+    processedEvents.push(event);
 
-    if (highlightsOnly && !event.isHighlight) return;
+    if (toggle?.checked && !event.isHighlight) return;
 
-    const text = renderEventText(event);
-    if (!text) return;
-
-    const div = document.createElement('div');
-    div.className = `event-line ${event.isHighlight ? 'highlight' : ''} ${event.team || ''}`;
-
-    const minLabel = (event.minute != null && event.type !== 'kickoff')
-      ? `<span class="event-min">${event.minute}'</span> `
-      : '';
-    div.innerHTML = `${minLabel}${text}`;
+    const div = eventDiv(event);
+    if (!div) return;
     log.appendChild(div);
     log.scrollTop = log.scrollHeight;
   }
@@ -556,9 +585,10 @@ function goToResults() {
   }
 
   const pendingPacks = m.packEarned ? [m.packEarned] : [];
+  const nextScreen = newFans < 100 ? 'gameover' : 'results';
 
   updateState({
-    screen: 'results',
+    screen: nextScreen,
     fans: newFans,
     matchesPlayed: gameState.matchesPlayed + 1,
     matchHistory,
@@ -652,6 +682,50 @@ function renderPackOpening() {
       <div class="pack-actions">${nextBtn}</div>
     </div>
   `;
+}
+
+// ---------------------------------------------------------------
+// GAME OVER
+// ---------------------------------------------------------------
+function renderGameOver() {
+  const m = gameState.currentMatch;
+  const headlines = [
+    `${gameState.teamName} COLLAPSE IN HISTORIC DISGRACE`,
+    `FANS FLEE AS ${gameState.teamName.toUpperCase()} HIT ROCK BOTTOM`,
+    `MANAGER ESCORTED FROM STADIUM`,
+    `LOCAL SOURCES CONFIRM: IT WAS BAD`,
+    `${gameState.teamName.toUpperCase()}: A CAUTIONARY TALE`,
+  ];
+  const headline = pick(headlines);
+  const score = m ? `${m.playerScore} – ${m.opponentScore}` : '??';
+  const opponent = m ? m.opponentName : 'someone';
+
+  return `
+    <div class="screen gameover-screen">
+      <div class="newspaper">
+        <div class="newspaper-header">⚽ THE DAILY BOOT ⚽</div>
+        <div class="newspaper-headline">${headline}</div>
+        <div class="newspaper-subhead">
+          Following a ${score} defeat to ${opponent}, ${gameState.teamName} have been
+          sacked with just ${gameState.fans.toLocaleString()} fans remaining.
+          Witnesses described the scenes as "genuinely sad."
+        </div>
+        <div class="newspaper-stats">
+          <span>Matches played: ${gameState.matchesPlayed}</span>
+          <span>Peak fans: ${Math.max(...gameState.matchHistory.map((_, i) =>
+            gameState.matchHistory.slice(0, i+1).reduce((f, h) => f + h.fanDelta, 1000)
+          ), 1000).toLocaleString()}</span>
+        </div>
+      </div>
+      <button class="btn-primary btn-large" onclick="restartGame()">Try Again</button>
+    </div>
+  `;
+}
+
+function restartGame() {
+  deleteSave();
+  gameState = { screen: 'newgame' };
+  render();
 }
 
 // ---------------------------------------------------------------

@@ -202,8 +202,10 @@ function simulateMatch(playerTeam, opponentTeam) {
       isHighlight,
       meta: {
         ...meta,
-        teamName:     attackingTeam.name,
-        opponentName: defendingTeam.name,
+        teamName:         attackingTeam.name,   // relative: who's attacking
+        opponentName:     defendingTeam.name,   // relative: who's defending
+        playerTeamName:   playerTeam.name,      // absolute: always the human's team
+        opponentTeamName: opponentTeam.name,    // absolute: always the AI team
         playerScore,
         opponentScore,
       },
@@ -232,10 +234,30 @@ function eventNarrativeKey(event) {
 function renderEventText(event) {
   const key = eventNarrativeKey(event);
   if (!key) return null;
+  const m = event.meta;
+
+  // goal templates use absolute names: {opponent} = the AI team, {team} = the human team
+  if (key === 'goal-player' || key === 'goal-opponent') {
+    return narrativeFor(key, {
+      player:   m.playerName        || 'Someone',
+      team:     m.playerTeamName    || 'Your team',
+      opponent: m.opponentTeamName  || 'Them',
+    });
+  }
+
+  // kickoff uses absolute names too
+  if (key === 'kickoff') {
+    return narrativeFor(key, {
+      team:     m.playerTeamName   || 'Your team',
+      opponent: m.opponentTeamName || 'Them',
+    });
+  }
+
+  // all other events: relative to attacker/defender
   return narrativeFor(key, {
-    player:   event.meta.playerName   || 'Someone',
-    team:     event.meta.teamName     || 'Your team',
-    opponent: event.meta.opponentName || 'Them',
+    player:   m.playerName   || 'Someone',
+    team:     m.teamName     || 'Your team',
+    opponent: m.opponentName || 'Them',
   });
 }
 
@@ -256,6 +278,7 @@ function calculateFanDelta(tier, playerScore, opponentScore, fanRewardBase) {
 }
 
 function getPackReward(tier, outcomeKey) {
+  if (outcomeKey === 'bigLoss') return null; // humiliating defeat, no reward
   const rewards = TIER_PACK_REWARDS[tier];
   if (!rewards) return null;
   if (outcomeKey === 'bigWin' || outcomeKey === 'win') return rewards.win;
