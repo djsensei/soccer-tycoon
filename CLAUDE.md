@@ -13,6 +13,17 @@ A browser-based soccer management game built as a birthday gift for a 10-year-ol
 - [`docs/data-models.md`](docs/data-models.md) — all data schemas
 - [`docs/architecture.md`](docs/architecture.md) — simulator/renderer split, web architecture, state management
 
+## Planning Docs
+- [`docs/backlog.md`](docs/backlog.md) — prioritized issue backlog (P0/P1/P2/P3)
+- [`docs/completed_issues.md`](docs/completed_issues.md) — archive of resolved items, grouped by date
+- [`docs/future_milestones.md`](docs/future_milestones.md) — planned milestones with assigned issues
+- [`docs/playtest_feedback.md`](docs/playtest_feedback.md) — raw playtest notes; triage with `/triage`
+- [`docs/dev_ideas.md`](docs/dev_ideas.md) — developer/design ideas not yet triaged into backlog
+
+## Skills
+- `/fix-p0` — work through all P0 backlog items and commit fixes
+- `/triage` — process playtest feedback into the prioritized backlog
+
 ## File Structure
 ```
 soccer-tycoon/

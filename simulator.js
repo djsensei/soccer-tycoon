@@ -11,23 +11,10 @@ const POSITION_WEIGHTS = {
   S:  { shooting: 4, speed: 2,  luck: 2 },
 };
 
-// Compute effective stats (base + all equipped gear bonuses)
-function getEffectiveStats(player) {
-  const stats = { ...player.stats };
-  for (const cardId of Object.values(player.gear)) {
-    if (cardId && CARDS[cardId]) {
-      for (const [stat, bonus] of Object.entries(CARDS[cardId].statBonuses)) {
-        stats[stat] = (stats[stat] || 0) + bonus;
-      }
-    }
-  }
-  return stats;
-}
-
 // Score a player's contribution in a given position slot
 function positionScore(player, position) {
   if (!player) return 3; // fallback if slot is empty
-  const stats   = getEffectiveStats(player);
+  const stats   = effectiveStats(player);
   const weights = POSITION_WEIGHTS[position];
   let total = 0, weightSum = 0;
   for (const [stat, w] of Object.entries(weights)) {
@@ -122,10 +109,10 @@ function simulateMatch(playerTeam, opponentTeam) {
     const defGK      = slotPlayer(defendingTeam, 'GK');
     const defD       = slotPlayer(defendingTeam, 'D');
 
-    const aStr = attStriker ? getEffectiveStats(attStriker) : {};
-    const aMid = attMid     ? getEffectiveStats(attMid)     : {};
-    const dGK  = defGK      ? getEffectiveStats(defGK)      : {};
-    const dDef = defD       ? getEffectiveStats(defD)       : {};
+    const aStr = attStriker ? effectiveStats(attStriker) : {};
+    const aMid = attMid     ? effectiveStats(attMid)     : {};
+    const dGK  = defGK      ? effectiveStats(defGK)      : {};
+    const dDef = defD       ? effectiveStats(defD)       : {};
 
     const actionRoll = Math.random();
     let type, outcome, isHighlight = false, actingPlayer, meta = {};
@@ -202,8 +189,10 @@ function simulateMatch(playerTeam, opponentTeam) {
       isHighlight,
       meta: {
         ...meta,
-        teamName:     attackingTeam.name,
-        opponentName: defendingTeam.name,
+        teamName:         attackingTeam.name,   // relative: who's attacking
+        opponentName:     defendingTeam.name,   // relative: who's defending
+        playerTeamName:   playerTeam.name,      // absolute: always the human's team
+        opponentTeamName: opponentTeam.name,    // absolute: always the AI team
         playerScore,
         opponentScore,
       },
@@ -232,10 +221,30 @@ function eventNarrativeKey(event) {
 function renderEventText(event) {
   const key = eventNarrativeKey(event);
   if (!key) return null;
+  const m = event.meta;
+
+  // goal templates use absolute names: {opponent} = the AI team, {team} = the human team
+  if (key === 'goal-player' || key === 'goal-opponent') {
+    return narrativeFor(key, {
+      player:   m.playerName        || 'Someone',
+      team:     m.playerTeamName    || 'Your team',
+      opponent: m.opponentTeamName  || 'Them',
+    });
+  }
+
+  // kickoff uses absolute names too
+  if (key === 'kickoff') {
+    return narrativeFor(key, {
+      team:     m.playerTeamName   || 'Your team',
+      opponent: m.opponentTeamName || 'Them',
+    });
+  }
+
+  // all other events: relative to attacker/defender
   return narrativeFor(key, {
-    player:   event.meta.playerName   || 'Someone',
-    team:     event.meta.teamName     || 'Your team',
-    opponent: event.meta.opponentName || 'Them',
+    player:   m.playerName   || 'Someone',
+    team:     m.teamName     || 'Your team',
+    opponent: m.opponentName || 'Them',
   });
 }
 
@@ -256,6 +265,7 @@ function calculateFanDelta(tier, playerScore, opponentScore, fanRewardBase) {
 }
 
 function getPackReward(tier, outcomeKey) {
+  if (outcomeKey === 'bigLoss') return null; // humiliating defeat, no reward
   const rewards = TIER_PACK_REWARDS[tier];
   if (!rewards) return null;
   if (outcomeKey === 'bigWin' || outcomeKey === 'win') return rewards.win;
