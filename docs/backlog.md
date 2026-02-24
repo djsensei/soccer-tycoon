@@ -7,36 +7,6 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P1 — Core Feel
 
-### "Start Over" button in hub
-Add a clearly labelled reset option in the hub (e.g. in a settings area or footer) that clears localStorage and returns to the new game screen. Should require a confirmation click to prevent accidents.
-
-
-
-### Starting gear is a placeholder, not a card
-Starting gear ("Busted Sneakers" etc.) should not be real inventory cards. It's a grayed-out default state for an empty slot:
-- Not in inventory, can't be removed — only replaced
-- If real gear is unequipped, the slot returns to the default placeholder
-- Implementation: player.gear slot = `cardId | null`; null renders as the grayed-out default. Remove starting gear from CARDS entirely (or keep as display-only constants, never stored in player.gear).
-
-### Gear Up screen redesign
-Replace the current per-player gear modal with a dedicated "Gear Up" screen accessible from the hub:
-- Players displayed as full-width rows showing all gear slots inline
-- Inventory panel on the right, grouped by slot type, ordered by rarity
-- Should feel like laying cards out on a table
-
-### Gloves less frequent in packs
-Only 1 of 5 players (the GK) can use gloves. Pack weights should reflect this — gloves currently have equal probability to all other slots despite being ~4× less useful.
-- Options: reduce gloves weight globally, or filter gloves out of packs for non-GK slots, or make gloves a separate pool.
-
-### No duplicate cards in a single pack *(M2)*
-`openPack()` currently samples with replacement, so a single pack can contain the same card more than once. Change to sample without replacement — once a card is drawn, exclude it from remaining draws in the same pack.
-
-### Roster management — position swaps and bench *(M2)*
-Players are locked to their starting slot with no way to swap positions or bring a bench player into the starting XI. Add roster management to the hub: allow swapping players between any two slots (including bench), so the manager can experiment with lineups and actually use the bench.
-
-### Deployment — GitHub Pages + soft password *(M2)*
-Set up GitHub Pages so family can play via a URL. Add a ~5-line client-side password prompt on page load for soft access control. Not cryptographically secure but fine since data isn't sensitive.
-
 ### Fan tier / progression system *(M3)*
 Map fan count to tiers (Local → Regional → National → International) that gate which opponents can be challenged. Show locked teams greyed out in opponent select. Tiers may also unlock special play modes (leagues, tournaments).
 

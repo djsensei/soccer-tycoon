@@ -1,85 +1,121 @@
 // ============================================================
-// screens/gear.js — Manage gear screen (equip / unequip cards)
+// screens/gear.js — Gear Up screen (all players, inventory panel)
 // ============================================================
 
-function renderManageGear() {
-  const player = getPlayer(gameState.selectedPlayerId);
-  if (!player) return `<div class="screen"><p>Player not found.</p><button onclick="updateState({screen:'hub'})">Back</button></div>`;
+// Module-level selection state (not persisted)
+let _gearSel = { playerId: null, slot: null };
 
-  const base = player.stats;
-  const eff  = effectiveStats(player);
-  const isGK = gameState.slots.GK === player.id;
-  const gearSlots = isGK ? GK_GEAR_SLOTS : GEAR_SLOTS;
-  const slotLabel = { head: 'Head', body: 'Body', feet: 'Feet', gloves: 'Gloves' };
+const SLOT_LABEL = { head: 'Head', body: 'Body', feet: 'Feet', gloves: 'Gloves' };
 
-  const statsHtml = STATS.map(s => `
-    <div class="stat-row">
-      <span class="stat-label">${s.charAt(0).toUpperCase() + s.slice(1)}</span>
-      <span class="stat-value">${base[s]}</span>
-      ${eff[s] > base[s] ? `<span class="stat-bonus">+${eff[s] - base[s]}</span>` : ''}
-      ${statBar(eff[s])}
-    </div>
-  `).join('');
+function renderGearUp() {
+  const startingEntries = POSITIONS.map(posSlot => ({
+    p: getPlayer(gameState.slots[posSlot]),
+    posSlot,
+  })).filter(x => x.p);
 
-  const gearSlotsHtml = gearSlots.map(gs => {
-    const equippedId = player.gear[gs];
-    const equipped   = equippedId ? CARDS[equippedId] : null;
-    // Show only cards with unequipped copies available (equipped card is shown above, not here)
+  const benchEntries = gameState.players
+    .filter(p => !Object.values(gameState.slots).includes(p.id))
+    .map(p => ({ p, posSlot: null }));
+
+  function gearSlotCell(p, gs) {
+    const equippedId = p.gear[gs];
+    const card = equippedId ? CARDS[equippedId] : null;
+    const isSelected = _gearSel.playerId === p.id && _gearSel.slot === gs;
+    return `
+      <div class="gear-slot-cell ${isSelected ? 'gsc-selected' : ''} ${card ? '' : 'gsc-empty'}"
+           onclick="selectGearSlot('${p.id}','${gs}')">
+        <div class="gsc-label">${SLOT_LABEL[gs]}</div>
+        ${card
+          ? `<div class="gsc-card" style="border-color:${RARITY_COLOR[card.rarity]}">${card.name}</div>`
+          : `<div class="gsc-placeholder">Empty</div>`
+        }
+      </div>`;
+  }
+
+  const playerRowsHtml = [...startingEntries, ...benchEntries].map(({ p, posSlot }) => {
+    const isGK = gameState.slots.GK === p.id;
+    const gearSlots = isGK ? GK_GEAR_SLOTS : GEAR_SLOTS;
+    const isRowSelected = _gearSel.playerId === p.id;
+    return `
+      <div class="player-gear-row ${isRowSelected ? 'pgr-selected' : ''}">
+        <div class="pgr-identity">
+          <div class="pgr-pos">${posSlot ? slotName(posSlot) : 'Bench'}</div>
+          <div class="pgr-name">${p.name}</div>
+        </div>
+        <div class="pgr-slots">
+          ${gearSlots.map(gs => gearSlotCell(p, gs)).join('')}
+        </div>
+      </div>`;
+  }).join('');
+
+  // Inventory panel
+  let panelTitle, invPanelHtml;
+
+  if (!_gearSel.playerId || !_gearSel.slot) {
+    panelTitle = 'Inventory';
+    invPanelHtml = `<p class="dim inv-empty-hint">Tap a gear slot to equip cards</p>`;
+  } else {
+    const selPlayer = getPlayer(_gearSel.playerId);
+    const equippedId = selPlayer?.gear[_gearSel.slot];
+    panelTitle = `${SLOT_LABEL[_gearSel.slot]} — ${selPlayer?.name}`;
+
+    const equippedHtml = equippedId ? `
+      <div class="inv-section">
+        <div class="inv-section-label">Equipped</div>
+        <div class="inventory-card equipped">
+          ${rarityBadge(CARDS[equippedId].rarity)}
+          <strong>${CARDS[equippedId].name}</strong>
+          <em>${CARDS[equippedId].flavourText}</em>
+          <div class="bonus-list">${Object.entries(CARDS[equippedId].statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No bonus'}</div>
+          <button class="btn-small btn-danger" onclick="unequipGear('${_gearSel.playerId}','${_gearSel.slot}')">Remove</button>
+        </div>
+      </div>` : `<p class="dim" style="margin-bottom:0.75rem">No gear equipped</p>`;
+
     const available = gameState.inventory
-      .filter(i => CARDS[i.cardId]?.slot === gs && availableQty(i.cardId) > 0)
-      .map(i => CARDS[i.cardId]);
+      .filter(i => CARDS[i.cardId]?.slot === _gearSel.slot && availableQty(i.cardId) > 0)
+      .sort((a, b) => RARITIES.indexOf(CARDS[b.cardId].rarity) - RARITIES.indexOf(CARDS[a.cardId].rarity));
 
-    const equippedHtml = equipped
-      ? `<div class="equipped-card" style="border-color:${RARITY_COLOR[equipped.rarity]}">
-           ${rarityBadge(equipped.rarity)}
-           <strong>${equipped.name}</strong>
-           <em>${equipped.flavourText}</em>
-           <div class="bonus-list">${Object.entries(equipped.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No bonus'}</div>
-           <button class="btn-small btn-danger" onclick="unequipGear('${player.id}','${gs}')">Remove</button>
-         </div>`
-      : `<div class="empty-gear-slot">Empty — nothing equipped</div>`;
-
-    const inventoryHtml = available.length
-      ? available.map(c => {
-          const free = availableQty(c.id);
+    const availableHtml = available.length ? `
+      <div class="inv-section">
+        <div class="inv-section-label">In inventory (${available.length})</div>
+        ${available.map(i => {
+          const c = CARDS[i.cardId];
           const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No bonus';
           return `
-            <div class="inventory-card" onclick="equipGear('${player.id}','${gs}','${c.id}')">
+            <div class="inventory-card" onclick="equipGear('${_gearSel.playerId}','${_gearSel.slot}','${c.id}')">
               ${rarityBadge(c.rarity)}
-              <strong>${c.name}</strong> <span class="qty">×${free}</span>
+              <strong>${c.name}</strong> <span class="qty">×${availableQty(c.id)}</span>
               <em>${c.flavourText}</em>
               <div class="bonus-list">${bonuses}</div>
             </div>`;
-        }).join('')
-      : `<p class="dim">No ${slotLabel[gs].toLowerCase()} gear in inventory</p>`;
+        }).join('')}
+      </div>` : `<p class="dim">No ${_gearSel.slot} gear in inventory</p>`;
 
-    return `
-      <div class="gear-section">
-        <h3>${slotLabel[gs]}</h3>
-        ${equippedHtml}
-        <div class="inventory-cards">${inventoryHtml}</div>
-      </div>
-    `;
-  }).join('');
+    invPanelHtml = equippedHtml + availableHtml;
+  }
 
   return `
-    <div class="screen manage-gear-screen">
+    <div class="screen gearup-screen">
       <div class="screen-header">
         <button class="btn-back" onclick="updateState({screen:'hub'})">← Back</button>
-        <h1>${player.name}</h1>
+        <h1>Gear Up</h1>
       </div>
-      <div class="gear-layout">
-        <div class="stats-panel">
-          <h2>Stats</h2>
-          ${statsHtml}
+      <div class="gearup-layout">
+        <div class="gearup-players">
+          ${playerRowsHtml}
         </div>
-        <div class="gear-panel">
-          <h2>Gear</h2>
-          ${gearSlotsHtml}
+        <div class="gearup-inventory">
+          <h2>${panelTitle}</h2>
+          ${invPanelHtml}
         </div>
       </div>
     </div>
   `;
+}
+
+function selectGearSlot(playerId, slot) {
+  _gearSel = { playerId, slot };
+  render();
 }
 
 function equipGear(playerId, slot, cardId) {

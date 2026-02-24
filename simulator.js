@@ -273,24 +273,42 @@ function getPackReward(tier, outcomeKey) {
   return rewards.loss;
 }
 
-// Open a pack — returns array of card ids
+// Open a pack — returns array of card ids (no duplicates; gloves weighted lower)
 function openPack(packTypeId) {
   const pack = PACK_TYPES[packTypeId];
   if (!pack) return [];
 
   // Eligible cards: anything with actual stat bonuses (exclude zero-stat starting gear)
   const eligible = Object.values(CARDS).filter(c => Object.keys(c.statBonuses).length > 0);
+  const drawn = new Set();
+  const result = [];
 
-  return Array.from({ length: pack.cardsPerPack }, () => {
+  for (let i = 0; i < pack.cardsPerPack; i++) {
+    // Select rarity tier
     const r = Math.random();
     let cumulative = 0;
     let chosenRarity = 'common';
-    for (let i = 0; i < RARITIES.length; i++) {
-      cumulative += pack.weights[i];
-      if (r < cumulative) { chosenRarity = RARITIES[i]; break; }
+    for (let j = 0; j < RARITIES.length; j++) {
+      cumulative += pack.weights[j];
+      if (r < cumulative) { chosenRarity = RARITIES[j]; break; }
     }
-    const pool = eligible.filter(c => c.rarity === chosenRarity);
-    const fallback = eligible.filter(c => c.rarity === 'common');
-    return pick(pool.length ? pool : fallback).id;
-  });
+
+    // Candidate pool for chosen rarity, excluding already-drawn cards
+    let pool = eligible.filter(c => c.rarity === chosenRarity && !drawn.has(c.id));
+    if (!pool.length) pool = eligible.filter(c => !drawn.has(c.id)); // rarity exhausted, pick any undrawn
+    if (!pool.length) pool = eligible; // all cards drawn (tiny set edge case), allow repeat
+
+    // Weighted selection: gloves get 1/4 the weight (only GK can use them)
+    const weighted = [];
+    for (const card of pool) {
+      const weight = card.slot === 'gloves' ? 1 : 4;
+      for (let w = 0; w < weight; w++) weighted.push(card);
+    }
+
+    const card = pick(weighted);
+    drawn.add(card.id);
+    result.push(card.id);
+  }
+
+  return result;
 }
