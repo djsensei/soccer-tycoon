@@ -59,3 +59,34 @@ function equippedCount(cardId) {
 function availableQty(cardId) {
   return inventoryCount(cardId) - equippedCount(cardId);
 }
+
+// --- Fan Tier Helpers (Phase 1) ---------------------------------
+function currentFanTier(fans) {
+  for (const key of TIER_ORDER) {
+    if (fans <= FAN_TIERS[key].max) return key;
+  }
+  return TIER_ORDER[TIER_ORDER.length - 1];
+}
+
+function requiredTierForOpponent(opponent) {
+  if (opponent.tier !== 'special') return TIER_UNLOCK[opponent.tier] || 'local';
+  if (opponent.difficulty <= 6) return 'regional';
+  if (opponent.difficulty <= 8) return 'national';
+  return 'international';
+}
+
+function isOpponentUnlocked(opponent, fans) {
+  const playerTierIdx   = TIER_ORDER.indexOf(currentFanTier(fans));
+  const requiredTierIdx = TIER_ORDER.indexOf(requiredTierForOpponent(opponent));
+  return playerTierIdx >= requiredTierIdx;
+}
+
+function tierProgress(fans) {
+  const tier     = currentFanTier(fans);
+  const tierData = FAN_TIERS[tier];
+  const idx      = TIER_ORDER.indexOf(tier);
+  const range    = tierData.max - tierData.min + 1;
+  const pct      = Math.min(100, Math.max(0, Math.round(((fans - tierData.min) / range) * 100)));
+  const nextTier = idx + 1 < TIER_ORDER.length ? TIER_ORDER[idx + 1] : null;
+  return { tier, pct, nextTier };
+}

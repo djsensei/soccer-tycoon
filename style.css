@@ -527,6 +527,88 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .newspaper-subhead { font-size: 0.9rem; color: #333; border-top: 1px solid #999; border-bottom: 1px solid #999; padding: 0.6rem 0; margin: 0.6rem 0; line-height: 1.5; }
 .newspaper-stats   { font-size: 0.8rem; color: #555; display: flex; justify-content: space-around; }
 
+/* ---- Fan Tier Display (Phase 1) ---- */
+.tier-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+}
+.tier-badge {
+  background: var(--accent-dim);
+  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.tier-progress-bar {
+  flex: 1;
+  min-width: 60px;
+  background: var(--surface);
+  border-radius: 3px;
+  height: 5px;
+  overflow: hidden;
+}
+.tier-progress-fill {
+  background: var(--accent);
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+.tier-next-hint {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* ---- Locked Opponent Cards (Phase 1) ---- */
+.opponent-card.locked {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}
+.opponent-card.locked:hover {
+  background: var(--card);
+  border-color: var(--border);
+  transform: none;
+}
+.lock-hint {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+}
+
+/* ---- Fan Ticker (Phase 3) ---- */
+.fan-ticker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.3rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  transition: background 0.2s;
+}
+.fan-ticker.fan-flash {
+  background: var(--card-hover);
+  animation: tickerFlash 0.6s ease;
+}
+.ticker-positive { color: var(--accent); font-weight: bold; }
+.ticker-negative { color: var(--danger); font-weight: bold; }
+
+@keyframes tickerFlash {
+  0%   { background: var(--card-hover); }
+  50%  { background: #263d26; }
+  100% { background: var(--surface); }
+}
+
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--surface); }

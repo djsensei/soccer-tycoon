@@ -11,6 +11,10 @@ function renderMatchScreen() {
         <div class="match-score" id="match-score">0 – 0</div>
         <div class="match-team">${m.opponentName}</div>
       </div>
+      <div class="fan-ticker" id="fan-ticker">
+        👥 <span id="fan-ticker-count">${gameState.fans.toLocaleString()}</span>
+        <span id="fan-ticker-delta"></span>
+      </div>
       <div class="match-controls">
         <label class="toggle-label">
           <input type="checkbox" id="highlights-toggle" checked>
@@ -31,10 +35,32 @@ function startMatchPlayback() {
   if (!m || !m.events) return;
 
   let idx = 0;
+  let runningFanDelta = 0;
   const processedEvents = [];
   const log     = document.getElementById('event-log');
   const scoreEl = document.getElementById('match-score');
   const toggle  = document.getElementById('highlights-toggle');
+
+  function updateFanTicker(delta) {
+    const deltaEl = document.getElementById('fan-ticker-delta');
+    if (!deltaEl) return;
+    if (runningFanDelta === 0) {
+      deltaEl.textContent = '';
+      deltaEl.className = '';
+    } else {
+      const sign = runningFanDelta >= 0 ? '+' : '';
+      deltaEl.textContent = `(${sign}${runningFanDelta.toLocaleString()})`;
+      deltaEl.className = runningFanDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
+    }
+    // Flash ticker for large single-event swings
+    if (Math.abs(delta) > 50) {
+      const ticker = document.getElementById('fan-ticker');
+      if (ticker) {
+        ticker.classList.add('fan-flash');
+        setTimeout(() => ticker?.classList.remove('fan-flash'), 800);
+      }
+    }
+  }
 
   function eventDiv(event) {
     const text = renderEventText(event);
@@ -71,6 +97,12 @@ function startMatchPlayback() {
     if (event.meta?.playerScore !== undefined) {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
+
+    // Update fan ticker
+    const delta = event.fanDelta || 0;
+    runningFanDelta += delta;
+    updateFanTicker(delta);
+
     processedEvents.push(event);
 
     if (toggle?.checked && !event.isHighlight) return;
@@ -91,10 +123,12 @@ function skipToEnd() {
   const scoreEl = document.getElementById('match-score');
   log.innerHTML = '';
 
+  let totalDelta = 0;
   for (const event of m.events) {
     if (event.meta?.playerScore !== undefined) {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
+    totalDelta += event.fanDelta || 0;
     if (!event.isHighlight) continue;
     const text = renderEventText(event);
     if (!text) continue;
@@ -106,6 +140,15 @@ function skipToEnd() {
     log.appendChild(div);
   }
   log.scrollTop = log.scrollHeight;
+
+  // Update ticker to show final total
+  const deltaEl = document.getElementById('fan-ticker-delta');
+  if (deltaEl && totalDelta !== 0) {
+    const sign = totalDelta >= 0 ? '+' : '';
+    deltaEl.textContent = `(${sign}${totalDelta.toLocaleString()})`;
+    deltaEl.className = totalDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
+  }
+
   document.getElementById('match-end-btn').style.display = 'block';
 }
 
@@ -147,6 +190,11 @@ function goToResults() {
 
   const nextScreen = newFans < 100 ? 'gameover' : 'results';
 
+  // Phase 4: store opponentId with pack so openPack() can inject unique card
+  const pendingPacks = m.packEarned
+    ? [{ packId: m.packEarned, opponentId: m.opponentId }]
+    : [];
+
   updateState({
     screen: nextScreen,
     fans: newFans,
@@ -154,6 +202,6 @@ function goToResults() {
     matchHistory,
     opponentTeams,
     matchesUntilSpecialCheck,
-    pendingPacks: m.packEarned ? [m.packEarned] : [],
+    pendingPacks,
   });
 }

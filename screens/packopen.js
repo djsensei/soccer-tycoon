@@ -5,10 +5,14 @@
 // Handler: open the next pending pack, add cards to inventory, then render.
 // This is called by buttons — render functions never mutate state.
 function openNextPack() {
-  const packId = gameState.pendingPacks[0];
-  if (!packId) { updateState({ screen: 'hub' }); return; }
+  const pending = gameState.pendingPacks[0];
+  if (!pending) { updateState({ screen: 'hub' }); return; }
 
-  const cardIds = openPack(packId);
+  // Support both old format (string) and new format ({ packId, opponentId })
+  const packId     = typeof pending === 'string' ? pending : pending.packId;
+  const opponentId = typeof pending === 'string' ? null    : pending.opponentId;
+
+  const cardIds = openPack(packId, opponentId);
   const newInventory = [...gameState.inventory];
   for (const cardId of cardIds) {
     const existing = newInventory.find(i => i.cardId === cardId);
@@ -18,9 +22,9 @@ function openNextPack() {
 
   updateState({
     screen: 'packopen',
-    pendingPacks: gameState.pendingPacks.slice(1),
-    inventory: newInventory,
-    lastOpenedCards: cardIds,
+    pendingPacks:     gameState.pendingPacks.slice(1),
+    inventory:        newInventory,
+    lastOpenedCards:  cardIds,
     lastOpenedPackId: packId,
   });
 }

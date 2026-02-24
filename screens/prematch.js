@@ -47,9 +47,12 @@ function kickOff() {
     players: gameState.players,
     slots: gameState.slots,
   };
-  const result = simulateMatch(playerTeamFull, opp);
-  const { delta, outcome } = calculateFanDelta(opp.tier, result.playerScore, result.opponentScore, opp.fanRewardBase);
-  const packEarned = getPackReward(opp.tier, outcome);
+  const result  = simulateMatch(playerTeamFull, opp);
+  const outcome = computeOutcome(result.playerScore, result.opponentScore);
+
+  // Total fan delta: sum of all per-event deltas (including fulltime margin bonus)
+  const totalFanDelta = result.events.reduce((sum, e) => sum + (e.fanDelta || 0), 0);
+  const packEarned    = getPackReward(opp.tier, outcome);
 
   updateState({
     screen: 'match',
@@ -59,7 +62,7 @@ function kickOff() {
       events:        result.events,
       playerScore:   result.playerScore,
       opponentScore: result.opponentScore,
-      fanDelta:      delta,
+      fanDelta:      totalFanDelta,
       outcome,
       packEarned,
     },

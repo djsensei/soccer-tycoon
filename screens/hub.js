@@ -5,6 +5,23 @@
 // Module-level swap state (not persisted)
 let _swapTarget = null;
 
+function renderTierDisplay(fans) {
+  const { tier, pct, nextTier } = tierProgress(fans);
+  const tierData = FAN_TIERS[tier];
+  const hint = nextTier
+    ? `Next: ${FAN_TIERS[nextTier].label} at ${(FAN_TIERS[nextTier].min).toLocaleString()}`
+    : 'MAX TIER';
+  return `
+    <div class="tier-display">
+      <span class="tier-badge">${tierData.label}</span>
+      <div class="tier-progress-bar" title="${hint}">
+        <div class="tier-progress-fill" style="width:${pct}%"></div>
+      </div>
+      <span class="tier-next-hint">${hint}</span>
+    </div>
+  `;
+}
+
 function renderHub() {
   const { teamName, fans, matchesPlayed, slots, players } = gameState;
 
@@ -58,6 +75,7 @@ function renderHub() {
         <div class="hub-title">
           <h1>⚽ ${teamName}</h1>
           <div class="fans-display">👥 ${fans.toLocaleString()} fans</div>
+          ${renderTierDisplay(fans)}
         </div>
         <div class="hub-meta">
           <span>Match ${matchesPlayed}</span>
