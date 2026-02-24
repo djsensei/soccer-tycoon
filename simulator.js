@@ -264,12 +264,6 @@ function simulateMatch(playerTeam, opponentTeam) {
   const playerRoles   = buildTeamRoles(playerTeam);
   const opponentRoles = buildTeamRoles(opponentTeam);
 
-  // Generate event minute slots (26–35)
-  const totalSlots = 26 + Math.floor(Math.random() * 10);
-  const minutes = Array.from({ length: totalSlots }, (_, i) =>
-    Math.min(89, Math.floor((i / totalSlots) * 90) + Math.floor(Math.random() * 4))
-  ).sort((a, b) => a - b);
-
   // Kickoff possession determined by midfield strength
   const ps = teamStrengths(playerTeam);
   const os = teamStrengths(opponentTeam);
@@ -283,9 +277,15 @@ function simulateMatch(playerTeam, opponentTeam) {
   // Tier scale for per-event fan deltas
   const tierScale = FAN_EVENT_TIER_SCALE[opponentTeam.tier] || 1.0;
 
+  // Game clock — each Markov step advances by a random duration.
+  // Tune EVENT_SECONDS_PER_STEP to control match pacing / average score.
+  const MATCH_SECONDS          = 5400; // 90 min × 60 s
+  const EVENT_SECONDS_PER_STEP = 5;    // mean seconds per step (~1 080 steps/match)
+  let gameClockSeconds = 0;
+
   // Kickoff event
   events.push({
-    minute: 0, team: 'player', type: 'kickoff', outcome: 'start',
+    minute: 0, second: 0, team: 'player', type: 'kickoff', outcome: 'start',
     isHighlight: false, fanDelta: 0,
     meta: {
       playerName: null,
@@ -297,11 +297,16 @@ function simulateMatch(playerTeam, opponentTeam) {
     },
   });
 
-  for (const minute of minutes) {
-    // Inject halftime marker
-    if (!halfAdded && minute >= 45) {
+  while (gameClockSeconds < MATCH_SECONDS) {
+    // Advance clock: uniform jitter ±3 s around the mean (min 1 s)
+    const stepSeconds    = Math.max(1, EVENT_SECONDS_PER_STEP + Math.floor(Math.random() * 7) - 3);
+    gameClockSeconds     = Math.min(MATCH_SECONDS, gameClockSeconds + stepSeconds);
+    const minute         = Math.min(90, Math.round(gameClockSeconds / 60));
+
+    // Inject halftime marker at the 45-minute boundary
+    if (!halfAdded && gameClockSeconds >= 2700) {
       events.push({
-        minute: 45, team: null, type: 'halftime', outcome: null,
+        minute: 45, second: 2700, team: null, type: 'halftime', outcome: null,
         isHighlight: false, fanDelta: 0,
         meta: { playerScore, opponentScore },
       });
@@ -348,6 +353,8 @@ function simulateMatch(playerTeam, opponentTeam) {
     );
 
     if (event) {
+      event.second = gameClockSeconds;
+
       // Attach per-event fan delta (Phase 3)
       event.fanDelta = computeEventFanDelta(event, atkIsPlayer, tierScale);
 
@@ -409,7 +416,7 @@ function simulateMatch(playerTeam, opponentTeam) {
     opponentTeam.tier, playerScore, opponentScore, opponentTeam.fanRewardBase
   );
   events.push({
-    minute: 90, team: null, type: 'fulltime', outcome: null,
+    minute: 90, second: MATCH_SECONDS, team: null, type: 'fulltime', outcome: null,
     isHighlight: true, fanDelta: marginBonus,
     meta: { playerScore, opponentScore },
   });

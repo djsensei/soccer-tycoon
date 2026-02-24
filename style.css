@@ -472,6 +472,18 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .fans-total { font-size: 1rem; color: var(--text-dim); }
 .pack-earned { font-size: 1.1rem; margin-top: 0.5rem; }
 
+/* ---- Match stats table ---- */
+.match-stats { width: 100%; max-width: 340px; margin: 0.25rem 0; }
+.stats-header, .stats-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.25rem; align-items: center; padding: 0.2rem 0; }
+.stats-header { color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 0.2rem; }
+.stats-header span:first-child { text-align: left; }
+.stats-header span:last-child  { text-align: right; }
+.stats-row + .stats-row { border-top: 1px solid rgba(255,255,255,0.06); }
+.stats-label { text-align: center; color: var(--text-dim); font-size: 0.8rem; white-space: nowrap; padding: 0 0.5rem; }
+.stats-val { font-weight: bold; font-size: 1.1rem; }
+.stats-val.player   { text-align: left;  color: var(--accent); }
+.stats-val.opponent { text-align: right; color: var(--text-dim); }
+
 /* ---- Pack Opening ---- */
 .packopen-screen { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; padding-top: 1.5rem; }
 .packopen-screen h1 { font-size: 1.8rem; }
