@@ -2,6 +2,9 @@
 // screens/hub.js — Main hub screen (roster, stats, navigation)
 // ============================================================
 
+// Module-level swap state (not persisted)
+let _swapTarget = null;
+
 function renderHub() {
   const { teamName, fans, matchesPlayed, slots, players } = gameState;
 
@@ -9,33 +12,45 @@ function renderHub() {
     const p = getPlayer(slots[slot]);
     if (!p) return `<div class="player-card empty-slot"><div class="slot-label">${slotName(slot)}</div><div class="slot-name">Empty</div></div>`;
     const eff = effectiveStats(p);
-    const gearSlots = slot === 'GK' ? GK_GEAR_SLOTS : GEAR_SLOTS;
-    const gearHtml = gearSlots.map(gs => `<div class="gear-slot-mini">${cardMini(p.gear[gs])}</div>`).join('');
+    const isSwapSrc = _swapTarget === p.id;
+    const swapHint = isSwapSrc
+      ? `<div class="swap-hint selected">Selected — tap another to swap</div>`
+      : _swapTarget
+        ? `<div class="swap-hint">Tap to swap</div>`
+        : `<div class="swap-hint">Tap to swap position</div>`;
     return `
-      <div class="player-card" onclick="openGearScreen('${p.id}')">
+      <div class="player-card ${isSwapSrc ? 'swap-selected' : ''}" onclick="selectForSwap('${p.id}')">
         <div class="slot-label">${slotName(slot)}</div>
         <div class="slot-name">${p.name}</div>
         <div class="player-stats-mini">
           ${STATS.map(s => `<span title="${s}">${s.slice(0, 3).toUpperCase()} ${eff[s]}</span>`).join('')}
         </div>
-        <div class="gear-slots-mini">${gearHtml}</div>
-        <div class="gear-hint">Tap to manage gear</div>
+        ${swapHint}
       </div>
     `;
   });
 
   const benchPlayers = players.filter(p => !Object.values(slots).includes(p.id));
   const benchHtml = benchPlayers.length
-    ? benchPlayers.map(p => `
-        <div class="player-card bench-card" onclick="openGearScreen('${p.id}')">
-          <div class="slot-label">Bench</div>
-          <div class="slot-name">${p.name}</div>
-          <div class="gear-hint">Tap to manage gear</div>
-        </div>
-      `).join('')
+    ? benchPlayers.map(p => {
+        const isSwapSrc = _swapTarget === p.id;
+        const swapHint = isSwapSrc
+          ? `<div class="swap-hint selected">Selected — tap another to swap</div>`
+          : _swapTarget
+            ? `<div class="swap-hint">Tap to swap in</div>`
+            : `<div class="swap-hint">Tap to swap in</div>`;
+        return `
+          <div class="player-card bench-card ${isSwapSrc ? 'swap-selected' : ''}" onclick="selectForSwap('${p.id}')">
+            <div class="slot-label">Bench</div>
+            <div class="slot-name">${p.name}</div>
+            ${swapHint}
+          </div>
+        `;
+      }).join('')
     : '<p class="dim">No bench players</p>';
 
   const invCount = gameState.inventory.reduce((sum, i) => sum + i.quantity, 0);
+  const swapBadge = _swapTarget ? ' <span class="swap-mode-badge">Swap Mode</span>' : '';
 
   return `
     <div class="screen hub-screen">
@@ -51,7 +66,7 @@ function renderHub() {
       </header>
 
       <section>
-        <h2>Starting XI</h2>
+        <h2>Starting XI${swapBadge}</h2>
         <div class="roster-grid">${rosterSlots.join('')}</div>
       </section>
 
@@ -62,6 +77,11 @@ function renderHub() {
 
       <div class="hub-actions">
         <button class="btn-primary btn-large" onclick="updateState({screen:'matchselect'})">⚔️ Play a Match</button>
+        <button class="btn-secondary" onclick="updateState({screen:'managegear'})">🎽 Gear Up</button>
+      </div>
+
+      <div class="hub-footer">
+        <button class="btn-small btn-danger" onclick="startOver()">↺ Start Over</button>
       </div>
 
       ${fans >= 1000000 ? '<div class="win-banner">🏆 YOU REACHED 1,000,000 FANS! YOU WIN!! 🏆</div>' : ''}
@@ -70,6 +90,42 @@ function renderHub() {
   `;
 }
 
-function openGearScreen(playerId) {
-  updateState({ screen: 'managegear', selectedPlayerId: playerId });
+function selectForSwap(playerId) {
+  if (_swapTarget === null) {
+    _swapTarget = playerId;
+    render();
+  } else if (_swapTarget === playerId) {
+    // Deselect
+    _swapTarget = null;
+    render();
+  } else {
+    // Perform swap
+    const slots = { ...gameState.slots };
+    const sourceSlot = Object.entries(slots).find(([, id]) => id === _swapTarget)?.[0] ?? null;
+    const targetSlot = Object.entries(slots).find(([, id]) => id === playerId)?.[0] ?? null;
+
+    if (sourceSlot && targetSlot) {
+      // Both are starters — swap their slots
+      slots[sourceSlot] = playerId;
+      slots[targetSlot] = _swapTarget;
+    } else if (sourceSlot) {
+      // Source is a starter, clicked player is on bench — bench player takes starter slot
+      slots[sourceSlot] = playerId;
+    } else if (targetSlot) {
+      // Source is bench, clicked player is a starter — bench source takes starter slot
+      slots[targetSlot] = _swapTarget;
+    }
+    // Both bench: nothing to do (bench has no positional slots)
+
+    _swapTarget = null;
+    updateState({ slots });
+  }
+}
+
+function startOver() {
+  if (confirm('Start over? All progress will be lost.')) {
+    deleteSave();
+    gameState = { screen: 'newgame' };
+    render();
+  }
 }

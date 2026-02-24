@@ -17,7 +17,7 @@ function render() {
   switch (gameState.screen) {
     case 'newgame':    app.innerHTML = renderNewGame();      break;
     case 'hub':        app.innerHTML = renderHub();          break;
-    case 'managegear': app.innerHTML = renderManageGear();   break;
+    case 'managegear': app.innerHTML = renderGearUp();       break;
     case 'matchselect':app.innerHTML = renderMatchSelect();  break;
     case 'prematch':   app.innerHTML = renderPreMatch();     break;
     case 'match':      app.innerHTML = renderMatchScreen();  startMatchPlayback(); break;

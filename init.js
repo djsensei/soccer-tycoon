@@ -34,24 +34,24 @@ function buildOpponentTeam(def) {
   };
 }
 
-function makePlayerCharacter(id, name, isGK) {
+function makePlayerCharacter(id, name) {
   const stat = () => 3 + Math.floor(Math.random() * 3); // 3–5
   return {
     id,
     name,
     stats: { height: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
-    gear: isGK ? { ...STARTING_GEAR.GK } : { ...STARTING_GEAR.other },
+    gear: { head: null, body: null, feet: null, gloves: null },
   };
 }
 
 function createNewGame(teamName, playerNames) {
   // playerNames: array of 5 strings in slot order [GK, D, M1, M2, S]
   const rosterPlayers = playerNames.map((name, i) =>
-    makePlayerCharacter(`player-${i}`, name, i === 0)
+    makePlayerCharacter(`player-${i}`, name)
   );
 
   // One bench player generated with random name
-  const benchPlayer = makePlayerCharacter('player-bench-0', generatePlayerName(), false);
+  const benchPlayer = makePlayerCharacter('player-bench-0', generatePlayerName());
 
   return {
     teamName,

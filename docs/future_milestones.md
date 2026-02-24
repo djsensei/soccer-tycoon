@@ -9,14 +9,14 @@ Planned milestones for Soccer Tycoon, with assigned backlog issues.
 Make the core game loop feel tight and fun before adding new content. Focused on the gear system, UX improvements, balance, and getting the game deployed.
 
 ### Assigned issues
-- "Start Over" button in hub
-- Starting gear is a placeholder, not a card
-- Gear Up screen redesign
-- Gloves less frequent in packs
+- ~~"Start Over" button in hub~~ ✓
+- ~~Starting gear is a placeholder, not a card~~ ✓
+- ~~Gear Up screen redesign~~ ✓
+- ~~Gloves less frequent in packs~~ ✓
 - ~~Code structure overhaul~~ ✓
-- Deployment — GitHub Pages + soft password
-- No duplicate cards in a single pack
-- Roster management — position swaps and bench
+- ~~Deployment — GitHub Pages + soft password~~ ✓
+- ~~No duplicate cards in a single pack~~ ✓
+- ~~Roster management — position swaps and bench~~ ✓
 
 ---
 
