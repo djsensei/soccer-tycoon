@@ -28,8 +28,11 @@ Replace the current per-player gear modal with a dedicated "Gear Up" screen acce
 Only 1 of 5 players (the GK) can use gloves. Pack weights should reflect this — gloves currently have equal probability to all other slots despite being ~4× less useful.
 - Options: reduce gloves weight globally, or filter gloves out of packs for non-GK slots, or make gloves a separate pool.
 
-### Code structure overhaul *(M2)*
-Separate JS into modules: split `game.js` into state, render, and per-screen files; move configuration and tuning constants to data files. Prerequisite for the Markov sim and other major structural work.
+### No duplicate cards in a single pack *(M2)*
+`openPack()` currently samples with replacement, so a single pack can contain the same card more than once. Change to sample without replacement — once a card is drawn, exclude it from remaining draws in the same pack.
+
+### Roster management — position swaps and bench *(M2)*
+Players are locked to their starting slot with no way to swap positions or bring a bench player into the starting XI. Add roster management to the hub: allow swapping players between any two slots (including bench), so the manager can experiment with lineups and actually use the bench.
 
 ### Deployment — GitHub Pages + soft password *(M2)*
 Set up GitHub Pages so family can play via a URL. Add a ~5-line client-side password prompt on page load for soft access control. Not cryptographically secure but fine since data isn't sensitive.
@@ -61,6 +64,12 @@ Headlines currently say e.g. "THE SLEEPY NARWHALS COLLAPSE IN DISGRACE" — shou
 
 ### Fan floor — friends and family never leave
 Players should never drop to 0 fans. A minimum of ~50 fans (friends and family) always remains, no matter how badly you lose. Adjust the fan floor in `goToResults`.
+
+### Name generator — no duplicate names on a roster
+`generatePlayerName()` can produce the same first or last name more than once in a single generation pass. When building a full roster, ensure no two players share a first name or last name. Same for team name adjective/noun combos — `generateTeamName()` shouldn't repeat either component.
+
+### Newspaper treatment for results screen
+Use the newspaper visual language (established on the game-over screen) for the post-match results screen. Replace the plain layout with a tabloid-style presentation: match headline, score, and fan delta delivered with flavor text. Would break up the green-screen monotony and give the game a stronger visual identity.
 
 ---
 

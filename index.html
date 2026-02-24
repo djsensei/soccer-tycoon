@@ -8,9 +8,25 @@
 </head>
 <body>
   <div id="app">Loading...</div>
-  <script src="data.js"></script>
-  <script src="save.js"></script>
-  <script src="simulator.js"></script>
-  <script src="game.js"></script>
+
+  <!-- Load order matters: each file can only reference names from files above it -->
+  <script src="data.js"></script>       <!-- constants, content, name generators -->
+  <script src="save.js"></script>       <!-- localStorage read/write -->
+  <script src="utils.js"></script>      <!-- shared utilities (effectiveStats, UI helpers) -->
+  <script src="init.js"></script>       <!-- new game creation -->
+  <script src="simulator.js"></script>  <!-- match engine (pure functions, no DOM) -->
+
+  <!-- One file per screen — add new screens here -->
+  <script src="screens/newgame.js"></script>
+  <script src="screens/hub.js"></script>
+  <script src="screens/gear.js"></script>
+  <script src="screens/matchselect.js"></script>
+  <script src="screens/prematch.js"></script>
+  <script src="screens/match.js"></script>
+  <script src="screens/results.js"></script>
+  <script src="screens/packopen.js"></script>
+  <script src="screens/gameover.js"></script>
+
+  <script src="state.js"></script>      <!-- gameState, updateState(), render(), bootstrap -->
 </body>
 </html>

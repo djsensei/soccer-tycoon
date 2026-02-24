@@ -11,23 +11,10 @@ const POSITION_WEIGHTS = {
   S:  { shooting: 4, speed: 2,  luck: 2 },
 };
 
-// Compute effective stats (base + all equipped gear bonuses)
-function getEffectiveStats(player) {
-  const stats = { ...player.stats };
-  for (const cardId of Object.values(player.gear)) {
-    if (cardId && CARDS[cardId]) {
-      for (const [stat, bonus] of Object.entries(CARDS[cardId].statBonuses)) {
-        stats[stat] = (stats[stat] || 0) + bonus;
-      }
-    }
-  }
-  return stats;
-}
-
 // Score a player's contribution in a given position slot
 function positionScore(player, position) {
   if (!player) return 3; // fallback if slot is empty
-  const stats   = getEffectiveStats(player);
+  const stats   = effectiveStats(player);
   const weights = POSITION_WEIGHTS[position];
   let total = 0, weightSum = 0;
   for (const [stat, w] of Object.entries(weights)) {
@@ -122,10 +109,10 @@ function simulateMatch(playerTeam, opponentTeam) {
     const defGK      = slotPlayer(defendingTeam, 'GK');
     const defD       = slotPlayer(defendingTeam, 'D');
 
-    const aStr = attStriker ? getEffectiveStats(attStriker) : {};
-    const aMid = attMid     ? getEffectiveStats(attMid)     : {};
-    const dGK  = defGK      ? getEffectiveStats(defGK)      : {};
-    const dDef = defD       ? getEffectiveStats(defD)       : {};
+    const aStr = attStriker ? effectiveStats(attStriker) : {};
+    const aMid = attMid     ? effectiveStats(attMid)     : {};
+    const dGK  = defGK      ? effectiveStats(defGK)      : {};
+    const dDef = defD       ? effectiveStats(defD)       : {};
 
     const actionRoll = Math.random();
     let type, outcome, isHighlight = false, actingPlayer, meta = {};
