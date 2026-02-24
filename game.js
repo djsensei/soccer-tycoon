@@ -225,9 +225,9 @@ function renderManageGear() {
   const gearSlotsHtml = gearSlots.map(gs => {
     const equippedId = player.gear[gs];
     const equipped   = equippedId ? CARDS[equippedId] : null;
-    // Show card if: it's currently in this slot, OR there are unequipped copies available
+    // Show only cards with unequipped copies available (equipped card is shown above, not here)
     const available = gameState.inventory
-      .filter(i => CARDS[i.cardId]?.slot === gs && (i.cardId === equippedId || availableQty(i.cardId) > 0))
+      .filter(i => CARDS[i.cardId]?.slot === gs && availableQty(i.cardId) > 0)
       .map(i => CARDS[i.cardId]);
 
     const equippedHtml = equipped
@@ -242,10 +242,10 @@ function renderManageGear() {
 
     const inventoryHtml = available.length
       ? available.map(c => {
-          const free = c.id === equippedId ? inventoryCount(c.id) : availableQty(c.id);
+          const free = availableQty(c.id);
           const bonuses = Object.entries(c.statBonuses).map(([s,v])=>`+${v} ${s}`).join(' · ') || 'No bonus';
           return `
-            <div class="inventory-card ${equippedId === c.id ? 'equipped' : ''}" onclick="equipGear('${player.id}','${gs}','${c.id}')">
+            <div class="inventory-card" onclick="equipGear('${player.id}','${gs}','${c.id}')">
               ${rarityBadge(c.rarity)}
               <strong>${c.name}</strong> <span class="qty">×${free}</span>
               <em>${c.flavourText}</em>
