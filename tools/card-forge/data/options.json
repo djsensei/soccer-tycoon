@@ -437,5 +437,879 @@
     "selected": [
       2
     ]
+  },
+  {
+    "concept_id": "body-common-height1",
+    "slot": "body",
+    "rarity": "common",
+    "statBonuses": {
+      "height": 1
+    },
+    "options": [
+      {
+        "name": "Platform Poncho",
+        "flavourText": "Built-in elevator shoes hidden in fabric.",
+        "imageDesc": "oversized tan and brown poncho with visible platform sole padding at the hem and layered stacked design",
+        "colors": "tan, chocolate brown, and cream with raised padding"
+      },
+      {
+        "name": "Stiletto Singlet",
+        "flavourText": "Who knew fashion could make you taller?",
+        "imageDesc": "elegant purple and gold sleeveless singlet with a sculpted torso piece that extends upward in sharp geometric lines",
+        "colors": "royal purple, gold, and silver with sharp angular accents"
+      },
+      {
+        "name": "Towering Tunic",
+        "flavourText": "Stretches you like taffy, but less gooey.",
+        "imageDesc": "long flowing white tunic with vertical stripe patterns that visually elongate the body and tall collar",
+        "colors": "white, silver, and pale gray with vertical emphasis lines"
+      },
+      {
+        "name": "Stacked Jersey",
+        "flavourText": "Extra fabric layers for extra height.",
+        "imageDesc": "bright orange jersey with multiple horizontal panel layering and raised ridges that add visual height",
+        "colors": "bright orange, gold, and white horizontal stripes"
+      },
+      {
+        "name": "Giant's Gilet",
+        "flavourText": "Inflatable sections make you twice as tall.",
+        "imageDesc": "puffy navy blue and white gilet with exaggerated vertical inflation sections and tall neck extension",
+        "colors": "navy blue, white, and metallic silver with puffy sections"
+      },
+      {
+        "name": "Pedestal Vest",
+        "flavourText": "You're literally standing on a platform now.",
+        "imageDesc": "sleek black vest with white architectural pedestal designs running vertically and elevated hemline",
+        "colors": "black, white, and silver with geometric pedestal patterns"
+      },
+      {
+        "name": "Lofty Letterman",
+        "flavourText": "Varsity confidence comes with 6 extra inches.",
+        "imageDesc": "maroon and cream letterman jacket with exaggerated tall collar and vertical racing stripes",
+        "colors": "maroon red, cream, and gold with elongated stripes"
+      },
+      {
+        "name": "Skyward Shirt",
+        "flavourText": "Points upward where the sky touches.",
+        "imageDesc": "light blue shirt with cloud patterns and upward-pointing arrows woven throughout the fabric",
+        "colors": "sky blue, white, and pale silver with upward motifs"
+      },
+      {
+        "name": "Elevation Ensemble",
+        "flavourText": "Literally improves your elevation stats.",
+        "imageDesc": "teal and silver athletic ensemble with altitude measurement markings printed vertically down the sides",
+        "colors": "teal, silver, and white with altitude grid patterns"
+      },
+      {
+        "name": "Peak Performance Parka",
+        "flavourText": "Reaches peak heights in style.",
+        "imageDesc": "dark green and white mountaineering parka with peaked hood design and tall silhouette",
+        "colors": "forest green, white, and gray with mountain peak shapes"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "body-common-speed1",
+    "slot": "body",
+    "rarity": "common",
+    "statBonuses": {
+      "speed": 1
+    },
+    "options": [
+      {
+        "name": "Slipstream Shirt",
+        "flavourText": "Cuts through air like a hot knife through butter.",
+        "imageDesc": "sleek black and cyan sports shirt with smooth aerodynamic lines and wind-tunnel smoothness",
+        "colors": "black, cyan, and silver with smooth flowing lines"
+      },
+      {
+        "name": "Aerodynamic Armor",
+        "flavourText": "Shaped by aliens for maximum speed.",
+        "imageDesc": "shiny white and neon green futuristic armor with streamlined curves and zero air resistance design",
+        "colors": "white, neon green, and metallic silver curves"
+      },
+      {
+        "name": "Swift Shift Jersey",
+        "flavourText": "Feels like you're constantly moving.",
+        "imageDesc": "red and white jersey with diagonal speed lines and blur effect patterns across the chest",
+        "colors": "red, white, and motion blur gray"
+      },
+      {
+        "name": "Smooth Sailing Suit",
+        "flavourText": "Silky smooth movement through defenses.",
+        "imageDesc": "pale blue silk-like bodysuit with glossy finish and wave-like ribbing patterns",
+        "colors": "pale blue, pearl white, and iridescent shimmer"
+      },
+      {
+        "name": "Velocity Vest",
+        "flavourText": "Vest that wants to go really fast.",
+        "imageDesc": "neon orange and purple sleeveless vest with lightning-inspired geometric patterns and racing stripes",
+        "colors": "neon orange, purple, and white with geometric speed marks"
+      },
+      {
+        "name": "Dash Jacket",
+        "flavourText": "Jacket that makes you dash faster.",
+        "imageDesc": "emerald green lightweight jacket with forward-pointing arrow designs and quick-release tabs",
+        "colors": "emerald green, white, and gold arrow accents"
+      },
+      {
+        "name": "Zephyr Zip-up",
+        "flavourText": "Wind spirit captured in a hoodie.",
+        "imageDesc": "soft gray and light blue zip-up with swirling cloud patterns and flowing fabric panels",
+        "colors": "soft gray, light blue, and white swirling clouds"
+      },
+      {
+        "name": "Air Current Armor",
+        "flavourText": "You float slightly above the ground.",
+        "imageDesc": "translucent white and pale cyan armor with wavy air current designs flowing downward",
+        "colors": "translucent white, cyan, and silver with wavy patterns"
+      },
+      {
+        "name": "Gust Guard Gear",
+        "flavourText": "Personal wind machine built into your shirt.",
+        "imageDesc": "teal and silver sleek guard gear with spinning turbine-like circular patterns",
+        "colors": "teal, silver, and white with spiral designs"
+      },
+      {
+        "name": "Blur Bomber",
+        "flavourText": "You're a high-speed blur of awesome.",
+        "imageDesc": "dark purple and hot pink bomber jacket with motion blur streaks and velocity lines",
+        "colors": "dark purple, hot pink, and white blur streaks"
+      }
+    ],
+    "selected": [
+      6
+    ]
+  },
+  {
+    "concept_id": "body-common-strength1",
+    "slot": "body",
+    "rarity": "common",
+    "statBonuses": {
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Iron Chest Plate",
+        "flavourText": "Your torso is now a suit of armor.",
+        "imageDesc": "solid gray iron breastplate with rivets and metallic sheen, bolted over dark padding",
+        "colors": "gunmetal gray, charcoal, and silver rivets"
+      },
+      {
+        "name": "Fortress Flannel",
+        "flavourText": "Cozy AND indestructible.",
+        "imageDesc": "thick red and black checkered flannel shirt with reinforced stitching and castle-like silhouette",
+        "colors": "deep red, black, and charcoal with thick texture"
+      },
+      {
+        "name": "Reinforced Rig",
+        "flavourText": "Straps upon straps upon straps.",
+        "imageDesc": "olive brown tactical rig with multiple reinforced straps, buckles, and heavy-duty padding",
+        "colors": "olive brown, black, and metallic bronze buckles"
+      },
+      {
+        "name": "Steel Shirt",
+        "flavourText": "Made from actual recycled steel.",
+        "imageDesc": "dark blue steel-textured shirt with welded-looking seams and industrial grid patterns",
+        "colors": "dark blue, charcoal, and silver welding marks"
+      },
+      {
+        "name": "Unbreakable Undershirt",
+        "flavourText": "Literally cannot be torn.",
+        "imageDesc": "pure white reinforced undershirt with thick armor plating woven into the fabric",
+        "colors": "pure white, silver, and metallic gray reinforcement"
+      },
+      {
+        "name": "Titanium Torso",
+        "flavourText": "Stronger than any element, probably.",
+        "imageDesc": "shiny titanium silver bodysuit with futuristic plating and segmented armor sections",
+        "colors": "titanium silver, white, and metallic blue"
+      },
+      {
+        "name": "Anvil Armor",
+        "flavourText": "You ARE the anvil now.",
+        "imageDesc": "black and gray armor shaped like an anvil with thick, immovable plating and deep grooves",
+        "colors": "black, anvil gray, and metallic copper"
+      },
+      {
+        "name": "Bastion Bodysuit",
+        "flavourText": "A walking fortress of determination.",
+        "imageDesc": "stone gray fortress-themed bodysuit with crenellated shoulders and castle wall patterns",
+        "colors": "stone gray, cream white, and shadow black mortar"
+      },
+      {
+        "name": "Siege Singlet",
+        "flavourText": "Withstands any assault thrown at you.",
+        "imageDesc": "deep burgundy sleeveless singlet with siege-weapon designs and heavy impact padding",
+        "colors": "deep burgundy, black, and bronze weapon details"
+      },
+      {
+        "name": "Rampart Robe",
+        "flavourText": "A defensive wall in fabric form.",
+        "imageDesc": "royal blue flowing robe with thick vertical rampart patterns and heavy-duty stitching throughout",
+        "colors": "royal blue, white, and gray rampart designs"
+      }
+    ],
+    "selected": [
+      1
+    ]
+  },
+  {
+    "concept_id": "body-common-passing1",
+    "slot": "body",
+    "rarity": "common",
+    "statBonuses": {
+      "passing": 1
+    },
+    "options": [
+      {
+        "name": "Symphony Shirt",
+        "flavourText": "Every pass is perfectly harmonized.",
+        "imageDesc": "elegant white and gold shirt with musical note patterns and conductor-inspired designs",
+        "colors": "white, gold, and black musical notation"
+      },
+      {
+        "name": "Maestro Vest",
+        "flavourText": "You conduct your team like an orchestra.",
+        "imageDesc": "formal black and white sleeveless vest with conductor's baton designs and musical staff patterns",
+        "colors": "black, white, and gold conductor accents"
+      },
+      {
+        "name": "Conductor's Cloak",
+        "flavourText": "Directs passes with dramatic flair.",
+        "imageDesc": "deep purple flowing cloak with white trim and elegant baton-swirl patterns across the back",
+        "colors": "deep purple, white, and silver swirls"
+      },
+      {
+        "name": "Precision Placket",
+        "flavourText": "Every stitch means something.",
+        "imageDesc": "mint green shirt with geometric grid patterns and precise measurement markings",
+        "colors": "mint green, black, and silver grid lines"
+      },
+      {
+        "name": "Sync Singlet",
+        "flavourText": "In perfect sync with your teammates.",
+        "imageDesc": "teal and silver sleeveless singlet with synchronized wave patterns and matching motifs",
+        "colors": "teal, silver, and white synchronized waves"
+      },
+      {
+        "name": "Harmony Jersey",
+        "flavourText": "Pass, receive, repeat in perfect balance.",
+        "imageDesc": "balanced blue and orange jersey with yin-yang harmony patterns and interlocking designs",
+        "colors": "royal blue, orange, and white harmony designs"
+      },
+      {
+        "name": "Balance Bodysuit",
+        "flavourText": "Never loses equilibrium, ever.",
+        "imageDesc": "sleek gray and white bodysuit with symmetrical balance scale patterns down the center",
+        "colors": "gray, white, and gold balance symbols"
+      },
+      {
+        "name": "Coordination Cape",
+        "flavourText": "Superhero of coordination.",
+        "imageDesc": "red cape with white interlocking chain patterns symbolizing perfect team coordination",
+        "colors": "red, white, and gold chain links"
+      },
+      {
+        "name": "Calibrated Cuirass",
+        "flavourText": "Chest armor that measures every pass.",
+        "imageDesc": "silver and blue precision-engineered cuirass with calibration marks and measurement scales",
+        "colors": "silver, calibration blue, and white measurement marks"
+      },
+      {
+        "name": "Alignment Armor",
+        "flavourText": "Perfect alignment in every direction.",
+        "imageDesc": "black and neon green armor with alignment laser guides and crosshair patterns",
+        "colors": "black, neon green, and white crosshairs"
+      }
+    ],
+    "selected": [
+      5
+    ]
+  },
+  {
+    "concept_id": "body-common-shooting1",
+    "slot": "body",
+    "rarity": "common",
+    "statBonuses": {
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Cannon Chest Piece",
+        "flavourText": "Your chest has actual cannons now.",
+        "imageDesc": "black and red armor with protruding cannon barrels on both shoulders and chest",
+        "colors": "black, crimson red, and bronze cannons"
+      },
+      {
+        "name": "Targeting Tunic",
+        "flavourText": "Built-in targeting system for your shots.",
+        "imageDesc": "white and neon green tunic with crosshair and targeting reticle patterns across the chest",
+        "colors": "white, neon green, and black crosshairs"
+      },
+      {
+        "name": "Bullseye Bodysuit",
+        "flavourText": "Always hits the spot.",
+        "imageDesc": "red and gold bodysuit with concentric bullseye circle patterns centered on the chest",
+        "colors": "red, gold, and white bullseye rings"
+      },
+      {
+        "name": "Blast Breastplate",
+        "flavourText": "Chest armor that explodes with power.",
+        "imageDesc": "orange and yellow explosive-themed breastplate with radiating blast wave patterns",
+        "colors": "orange, yellow, and black blast effects"
+      },
+      {
+        "name": "Impact Jacket",
+        "flavourText": "Every movement has impact.",
+        "imageDesc": "gray and purple jacket with impact crater designs and shock wave patterns",
+        "colors": "gray, purple, and white impact marks"
+      },
+      {
+        "name": "Striker's Singlet",
+        "flavourText": "Made for strikers who never miss.",
+        "imageDesc": "deep red sleeveless singlet with lightning bolt strikes and power surge designs",
+        "colors": "deep red, gold, and white lightning"
+      },
+      {
+        "name": "Explosive Ensemble",
+        "flavourText": "Bursts with power when you shoot.",
+        "imageDesc": "black and hot pink explosive-themed outfit with bursting star patterns",
+        "colors": "black, hot pink, and gold explosion effects"
+      },
+      {
+        "name": "Power Plate Parka",
+        "flavourText": "Jacket made of pure concentrated power.",
+        "imageDesc": "navy blue parka with silver power plates across the chest and energy field designs",
+        "colors": "navy blue, silver, and electric cyan"
+      },
+      {
+        "name": "Velocity Vest Plus",
+        "flavourText": "Extra velocity for extra explosive shots.",
+        "imageDesc": "emerald green vest with speed arrows combining into explosive impact points",
+        "colors": "emerald green, white, and gold explosive accents"
+      },
+      {
+        "name": "Shockwave Shirt",
+        "flavourText": "Shots create literal shockwaves.",
+        "imageDesc": "white and electric blue shirt with radiating shockwave rings and energy pulse patterns",
+        "colors": "white, electric blue, and neon purple shockwaves"
+      }
+    ],
+    "selected": [
+      9
+    ]
+  },
+  {
+    "concept_id": "body-common-luck1",
+    "slot": "body",
+    "rarity": "common",
+    "statBonuses": {
+      "luck": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Charm Jersey",
+        "flavourText": "Covered in charms that actually work.",
+        "imageDesc": "gold and red jersey with hanging lucky charm symbols, horseshoes, and fortune talismans",
+        "colors": "gold, crimson red, and white charm details"
+      },
+      {
+        "name": "Fortune Frock",
+        "flavourText": "Dress for success literally.",
+        "imageDesc": "emerald green dress-style shirt with fortune wheel designs and lucky pattern embroidery",
+        "colors": "emerald green, gold, and white fortune patterns"
+      },
+      {
+        "name": "Blessing Bodysuit",
+        "flavourText": "Blessed by everyone including the ref.",
+        "imageDesc": "white and gold bodysuit with angelic halo designs and blessing rune patterns",
+        "colors": "pure white, holy gold, and silver halos"
+      },
+      {
+        "name": "Karma Coat",
+        "flavourText": "The universe rewards your good vibes.",
+        "imageDesc": "burnt orange and white coat with yin-yang designs and karma symbol embroidery",
+        "colors": "burnt orange, white, and black karma designs"
+      },
+      {
+        "name": "Mystic Mesh Shirt",
+        "flavourText": "Woven with mystical threads.",
+        "imageDesc": "indigo and silver mesh shirt with mystical symbols, moons, and star patterns throughout",
+        "colors": "indigo, silver, and white mystical markings"
+      },
+      {
+        "name": "Prosperity Poncho",
+        "flavourText": "Attracts wealth and goals equally.",
+        "imageDesc": "rich purple and gold poncho with prosperity symbols and abundance coin patterns",
+        "colors": "rich purple, gold, and bronze prosperity designs"
+      },
+      {
+        "name": "Charm Chest Guard",
+        "flavourText": "Chest protection made of pure luck.",
+        "imageDesc": "black and gold chest guard covered in hanging lucky charms and charm bells",
+        "colors": "black, gold, and silver charm details"
+      },
+      {
+        "name": "Destiny Doublet",
+        "flavourText": "Shaped by fate itself.",
+        "imageDesc": "deep blue and purple elegant doublet with constellation patterns and destiny rune designs",
+        "colors": "deep blue, purple, and golden constellation lines"
+      },
+      {
+        "name": "Luck Layer",
+        "flavourText": "Luck layered upon luck upon luck.",
+        "imageDesc": "rainbow multi-layered shirt with overlapping luck symbols and four-leaf clovers",
+        "colors": "rainbow gradient with gold lucky accents"
+      },
+      {
+        "name": "Serendipity Suit",
+        "flavourText": "Happy accidents happen constantly.",
+        "imageDesc": "teal and pink suit with swirling serendipity patterns and chance symbols",
+        "colors": "teal, hot pink, and white serendipitous swirls"
+      }
+    ],
+    "selected": [
+      5
+    ]
+  },
+  {
+    "concept_id": "head-common-height1",
+    "slot": "head",
+    "rarity": "common",
+    "statBonuses": {
+      "height": 1
+    },
+    "options": [
+      {
+        "name": "Sky Scraper Helmet",
+        "flavourText": "Reaches so high it touches clouds.",
+        "imageDesc": "tall white and silver cone-shaped helmet with a vertical antenna poking through the top and skyscraper window patterns",
+        "colors": "white, silver, and neon blue antenna"
+      },
+      {
+        "name": "Giant's Headband",
+        "flavourText": "Stretches your head upward instantly.",
+        "imageDesc": "thick golden headband with upward-pointing arrows and extension mechanisms that visually extend the wearer's height",
+        "colors": "gold, white, and royal blue arrows"
+      },
+      {
+        "name": "Towering Tiara",
+        "flavourText": "A crown so tall it's impractical.",
+        "imageDesc": "elegant pink and gold tiara with multiple tall spires reaching upward with sparkling jewel accents",
+        "colors": "gold, pink, and crystal white sparkles"
+      },
+      {
+        "name": "Pole Position Cap",
+        "flavourText": "Your head sits on top of a flagpole.",
+        "imageDesc": "red and white tall cylindrical cap with flag designs spiraling upward and pole-like structure",
+        "colors": "red, white, and black striped pole"
+      },
+      {
+        "name": "Antenna Afro",
+        "flavourText": "Multiple antennas boosting your height.",
+        "imageDesc": "fluffy afro-style headpiece with six tall metallic antennas sprouting from the top",
+        "colors": "purple, silver, and neon pink antennas"
+      },
+      {
+        "name": "Stilt Helmet",
+        "flavourText": "Built-in leg extensions for your head.",
+        "imageDesc": "orange and brown helmet with wooden stilt-like extensions attached to the sides creating extra height",
+        "colors": "orange, natural wood tan, and brown"
+      },
+      {
+        "name": "Giraffe Guard",
+        "flavourText": "Giraffe necks are long, right?",
+        "imageDesc": "tan and brown spotted helmet designed like a tall giraffe head with elongated neck piece",
+        "colors": "tan, brown spots, and gold accents"
+      },
+      {
+        "name": "Chimney Crown",
+        "flavourText": "Red brick tower directly on your head.",
+        "imageDesc": "red and gray crown shaped like a brick chimney with smoking effect at the top",
+        "colors": "brick red, gray, and white smoke wisps"
+      },
+      {
+        "name": "Elevator Helmet",
+        "flavourText": "Keeps going up, and up, and up.",
+        "imageDesc": "metallic silver helmet with vertical elevator door designs and leveling indicators climbing to the top",
+        "colors": "silver, white, and gold level numbers"
+      },
+      {
+        "name": "Wizard's Wizard Hat",
+        "flavourText": "A wizard hat... with a tiny wizard hat on top.",
+        "imageDesc": "purple and gold pointed wizard hat with stars, moons, and a second tiny hat perched on the tip",
+        "colors": "deep purple, gold, and silver stars"
+      }
+    ],
+    "selected": [
+      6
+    ]
+  },
+  {
+    "concept_id": "head-common-strength1",
+    "slot": "head",
+    "rarity": "common",
+    "statBonuses": {
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Iron Dome Helmet",
+        "flavourText": "Pure iron protecting your big brain.",
+        "imageDesc": "solid dark gray and black domed helmet with heavy metallic plating and reinforced rivets",
+        "colors": "gunmetal gray, black, and silver rivets"
+      },
+      {
+        "name": "Bullhead Helmet",
+        "flavourText": "You ARE the bull now.",
+        "imageDesc": "brown and bronze helmet shaped like a bull's head with large curved horns",
+        "colors": "bronze brown, metallic copper, and gold horns"
+      },
+      {
+        "name": "Crash Cap Extreme",
+        "flavourText": "Designed to crash through anything.",
+        "imageDesc": "neon yellow and black reinforced crash cap with protective padding and impact-resistant plating",
+        "colors": "neon yellow, black, and white padding"
+      },
+      {
+        "name": "Warrior Wreath",
+        "flavourText": "Battle-hardened and unbreakable.",
+        "imageDesc": "bronze metallic headband with warrior symbols, crossed swords, and battle-ready designs",
+        "colors": "bronze, gold, and silver sword details"
+      },
+      {
+        "name": "Titan Topper",
+        "flavourText": "Headgear of actual titans.",
+        "imageDesc": "enormous white and gray helmet with Greek-style design and titan-strength aesthetic",
+        "colors": "white, gray, and metallic bronze"
+      },
+      {
+        "name": "Shield Helm",
+        "flavourText": "Your head IS the shield.",
+        "imageDesc": "polished silver helmet designed as a shield with protective crossed designs and defensive patterns",
+        "colors": "silver, white, and deep blue shield patterns"
+      },
+      {
+        "name": "Rock Hard Helmet",
+        "flavourText": "Harder than actual rock.",
+        "imageDesc": "slate gray helmet that looks carved from solid stone with rocky texture and granite appearance",
+        "colors": "slate gray, charcoal, and white granite"
+      },
+      {
+        "name": "Impact Helm",
+        "flavourText": "Built for massive head-on collisions.",
+        "imageDesc": "red and black reinforced helmet with bumper plating and shock-absorbing gel design visible through panels",
+        "colors": "deep red, black, and neon green gel"
+      },
+      {
+        "name": "Gorilla Guard",
+        "flavourText": "Gorilla strength protecting your head.",
+        "imageDesc": "black and gray helmet styled like a gorilla's head with powerful jaw design and ape-like silhouette",
+        "colors": "black, charcoal gray, and silver"
+      },
+      {
+        "name": "Fortress Head",
+        "flavourText": "Your head is now a fortress.",
+        "imageDesc": "stone gray helmet designed like a miniature fortress with castle walls, crenellations, and ramparts",
+        "colors": "stone gray, cream white, and shadow black"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "head-common-passing1",
+    "slot": "head",
+    "rarity": "common",
+    "statBonuses": {
+      "passing": 1
+    },
+    "options": [
+      {
+        "name": "Vision Visor",
+        "flavourText": "See everything on the field at once.",
+        "imageDesc": "mint green and white visor with wide panoramic lens and 360-degree sight design",
+        "colors": "mint green, white, and silver visor"
+      },
+      {
+        "name": "Smart Scope Cap",
+        "flavourText": "Your brain got a tech upgrade.",
+        "imageDesc": "black and cyan cap with a small targeting scope mounted on top and neural interface patterns",
+        "colors": "black, cyan blue, and neon green circuits"
+      },
+      {
+        "name": "Radar Headband",
+        "flavourText": "Teammates show up on your radar.",
+        "imageDesc": "orange and silver headband with rotating radar dish on top and concentric radar circle patterns",
+        "colors": "orange, silver, and neon green radar"
+      },
+      {
+        "name": "Brain Boost Helmet",
+        "flavourText": "Literally adds brain power.",
+        "imageDesc": "white and gold helmet with brain-wave patterns and neural circuit designs lighting up",
+        "colors": "white, gold, and electric blue circuits"
+      },
+      {
+        "name": "Eyes Wide Open Goggles",
+        "flavourText": "Goggles that expand your awareness.",
+        "imageDesc": "blue and white goggles with extra-wide lenses and expanding eye symbols on the sides",
+        "colors": "blue, white, and gold expansion designs"
+      },
+      {
+        "name": "Compass Crown",
+        "flavourText": "Always know where your teammates are.",
+        "imageDesc": "gold and navy crown with compass rose designs and directional indicator patterns",
+        "colors": "gold, navy blue, and white compass"
+      },
+      {
+        "name": "Thread Tracker Helm",
+        "flavourText": "Tracks every pass you can make.",
+        "imageDesc": "teal and white helmet with threading patterns and path-tracking designs woven throughout",
+        "colors": "teal, white, and silver threading"
+      },
+      {
+        "name": "Sync Sensor Visor",
+        "flavourText": "Syncs with your entire team.",
+        "imageDesc": "purple and silver visor with synchronized wave patterns and team connection indicators",
+        "colors": "purple, silver, and neon pink waves"
+      },
+      {
+        "name": "Link Lattice Helmet",
+        "flavourText": "Connected to every teammate always.",
+        "imageDesc": "green and gold helmet covered in network connection patterns and lattice designs",
+        "colors": "green, gold, and white lattice"
+      },
+      {
+        "name": "Perception Pro Helmet",
+        "flavourText": "Perceives plays before they happen.",
+        "imageDesc": "red and silver helmet with predictive arrow patterns and foresight symbols glowing",
+        "colors": "red, silver, and neon orange arrows"
+      }
+    ],
+    "selected": [
+      0
+    ]
+  },
+  {
+    "concept_id": "head-common-shooting1",
+    "slot": "head",
+    "rarity": "common",
+    "statBonuses": {
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Sniper Scope Helmet",
+        "flavourText": "Makes impossible shots possible.",
+        "imageDesc": "gray and black helmet with a mounted sniper scope and crosshair targeting reticles",
+        "colors": "gunmetal gray, black, and neon green crosshairs"
+      },
+      {
+        "name": "Laser Headband",
+        "flavourText": "Your eyes literally shoot lasers.",
+        "imageDesc": "black and red headband with glowing laser eye designs and targeting beam patterns",
+        "colors": "black, red, and neon green laser beams"
+      },
+      {
+        "name": "Bullseye Crown",
+        "flavourText": "Every shot is a bullseye.",
+        "imageDesc": "red and white crown with concentric bullseye circle patterns and targeting symbols",
+        "colors": "red, white, and gold bullseye"
+      },
+      {
+        "name": "Aim Assist Helm",
+        "flavourText": "Built-in aimbot for your brain.",
+        "imageDesc": "white and gold helmet with precision guides, targeting grid, and aiming assists displayed",
+        "colors": "white, gold, and electric blue targeting"
+      },
+      {
+        "name": "Cannon Crest Cap",
+        "flavourText": "Head-mounted cannon ready to fire.",
+        "imageDesc": "orange and black cap with a small cannon barrel mounted on the crown",
+        "colors": "orange, black, and metallic bronze"
+      },
+      {
+        "name": "Power Shot Visor",
+        "flavourText": "Channels power into every kick.",
+        "imageDesc": "purple and gold visor with power surge patterns and energy concentrators on the sides",
+        "colors": "purple, gold, and electric blue energy"
+      },
+      {
+        "name": "Marksman Mask",
+        "flavourText": "Only the finest shooters wear this.",
+        "imageDesc": "black mask with white precision markers and expert-level targeting patterns",
+        "colors": "black, white, and silver precision marks"
+      },
+      {
+        "name": "Explosion Expanse Helmet",
+        "flavourText": "Your shots explode with power.",
+        "imageDesc": "yellow and red helmet with explosive burst patterns radiating from the forehead area",
+        "colors": "yellow, red, and orange explosion effects"
+      },
+      {
+        "name": "Strike System Helm",
+        "flavourText": "Strike system calculates perfect angles.",
+        "imageDesc": "silver and blue helmet with angle calculation lines and trajectory design patterns",
+        "colors": "silver, blue, and white calculation lines"
+      },
+      {
+        "name": "Velocity Veil",
+        "flavourText": "Channels raw velocity into shots.",
+        "imageDesc": "teal and white veil-like helmet with velocity streamlines and speed arrows pointing forward",
+        "colors": "teal, white, and gold velocity lines"
+      }
+    ],
+    "selected": [
+      6
+    ]
+  },
+  {
+    "concept_id": "head-common-reflexes1",
+    "slot": "head",
+    "rarity": "common",
+    "statBonuses": {
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Reflex Reactor Helm",
+        "flavourText": "Reacts faster than thought.",
+        "imageDesc": "white and cyan helmet with glowing reaction speed indicators and neural impulse patterns",
+        "colors": "white, cyan, and neon pink impulse"
+      },
+      {
+        "name": "Alert Antenna Band",
+        "flavourText": "Antennas sense danger before it comes.",
+        "imageDesc": "orange and silver headband with multiple tall alert antennas that twitch responsively",
+        "colors": "orange, silver, and neon red alerts"
+      },
+      {
+        "name": "Ninja Night Cap",
+        "flavourText": "Silent, fast, mysteriously good.",
+        "imageDesc": "black and purple ninja-style cap with reactive shadow patterns and swift-motion designs",
+        "colors": "black, purple, and silver ninja marks"
+      },
+      {
+        "name": "Reaction Visor",
+        "flavourText": "Visor that reacts before your eyes open.",
+        "imageDesc": "red and white visor with reactive motion sensors and instant-response light patterns",
+        "colors": "red, white, and electric blue reactions"
+      },
+      {
+        "name": "Twitch Trigger Hood",
+        "flavourText": "Hood that makes you twitch faster.",
+        "imageDesc": "green and yellow hood with nervous system patterns and trigger-ready designs",
+        "colors": "green, yellow, and neon lime circuits"
+      },
+      {
+        "name": "Swift Sense Crown",
+        "flavourText": "Senses everything super fast.",
+        "imageDesc": "gold and blue crown with sensing wave patterns and rapid-detection symbols all around",
+        "colors": "gold, blue, and white sensing waves"
+      },
+      {
+        "name": "Catch All Cap",
+        "flavourText": "Catches everything reflexively.",
+        "imageDesc": "orange and black cap with catcher's mitt patterns and catch-ready designs on the brim",
+        "colors": "orange, black, and brown mitt texture"
+      },
+      {
+        "name": "Flash Forward Helm",
+        "flavourText": "Flash moves before the play starts.",
+        "imageDesc": "white and neon pink helmet with lightning-fast streak patterns and forward-flash designs",
+        "colors": "white, neon pink, and electric yellow"
+      },
+      {
+        "name": "Dodge Master Headband",
+        "flavourText": "Master of all dodges instantly.",
+        "imageDesc": "purple and white headband with zigzag dodge patterns and evasion arrow designs",
+        "colors": "purple, white, and gold dodge arrows"
+      },
+      {
+        "name": "Spark Snap Helm",
+        "flavourText": "Snaps into action like a spark.",
+        "imageDesc": "gray and orange helmet with electrical spark effects and snap-reaction patterns",
+        "colors": "gray, orange, and bright yellow sparks"
+      }
+    ],
+    "selected": [
+      0
+    ]
+  },
+  {
+    "concept_id": "head-common-luck1",
+    "slot": "head",
+    "rarity": "common",
+    "statBonuses": {
+      "luck": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Leprechaun Cap",
+        "flavourText": "Rainbows and pots of goals.",
+        "imageDesc": "green and gold leprechaun-style cap with four-leaf clover patterns and lucky charm embroidery",
+        "colors": "forest green, gold, and white clovers"
+      },
+      {
+        "name": "Fortune Helm",
+        "flavourText": "Tells your future and wins games.",
+        "imageDesc": "purple and gold helmet with mystical fortune-telling designs and crystal ball patterns",
+        "colors": "deep purple, gold, and silver crystals"
+      },
+      {
+        "name": "Charm Crown Deluxe",
+        "flavourText": "Covered in every lucky charm ever.",
+        "imageDesc": "white and gold crown covered with hanging lucky charms, bells, and fortune tokens",
+        "colors": "white, gold, and multicolor charm details"
+      },
+      {
+        "name": "Blessing Band",
+        "flavourText": "Blessed by every good luck source.",
+        "imageDesc": "silver and white headband with blessing symbols, halos, and divine protection marks",
+        "colors": "silver, white, and gold blessing symbols"
+      },
+      {
+        "name": "Fate Finder Helm",
+        "flavourText": "Finds fortune in every moment.",
+        "imageDesc": "navy and gold helmet with constellation maps and destiny rune patterns glowing softly",
+        "colors": "navy blue, gold, and silver constellation"
+      },
+      {
+        "name": "Karma Cap",
+        "flavourText": "Good karma follows you always.",
+        "imageDesc": "orange and white cap with yin-yang patterns and karma symbol embroidery throughout",
+        "colors": "burnt orange, white, and black karma"
+      },
+      {
+        "name": "Chance Charmer Helmet",
+        "flavourText": "Odds always break your way.",
+        "imageDesc": "red and gold helmet with dice patterns, chance wheels, and probability symbols all over",
+        "colors": "red, gold, and white dice and wheels"
+      },
+      {
+        "name": "Star Speckled Helm",
+        "flavourText": "Stars guide you to victory.",
+        "imageDesc": "dark blue helmet covered with star patterns and twinkling star designs throughout",
+        "colors": "dark blue, white, and gold stars"
+      },
+      {
+        "name": "Victory Vibes Visor",
+        "flavourText": "Vibes so lucky, wins are guaranteed.",
+        "imageDesc": "pink and rainbow visor with positive vibes symbols and victory pattern designs",
+        "colors": "hot pink, rainbow, and gold victory"
+      },
+      {
+        "name": "Miraculous Mask",
+        "flavourText": "Miracles happen when you wear this.",
+        "imageDesc": "white and gold mask with miraculous starburst patterns and divine light effects",
+        "colors": "white, gold, and bright yellow light"
+      }
+    ],
+    "selected": [
+      3
+    ]
   }
 ]

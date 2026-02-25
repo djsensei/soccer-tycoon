@@ -3,12 +3,13 @@ Card Forge — Soccer Tycoon card generation pipeline.
 
 Usage:
   uv run forge.py concepts --slot feet --rarity common
-  uv run forge.py select
-  uv run forge.py prompts
-  uv run forge.py export
+  uv run forge.py select          # interactive; auto-generates prompts.txt
+  # → generate SD images, drop in tools/card-forge/input/
+  uv run forge.py rename          # interactive; auto: process → export --apply → cleanup
 """
 
 import argparse
+import io
 import json
 import re
 import sys
@@ -50,8 +51,13 @@ SLOT_TRAIL_ORIGIN = {
     'gloves': 'the fingertips',
 }
 
-DATA_DIR = Path(__file__).parent / 'data'
-IMG_DIR  = Path(__file__).parent.parent.parent / 'img' / 'cards'
+DATA_DIR  = Path(__file__).parent / 'data'
+IMG_DIR   = Path(__file__).parent.parent.parent / 'img' / 'cards'
+INPUT_DIR = Path(__file__).parent / 'input'
+DATA_JS   = Path(__file__).parent.parent.parent / 'data.js'
+
+FORGE_START = '  // @forge:start'
+FORGE_END   = '  // @forge:end'
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -132,6 +138,26 @@ def save_options(concepts):
     DATA_DIR.mkdir(exist_ok=True)
     (DATA_DIR / 'options.json').write_text(json.dumps(concepts, indent=2))
 
+def build_card_lines(concepts):
+    """Build the JS card definition lines for all selected options."""
+    lines = []
+    for c in concepts:
+        picks = c.get('selected') or []
+        for idx in picks:
+            opt     = c['options'][idx]
+            name    = opt['name']
+            slug    = slugify(name)
+            bonuses = ', '.join(f'{s}: {v}' for s, v in c['statBonuses'].items())
+            flavour = opt['flavourText'].replace('"', '\\"')
+            img_ok  = (IMG_DIR / f'{slug}.png').exists()
+            note    = '' if img_ok else '  // ⚠ image pending'
+            lines.append(
+                f"  '{slug}': {{ id: '{slug}', name: '{name}', slot: '{c['slot']}', "
+                f"rarity: '{c['rarity']}', flavourText: \"{flavour}\", "
+                f"statBonuses: {{ {bonuses} }} }},{note}"
+            )
+    return lines
+
 # ── Commands ──────────────────────────────────────────────────────────────────
 
 def cmd_concepts(args):
@@ -170,30 +196,47 @@ def cmd_select(args):
     if not ready:
         sys.exit("No options yet — ask Claude Code to run Haiku generation first.")
 
-    changed = 0
-    for c in ready:
+    i = 0
+    while i < len(ready):
+        c         = ready[i]
         stat_desc = ', '.join(f'+{v} {s}' for s, v in c['statBonuses'].items())
-        header    = f"\n── {c['slot'].upper()} · {c['rarity'].upper()} · {stat_desc} ──"
-        print(header)
+        position  = f"({i + 1}/{len(ready)})"
+        print(f"\n── {c['slot'].upper()} · {c['rarity'].upper()} · {stat_desc}  {position} ──")
 
         choices = [
             questionary.Choice(
                 title=f"{opt['name']}  —  \"{opt['flavourText']}\"",
-                value=i,
-                checked=(i in (c.get('selected') or [])),
+                value=idx,
+                checked=(idx in (c.get('selected') or [])),
             )
-            for i, opt in enumerate(c['options'])
+            for idx, opt in enumerate(c['options'])
         ]
 
         picks = questionary.checkbox("Pick favourites (space to toggle, enter to confirm):", choices).ask()
         if picks is None:   # ctrl-c
             break
         c['selected'] = picks
-        changed += 1
+
+        nav_choices = ['→ Next']
+        if i > 0:
+            nav_choices.append('← Go back')
+        nav_choices.append('✕ Stop here')
+
+        nav = questionary.select("", choices=nav_choices).ask()
+        if nav is None or nav == '✕ Stop here':
+            break
+        if nav == '← Go back':
+            i -= 1
+        else:
+            i += 1
 
     save_options(concepts)
     total_selected = sum(len(c.get('selected') or []) for c in concepts)
     print(f"\nSaved. {total_selected} cards selected across all concepts.")
+
+    print("\n" + "─" * 60)
+    print("Auto-generating prompts.txt...")
+    cmd_prompts(args)
 
 
 def cmd_prompts(args):
@@ -257,6 +300,48 @@ def normalize_tokens(text):
     return set(re.sub(r'[^a-z0-9\s]', ' ', text.lower()).split())
 
 
+def cmd_process(args):
+    """Remove backgrounds, resize/pad to 512×512, write to img/cards/, delete from input/."""
+    try:
+        from rembg import remove
+        from PIL import Image
+    except ImportError:
+        sys.exit("Run 'uv sync' first to install rembg and Pillow.")
+
+    if not INPUT_DIR.exists():
+        print("input/ directory not found — nothing to process.")
+        return
+
+    imgs = sorted(INPUT_DIR.glob('*.png'))
+    if not imgs:
+        print("No PNG files in input/ — nothing to process.")
+        return
+
+    IMG_DIR.mkdir(parents=True, exist_ok=True)
+    processed = 0
+
+    for img_path in imgs:
+        print(f"  Processing {img_path.name}...")
+        raw    = img_path.read_bytes()
+        output = remove(raw)
+        img    = Image.open(io.BytesIO(output)).convert('RGBA')
+
+        # Resize to fit within 512×512 preserving aspect ratio, then center on canvas
+        img.thumbnail((512, 512), Image.LANCZOS)
+        canvas = Image.new('RGBA', (512, 512), (0, 0, 0, 0))
+        offset = ((512 - img.width) // 2, (512 - img.height) // 2)
+        canvas.paste(img, offset)
+
+        dest = IMG_DIR / img_path.name
+        canvas.save(dest, 'PNG')
+        print(f"    → {dest}")
+
+        img_path.unlink()
+        processed += 1
+
+    print(f"\nProcessed {processed} image(s) → {IMG_DIR}")
+
+
 def cmd_rename(args):
     try:
         import questionary
@@ -273,84 +358,102 @@ def cmd_rename(args):
     unknowns = [p for p in sorted(src_dir.glob('*.png')) if p.stem not in card_prompts]
     if not unknowns:
         print("No unrecognized PNGs found — nothing to rename.")
-        return
+    else:
+        renamed = auto_count = 0
 
-    renamed = auto_count = 0
+        for img in unknowns:
+            file_tokens = normalize_tokens(img.stem)
+            scores      = {cid: len(file_tokens & toks) for cid, toks in prompt_tokens.items()}
+            ranked      = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+            best_id, best_score = ranked[0]
+            second_score        = ranked[1][1] if len(ranked) > 1 else 0
 
-    for img in unknowns:
-        file_tokens = normalize_tokens(img.stem)
-        scores      = {cid: len(file_tokens & toks) for cid, toks in prompt_tokens.items()}
-        ranked      = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-        best_id, best_score = ranked[0]
-        second_score        = ranked[1][1] if len(ranked) > 1 else 0
+            dest = img.parent / f'{best_id}.png'
 
-        dest = img.parent / f'{best_id}.png'
-
-        if best_score >= 2 and best_score > second_score:
-            if dest.exists():
-                print(f"SKIP {img.name}  (auto-match: {best_id}, score {best_score}, but dest exists)")
-                continue
-            img.rename(dest)
-            print(f"AUTO  {img.name}  →  {best_id}.png  (score {best_score})")
-            renamed += 1
-            auto_count += 1
-        else:
-            print(f"\nFile: {img.name}")
-            if best_score > 0:
-                print("  Top matches: " + ", ".join(f"{cid} ({s})" for cid, s in ranked[:3] if s > 0))
+            if best_score >= 2 and best_score > second_score:
+                if dest.exists():
+                    print(f"SKIP {img.name}  (auto-match: {best_id}, score {best_score}, but dest exists)")
+                    continue
+                img.rename(dest)
+                print(f"AUTO  {img.name}  →  {best_id}.png  (score {best_score})")
+                renamed += 1
+                auto_count += 1
             else:
-                print("  No keyword matches found.")
+                print(f"\nFile: {img.name}")
+                if best_score > 0:
+                    print("  Top matches: " + ", ".join(f"{cid} ({s})" for cid, s in ranked[:3] if s > 0))
+                else:
+                    print("  No keyword matches found.")
 
-            choice = questionary.select(
-                "Which card is this?",
-                choices=list(card_prompts.keys()) + ['(skip)'],
-            ).ask()
+                choice = questionary.select(
+                    "Which card is this?",
+                    choices=list(card_prompts.keys()) + ['(skip)'],
+                ).ask()
 
-            if not choice or choice == '(skip)':
-                continue
-
-            dest = img.parent / f'{choice}.png'
-            if dest.exists():
-                if not questionary.confirm(f"{dest.name} already exists — overwrite?").ask():
+                if not choice or choice == '(skip)':
                     continue
 
-            img.rename(dest)
-            print(f"  → {dest.name}")
-            renamed += 1
+                dest = img.parent / f'{choice}.png'
+                if dest.exists():
+                    if not questionary.confirm(f"{dest.name} already exists — overwrite?").ask():
+                        continue
 
-    print(f"\nDone. {renamed} file(s) renamed ({auto_count} automatic).")
+                img.rename(dest)
+                print(f"  → {dest.name}")
+                renamed += 1
+
+        print(f"\nDone. {renamed} file(s) renamed ({auto_count} automatic).")
+
+    print("\n" + "─" * 60)
+    print("Auto-processing input/ images...")
+    cmd_process(args)
+
+    print("\n" + "─" * 60)
+    print("Auto-applying export to data.js...")
+    args.apply = True
+    cmd_export(args)
 
 
 def cmd_export(args):
-    concepts = load_options()
-    lines    = ['// ── Generated cards — paste into CARDS in data.js ──────────────────']
+    concepts   = load_options()
+    card_lines = build_card_lines(concepts)
+    apply      = getattr(args, 'apply', False)
 
-    for c in concepts:
-        picks = c.get('selected') or []
-        for idx in picks:
-            opt     = c['options'][idx]
-            name    = opt['name']
-            slug    = slugify(name)
-            bonuses = ', '.join(f'{s}: {v}' for s, v in c['statBonuses'].items())
-            flavour = opt['flavourText'].replace('"', '\\"')
-            img_ok  = (IMG_DIR / f'{slug}.png').exists()
-            note    = '' if img_ok else '  // ⚠ image pending'
+    if apply:
+        if not DATA_JS.exists():
+            sys.exit(f"data.js not found at {DATA_JS}")
 
-            lines.append(
-                f"  '{slug}': {{ id: '{slug}', name: '{name}', slot: '{c['slot']}', "
-                f"rarity: '{c['rarity']}', flavourText: \"{flavour}\", "
-                f"statBonuses: {{ {bonuses} }} }},{note}"
-            )
+        content   = DATA_JS.read_text(encoding='utf-8')
+        start_idx = content.find(FORGE_START)
+        end_idx   = content.find(FORGE_END)
 
-    out = DATA_DIR / 'export.js'
-    out.write_text('\n'.join(lines), encoding='utf-8')
-    print(f"Written -> {out}")
-    print("Paste into the CARDS object in data.js.")
+        if start_idx == -1 or end_idx == -1:
+            sys.exit("Sentinel markers not found in data.js — add them first.")
+
+        start_line_end = content.index('\n', start_idx) + 1
+        inner = ('\n'.join(card_lines) + '\n') if card_lines else ''
+        new_content = content[:start_line_end] + inner + content[end_idx:]
+
+        DATA_JS.write_text(new_content, encoding='utf-8')
+        print(f"Patched {len(card_lines)} card(s) into data.js sentinel block.")
+
+        # Clean up stale export.js
+        export_js = DATA_DIR / 'export.js'
+        if export_js.exists():
+            export_js.unlink()
+            print("Deleted stale export.js.")
+    else:
+        lines = ['// ── Generated cards — paste into CARDS in data.js ──────────────────'] + card_lines
+        out   = DATA_DIR / 'export.js'
+        out.write_text('\n'.join(lines), encoding='utf-8')
+        print(f"Written -> {out}")
+        print("Paste into the CARDS object in data.js.")
 
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     parser = argparse.ArgumentParser(description='Card Forge')
     sub    = parser.add_subparsers(dest='cmd', required=True)
 
@@ -358,19 +461,22 @@ def main():
     p_concepts.add_argument('--slot',   required=True, choices=SLOTS)
     p_concepts.add_argument('--rarity', required=True, choices=RARITIES)
 
-    sub.add_parser('select',  help='Browse Haiku options and pick favourites')
+    sub.add_parser('select',  help='Browse Haiku options and pick favourites (auto-generates prompts.txt)')
     sub.add_parser('prompts', help='Write SD prompts for selected cards')
+    sub.add_parser('process', help='Remove backgrounds and resize images from input/ → img/cards/')
 
-    p_rename = sub.add_parser('rename', help='Interactively rename raw SD outputs to card IDs')
-    p_rename.add_argument('--dir', default=str(Path(__file__).parent.parent.parent / 'img'),
-                          help='Directory containing images to rename (default: img/)')
+    p_rename = sub.add_parser('rename', help='Rename raw SD outputs; then auto: process → export --apply')
+    p_rename.add_argument('--dir', default=str(INPUT_DIR),
+                          help='Directory containing images to rename (default: input/)')
 
-    sub.add_parser('export',  help='Write data.js card definitions')
+    p_export = sub.add_parser('export', help='Write card definitions to data.js or export.js')
+    p_export.add_argument('--apply', action='store_true',
+                          help='Patch data.js between sentinel markers instead of writing export.js')
 
     args = parser.parse_args()
     {'concepts': cmd_concepts, 'select':  cmd_select,
-     'prompts':  cmd_prompts,  'rename':  cmd_rename,
-     'export':   cmd_export}[args.cmd](args)
+     'prompts':  cmd_prompts,  'process': cmd_process,
+     'rename':   cmd_rename,   'export':  cmd_export}[args.cmd](args)
 
 if __name__ == '__main__':
     main()
