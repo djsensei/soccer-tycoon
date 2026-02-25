@@ -654,6 +654,34 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   100% { background: var(--surface); }
 }
 
+/* ---- Tablet / iPad landscape (768px+) ---- */
+@media (min-width: 768px) {
+  .screen { max-width: 1024px; padding: 1rem 1.5rem; }
+
+  /* Hub — roster grid fits more columns */
+  .roster-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+  /* Gear Up — wider inventory panel */
+  .gearup-layout { grid-template-columns: 1fr 340px; }
+
+  /* Match Select — larger opponent cards */
+  .opponent-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+  /* Pack Opening — larger cards */
+  .pack-card { width: 200px; }
+
+  /* Touch-friendly tap targets */
+  .btn-primary, .btn-secondary { padding: 0.75rem 1.6rem; }
+  .gear-slot-cell { min-width: 80px; padding: 0.45rem 0.65rem; }
+
+  /* Match screen — constrain width on wide tablets */
+  .match-header, .match-controls, .event-log, #match-end-btn {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--surface); }
