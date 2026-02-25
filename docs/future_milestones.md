@@ -9,9 +9,10 @@ Planned milestones for Soccer Tycoon, with assigned backlog issues.
 Extend the gear system to keep progression meaningful late in the game, when packs frequently drop low-rarity items.
 
 ### Assigned issues
-- Item burning / crafting mechanic
-- Fan acceleration for late-game
-- Gear Up stat bars & player sprite placeholder
+- ~~Item burning / crafting mechanic~~ *(done)*
+- ~~Fan acceleration for late-game~~ *(deferred to league/season redesign)*
+- ~~Gear Up stat bars & player sprite placeholder~~ *(done)*
+- Rename "Height" stat to "Jumping"
 
 ---
 
@@ -21,3 +22,4 @@ Redesign the new-game flow to be more interactive and set the stage for player s
 
 ### Assigned issues
 - Interactive player creation flow (one-at-a-time name + stats, then position assignment)
+- Player stat detail modal (enlarged bars, stat explanations, base vs bonus breakdown)

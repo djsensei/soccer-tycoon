@@ -2,6 +2,11 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-02-25 (M5 gear depth)
+
+### [P0] GK row layout breaks with stat bars
+**Fix**: Tightened player row layout — reduced row padding and gap (1rem → 0.5rem), shrunk `.pgr-identity` min-width (100px → 80px), removed `flex-wrap` from `.pgr-slots` so gloves no longer wrap to a second line, made `.pgr-stats` flexible (60–90px) instead of rigid. Updated column headers to match. GK row now fits all 4 gear slots + stat bars without overflow.
+
 ## 2026-02-25 (M4 card art & visual identity)
 
 ### [P0] Gear stat scaling by rarity

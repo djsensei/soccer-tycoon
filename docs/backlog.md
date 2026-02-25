@@ -7,14 +7,17 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P1 — Core Feel
 
-### Item burning / crafting mechanic *(M5)*
-In the Gear Up screen, allow the player to sacrifice 3 items of the same rarity to craft 1 random item of the next higher rarity. Solves late-game stagnation when packs keep dropping commons. UI: three drop slots below the player list + a "Burn" button → output slot.
+### ~~Item burning / crafting mechanic~~ *(M5 — done)*
 
-### [Balance] Fan acceleration for late-game *(M5)*
-At ~287k fans, progression to 1M is too slow. Either accelerate fan outcomes at higher tiers or lower the final threshold so late-game doesn't feel like a grind.
+### ~~[Balance] Fan acceleration for late-game~~ *(M5 — deferred to league/season redesign)*
 
-### [UI] Gear Up stat bars & player sprite placeholder *(M5)*
-Add colored stat bar graph under position+name in Gear Up player rows. Reserve space for a future player sprite to the right of the name, before gear slots.
+### ~~[UI] Gear Up stat bars & player sprite placeholder~~ *(M5 — done)*
+
+### [Feature] Rename "Height" stat to "Jumping" *(M5)*
+Replace the Height stat with Jumping across data definitions, UI labels, and simulator. Jumping better represents a trainable attribute that can be improved via gear and milestones.
+
+### [Feature] Player stat detail modal *(M6)*
+Clicking a player's stats opens a modal showing enlarged stat bars with labels explaining what each stat affects. Distinguishes base stats from gear bonuses and milestone bonuses. Doubles as a lightweight tutorial.
 
 ### [Feature] Interactive player creation flow *(M6)*
 Redesign the New Game screen to create players one at a time: enter (or randomize) a name, view randomly generated stats, then assign positions after all 5 are created. Later: let the user allocate a fixed starting stat point pool. Opens the door for player sprites and light tutorial elements explaining how stats affect gameplay.
@@ -70,6 +73,12 @@ Extract item/player/team names, stats, and narrative templates into standalone s
 
 ### [UI] Tier-based stadium backgrounds
 Replace the flat dark green page background with fuzzy stadium art that evolves with fan tier: local = rough pitch with sideline fans, regional = high school stadium, national = large day stadium, international = packed night stadium. Strong visual progression reward.
+
+### [Balance] Lower starting player stats with more variation
+Starting stat range (currently 3–5) is too clustered, leaving little room for gear and milestone growth. Widen the range (e.g. 1–5 or 2–5) so players feel more distinct from the start and progression has more headroom.
+
+### [UI] Unify roster and gear-up stat presentation
+Hub roster screen stats should use the same colored bar format as the Gear Up screen. May become moot if roster and gear screens are merged (see P3 combined screen).
 
 ---
 
