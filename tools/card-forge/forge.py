@@ -56,8 +56,12 @@ IMG_DIR   = Path(__file__).parent.parent.parent / 'img' / 'cards'
 INPUT_DIR = Path(__file__).parent / 'input'
 DATA_JS   = Path(__file__).parent.parent.parent / 'data.js'
 
-FORGE_START = '  // @forge:start'
-FORGE_END   = '  // @forge:end'
+FORGE_START  = '  // @forge:start'
+FORGE_END    = '  // @forge:end'
+
+NEW_FILE     = DATA_DIR / 'new_options.json'
+VIEWED_FILE  = DATA_DIR / 'viewed_options.json'
+LEGACY_FILE  = DATA_DIR / 'options.json'
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -130,13 +134,34 @@ def concept_id(slot, rarity, bonuses):
     stat_str = '_'.join(f'{s}{v}' for s, v in sorted(bonuses.items()))
     return f'{slot}-{rarity}-{stat_str}'
 
-def load_options():
-    f = DATA_DIR / 'options.json'
-    return json.loads(f.read_text()) if f.exists() else []
+def _load_json(path):
+    return json.loads(path.read_text()) if path.exists() else []
 
-def save_options(concepts):
+def load_new():
+    return _load_json(NEW_FILE)
+
+def load_viewed():
+    return _load_json(VIEWED_FILE)
+
+def load_options():
+    """All concepts (viewed + new) for use by prompts/export/concepts."""
+    return load_viewed() + load_new()
+
+def save_new(concepts):
     DATA_DIR.mkdir(exist_ok=True)
-    (DATA_DIR / 'options.json').write_text(json.dumps(concepts, indent=2))
+    NEW_FILE.write_text(json.dumps(concepts, indent=2))
+
+def save_viewed(concepts):
+    DATA_DIR.mkdir(exist_ok=True)
+    VIEWED_FILE.write_text(json.dumps(concepts, indent=2))
+
+def migrate_legacy():
+    """One-time migration: options.json → viewed_options.json."""
+    if LEGACY_FILE.exists() and not NEW_FILE.exists() and not VIEWED_FILE.exists():
+        concepts = _load_json(LEGACY_FILE)
+        save_viewed(concepts)
+        LEGACY_FILE.rename(DATA_DIR / 'options.json.bak')
+        print(f"Migrated options.json → viewed_options.json ({len(concepts)} concepts).")
 
 def build_card_lines(concepts):
     """Build the JS card definition lines for all selected options."""
@@ -161,27 +186,28 @@ def build_card_lines(concepts):
 # ── Commands ──────────────────────────────────────────────────────────────────
 
 def cmd_concepts(args):
-    combos    = stat_combos(args.slot, args.rarity)
-    existing  = {c['concept_id']: c for c in load_options()}
-    new_count = 0
+    combos      = stat_combos(args.slot, args.rarity)
+    all_ids     = {c['concept_id'] for c in load_options()}
+    new_queue   = load_new()
+    new_count   = 0
 
     for bonuses in combos:
         cid = concept_id(args.slot, args.rarity, bonuses)
-        if cid not in existing:
-            existing[cid] = {
-                'concept_id': cid,
-                'slot':       args.slot,
-                'rarity':     args.rarity,
+        if cid not in all_ids:
+            new_queue.append({
+                'concept_id':  cid,
+                'slot':        args.slot,
+                'rarity':      args.rarity,
                 'statBonuses': bonuses,
-                'options':    [],   # populated by Haiku
-                'selected':   [],   # list of chosen option indices
-            }
+                'options':     [],   # populated by Haiku
+                'selected':    [],
+            })
             new_count += 1
 
-    save_options(list(existing.values()))
+    save_new(new_queue)
     print(f"Added {new_count} new concepts ({args.slot}/{args.rarity}) — {len(combos)} total for this combo.")
-    print(f"options.json now has {len(existing)} concepts total.")
-    print(f"\nNext: ask Claude Code to run Haiku generation on options.json.")
+    print(f"new_options.json now has {len(new_queue)} unselected concepts.")
+    print(f"\nNext: ask Claude Code to run Haiku generation on new_options.json.")
 
 
 def cmd_select(args):
@@ -190,15 +216,31 @@ def cmd_select(args):
     except ImportError:
         sys.exit("Run 'uv sync' first to install questionary.")
 
-    concepts = load_options()
-    ready    = [c for c in concepts if c['options']]
+    show_all        = getattr(args, 'all', False)
+    new_concepts    = load_new()
+    viewed_concepts = load_viewed()
+
+    pool  = (viewed_concepts + new_concepts) if show_all else new_concepts
+    ready = [c for c in pool if c['options']]
 
     if not ready:
-        sys.exit("No options yet — ask Claude Code to run Haiku generation first.")
+        if show_all:
+            sys.exit("No options yet — ask Claude Code to run Haiku generation first.")
+        msg = "No new concepts to select from."
+        if viewed_concepts:
+            msg += " Use --all to reconsider previous selections."
+        sys.exit(msg)
 
+    if show_all:
+        print(f"Showing all {len(ready)} concepts (new + previously viewed).")
+    else:
+        print(f"Showing {len(ready)} new concept(s). Use --all to revisit previous selections.")
+
+    seen_ids = set()
     i = 0
     while i < len(ready):
         c         = ready[i]
+        seen_ids.add(c['concept_id'])
         stat_desc = ', '.join(f'+{v} {s}' for s, v in c['statBonuses'].items())
         position  = f"({i + 1}/{len(ready)})"
         print(f"\n── {c['slot'].upper()} · {c['rarity'].upper()} · {stat_desc}  {position} ──")
@@ -230,9 +272,22 @@ def cmd_select(args):
         else:
             i += 1
 
-    save_options(concepts)
-    total_selected = sum(len(c.get('selected') or []) for c in concepts)
-    print(f"\nSaved. {total_selected} cards selected across all concepts.")
+    # Move seen new concepts to viewed; leave unseen new concepts in place
+    new_by_id    = {c['concept_id']: c for c in new_concepts}
+    viewed_by_id = {c['concept_id']: c for c in viewed_concepts}
+
+    for cid in seen_ids:
+        # Grab updated concept from ready (selections may have changed)
+        c = next(c for c in ready if c['concept_id'] == cid)
+        viewed_by_id[cid] = c
+        new_by_id.pop(cid, None)
+
+    save_viewed(list(viewed_by_id.values()))
+    save_new(list(new_by_id.values()))
+
+    moved = len(seen_ids - set(c['concept_id'] for c in viewed_concepts))
+    total_selected = sum(len(c.get('selected') or []) for c in load_options())
+    print(f"\nSaved. {moved} concept(s) moved to viewed. {total_selected} cards selected total.")
 
     print("\n" + "─" * 60)
     print("Auto-generating prompts.txt...")
@@ -454,6 +509,7 @@ def cmd_export(args):
 
 def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    migrate_legacy()
     parser = argparse.ArgumentParser(description='Card Forge')
     sub    = parser.add_subparsers(dest='cmd', required=True)
 
@@ -461,7 +517,9 @@ def main():
     p_concepts.add_argument('--slot',   required=True, choices=SLOTS)
     p_concepts.add_argument('--rarity', required=True, choices=RARITIES)
 
-    sub.add_parser('select',  help='Browse Haiku options and pick favourites (auto-generates prompts.txt)')
+    p_select = sub.add_parser('select', help='Browse new options and pick favourites (auto-generates prompts.txt)')
+    p_select.add_argument('--all', action='store_true',
+                          help='Also show previously viewed concepts for reconsideration')
     sub.add_parser('prompts', help='Write SD prompts for selected cards')
     sub.add_parser('process', help='Remove backgrounds and resize images from input/ → img/cards/')
 

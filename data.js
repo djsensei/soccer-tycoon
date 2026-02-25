@@ -79,6 +79,17 @@ const CARDS = {
   'butterfly-booties': { id: 'butterfly-booties', name: 'Butterfly Booties', slot: 'feet', rarity: 'common', flavourText: "Fluttery feet that dodge everything.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
   'ninja-neons': { id: 'ninja-neons', name: 'Ninja Neons', slot: 'feet', rarity: 'common', flavourText: "Silent, deadly, and glowing for some reason.", statBonuses: { reflexes: 1 } },
   'rainbow-runners': { id: 'rainbow-runners', name: 'Rainbow Runners', slot: 'feet', rarity: 'common', flavourText: "The luck pot follows your feet.", statBonuses: { luck: 1 } },
+  'zephyr-zip-up': { id: 'zephyr-zip-up', name: 'Zephyr Zip-up', slot: 'body', rarity: 'common', flavourText: "Wind spirit captured in a hoodie.", statBonuses: { speed: 1 } },  // ⚠ image pending
+  'fortress-flannel': { id: 'fortress-flannel', name: 'Fortress Flannel', slot: 'body', rarity: 'common', flavourText: "Cozy AND indestructible.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'harmony-jersey': { id: 'harmony-jersey', name: 'Harmony Jersey', slot: 'body', rarity: 'common', flavourText: "Pass, receive, repeat in perfect balance.", statBonuses: { passing: 1 } },  // ⚠ image pending
+  'shockwave-shirt': { id: 'shockwave-shirt', name: 'Shockwave Shirt', slot: 'body', rarity: 'common', flavourText: "Shots create literal shockwaves.", statBonuses: { shooting: 1 } },  // ⚠ image pending
+  'prosperity-poncho': { id: 'prosperity-poncho', name: 'Prosperity Poncho', slot: 'body', rarity: 'common', flavourText: "Attracts wealth and goals equally.", statBonuses: { luck: 1 } },  // ⚠ image pending
+  'giraffe-guard': { id: 'giraffe-guard', name: 'Giraffe Guard', slot: 'head', rarity: 'common', flavourText: "Giraffe necks are long, right?", statBonuses: { height: 1 } },  // ⚠ image pending
+  'gorilla-guard': { id: 'gorilla-guard', name: 'Gorilla Guard', slot: 'head', rarity: 'common', flavourText: "Gorilla strength protecting your head.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'vision-visor': { id: 'vision-visor', name: 'Vision Visor', slot: 'head', rarity: 'common', flavourText: "See everything on the field at once.", statBonuses: { passing: 1 } },  // ⚠ image pending
+  'marksman-mask': { id: 'marksman-mask', name: 'Marksman Mask', slot: 'head', rarity: 'common', flavourText: "Only the finest shooters wear this.", statBonuses: { shooting: 1 } },  // ⚠ image pending
+  'reflex-reactor-helm': { id: 'reflex-reactor-helm', name: 'Reflex Reactor Helm', slot: 'head', rarity: 'common', flavourText: "Reacts faster than thought.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'blessing-band': { id: 'blessing-band', name: 'Blessing Band', slot: 'head', rarity: 'common', flavourText: "Blessed by every good luck source.", statBonuses: { luck: 1 } },  // ⚠ image pending
   // @forge:end
 };
 
