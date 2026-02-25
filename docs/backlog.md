@@ -29,45 +29,7 @@ Add colored stat bar graph under position+name in Gear Up player rows. Reserve s
 
 ## P0 — Bugs / Urgent
 
-### [Balance] Gear stat scaling by rarity
-Total stat point boosts must always increase with rarity: 1pt common, 2pt uncommon, 4pt rare, 6pt epic, 8pt legendary. Currently some legendaries have the same total stats as rares (e.g. Gravity Boots = Rocket Boots).
-
-### [UI] Remove pixelated rendering for gear-up thumbnails
-`image-rendering: pixelated` looks bad at inventory/gear-slot thumbnail size. Use normal (smooth) scaling; reserve pixelated for intentional retro contexts only.
-
-### [UI] New Club screen landscape layout
-The new game/club creation screen is still portrait-oriented. Adjust layout for landscape tablets (iPad 1024×768).
-
----
-
-## P1 — Core Feel *(M4)*
-
-### Card image infrastructure *(M4)*
-File naming convention: `img/cards/[card-id].png` — matches card IDs in `data.js` so no mapping table is needed. Add `cardImage(cardId, size)` helper to `utils.js` returning a `.card-img-wrap` div with an `<img>` and graceful fallback (dark placeholder square with rarity color) when the image file is absent. Layout must not break during rollout as images are added incrementally.
-
-### Pack opening — large card art with rarity glow *(M4)*
-Add large card image (~160×160px) to each revealed card in the pack-open screen. Add `rarity-${rarity}` CSS class to `.pack-card` for rarity-driven styling: colored border (already inline), no glow for common/uncommon, `box-shadow` glow for rare, stronger for epic, pulsing keyframe animation for legendary.
-
-### Gear/inventory — small pixelated card thumbnails *(M4)*
-Add small (48×48px) card thumbnail to the left of each `.inventory-card` row and in each `.gear-slot-cell` in the Gear Up screen. Use `image-rendering: pixelated` for an intentional crunchy look at small sizes.
-
-### Card sizing standard *(M4)*
-Settle on source image dimensions (recommended: 512×512 generated, displayed at 160×160 large / 48×48 small). Document in an `docs/art-guide.md`. Update screen layouts to accommodate the fixed card dimensions.
-
-### iPad/tablet layout *(M4)*
-Redesign screen layouts for landscape tablet (target: iPad, 1024×768). Currently all screens are single-column mobile-first. Key screens to update: hub, gear up, match select, pack opening.
-
-### Gear Up slot alignment *(M4)*
-Right-justify Head/Body/Feet gear slots in player rows so they are vertically aligned and fixed-size whether or not an item is equipped. For GK, Gloves slot appears left of Head.
-
-### Gear Up inventory tile view with slot filters *(M4)*
-Show all available inventory as tiles (same visual as equipped items) in the right panel. Add filter toggle buttons at top (All, Head, Body, Feet, Gloves). Show slot-type icons as column headers above the player rows, aligned with the gear slot columns.
-
-### Gear Up item detail modal *(M4)*
-Replace the right-panel item detail with a centered modal overlay. Clicking any item (equipped or inventory) opens a large detail popup; dismiss via X button or clicking outside. Only triggers on normal click, not click-and-drag.
-
-### Image processing pipeline *(M4)*
-Python script (`tools/img-pipeline/`) that takes raw SD outputs (white background, any size) and produces game-ready transparent PNGs in `img/cards/`. Steps: background removal via `rembg`, resize/pad to 512×512, save as `[card-id].png`. User renames raw SD outputs to match card IDs before running. Use `uv` for dependency management.
+*(none)*
 
 ---
 
