@@ -25,6 +25,7 @@ Give each gear card a unique illustration generated via Stable Diffusion. Establ
 - Gear/inventory screens — small pixelated card thumbnails
 - Card sizing standard — settle on source/display dimensions, document art guide
 - iPad/tablet layout — landscape orientation, responsive sizing for key screens
+- Gear Up slot alignment — right-justify slots, fixed-size, GK Gloves positioning
 
 ---
 
@@ -34,3 +35,5 @@ Extend the gear system to keep progression meaningful late in the game, when pac
 
 ### Assigned issues
 - Item burning / crafting mechanic
+- Fan acceleration for late-game
+- Gear Up stat bars & player sprite placeholder

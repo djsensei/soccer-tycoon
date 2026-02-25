@@ -19,6 +19,22 @@ Replace the current match sim with a second-order Markov chain (last two states 
 ### Item burning / crafting mechanic *(M5)*
 In the Gear Up screen, allow the player to sacrifice 3 items of the same rarity to craft 1 random item of the next higher rarity. Solves late-game stagnation when packs keep dropping commons. UI: three drop slots below the player list + a "Burn" button → output slot.
 
+### [Balance] Fan acceleration for late-game *(M5)*
+At ~287k fans, progression to 1M is too slow. Either accelerate fan outcomes at higher tiers or lower the final threshold so late-game doesn't feel like a grind.
+
+### [UI] Gear Up stat bars & player sprite placeholder *(M5)*
+Add colored stat bar graph under position+name in Gear Up player rows. Reserve space for a future player sprite to the right of the name, before gear slots.
+
+---
+
+## P0 — Bugs / Urgent
+
+### [Balance] Gear stat scaling by rarity
+Total stat point boosts must always increase with rarity: 1pt common, 2pt uncommon, 4pt rare, 6pt epic, 8pt legendary. Currently some legendaries have the same total stats as rares (e.g. Gravity Boots = Rocket Boots).
+
+### [UI] Remove pixelated rendering for gear-up thumbnails
+`image-rendering: pixelated` looks bad at inventory/gear-slot thumbnail size. Use normal (smooth) scaling; reserve pixelated for intentional retro contexts only.
+
 ---
 
 ## P1 — Core Feel *(M4)*
@@ -37,6 +53,9 @@ Settle on source image dimensions (recommended: 512×512 generated, displayed at
 
 ### iPad/tablet layout *(M4)*
 Redesign screen layouts for landscape tablet (target: iPad, 1024×768). Currently all screens are single-column mobile-first. Key screens to update: hub, gear up, match select, pack opening.
+
+### Gear Up slot alignment *(M4)*
+Right-justify Head/Body/Feet gear slots in player rows so they are vertically aligned and fixed-size whether or not an item is equipped. For GK, Gloves slot appears left of Head.
 
 ### Image processing pipeline *(M4)*
 Python script (`tools/img-pipeline/`) that takes raw SD outputs (white background, any size) and produces game-ready transparent PNGs in `img/cards/`. Steps: background removal via `rembg`, resize/pad to 512×512, save as `[card-id].png`. User renames raw SD outputs to match card IDs before running. Use `uv` for dependency management.
@@ -71,6 +90,9 @@ Players should never drop to 0 fans. A minimum of ~50 fans (friends and family) 
 
 ### Name generator — no duplicate names on a roster
 `generatePlayerName()` can produce the same first or last name more than once in a single generation pass. When building a full roster, ensure no two players share a first name or last name. Same for team name adjective/noun combos — `generateTeamName()` shouldn't repeat either component.
+
+### [QOL] Pack opening → Gear Up shortcut
+Add a "Go to Gear Up" button on the pack-opening results screen so players can immediately equip new cards without navigating back to the hub first.
 
 ### Newspaper treatment for results screen
 Use the newspaper visual language (established on the game-over screen) for the post-match results screen. Replace the plain layout with a tabloid-style presentation: match headline, score, and fan delta delivered with flavor text. Would break up the green-screen monotony and give the game a stronger visual identity.
