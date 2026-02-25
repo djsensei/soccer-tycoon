@@ -338,7 +338,10 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   margin-top: 1rem;
   align-items: start;
 }
-@media (max-width: 700px) { .gearup-layout { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .gearup-layout { grid-template-columns: 1fr; }
+  .pgr-stats, .gch-stats-spacer { display: none; }
+}
 
 .gearup-players { display: flex; flex-direction: column; gap: 0.5rem; }
 
@@ -421,6 +424,39 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   padding: 0;
   flex-shrink: 0;
 }
+
+/* ---- Gear Up: Stat bars in player rows ---- */
+.pgr-stats { display: flex; flex-direction: column; gap: 1px; min-width: 80px; max-width: 100px; flex-shrink: 0; }
+.pgr-stat-row { display: flex; align-items: center; gap: 3px; height: 10px; }
+.pgr-stat-abbr { font-size: 0.5rem; color: var(--text-dim); width: 20px; text-align: right; flex-shrink: 0; }
+.pgr-stats .stat-bar { flex: 1; height: 4px; }
+.pgr-stats .stat-bar-fill { height: 4px; }
+.gch-stats-spacer { min-width: 80px; max-width: 100px; flex-shrink: 0; }
+
+/* ---- Gear Up: Inventory header ---- */
+.inv-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.inv-header h2 { margin-bottom: 0; }
+
+/* ---- Gear Up: Forge ---- */
+.forge-slots { display: flex; gap: 0.5rem; justify-content: center; margin: 0.75rem 0; }
+.forge-slot {
+  width: 72px; height: 80px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.2rem; cursor: pointer; transition: 0.15s;
+  background: var(--surface); text-align: center;
+}
+.forge-slot-empty { color: var(--text-dim); font-size: 1.5rem; }
+.forge-slot-filled { border-style: solid; }
+.forge-slot-filled:hover { border-color: var(--danger); }
+.forge-slot-name { font-size: 0.55rem; line-height: 1.1; word-break: break-word; max-width: 68px; }
+
+.forge-result { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 1rem 0; }
+.forge-result-label { font-size: 1rem; color: var(--accent); font-weight: bold; }
+.forge-result-card { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; }
+
+.btn-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 
 /* ---- Gear Up: Inventory context hint ---- */
 .inv-context-hint {
@@ -644,6 +680,21 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .fans-total { font-size: 1rem; color: var(--text-dim); }
 .pack-earned { font-size: 1.1rem; margin-top: 0.5rem; }
 
+/* ---- Milestone cards (results screen) ---- */
+.milestone-section { width: 100%; max-width: 340px; margin: 0.25rem 0; }
+.milestone-section h2 { text-align: center; }
+.milestone-card {
+  background: var(--card);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.4rem;
+  display: flex; align-items: center; gap: 0.75rem;
+  animation: fadeIn 0.4s ease both;
+}
+.milestone-player { font-weight: bold; font-size: 0.95rem; min-width: 80px; }
+.milestone-detail { font-size: 0.85rem; color: var(--text-dim); }
+
 /* ---- Match stats table ---- */
 .match-stats { width: 100%; max-width: 340px; margin: 0.25rem 0; }
 .stats-header, .stats-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.25rem; align-items: center; padding: 0.2rem 0; }
@@ -809,6 +860,10 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   /* Gear Up — column header slot widths */
   .gch-slot { width: 80px; }
   .gsc-gloves-placeholder { width: 80px; }
+
+  /* Gear Up — wider stat bars on tablet */
+  .pgr-stats { min-width: 100px; max-width: 120px; }
+  .gch-stats-spacer { min-width: 100px; max-width: 120px; }
 
   /* Hub — roster grid fits more columns */
   .roster-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }

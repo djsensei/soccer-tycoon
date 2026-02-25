@@ -32,6 +32,13 @@ window.addEventListener('DOMContentLoaded', () => {
   const saved = loadGame();
   if (saved) {
     gameState = saved;
+    // Migrate: ensure players have careerStats and statBonuses (M5)
+    if (gameState.players) {
+      for (const p of gameState.players) {
+        if (!p.careerStats) p.careerStats = { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 };
+        if (!p.statBonuses) p.statBonuses = {};
+      }
+    }
     // Reset screens that can't meaningfully resume mid-session
     if (['match', 'prematch', 'packopen'].includes(gameState.screen)) {
       gameState.screen = 'hub';

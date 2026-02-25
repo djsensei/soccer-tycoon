@@ -156,6 +156,56 @@ function goToResults() {
   const m   = gameState.currentMatch;
   const opp = getOpponent(m.opponentId);
 
+  // --- Tally career stats from match events ---
+  const careerDeltas = {};
+  for (const e of m.events) {
+    const pid = e.meta?.playerId;
+    // Player-team events: goals, tackles, passes, shot misses
+    if (e.team === 'player' && pid) {
+      if (!careerDeltas[pid]) careerDeltas[pid] = { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 };
+      if (e.type === 'goal' && e.outcome === 'player') careerDeltas[pid].goals++;
+      if (e.type === 'tackle' && e.outcome === 'success') careerDeltas[pid].tackles++;
+      if (e.type === 'pass' && e.outcome === 'success') careerDeltas[pid].passes++;
+      if (e.type === 'shot' && e.outcome === 'miss') careerDeltas[pid].shotsMissed++;
+    }
+    // Saves: opponent shot events where our GK saved
+    if (e.team === 'opponent' && e.type === 'shot' && (e.outcome === 'saved' || e.outcome === 'greatSave')) {
+      const gkId = e.meta?.savingPlayerId;
+      if (gkId && gameState.players.some(p => p.id === gkId)) {
+        if (!careerDeltas[gkId]) careerDeltas[gkId] = { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 };
+        careerDeltas[gkId].saves++;
+      }
+    }
+  }
+
+  // --- Check milestones ---
+  const newMilestones = [];
+  const updatedPlayers = gameState.players.map(p => {
+    const deltas = careerDeltas[p.id];
+    if (!deltas) return p;
+    const newCareer = { ...(p.careerStats || { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 }) };
+    const newBonuses = { ...(p.statBonuses || {}) };
+    for (const [careerKey, count] of Object.entries(deltas)) {
+      if (count <= 0) continue;
+      const oldVal = newCareer[careerKey] || 0;
+      const newVal = oldVal + count;
+      newCareer[careerKey] = newVal;
+      const mileDef = STAT_MILESTONES[careerKey];
+      if (!mileDef) continue;
+      for (const threshold of mileDef.thresholds) {
+        if (oldVal < threshold && newVal >= threshold) {
+          newBonuses[mileDef.stat] = (newBonuses[mileDef.stat] || 0) + 1;
+          newMilestones.push({
+            playerId: p.id, playerName: p.name,
+            careerStat: careerKey, statUpgrade: mileDef.stat,
+            newTotal: newVal, threshold,
+          });
+        }
+      }
+    }
+    return { ...p, careerStats: newCareer, statBonuses: newBonuses };
+  });
+
   const newFans = Math.max(0, gameState.fans + m.fanDelta);
 
   const matchHistory = [...gameState.matchHistory, {
@@ -203,5 +253,7 @@ function goToResults() {
     opponentTeams,
     matchesUntilSpecialCheck,
     pendingPacks,
+    players: updatedPlayers,
+    currentMatch: { ...m, milestones: newMilestones },
   });
 }

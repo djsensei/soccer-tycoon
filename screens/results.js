@@ -75,6 +75,20 @@ function renderResults() {
       ${statRow(stats.playerPoss+'%', 'Possession',   stats.oppPoss+'%')}
     </div>`;
 
+  const milestones = m.milestones || [];
+  const milestoneHtml = milestones.length ? `
+    <div class="milestone-section">
+      <h2>⬆ Player Upgrades!</h2>
+      ${milestones.map(ms => `
+        <div class="milestone-card">
+          <div class="milestone-player">${ms.playerName}</div>
+          <div class="milestone-detail">
+            ${ms.threshold} career ${ms.careerStat} → <strong>+1 ${ms.statUpgrade}</strong>
+          </div>
+        </div>
+      `).join('')}
+    </div>` : '';
+
   const packHtml = m.packEarned
     ? `<div class="pack-earned">
          🃏 You earned a <strong>${PACK_TYPES[m.packEarned]?.name}</strong>!
@@ -90,6 +104,7 @@ function renderResults() {
       <div class="fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
       <div class="fans-total">Total: 👥 ${gameState.fans.toLocaleString()}</div>
       ${statsHtml}
+      ${milestoneHtml}
       ${packHtml}
     </div>
   `;
