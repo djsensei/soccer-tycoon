@@ -26,7 +26,7 @@ function renderGearUp() {
            onclick="selectGearSlot('${p.id}','${gs}')">
         <div class="gsc-label">${SLOT_LABEL[gs]}</div>
         ${card
-          ? `<div class="gsc-card" style="border-color:${RARITY_COLOR[card.rarity]}">${card.name}</div>`
+          ? `<div class="gsc-card" title="${card.name}" style="border-color:${RARITY_COLOR[card.rarity]}">${cardImage(equippedId, 'small')}</div>`
           : `<div class="gsc-placeholder">Empty</div>`
         }
       </div>`;
