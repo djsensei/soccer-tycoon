@@ -29,7 +29,7 @@ function renderNewGame() {
           </div>
         </div>
         <h2>Name Your Players</h2>
-        ${fields}
+        <div class="player-name-grid">${fields}</div>
         <button class="btn-primary" onclick="startNewGame()">⚽ Kick Off!</button>
       </div>
     </div>
