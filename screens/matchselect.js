@@ -21,21 +21,35 @@ function renderMatchSelect() {
       <h2>${tierLabel[tier] || tier}</h2>
       <div class="opponent-grid">
         ${teams.map(t => {
+          const unlocked = isOpponentUnlocked(t, gameState.fans);
           const base = t.fanRewardBase;
           const minFan = Math.round(base * FAN_MULTIPLIERS.loss);
           const maxFan = Math.round(base * FAN_MULTIPLIERS.bigWin);
-          return `
-            <div class="opponent-card ${t.tier}" onclick="selectOpponent('${t.id}')">
-              <div class="opp-name">${t.name}</div>
-              <div class="opp-stars">${tierStars(t.difficulty)}</div>
-              <div class="opp-note">${t.specialNote}</div>
-              <div class="opp-fans">
-                <span class="fan-range loss">${minFan.toLocaleString()}</span>
-                <span> to </span>
-                <span class="fan-range win">+${maxFan.toLocaleString()}</span>
-                <span class="fan-label"> fans</span>
-              </div>
-            </div>`;
+          if (unlocked) {
+            return `
+              <div class="opponent-card ${t.tier}" onclick="selectOpponent('${t.id}')">
+                <div class="opp-name">${t.name}</div>
+                <div class="opp-stars">${tierStars(t.difficulty)}</div>
+                <div class="opp-note">${t.specialNote}</div>
+                <div class="opp-fans">
+                  <span class="fan-range loss">${minFan.toLocaleString()}</span>
+                  <span> to </span>
+                  <span class="fan-range win">+${maxFan.toLocaleString()}</span>
+                  <span class="fan-label"> fans</span>
+                </div>
+              </div>`;
+          } else {
+            const reqTier = requiredTierForOpponent(t);
+            const reqLabel = FAN_TIERS[reqTier]?.label || reqTier;
+            const reqFans  = FAN_TIERS[reqTier]?.min || 0;
+            return `
+              <div class="opponent-card ${t.tier} locked">
+                <div class="opp-name">${t.name}</div>
+                <div class="opp-stars">${tierStars(t.difficulty)}</div>
+                <div class="opp-note">${t.specialNote}</div>
+                <div class="lock-hint">🔒 Reach ${reqLabel} (${reqFans.toLocaleString()} fans)</div>
+              </div>`;
+          }
         }).join('')}
       </div>
     </div>

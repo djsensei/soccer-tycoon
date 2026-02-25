@@ -2,6 +2,43 @@
 // screens/results.js — Post-match results screen
 // ============================================================
 
+// Tally shot and possession stats from the event stream
+function computeMatchStats(events) {
+  let playerShots = 0, playerOnTarget = 0;
+  let oppShots    = 0, oppOnTarget    = 0;
+  let playerTicks = 0, oppTicks       = 0;
+
+  for (const e of events) {
+    if (!e.team) continue; // halftime / fulltime have no team
+    const mine = e.team === 'player';
+
+    // Possession proxy: every team-tagged event is one "tick"
+    if (mine) playerTicks++; else oppTicks++;
+
+    if (e.type === 'goal') {
+      if (mine) { playerShots++; playerOnTarget++; }
+      else      { oppShots++;    oppOnTarget++;    }
+    }
+    if (e.type === 'shot') {
+      if (mine) {
+        playerShots++;
+        if (e.outcome === 'saved' || e.outcome === 'greatSave') playerOnTarget++;
+      } else {
+        oppShots++;
+        if (e.outcome === 'saved' || e.outcome === 'greatSave') oppOnTarget++;
+      }
+    }
+  }
+
+  const total = playerTicks + oppTicks || 1;
+  return {
+    playerShots, playerOnTarget,
+    oppShots,    oppOnTarget,
+    playerPoss: Math.round(100 * playerTicks / total),
+    oppPoss:    Math.round(100 * oppTicks    / total),
+  };
+}
+
 function renderResults() {
   const m = gameState.currentMatch;
 
@@ -15,6 +52,28 @@ function renderResults() {
 
   const deltaSign  = m.fanDelta >= 0 ? '+' : '';
   const deltaClass = m.fanDelta >= 0 ? 'fan-gain' : 'fan-loss';
+
+  const stats = computeMatchStats(m.events || []);
+
+  function statRow(pVal, label, oVal) {
+    return `<div class="stats-row">
+      <span class="stats-val player">${pVal}</span>
+      <span class="stats-label">${label}</span>
+      <span class="stats-val opponent">${oVal}</span>
+    </div>`;
+  }
+
+  const statsHtml = `
+    <div class="match-stats">
+      <div class="stats-header">
+        <span>${gameState.teamName}</span>
+        <span></span>
+        <span>${m.opponentName}</span>
+      </div>
+      ${statRow(stats.playerShots,    'Shots',        stats.oppShots)}
+      ${statRow(stats.playerOnTarget, 'On Target',    stats.oppOnTarget)}
+      ${statRow(stats.playerPoss+'%', 'Possession',   stats.oppPoss+'%')}
+    </div>`;
 
   const packHtml = m.packEarned
     ? `<div class="pack-earned">
@@ -30,6 +89,7 @@ function renderResults() {
       <div class="result-teams">${gameState.teamName} vs ${m.opponentName}</div>
       <div class="fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
       <div class="fans-total">Total: 👥 ${gameState.fans.toLocaleString()}</div>
+      ${statsHtml}
       ${packHtml}
     </div>
   `;

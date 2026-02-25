@@ -16,12 +16,24 @@ Sim events carry a `fanDelta` value; epic moments (great goals, saves, blunders)
 ### Markov chain simulation engine *(M3)*
 Replace the current match sim with a second-order Markov chain (last two states influence next outcome). Transition probability tables stored in JSON/YAML; player stats act as multipliers on base probabilities. Cleaner model enables better balancing and underpins the fan event system.
 
+### Item burning / crafting mechanic *(M4)*
+In the Gear Up screen, allow the player to sacrifice 3 items of the same rarity to craft 1 random item of the next higher rarity. Solves late-game stagnation when packs keep dropping commons. UI: three drop slots below the player list + a "Burn" button → output slot.
+
 ---
 
 ## P2 — Polish
 
-### Player stat colours
-Stats should be colour-coded by value to give quick visual feedback — e.g. green for high, yellow for mid, red for low. Applies to stat bars and raw numbers.
+### Bench player stats visible on Roster screen
+Bench player rows currently show no stats. Display stats the same way starter rows do.
+
+### Drag-and-drop gear assignment in Gear Up
+Allow dragging items between inventory and player gear slots instead of the current click-to-assign flow.
+
+### Color-coded stat attributes + mini stat bar chart on player rows
+Color-code each stat type consistently across all screens. In Gear Up, show a small bar chart between the player name and their gear slots using the same colors. Supersedes the standalone "Player stat colours" item below.
+
+### ~~Player stat colours~~
+~~Stats should be colour-coded by value to give quick visual feedback — e.g. green for high, yellow for mid, red for low. Applies to stat bars and raw numbers.~~ *Superseded by "Color-coded stat attributes + mini stat bar chart" above.*
 
 ### Stat bar layout — gear bonus alignment
 When gear boosts a stat, the base+bonus numbers push the stat bar out of alignment. Need more horizontal room between the numbers column and the bars column. Likely a CSS grid column-width fix.
@@ -57,3 +69,6 @@ High-impact animations for pack opening, tier advancement, and achievements. Mak
 ---
 
 ## P3 — Future / Ideas
+
+### Combined Roster + Inventory screen with full drag-and-drop
+Merge the Roster and Inventory screens into one. Drag player rows to set positions and starters/bench; drag gear between inventory and player slots. Major UX restructure.
