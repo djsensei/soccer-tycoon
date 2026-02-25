@@ -26,6 +26,8 @@ Give each gear card a unique illustration generated via Stable Diffusion. Establ
 - Card sizing standard — settle on source/display dimensions, document art guide
 - iPad/tablet layout — landscape orientation, responsive sizing for key screens
 - Gear Up slot alignment — right-justify slots, fixed-size, GK Gloves positioning
+- Gear Up inventory tile view with slot filters
+- Gear Up item detail modal
 
 ---
 

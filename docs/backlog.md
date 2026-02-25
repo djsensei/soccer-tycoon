@@ -35,6 +35,9 @@ Total stat point boosts must always increase with rarity: 1pt common, 2pt uncomm
 ### [UI] Remove pixelated rendering for gear-up thumbnails
 `image-rendering: pixelated` looks bad at inventory/gear-slot thumbnail size. Use normal (smooth) scaling; reserve pixelated for intentional retro contexts only.
 
+### [UI] New Club screen landscape layout
+The new game/club creation screen is still portrait-oriented. Adjust layout for landscape tablets (iPad 1024×768).
+
 ---
 
 ## P1 — Core Feel *(M4)*
@@ -56,6 +59,12 @@ Redesign screen layouts for landscape tablet (target: iPad, 1024×768). Currentl
 
 ### Gear Up slot alignment *(M4)*
 Right-justify Head/Body/Feet gear slots in player rows so they are vertically aligned and fixed-size whether or not an item is equipped. For GK, Gloves slot appears left of Head.
+
+### Gear Up inventory tile view with slot filters *(M4)*
+Show all available inventory as tiles (same visual as equipped items) in the right panel. Add filter toggle buttons at top (All, Head, Body, Feet, Gloves). Show slot-type icons as column headers above the player rows, aligned with the gear slot columns.
+
+### Gear Up item detail modal *(M4)*
+Replace the right-panel item detail with a centered modal overlay. Clicking any item (equipped or inventory) opens a large detail popup; dismiss via X button or clicking outside. Only triggers on normal click, not click-and-drag.
 
 ### Image processing pipeline *(M4)*
 Python script (`tools/img-pipeline/`) that takes raw SD outputs (white background, any size) and produces game-ready transparent PNGs in `img/cards/`. Steps: background removal via `rembg`, resize/pad to 512×512, save as `[card-id].png`. User renames raw SD outputs to match card IDs before running. Use `uv` for dependency management.
@@ -93,6 +102,9 @@ Players should never drop to 0 fans. A minimum of ~50 fans (friends and family) 
 
 ### [QOL] Pack opening → Gear Up shortcut
 Add a "Go to Gear Up" button on the pack-opening results screen so players can immediately equip new cards without navigating back to the hub first.
+
+### [UI] Rarity background color instead of border frames
+Replace rarity-colored borders/frames on item cards with full background tinting by rarity color, for a more visually distinct look.
 
 ### Newspaper treatment for results screen
 Use the newspaper visual language (established on the game-over screen) for the post-match results screen. Replace the plain layout with a tabloid-style presentation: match headline, score, and fan delta delivered with flavor text. Would break up the green-screen monotony and give the game a stronger visual identity.
