@@ -7,15 +7,6 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P1 — Core Feel
 
-### Fan tier / progression system *(M3)*
-Map fan count to tiers (Local → Regional → National → International) that gate which opponents can be challenged. Show locked teams greyed out in opponent select. Tiers may also unlock special play modes (leagues, tournaments).
-
-### In-match fan events *(M3)*
-Sim events carry a `fanDelta` value; epic moments (great goals, saves, blunders) move the fan counter during the match, not just at the results screen. Narrative templates already categorise events — tag high/low moments for fan impact.
-
-### Markov chain simulation engine *(M3)*
-Replace the current match sim with a second-order Markov chain (last two states influence next outcome). Transition probability tables stored in JSON/YAML; player stats act as multipliers on base probabilities. Cleaner model enables better balancing and underpins the fan event system.
-
 ### Item burning / crafting mechanic *(M5)*
 In the Gear Up screen, allow the player to sacrifice 3 items of the same rarity to craft 1 random item of the next higher rarity. Solves late-game stagnation when packs keep dropping commons. UI: three drop slots below the player list + a "Burn" button → output slot.
 
@@ -24,6 +15,9 @@ At ~287k fans, progression to 1M is too slow. Either accelerate fan outcomes at 
 
 ### [UI] Gear Up stat bars & player sprite placeholder *(M5)*
 Add colored stat bar graph under position+name in Gear Up player rows. Reserve space for a future player sprite to the right of the name, before gear slots.
+
+### [Feature] Interactive player creation flow *(M6)*
+Redesign the New Game screen to create players one at a time: enter (or randomize) a name, view randomly generated stats, then assign positions after all 5 are created. Later: let the user allocate a fixed starting stat point pool. Opens the door for player sprites and light tutorial elements explaining how stats affect gameplay.
 
 ---
 
@@ -71,6 +65,12 @@ Replace rarity-colored borders/frames on item cards with full background tinting
 ### Newspaper treatment for results screen
 Use the newspaper visual language (established on the game-over screen) for the post-match results screen. Replace the plain layout with a tabloid-style presentation: match headline, score, and fan delta delivered with flavor text. Would break up the green-screen monotony and give the game a stronger visual identity.
 
+### [Architecture] Separate data/text content from screen layer
+Extract item/player/team names, stats, and narrative templates into standalone structured content files for easier iteration on larger content sets. Currently `data.js` is already well-separated from DOM code, so this is low urgency — revisit if content authoring becomes a bottleneck.
+
+### [UI] Tier-based stadium backgrounds
+Replace the flat dark green page background with fuzzy stadium art that evolves with fan tier: local = rough pitch with sideline fans, regional = high school stadium, national = large day stadium, international = packed night stadium. Strong visual progression reward.
+
 ---
 
 ## P2 — Future / Ideas
@@ -90,3 +90,6 @@ High-impact animations for pack opening, tier advancement, and achievements. Mak
 
 ### Combined Roster + Inventory screen with full drag-and-drop
 Merge the Roster and Inventory screens into one. Drag player rows to set positions and starters/bench; drag gear between inventory and player slots. Major UX restructure.
+
+### [UI] Gemstone rarity theming
+Map rarity tiers to gemstones (e.g. common=stone, uncommon=jade, rare=sapphire, epic=amethyst, legendary=amber). CSS gradient borders that look faceted, small gem icon in card corners, rarity-driven background textures.

@@ -40,6 +40,17 @@ Archive of resolved backlog items, grouped by date.
 ### [P1/M4] Image processing pipeline
 **Fix**: Created `tools/img-pipeline/process.py` — takes raw SD outputs from `input/`, removes background via `rembg`, resizes/pads to 512×512 transparent PNG, and saves to `img/cards/[card-id].png`. Managed with `uv`.
 
+## 2026-02-23 (M3 fan tiers, Markov sim, match events)
+
+### [P1/M3] Fan tier / progression system
+**Fix**: Added `FAN_TIERS` and `TIER_ORDER` to `data.js` mapping fan count to Local/Regional/National/International tiers. `currentFanTier()`, `tierProgress()`, and `isOpponentUnlocked()` helpers in `utils.js`. Locked opponents greyed out in match select with tier requirement hint. Tier badge + progress bar shown in hub header.
+
+### [P1/M3] In-match fan events
+**Fix**: Sim events now carry `fanDelta` values via `EVENT_FAN_DELTAS` in `data.js`, scaled by opponent tier (`FAN_EVENT_TIER_SCALE`). Epic moments (goals, great saves, blunders) move the fan counter live during the match. A fan ticker bar at the top of the match screen flashes on changes.
+
+### [P1/M3] Markov chain simulation engine
+**Fix**: Replaced the linear match sim with a second-order Markov chain in `simulator.js`. `MARKOV_TRANSITIONS` table uses `"prevState|currentState"` keys with wildcard fallbacks. `STAT_INFLUENCES` table applies player stat bonuses/penalties to transition probabilities. Match stats (shots, possession, passes) tracked and displayed on results screen.
+
 ## 2026-02-23 (M2 core loop)
 
 ### [P1/M2] "Start Over" button in hub
