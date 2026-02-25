@@ -35,41 +35,62 @@ const CARDS = {
   'holey-gloves':     { id: 'holey-gloves',      name: 'Holey Gloves',     slot: 'gloves', rarity: 'common', flavourText: 'Half the fingers are missing.',       statBonuses: {} },
 
   // === COMMON ===
-  'turbo-cleats':     { id: 'turbo-cleats',      name: 'Turbo Cleats',     slot: 'feet',   rarity: 'common',   flavourText: 'Guaranteed to go vroom.',                          statBonuses: { speed: 2 } },
-  'lucky-headband':   { id: 'lucky-headband',    name: 'Lucky Headband',   slot: 'head',   rarity: 'common',   flavourText: 'Brings luck. Smells weird.',                       statBonuses: { luck: 2 } },
+  'lucky-headband':   { id: 'lucky-headband',    name: 'Lucky Headband',   slot: 'head',   rarity: 'common',   flavourText: 'Brings luck. Smells weird.',                       statBonuses: { luck: 1 } },
   'basic-shinguards': { id: 'basic-shinguards',  name: 'Basic Shin Guards',slot: 'body',   rarity: 'common',   flavourText: 'Better than nothing. Barely.',                     statBonuses: { strength: 1 } },
   'cotton-gloves':    { id: 'cotton-gloves',     name: 'Cotton Gloves',    slot: 'gloves', rarity: 'common',   flavourText: 'For someone who tried.',                            statBonuses: { reflexes: 1 } },
 
   // === UNCOMMON ===
-  'padded-vest':      { id: 'padded-vest',       name: 'Padded Vest',      slot: 'body',   rarity: 'uncommon', flavourText: 'Absorbs tackles like a champ.',                    statBonuses: { strength: 2, height: 1 } },
-  'grip-gloves':      { id: 'grip-gloves',       name: 'Grip Gloves',      slot: 'gloves', rarity: 'uncommon', flavourText: 'Sticks to everything.',                            statBonuses: { reflexes: 3 } },
-  'sprinting-spikes': { id: 'sprinting-spikes',  name: 'Sprinting Spikes', slot: 'feet',   rarity: 'uncommon', flavourText: 'Leave little holes everywhere.',                   statBonuses: { speed: 2, shooting: 1 } },
-  'focus-visor':      { id: 'focus-visor',       name: 'Focus Visor',      slot: 'head',   rarity: 'uncommon', flavourText: 'Everything looks like a target.',                  statBonuses: { passing: 2, shooting: 1 } },
+  'padded-vest':      { id: 'padded-vest',       name: 'Padded Vest',      slot: 'body',   rarity: 'uncommon', flavourText: 'Absorbs tackles like a champ.',                    statBonuses: { strength: 1, height: 1 } },
+  'grip-gloves':      { id: 'grip-gloves',       name: 'Grip Gloves',      slot: 'gloves', rarity: 'uncommon', flavourText: 'Sticks to everything.',                            statBonuses: { reflexes: 2 } },
+  'sprinting-spikes': { id: 'sprinting-spikes',  name: 'Sprinting Spikes', slot: 'feet',   rarity: 'uncommon', flavourText: 'Leave little holes everywhere.',                   statBonuses: { speed: 1, shooting: 1 } },
+  'focus-visor':      { id: 'focus-visor',       name: 'Focus Visor',      slot: 'head',   rarity: 'uncommon', flavourText: 'Everything looks like a target.',                  statBonuses: { passing: 1, shooting: 1 } },
 
   // === RARE ===
-  'rocket-boots':     { id: 'rocket-boots',      name: 'Rocket Boots',     slot: 'feet',   rarity: 'rare',     flavourText: 'Actual small rockets. Safety not guaranteed.',     statBonuses: { speed: 4, shooting: 2 } },
-  'gravity-gloves':   { id: 'gravity-gloves',    name: 'Gravity Gloves',   slot: 'gloves', rarity: 'rare',     flavourText: 'The ball just... comes to them.',                  statBonuses: { reflexes: 4, height: 2 } },
-  'iron-jersey':      { id: 'iron-jersey',       name: 'Iron Jersey',      slot: 'body',   rarity: 'rare',     flavourText: 'Heavy. Very heavy. Nothing gets through.',         statBonuses: { strength: 4, height: 2 } },
-  'eagle-eye-cap':    { id: 'eagle-eye-cap',     name: 'Eagle Eye Cap',    slot: 'head',   rarity: 'rare',     flavourText: 'See the field like a majestic bird.',              statBonuses: { passing: 3, luck: 2 } },
+  'rocket-boots':     { id: 'rocket-boots',      name: 'Rocket Boots',     slot: 'feet',   rarity: 'rare',     flavourText: 'Actual small rockets. Safety not guaranteed.',     statBonuses: { speed: 3, shooting: 1 } },
+  'gravity-gloves':   { id: 'gravity-gloves',    name: 'Gravity Gloves',   slot: 'gloves', rarity: 'rare',     flavourText: 'The ball just... comes to them.',                  statBonuses: { reflexes: 3, height: 1 } },
+  'rock-gloves':      { id: 'rock-gloves',       name: 'Rock Gloves',      slot: 'gloves', rarity: 'rare',     flavourText: 'Chiseled from actual boulders. Punching the ball rules.', statBonuses: { reflexes: 2, strength: 2 } },
+  'iron-jersey':      { id: 'iron-jersey',       name: 'Iron Jersey',      slot: 'body',   rarity: 'rare',     flavourText: 'Heavy. Very heavy. Nothing gets through.',         statBonuses: { strength: 3, height: 1 } },
+  'eagle-eye-cap':    { id: 'eagle-eye-cap',     name: 'Eagle Eye Cap',    slot: 'head',   rarity: 'rare',     flavourText: 'See the field like a majestic bird.',              statBonuses: { passing: 2, luck: 2 } },
 
   // === EPIC ===
-  'timefreeze-whistle': { id: 'timefreeze-whistle', name: 'Time-Freeze Whistle', slot: 'body', rarity: 'epic', flavourText: 'One blow stops everyone. Except you.',              statBonuses: { shooting: 4, passing: 3, luck: 2 } },
-  'invisible-boots':  { id: 'invisible-boots',   name: 'Invisible Boots',  slot: 'feet',   rarity: 'epic',     flavourText: 'WHERE DID THEY GO?',                               statBonuses: { speed: 5, luck: 4 } },
-  'mind-helmet':      { id: 'mind-helmet',       name: 'Mind Helmet',      slot: 'head',   rarity: 'epic',     flavourText: "Read the opponent's thoughts. Try not to laugh.",  statBonuses: { passing: 5, reflexes: 3 } },
-  'antigrav-gloves':  { id: 'antigrav-gloves',   name: 'Anti-Grav Gloves', slot: 'gloves', rarity: 'epic',     flavourText: 'Every ball floats gently into your hands.',        statBonuses: { reflexes: 5, height: 4 } },
+  'timefreeze-whistle': { id: 'timefreeze-whistle', name: 'Time-Freeze Whistle', slot: 'body', rarity: 'epic', flavourText: 'One blow stops everyone. Except you.',              statBonuses: { shooting: 3, passing: 2, luck: 1 } },
+  'invisible-boots':  { id: 'invisible-boots',   name: 'Invisible Boots',  slot: 'feet',   rarity: 'epic',     flavourText: 'WHERE DID THEY GO?',                               statBonuses: { speed: 4, luck: 2 } },
+  'mind-helmet':      { id: 'mind-helmet',       name: 'Mind Helmet',      slot: 'head',   rarity: 'epic',     flavourText: "Read the opponent's thoughts. Try not to laugh.",  statBonuses: { passing: 4, reflexes: 2 } },
+  'antigrav-gloves':  { id: 'antigrav-gloves',   name: 'Anti-Grav Gloves', slot: 'gloves', rarity: 'epic',     flavourText: 'Every ball floats gently into your hands.',        statBonuses: { reflexes: 4, height: 2 } },
 
   // === LEGENDARY ===
-  'clone-jersey':     { id: 'clone-jersey',      name: 'Clone Jersey',     slot: 'body',   rarity: 'legendary', flavourText: 'The player is everywhere at once. Somehow legal.', statBonuses: { speed: 3, strength: 3, shooting: 3, passing: 3 } },
-  'blackhole-gloves': { id: 'blackhole-gloves',  name: 'Black Hole Gloves',slot: 'gloves', rarity: 'legendary', flavourText: 'Nothing gets past. Nothing. Ever.',                statBonuses: { reflexes: 7, height: 5 } },
-  'hyperspeed-cleats':{ id: 'hyperspeed-cleats', name: 'Hyperspeed Cleats',slot: 'feet',   rarity: 'legendary', flavourText: 'You briefly become invisible between steps.',      statBonuses: { speed: 7, shooting: 4 } },
-  'crown-of-luck':    { id: 'crown-of-luck',     name: 'Crown of Luck',    slot: 'head',   rarity: 'legendary', flavourText: 'Forged from four-leaf clovers and wishbones.',     statBonuses: { luck: 8, passing: 3 } },
+  'clone-jersey':     { id: 'clone-jersey',      name: 'Clone Jersey',     slot: 'body',   rarity: 'legendary', flavourText: 'The player is everywhere at once. Somehow legal.', statBonuses: { speed: 2, strength: 2, shooting: 2, passing: 2 } },
+  'blackhole-gloves': { id: 'blackhole-gloves',  name: 'Black Hole Gloves',slot: 'gloves', rarity: 'legendary', flavourText: 'Nothing gets past. Nothing. Ever.',                statBonuses: { reflexes: 5, height: 3 } },
+  'hyperspeed-cleats':{ id: 'hyperspeed-cleats', name: 'Hyperspeed Cleats',slot: 'feet',   rarity: 'legendary', flavourText: 'You briefly become invisible between steps.',      statBonuses: { speed: 5, shooting: 3 } },
+  'crown-of-luck':    { id: 'crown-of-luck',     name: 'Crown of Luck',    slot: 'head',   rarity: 'legendary', flavourText: 'Forged from four-leaf clovers and wishbones.',     statBonuses: { luck: 5, passing: 3 } },
 
   // === SPECIAL TEAM UNIQUES (Phase 4) ===
-  'robo-arm':          { id: 'robo-arm',          name: 'Robo Arm',          slot: 'gloves', rarity: 'legendary', flavourText: 'Catches everything. EVERYTHING.',                       statBonuses: { reflexes: 5 } },
-  'gravity-boots':     { id: 'gravity-boots',     name: 'Gravity Boots',     slot: 'feet',   rarity: 'legendary', flavourText: 'Defies physics. Physicists are upset.',                 statBonuses: { speed: 4, shooting: 2 } },
-  'dino-stomp-cleats': { id: 'dino-stomp-cleats', name: 'Dino Stomp Cleats', slot: 'feet',   rarity: 'legendary', flavourText: 'Left craters on the pitch. Ref allowed it.',            statBonuses: { strength: 5, height: 2 } },
-  'lucky-scarf':       { id: 'lucky-scarf',       name: "Grandma's Lucky Scarf", slot: 'head', rarity: 'legendary', flavourText: 'Knitted with love. Radiates pure luck.',            statBonuses: { luck: 6 } },
-  'shadow-cloak':      { id: 'shadow-cloak',      name: 'Shadow Cloak',      slot: 'body',   rarity: 'legendary', flavourText: 'Players phase through you. Somehow legal.',           statBonuses: { speed: 4, passing: 3 } },
+  'robo-arm':          { id: 'robo-arm',          name: 'Robo Arm',          slot: 'gloves', rarity: 'legendary', flavourText: 'Catches everything. EVERYTHING.',                       statBonuses: { reflexes: 5, strength: 3 } },
+  'gravity-boots':     { id: 'gravity-boots',     name: 'Gravity Boots',     slot: 'feet',   rarity: 'legendary', flavourText: 'Defies physics. Physicists are upset.',                 statBonuses: { speed: 5, shooting: 3 } },
+  'dino-stomp-cleats': { id: 'dino-stomp-cleats', name: 'Dino Stomp Cleats', slot: 'feet',   rarity: 'legendary', flavourText: 'Left craters on the pitch. Ref allowed it.',            statBonuses: { strength: 5, height: 3 } },
+  'lucky-scarf':       { id: 'lucky-scarf',       name: "Grandma's Lucky Scarf", slot: 'head', rarity: 'legendary', flavourText: 'Knitted with love. Radiates pure luck.',            statBonuses: { luck: 5, passing: 3 } },
+  'shadow-cloak':      { id: 'shadow-cloak',      name: 'Shadow Cloak',      slot: 'body',   rarity: 'legendary', flavourText: 'Players phase through you. Somehow legal.',           statBonuses: { speed: 4, passing: 4 } },
+
+  // @forge:start — managed by `forge.py export --apply` — do not edit manually
+  'zephyr-kicks': { id: 'zephyr-kicks', name: 'Zephyr Kicks', slot: 'feet', rarity: 'common', flavourText: "Channeling the ancient spirit of wind itself.", statBonuses: { speed: 1 } },
+  'mammoth-mallets': { id: 'mammoth-mallets', name: 'Mammoth Mallets', slot: 'feet', rarity: 'common', flavourText: "Beast mode: activated.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'arrow-arcs': { id: 'arrow-arcs', name: 'Arrow Arcs', slot: 'feet', rarity: 'common', flavourText: "The ball follows where you point.", statBonuses: { passing: 1 } },
+  'sonic-strikes': { id: 'sonic-strikes', name: 'Sonic Strikes', slot: 'feet', rarity: 'common', flavourText: "The ball breaks the sound barrier.", statBonuses: { shooting: 1 } },  // ⚠ image pending
+  'butterfly-booties': { id: 'butterfly-booties', name: 'Butterfly Booties', slot: 'feet', rarity: 'common', flavourText: "Fluttery feet that dodge everything.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'ninja-neons': { id: 'ninja-neons', name: 'Ninja Neons', slot: 'feet', rarity: 'common', flavourText: "Silent, deadly, and glowing for some reason.", statBonuses: { reflexes: 1 } },
+  'rainbow-runners': { id: 'rainbow-runners', name: 'Rainbow Runners', slot: 'feet', rarity: 'common', flavourText: "The luck pot follows your feet.", statBonuses: { luck: 1 } },
+  'zephyr-zip-up': { id: 'zephyr-zip-up', name: 'Zephyr Zip-up', slot: 'body', rarity: 'common', flavourText: "Wind spirit captured in a hoodie.", statBonuses: { speed: 1 } },  // ⚠ image pending
+  'fortress-flannel': { id: 'fortress-flannel', name: 'Fortress Flannel', slot: 'body', rarity: 'common', flavourText: "Cozy AND indestructible.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'harmony-jersey': { id: 'harmony-jersey', name: 'Harmony Jersey', slot: 'body', rarity: 'common', flavourText: "Pass, receive, repeat in perfect balance.", statBonuses: { passing: 1 } },  // ⚠ image pending
+  'shockwave-shirt': { id: 'shockwave-shirt', name: 'Shockwave Shirt', slot: 'body', rarity: 'common', flavourText: "Shots create literal shockwaves.", statBonuses: { shooting: 1 } },  // ⚠ image pending
+  'prosperity-poncho': { id: 'prosperity-poncho', name: 'Prosperity Poncho', slot: 'body', rarity: 'common', flavourText: "Attracts wealth and goals equally.", statBonuses: { luck: 1 } },  // ⚠ image pending
+  'giraffe-guard': { id: 'giraffe-guard', name: 'Giraffe Guard', slot: 'head', rarity: 'common', flavourText: "Giraffe necks are long, right?", statBonuses: { height: 1 } },  // ⚠ image pending
+  'gorilla-guard': { id: 'gorilla-guard', name: 'Gorilla Guard', slot: 'head', rarity: 'common', flavourText: "Gorilla strength protecting your head.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'vision-visor': { id: 'vision-visor', name: 'Vision Visor', slot: 'head', rarity: 'common', flavourText: "See everything on the field at once.", statBonuses: { passing: 1 } },  // ⚠ image pending
+  'marksman-mask': { id: 'marksman-mask', name: 'Marksman Mask', slot: 'head', rarity: 'common', flavourText: "Only the finest shooters wear this.", statBonuses: { shooting: 1 } },  // ⚠ image pending
+  'reflex-reactor-helm': { id: 'reflex-reactor-helm', name: 'Reflex Reactor Helm', slot: 'head', rarity: 'common', flavourText: "Reacts faster than thought.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'blessing-band': { id: 'blessing-band', name: 'Blessing Band', slot: 'head', rarity: 'common', flavourText: "Blessed by every good luck source.", statBonuses: { luck: 1 } },  // ⚠ image pending
+  // @forge:end
 };
 
 const STARTING_GEAR = {

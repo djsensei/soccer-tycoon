@@ -16,8 +16,20 @@ Sim events carry a `fanDelta` value; epic moments (great goals, saves, blunders)
 ### Markov chain simulation engine *(M3)*
 Replace the current match sim with a second-order Markov chain (last two states influence next outcome). Transition probability tables stored in JSON/YAML; player stats act as multipliers on base probabilities. Cleaner model enables better balancing and underpins the fan event system.
 
-### Item burning / crafting mechanic *(M4)*
+### Item burning / crafting mechanic *(M5)*
 In the Gear Up screen, allow the player to sacrifice 3 items of the same rarity to craft 1 random item of the next higher rarity. Solves late-game stagnation when packs keep dropping commons. UI: three drop slots below the player list + a "Burn" button → output slot.
+
+### [Balance] Fan acceleration for late-game *(M5)*
+At ~287k fans, progression to 1M is too slow. Either accelerate fan outcomes at higher tiers or lower the final threshold so late-game doesn't feel like a grind.
+
+### [UI] Gear Up stat bars & player sprite placeholder *(M5)*
+Add colored stat bar graph under position+name in Gear Up player rows. Reserve space for a future player sprite to the right of the name, before gear slots.
+
+---
+
+## P0 — Bugs / Urgent
+
+*(none)*
 
 ---
 
@@ -49,6 +61,12 @@ Players should never drop to 0 fans. A minimum of ~50 fans (friends and family) 
 
 ### Name generator — no duplicate names on a roster
 `generatePlayerName()` can produce the same first or last name more than once in a single generation pass. When building a full roster, ensure no two players share a first name or last name. Same for team name adjective/noun combos — `generateTeamName()` shouldn't repeat either component.
+
+### [QOL] Pack opening → Gear Up shortcut
+Add a "Go to Gear Up" button on the pack-opening results screen so players can immediately equip new cards without navigating back to the hub first.
+
+### [UI] Rarity background color instead of border frames
+Replace rarity-colored borders/frames on item cards with full background tinting by rarity color, for a more visually distinct look.
 
 ### Newspaper treatment for results screen
 Use the newspaper visual language (established on the game-over screen) for the post-match results screen. Replace the plain layout with a tabloid-style presentation: match headline, score, and fan delta delivered with flavor text. Would break up the green-screen monotony and give the game a stronger visual identity.

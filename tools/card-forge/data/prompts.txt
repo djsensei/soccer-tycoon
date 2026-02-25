@@ -1,0 +1,71 @@
+# zephyr-kicks
+# Zephyr Kicks (common feet) — +1 speed
+For video game "card" art, a square pixelated flowing pale blue and white cleats with swirling cloud patterns, angled diagonally towards the front corner. The style is fast and angular, with pale blue, white, and translucent silver. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# mammoth-mallets
+# Mammoth Mallets (common feet) — +1 strength
+For video game "card" art, a square pixelated huge bone-colored cleats with mammoth fur patterns and hefty mallet-shaped reinforcements, angled diagonally towards the front corner. The style is fast and angular, with cream, brown, and ivory with tusks details. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# arrow-arcs
+# Arrow Arcs (common feet) — +1 passing
+For video game "card" art, a square pixelated teal and yellow cleats with swooping arrow designs racing down the sides, angled diagonally towards the front corner. The style is fast and angular, with teal, bright yellow, and white arrow streaks. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# sonic-strikes
+# Sonic Strikes (common feet) — +1 shooting
+For video game "card" art, a square pixelated bright blue and white cleats with sound wave rings radiating from the toe, angled diagonally towards the front corner. The style is fast and angular, with bright blue, white, and neon pink sound waves. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# butterfly-booties
+# Butterfly Booties (common feet) — +1 reflexes
+For video game "card" art, a square pixelated iridescent purple and teal cleats with delicate butterfly wing patterns, angled diagonally towards the front corner. The style is fast and angular, with iridescent purple, teal, and holographic shimmer. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# ninja-neons
+# Ninja Neons (common feet) — +1 reflexes
+For video game "card" art, a square pixelated black cleats with neon pink and neon green ninja star and shadow patterns, angled diagonally towards the front corner. The style is fast and angular, with black, neon pink, and neon green with purple shadows. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# rainbow-runners
+# Rainbow Runners (common feet) — +1 luck
+For video game "card" art, a square pixelated multi-colored gradient cleats with rainbow arcs and pot-of-gold symbols, angled diagonally towards the front corner. The style is fast and angular, with rainbow gradient with gold accents. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# zephyr-zip-up
+# Zephyr Zip-up (common body) — +1 speed
+For video game "card" art, a square pixelated soft gray and light blue zip-up with swirling cloud patterns and flowing fabric panels, angled diagonally towards the front corner. The style is fast and angular, with soft gray, light blue, and white swirling clouds. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the shoulders to indicate [speed/energy]. Plain white background.
+
+# fortress-flannel
+# Fortress Flannel (common body) — +1 strength
+For video game "card" art, a square pixelated thick red and black checkered flannel shirt with reinforced stitching and castle-like silhouette, angled diagonally towards the front corner. The style is fast and angular, with deep red, black, and charcoal with thick texture. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the shoulders to indicate [speed/energy]. Plain white background.
+
+# harmony-jersey
+# Harmony Jersey (common body) — +1 passing
+For video game "card" art, a square pixelated balanced blue and orange jersey with yin-yang harmony patterns and interlocking designs, angled diagonally towards the front corner. The style is fast and angular, with royal blue, orange, and white harmony designs. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the shoulders to indicate [speed/energy]. Plain white background.
+
+# shockwave-shirt
+# Shockwave Shirt (common body) — +1 shooting
+For video game "card" art, a square pixelated white and electric blue shirt with radiating shockwave rings and energy pulse patterns, angled diagonally towards the front corner. The style is fast and angular, with white, electric blue, and neon purple shockwaves. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the shoulders to indicate [speed/energy]. Plain white background.
+
+# prosperity-poncho
+# Prosperity Poncho (common body) — +1 luck
+For video game "card" art, a square pixelated rich purple and gold poncho with prosperity symbols and abundance coin patterns, angled diagonally towards the front corner. The style is fast and angular, with rich purple, gold, and bronze prosperity designs. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the shoulders to indicate [speed/energy]. Plain white background.
+
+# giraffe-guard
+# Giraffe Guard (common head) — +1 height
+For video game "card" art, a square pixelated tan and brown spotted helmet designed like a tall giraffe head with elongated neck piece, angled diagonally towards the front corner. The style is fast and angular, with tan, brown spots, and gold accents. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.
+
+# gorilla-guard
+# Gorilla Guard (common head) — +1 strength
+For video game "card" art, a square pixelated black and gray helmet styled like a gorilla's head with powerful jaw design and ape-like silhouette, angled diagonally towards the front corner. The style is fast and angular, with black, charcoal gray, and silver. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.
+
+# vision-visor
+# Vision Visor (common head) — +1 passing
+For video game "card" art, a square pixelated mint green and white visor with wide panoramic lens and 360-degree sight design, angled diagonally towards the front corner. The style is fast and angular, with mint green, white, and silver visor. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.
+
+# marksman-mask
+# Marksman Mask (common head) — +1 shooting
+For video game "card" art, a square pixelated black mask with white precision markers and expert-level targeting patterns, angled diagonally towards the front corner. The style is fast and angular, with black, white, and silver precision marks. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.
+
+# reflex-reactor-helm
+# Reflex Reactor Helm (common head) — +1 reflexes
+For video game "card" art, a square pixelated white and cyan helmet with glowing reaction speed indicators and neural impulse patterns, angled diagonally towards the front corner. The style is fast and angular, with white, cyan, and neon pink impulse. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.
+
+# blessing-band
+# Blessing Band (common head) — +1 luck
+For video game "card" art, a square pixelated silver and white headband with blessing symbols, halos, and divine protection marks, angled diagonally towards the front corner. The style is fast and angular, with silver, white, and gold blessing symbols. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.

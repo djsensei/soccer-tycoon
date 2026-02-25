@@ -2,6 +2,44 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-02-25 (M4 card art & visual identity)
+
+### [P0] Gear stat scaling by rarity
+**Fix**: Audited all cards in `data.js` and adjusted `statBonuses` so total stat points always increase with rarity: 1pt common, 2pt uncommon, 4pt rare, 6pt epic, 8pt legendary. Fixed legendaries that previously had the same totals as rares.
+
+### [P0] Remove pixelated rendering for gear-up thumbnails
+**Fix**: Removed `image-rendering: pixelated` from gear-slot and inventory thumbnail CSS. Normal (smooth) scaling is now used at small sizes; pixelated rendering reserved for intentional retro contexts only.
+
+### [P0] New Club screen landscape layout
+**Fix**: Wrapped player name fields in a `<div class="player-name-grid">` with flex-column base layout. At 768px+ breakpoint, switches to a 2-column CSS grid with the Striker field spanning full width. `.setup-card` max-width bumped to 720px on tablet.
+
+### [P1/M4] Card image infrastructure
+**Fix**: Added `cardImage(cardId, size)` helper to `utils.js` returning a `.card-img-wrap` div with `<img>` and graceful fallback (dark placeholder with `?` icon when image is missing). File naming convention: `img/cards/[card-id].png`. Layout doesn't break when images are absent.
+
+### [P1/M4] Pack opening — large card art with rarity glow
+**Fix**: Added large card image (160×160) to each revealed card in the pack-open screen via `cardImage(cardId, 'large')`. Added `rarity-${rarity}` CSS class to `.pack-card` for rarity-driven styling: no glow for common/uncommon, `box-shadow` glow for rare/epic, pulsing keyframe animation for legendary.
+
+### [P1/M4] Gear/inventory — small card thumbnails
+**Fix**: Added 48×48 card thumbnails to `.inventory-card` rows and `.gear-slot-cell` in the Gear Up screen via `cardImage(cardId, 'small')`.
+
+### [P1/M4] Card sizing standard
+**Fix**: Created `docs/art-guide.md` documenting source image dimensions (512×512 generated, displayed at 160×160 large / 48×48 small), naming conventions, and the image processing pipeline.
+
+### [P1/M4] iPad/tablet layout
+**Fix**: Added 768px+ CSS breakpoint with wider `.screen` max-width (1024px), wider layout grids for hub roster, gear up, match select, and pack opening. Touch-friendly tap targets for buttons and gear slots.
+
+### [P1/M4] Gear Up slot alignment
+**Fix**: Right-justified gear slot cells in player rows using `margin-left: auto` on `.pgr-slots`. All slots are fixed-width (72px base, 80px tablet). GK row uses consistent `['head','body','feet','gloves']` order with column headers aligned above.
+
+### [P1/M4] Gear Up inventory tile view with slot filters
+**Fix**: Replaced the conditional "tap a slot" empty state with an always-visible inventory panel. Added filter toggle buttons (All/Head/Body/Feet/Gloves), tile grid sorted by rarity, and column headers above player rows. Selecting a gear slot auto-sets the filter to match. Tiles show card thumbnail, name, and quantity.
+
+### [P1/M4] Gear Up item detail modal
+**Fix**: Added a centered modal overlay (`buildCardModal()` in `gear.js`) triggered by clicking any inventory tile or equipped gear slot. Shows large card image, rarity badge, slot label, name, flavour text, bonuses, and quantity. Context-sensitive Equip/Remove buttons appear when a gear slot is selected and the card matches. Dismissed via X button or clicking the backdrop. Modal state managed by `_modalCard` module variable; wrapper functions (`equipGearFromModal`/`unequipGearFromModal`) clear modal before state update to avoid double-render.
+
+### [P1/M4] Image processing pipeline
+**Fix**: Created `tools/img-pipeline/process.py` — takes raw SD outputs from `input/`, removes background via `rembg`, resizes/pads to 512×512 transparent PNG, and saves to `img/cards/[card-id].png`. Managed with `uv`.
+
 ## 2026-02-23 (M2 core loop)
 
 ### [P1/M2] "Start Over" button in hub
