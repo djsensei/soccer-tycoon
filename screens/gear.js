@@ -34,7 +34,7 @@ function renderGearUp() {
 
   const playerRowsHtml = [...startingEntries, ...benchEntries].map(({ p, posSlot }) => {
     const isGK = gameState.slots.GK === p.id;
-    const gearSlots = isGK ? GK_GEAR_SLOTS : GEAR_SLOTS;
+    const gearSlots = isGK ? ['gloves', 'head', 'body', 'feet'] : GEAR_SLOTS;
     const isRowSelected = _gearSel.playerId === p.id;
     return `
       <div class="player-gear-row ${isRowSelected ? 'pgr-selected' : ''}">

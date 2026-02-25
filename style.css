@@ -280,7 +280,6 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .card-img-wrap img { width: 100%; height: 100%; object-fit: contain; }
 .card-img-wrap.large { width: 160px; height: 160px; }
 .card-img-wrap.small { width: 48px; height: 48px; }
-.card-img-wrap.small img { image-rendering: pixelated; }
 .card-img-wrap.card-img-missing::after { content: '?'; color: #333; font-size: 1.5rem; }
 .card-img-wrap.card-img-missing img   { display: none; }
 
@@ -369,17 +368,18 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .pgr-pos  { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
 .pgr-name { font-weight: bold; font-size: 0.9rem; }
 
-.pgr-slots { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.pgr-slots { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-left: auto; }
 
 .gear-slot-cell {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.35rem 0.55rem;
   cursor: pointer;
-  min-width: 72px;
+  width: 72px;
   text-align: center;
   background: var(--surface);
   transition: 0.15s;
+  flex-shrink: 0;
 }
 .gear-slot-cell:hover { border-color: var(--accent-dim); }
 .gear-slot-cell.gsc-selected { border-color: var(--accent); background: var(--card-hover); box-shadow: 0 0 0 2px var(--accent-dim); }
@@ -387,7 +387,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
 .gsc-label { font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
 .gsc-card  { border-bottom: 2px solid; line-height: 0; }
-.gsc-placeholder { font-size: 0.75rem; color: var(--text-dim); }
+.gsc-placeholder { font-size: 0.75rem; color: var(--text-dim); display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin: 0 auto; }
 
 .inv-empty-hint { color: var(--text-dim); font-style: italic; }
 .inv-section { margin-bottom: 1rem; }
@@ -672,7 +672,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
   /* Touch-friendly tap targets */
   .btn-primary, .btn-secondary { padding: 0.75rem 1.6rem; }
-  .gear-slot-cell { min-width: 80px; padding: 0.45rem 0.65rem; }
+  .gear-slot-cell { width: 80px; padding: 0.45rem 0.65rem; }
 
   /* Match screen — constrain width on wide tablets */
   .match-header, .match-controls, .event-log, #match-end-btn {
