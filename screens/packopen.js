@@ -38,7 +38,8 @@ function renderPackOpening() {
     const c       = CARDS[cardId];
     const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No stat bonus';
     return `
-      <div class="pack-card" style="animation-delay:${i * 0.3}s; border-color:${RARITY_COLOR[c.rarity]}">
+      <div class="pack-card rarity-${c.rarity}" style="animation-delay:${i * 0.3}s; border-color:${RARITY_COLOR[c.rarity]}">
+        ${cardImage(cardId, 'large')}
         ${rarityBadge(c.rarity)}
         <div class="pack-card-slot">${c.slot.charAt(0).toUpperCase() + c.slot.slice(1)}</div>
         <div class="pack-card-name">${c.name}</div>

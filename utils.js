@@ -33,6 +33,14 @@ function rarityBadge(rarity) {
   return `<span class="rarity-badge" style="background:${RARITY_COLOR[rarity]}">${RARITY_LABEL[rarity]}</span>`;
 }
 
+function cardImage(cardId, size = 'large') {
+  if (!cardId || !CARDS[cardId]) return `<div class="card-img-wrap ${size} card-img-missing"></div>`;
+  return `<div class="card-img-wrap ${size}">
+    <img src="img/cards/${cardId}.png" alt="${CARDS[cardId].name}"
+         onerror="this.parentElement.classList.add('card-img-missing')">
+  </div>`;
+}
+
 function cardMini(cardId) {
   if (!cardId) return `<span class="gear-empty">Empty</span>`;
   const c = CARDS[cardId];

@@ -63,11 +63,14 @@ function renderGearUp() {
       <div class="inv-section">
         <div class="inv-section-label">Equipped</div>
         <div class="inventory-card equipped">
-          ${rarityBadge(CARDS[equippedId].rarity)}
-          <strong>${CARDS[equippedId].name}</strong>
-          <em>${CARDS[equippedId].flavourText}</em>
-          <div class="bonus-list">${Object.entries(CARDS[equippedId].statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No bonus'}</div>
-          <button class="btn-small btn-danger" onclick="unequipGear('${_gearSel.playerId}','${_gearSel.slot}')">Remove</button>
+          ${cardImage(equippedId, 'small')}
+          <div class="inventory-card-text">
+            ${rarityBadge(CARDS[equippedId].rarity)}
+            <strong>${CARDS[equippedId].name}</strong>
+            <em>${CARDS[equippedId].flavourText}</em>
+            <div class="bonus-list">${Object.entries(CARDS[equippedId].statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No bonus'}</div>
+            <button class="btn-small btn-danger" onclick="unequipGear('${_gearSel.playerId}','${_gearSel.slot}')">Remove</button>
+          </div>
         </div>
       </div>` : `<p class="dim" style="margin-bottom:0.75rem">No gear equipped</p>`;
 
@@ -83,10 +86,13 @@ function renderGearUp() {
           const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No bonus';
           return `
             <div class="inventory-card" onclick="equipGear('${_gearSel.playerId}','${_gearSel.slot}','${c.id}')">
-              ${rarityBadge(c.rarity)}
-              <strong>${c.name}</strong> <span class="qty">×${availableQty(c.id)}</span>
-              <em>${c.flavourText}</em>
-              <div class="bonus-list">${bonuses}</div>
+              ${cardImage(c.id, 'small')}
+              <div class="inventory-card-text">
+                ${rarityBadge(c.rarity)}
+                <strong>${c.name}</strong> <span class="qty">×${availableQty(c.id)}</span>
+                <em>${c.flavourText}</em>
+                <div class="bonus-list">${bonuses}</div>
+              </div>
             </div>`;
         }).join('')}
       </div>` : `<p class="dim">No ${_gearSel.slot} gear in inventory</p>`;

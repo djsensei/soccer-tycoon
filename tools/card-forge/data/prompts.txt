@@ -1,0 +1,27 @@
+# zephyr-kicks
+# Zephyr Kicks (common feet) — +1 speed
+For video game "card" art, a square pixelated flowing pale blue and white cleats with swirling cloud patterns, angled diagonally towards the front corner. The style is fast and angular, with pale blue, white, and translucent silver. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# mammoth-mallets
+# Mammoth Mallets (common feet) — +1 strength
+For video game "card" art, a square pixelated huge bone-colored cleats with mammoth fur patterns and hefty mallet-shaped reinforcements, angled diagonally towards the front corner. The style is fast and angular, with cream, brown, and ivory with tusks details. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# arrow-arcs
+# Arrow Arcs (common feet) — +1 passing
+For video game "card" art, a square pixelated teal and yellow cleats with swooping arrow designs racing down the sides, angled diagonally towards the front corner. The style is fast and angular, with teal, bright yellow, and white arrow streaks. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# sonic-strikes
+# Sonic Strikes (common feet) — +1 shooting
+For video game "card" art, a square pixelated bright blue and white cleats with sound wave rings radiating from the toe, angled diagonally towards the front corner. The style is fast and angular, with bright blue, white, and neon pink sound waves. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# butterfly-booties
+# Butterfly Booties (common feet) — +1 reflexes
+For video game "card" art, a square pixelated iridescent purple and teal cleats with delicate butterfly wing patterns, angled diagonally towards the front corner. The style is fast and angular, with iridescent purple, teal, and holographic shimmer. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# ninja-neons
+# Ninja Neons (common feet) — +1 reflexes
+For video game "card" art, a square pixelated black cleats with neon pink and neon green ninja star and shadow patterns, angled diagonally towards the front corner. The style is fast and angular, with black, neon pink, and neon green with purple shadows. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# rainbow-runners
+# Rainbow Runners (common feet) — +1 luck
+For video game "card" art, a square pixelated multi-colored gradient cleats with rainbow arcs and pot-of-gold symbols, angled diagonally towards the front corner. The style is fast and angular, with rainbow gradient with gold accents. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.

@@ -1,0 +1,6 @@
+# Raw SD outputs — don't commit source images
+input/*
+!input/.gitkeep
+
+# rembg model cache
+u2net/

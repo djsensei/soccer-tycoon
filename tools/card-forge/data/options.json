@@ -1,0 +1,441 @@
+[
+  {
+    "concept_id": "feet-common-speed1",
+    "slot": "feet",
+    "rarity": "common",
+    "statBonuses": {
+      "speed": 1
+    },
+    "options": [
+      {
+        "name": "Zippy Zappers",
+        "flavourText": "Shoes that shock your feet into overdrive.",
+        "imageDesc": "electric blue and white sprinting cleats with lightning bolt designs crackling around the soles",
+        "colors": "electric blue, white, and yellow lightning streaks"
+      },
+      {
+        "name": "Turbo Tods",
+        "flavourText": "Allegedly the shoes of ancient speed demons.",
+        "imageDesc": "scuffed red racing cleats with tiny turbo stickers peeling off",
+        "colors": "faded red with black accents and metallic silver stripes"
+      },
+      {
+        "name": "Rocket Runners",
+        "flavourText": "Not actual rockets, but they feel like it.",
+        "imageDesc": "sleek silver and black cleats with rocket ship silhouettes on the sides",
+        "colors": "silver, black, and neon orange flame accents"
+      },
+      {
+        "name": "Whoosh Wedges",
+        "flavourText": "Makes you sound faster even if you aren't.",
+        "imageDesc": "lime green cleats with aerodynamic wedge designs and sound wave patterns",
+        "colors": "lime green, white, and electric blue waves"
+      },
+      {
+        "name": "Zephyr Kicks",
+        "flavourText": "Channeling the ancient spirit of wind itself.",
+        "imageDesc": "flowing pale blue and white cleats with swirling cloud patterns",
+        "colors": "pale blue, white, and translucent silver"
+      },
+      {
+        "name": "Blast Boots",
+        "flavourText": "They leave a dust cloud behind. Probably.",
+        "imageDesc": "tan and orange cleats with explosive starburst designs and dust effect prints",
+        "colors": "tan, burnt orange, and gold glitter accents"
+      },
+      {
+        "name": "Velocity Vines",
+        "flavourText": "Fast plants? No. Fast feet? Yes.",
+        "imageDesc": "green and purple cleats with tangled vine patterns racing down the sides",
+        "colors": "forest green, purple, and neon lime streaks"
+      },
+      {
+        "name": "Sprint Sprites",
+        "flavourText": "Tiny magical creatures trapped in your soles.",
+        "imageDesc": "iridescent pastel cleats with sparkle effects and tiny sprite wings embroidered",
+        "colors": "pastel purple, pink, and holographic silver"
+      },
+      {
+        "name": "Dash Dazzlers",
+        "flavourText": "So shiny you'll be hard to tackle.",
+        "imageDesc": "chrome and neon pink cleats covered in mirror-like disco ball patterns",
+        "colors": "chrome silver, hot pink, and rainbow sparkle"
+      },
+      {
+        "name": "Swift Slippers",
+        "flavourText": "Whoever named these was bad at gear names.",
+        "imageDesc": "gray and neon yellow cleats designed to look like fuzzy slippers with cleats bolted on",
+        "colors": "soft gray, neon yellow, and white fuzzy trim"
+      }
+    ],
+    "selected": [
+      4
+    ]
+  },
+  {
+    "concept_id": "feet-common-strength1",
+    "slot": "feet",
+    "rarity": "common",
+    "statBonuses": {
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Iron Stompers",
+        "flavourText": "Heavy enough to crush your hopes and dreams.",
+        "imageDesc": "bulky dark gray and black cleats with reinforced metal plating and rivets",
+        "colors": "charcoal gray, gunmetal black, and silver reinforcements"
+      },
+      {
+        "name": "Brute Blasters",
+        "flavourText": "For kicking things REALLY hard.",
+        "imageDesc": "thick-soled red and black cleats with exaggerated bumper reinforcements",
+        "colors": "deep red, black, and gold metallic edges"
+      },
+      {
+        "name": "Tank Treads",
+        "flavourText": "Walk softly and carry a massive stick.",
+        "imageDesc": "oversized olive green cleats with tread pattern treads like tank treads",
+        "colors": "olive green, dark brown, and rust orange"
+      },
+      {
+        "name": "Sledge Shoes",
+        "flavourText": "Perfect for sledgehammering the ball.",
+        "imageDesc": "brown and purple cleats with a flat sledge-hammer shaped reinforcement on the toe",
+        "colors": "brown, deep purple, and metallic bronze"
+      },
+      {
+        "name": "Mammoth Mallets",
+        "flavourText": "Beast mode: activated.",
+        "imageDesc": "huge bone-colored cleats with mammoth fur patterns and hefty mallet-shaped reinforcements",
+        "colors": "cream, brown, and ivory with tusks details"
+      },
+      {
+        "name": "Crush Clompers",
+        "flavourText": "Stomps with the fury of ancient beasts.",
+        "imageDesc": "oversized burgundy and black cleats with claw-like tread patterns on the soles",
+        "colors": "burgundy, black, and deep crimson"
+      },
+      {
+        "name": "Power Pegs",
+        "flavourText": "Wooden pegs driven into the ground. Ouch.",
+        "imageDesc": "wooden and tan cleats designed like oversized wooden pegs with metal reinforcements",
+        "colors": "natural wood tan, dark brown, and iron gray"
+      },
+      {
+        "name": "Anvil Ankles",
+        "flavourText": "Your feet weigh as much as an anvil.",
+        "imageDesc": "solid gray cleats shaped like tiny anvils with deep ridged soles",
+        "colors": "anvil gray, charcoal, and metallic silver highlights"
+      },
+      {
+        "name": "Ramming Runners",
+        "flavourText": "Why pass when you can bulldoze everyone?",
+        "imageDesc": "reinforced teal and black cleats with a bulging ram-horn shape on the heel",
+        "colors": "teal, black, and metallic gold horns"
+      },
+      {
+        "name": "Fortress Feet",
+        "flavourText": "Immovable object meets ball.",
+        "imageDesc": "castle-like gray and white cleats with brick pattern designs and tower-shaped toe box",
+        "colors": "stone gray, cream white, and shadow black mortar lines"
+      }
+    ],
+    "selected": [
+      4
+    ]
+  },
+  {
+    "concept_id": "feet-common-passing1",
+    "slot": "feet",
+    "rarity": "common",
+    "statBonuses": {
+      "passing": 1
+    },
+    "options": [
+      {
+        "name": "Thread Throwers",
+        "flavourText": "Passes tighter than knitted socks.",
+        "imageDesc": "white and blue cleats with intricate thread and knit patterns woven into the design",
+        "colors": "white, royal blue, and silver threading accents"
+      },
+      {
+        "name": "Compass Kicks",
+        "flavourText": "Always points your ball in the right direction.",
+        "imageDesc": "gold and navy cleats with compass rose designs and directional arrows on the soles",
+        "colors": "gold, navy blue, and white compass markings"
+      },
+      {
+        "name": "Precision Pumps",
+        "flavourText": "Each kick is mathematically perfect.",
+        "imageDesc": "mint green and black cleats with geometric grid patterns and grid lines",
+        "colors": "mint green, black, and silver geometric lines"
+      },
+      {
+        "name": "Arrow Arcs",
+        "flavourText": "The ball follows where you point.",
+        "imageDesc": "teal and yellow cleats with swooping arrow designs racing down the sides",
+        "colors": "teal, bright yellow, and white arrow streaks"
+      },
+      {
+        "name": "Laser Laces",
+        "flavourText": "Laces that guide your passes with precision.",
+        "imageDesc": "black cleats with glowing red laser-line patterns on the laces and across the toe",
+        "colors": "black, neon red, and electric blue accents"
+      },
+      {
+        "name": "Silk Sliders",
+        "flavourText": "Smooth passes delivered on silk pillows.",
+        "imageDesc": "rose gold and blush pink cleats with silky sheen and delicate curved patterns",
+        "colors": "rose gold, blush pink, and pearl white"
+      },
+      {
+        "name": "Guide Gears",
+        "flavourText": "Your feet are tiny intelligent machines.",
+        "imageDesc": "bronze and orange cleats with interlocking gear patterns on every surface",
+        "colors": "bronze, burnt orange, and metallic copper"
+      },
+      {
+        "name": "Portal Peepers",
+        "flavourText": "Ball teleports wherever you want it.",
+        "imageDesc": "purple and green cleats with portal-like circular swirl patterns on the soles",
+        "colors": "deep purple, lime green, and magenta vortex effects"
+      },
+      {
+        "name": "Navigator Nines",
+        "flavourText": "Nine times out of nine, it's perfect.",
+        "imageDesc": "navy cleats with numbered circular patterns and directional path designs",
+        "colors": "navy blue, gold numbers, and silver directional lines"
+      },
+      {
+        "name": "Homing Hearts",
+        "flavourText": "The ball loves where you send it.",
+        "imageDesc": "pink and red cleats with heart shapes that form trailing path patterns",
+        "colors": "hot pink, red, and white heart trails with gold accents"
+      }
+    ],
+    "selected": [
+      3
+    ]
+  },
+  {
+    "concept_id": "feet-common-shooting1",
+    "slot": "feet",
+    "rarity": "common",
+    "statBonuses": {
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Cannon Cleats",
+        "flavourText": "Your foot is literally a cannon now.",
+        "imageDesc": "black and red cleats with cannon barrel shapes protruding from the toe and sides",
+        "colors": "black, crimson red, and metallic bronze cannons"
+      },
+      {
+        "name": "Sniper Slicks",
+        "flavourText": "Headshot the goal from anywhere.",
+        "imageDesc": "gray and neon green cleats with crosshair and targeting reticle patterns",
+        "colors": "gunmetal gray, neon green, and white crosshairs"
+      },
+      {
+        "name": "Impact Infernos",
+        "flavourText": "Goals explode into flames.",
+        "imageDesc": "orange and yellow cleats with flame designs erupting from the kick zone",
+        "colors": "orange, yellow, and red flame gradients with black shadows"
+      },
+      {
+        "name": "Blast Bolts",
+        "flavourText": "Kicks that pack a thunderous punch.",
+        "imageDesc": "white and purple cleats with lightning bolt patterns concentrated at the toe",
+        "colors": "white, royal purple, and electric yellow lightning"
+      },
+      {
+        "name": "Shatter Shoes",
+        "flavourText": "Goals shatter on impact.",
+        "imageDesc": "crystal white and light blue cleats with crackle and shatter patterns across the surface",
+        "colors": "crystal white, light blue, and silver crackling effects"
+      },
+      {
+        "name": "Rocket Rampage",
+        "flavourText": "Takes off faster than a actual rocket.",
+        "imageDesc": "red and silver cleats with rocket fins and exhaust flame designs on the heel",
+        "colors": "rocket red, silver, and orange exhaust flames"
+      },
+      {
+        "name": "Comet Crushers",
+        "flavourText": "Faster and more destructive than meteors.",
+        "imageDesc": "dark purple and white cleats with comet tail streak patterns and cosmic dust",
+        "colors": "dark purple, white, and golden comet trails"
+      },
+      {
+        "name": "Sonic Strikes",
+        "flavourText": "The ball breaks the sound barrier.",
+        "imageDesc": "bright blue and white cleats with sound wave rings radiating from the toe",
+        "colors": "bright blue, white, and neon pink sound waves"
+      },
+      {
+        "name": "Meteor Mules",
+        "flavourText": "Kicks hit like falling space rocks.",
+        "imageDesc": "gray and black cleats with impact crater textures and meteor scorch marks",
+        "colors": "dark gray, charcoal black, and burnt orange scorch"
+      },
+      {
+        "name": "Volley Vortex",
+        "flavourText": "Spinning tornado of destruction.",
+        "imageDesc": "green and white cleats with swirling vortex patterns centered on the striking zone",
+        "colors": "green, white, and gray swirling vortex effects"
+      }
+    ],
+    "selected": [
+      7
+    ]
+  },
+  {
+    "concept_id": "feet-common-reflexes1",
+    "slot": "feet",
+    "rarity": "common",
+    "statBonuses": {
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Feather Feet",
+        "flavourText": "Light as air, quick as thought.",
+        "imageDesc": "white and pale blue cleats designed to look feather-light with feather patterns embroidered",
+        "colors": "white, pale blue, and silver feather accents"
+      },
+      {
+        "name": "Twitch Kicks",
+        "flavourText": "Your muscles react before your brain does.",
+        "imageDesc": "neon pink and white cleats with motion blur lines and nervous system patterns",
+        "colors": "neon pink, white, and electric blue neural patterns"
+      },
+      {
+        "name": "Whip Whispers",
+        "flavourText": "Snappy kicks that crack the sound barrier.",
+        "imageDesc": "black and tan cleats with whip-like curved designs and snap marks on the surface",
+        "colors": "black, tan leather, and metallic gold accents"
+      },
+      {
+        "name": "Butterfly Booties",
+        "flavourText": "Fluttery feet that dodge everything.",
+        "imageDesc": "iridescent purple and teal cleats with delicate butterfly wing patterns",
+        "colors": "iridescent purple, teal, and holographic shimmer"
+      },
+      {
+        "name": "Dart Dancers",
+        "flavourText": "Ping-pong across the pitch in a heartbeat.",
+        "imageDesc": "red and white cleats with dart board patterns and zigzag movement designs",
+        "colors": "red, white, and black dart board rings"
+      },
+      {
+        "name": "Instant Insoles",
+        "flavourText": "Appears wherever you need to be instantly.",
+        "imageDesc": "metallic silver cleats with warp portal and teleportation circle designs",
+        "colors": "metallic silver, cyan blue, and neon purple warp effects"
+      },
+      {
+        "name": "Ninja Neons",
+        "flavourText": "Silent, deadly, and glowing for some reason.",
+        "imageDesc": "black cleats with neon pink and neon green ninja star and shadow patterns",
+        "colors": "black, neon pink, and neon green with purple shadows"
+      },
+      {
+        "name": "Spring Steppers",
+        "flavourText": "Bounce back faster than a rubber ball.",
+        "imageDesc": "bright yellow and blue cleats with spring coil designs winding around the sides",
+        "colors": "bright yellow, royal blue, and metallic silver springs"
+      },
+      {
+        "name": "Quicksilver Quicks",
+        "flavourText": "Moves like liquid mercury given feet.",
+        "imageDesc": "silver and gray cleats with flowing liquid metal patterns and fluid designs",
+        "colors": "silver, mercury gray, and metallic copper flows"
+      },
+      {
+        "name": "Snap Snap Shoes",
+        "flavourText": "Snaps into position before the ball arrives.",
+        "imageDesc": "orange and black cleats with snap/clasp designs and fast-motion blur effects",
+        "colors": "orange, black, and white motion blur streaks"
+      }
+    ],
+    "selected": [
+      3,
+      6
+    ]
+  },
+  {
+    "concept_id": "feet-common-luck1",
+    "slot": "feet",
+    "rarity": "common",
+    "statBonuses": {
+      "luck": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Lotto Kicks",
+        "flavourText": "Somehow the ball just goes in.",
+        "imageDesc": "gold and red cleats with lottery ticket designs and lucky number patterns all over",
+        "colors": "gold, crimson red, and white lottery numbers"
+      },
+      {
+        "name": "Clover Climbers",
+        "flavourText": "Four-leaf clover power embedded in rubber.",
+        "imageDesc": "green cleats with four-leaf clover patterns repeating across the surface and shamrock symbols",
+        "colors": "forest green, lime green, and gold clover accents"
+      },
+      {
+        "name": "Rainbow Runners",
+        "flavourText": "The luck pot follows your feet.",
+        "imageDesc": "multi-colored gradient cleats with rainbow arcs and pot-of-gold symbols",
+        "colors": "rainbow gradient with gold accents"
+      },
+      {
+        "name": "Chance Chargers",
+        "flavourText": "Probability bends in your favor.",
+        "imageDesc": "purple and silver cleats with dice patterns and probability symbols scattered around",
+        "colors": "royal purple, silver, and white dice and symbols"
+      },
+      {
+        "name": "Mystic Moccasins",
+        "flavourText": "Touched by forces beyond comprehension.",
+        "imageDesc": "indigo and white cleats with mystical symbols, moons, and stars embroidered",
+        "colors": "indigo, white, and silver mystical markings"
+      },
+      {
+        "name": "Karma Kicks",
+        "flavourText": "The universe rewards your footwork.",
+        "imageDesc": "zen orange and white cleats with yin-yang designs and karma symbol patterns",
+        "colors": "burnt orange, white, and black yin-yang designs"
+      },
+      {
+        "name": "Fortune Flippers",
+        "flavourText": "Coin flips always land in your favor.",
+        "imageDesc": "gold and copper cleats with coin flip and fortune wheel designs spinning around",
+        "colors": "gold, copper, and bronze fortune wheel patterns"
+      },
+      {
+        "name": "Blessed Bootees",
+        "flavourText": "Blessed by literally everyone including the referee.",
+        "imageDesc": "white and gold cleats with holy halo designs and angelic feather patterns",
+        "colors": "pure white, holy gold, and silver halos"
+      },
+      {
+        "name": "Jinx Jammers",
+        "flavourText": "Bad luck for opponents only.",
+        "imageDesc": "black and red cleats with crossed skull designs that somehow look cute",
+        "colors": "black, dark red, and silver skull and crossbone accents"
+      },
+      {
+        "name": "Fate Finders",
+        "flavourText": "Destiny is literally inside your shoes.",
+        "imageDesc": "deep blue and purple cleats with constellation patterns and destiny rune designs",
+        "colors": "deep blue, purple, and golden constellation lines"
+      }
+    ],
+    "selected": [
+      2
+    ]
+  }
+]

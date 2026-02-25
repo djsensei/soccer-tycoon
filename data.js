@@ -49,6 +49,7 @@ const CARDS = {
   // === RARE ===
   'rocket-boots':     { id: 'rocket-boots',      name: 'Rocket Boots',     slot: 'feet',   rarity: 'rare',     flavourText: 'Actual small rockets. Safety not guaranteed.',     statBonuses: { speed: 4, shooting: 2 } },
   'gravity-gloves':   { id: 'gravity-gloves',    name: 'Gravity Gloves',   slot: 'gloves', rarity: 'rare',     flavourText: 'The ball just... comes to them.',                  statBonuses: { reflexes: 4, height: 2 } },
+  'rock-gloves':      { id: 'rock-gloves',       name: 'Rock Gloves',      slot: 'gloves', rarity: 'rare',     flavourText: 'Chiseled from actual boulders. Punching the ball rules.', statBonuses: { reflexes: 2, strength: 2 } },
   'iron-jersey':      { id: 'iron-jersey',       name: 'Iron Jersey',      slot: 'body',   rarity: 'rare',     flavourText: 'Heavy. Very heavy. Nothing gets through.',         statBonuses: { strength: 4, height: 2 } },
   'eagle-eye-cap':    { id: 'eagle-eye-cap',     name: 'Eagle Eye Cap',    slot: 'head',   rarity: 'rare',     flavourText: 'See the field like a majestic bird.',              statBonuses: { passing: 3, luck: 2 } },
 
