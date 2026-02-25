@@ -35,10 +35,16 @@ const CARDS = {
   'holey-gloves':     { id: 'holey-gloves',      name: 'Holey Gloves',     slot: 'gloves', rarity: 'common', flavourText: 'Half the fingers are missing.',       statBonuses: {} },
 
   // === COMMON ===
-  'turbo-cleats':     { id: 'turbo-cleats',      name: 'Turbo Cleats',     slot: 'feet',   rarity: 'common',   flavourText: 'Guaranteed to go vroom.',                          statBonuses: { speed: 2 } },
   'lucky-headband':   { id: 'lucky-headband',    name: 'Lucky Headband',   slot: 'head',   rarity: 'common',   flavourText: 'Brings luck. Smells weird.',                       statBonuses: { luck: 2 } },
   'basic-shinguards': { id: 'basic-shinguards',  name: 'Basic Shin Guards',slot: 'body',   rarity: 'common',   flavourText: 'Better than nothing. Barely.',                     statBonuses: { strength: 1 } },
   'cotton-gloves':    { id: 'cotton-gloves',     name: 'Cotton Gloves',    slot: 'gloves', rarity: 'common',   flavourText: 'For someone who tried.',                            statBonuses: { reflexes: 1 } },
+  'zephyr-kicks': { id: 'zephyr-kicks', name: 'Zephyr Kicks', slot: 'feet', rarity: 'common', flavourText: "Channeling the ancient spirit of wind itself.", statBonuses: { speed: 1 } },
+  'mammoth-mallets': { id: 'mammoth-mallets', name: 'Mammoth Mallets', slot: 'feet', rarity: 'common', flavourText: "Beast mode: activated.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'arrow-arcs': { id: 'arrow-arcs', name: 'Arrow Arcs', slot: 'feet', rarity: 'common', flavourText: "The ball follows where you point.", statBonuses: { passing: 1 } },
+  'sonic-strikes': { id: 'sonic-strikes', name: 'Sonic Strikes', slot: 'feet', rarity: 'common', flavourText: "The ball breaks the sound barrier.", statBonuses: { shooting: 1 } },  // ⚠ image pending
+  'butterfly-booties': { id: 'butterfly-booties', name: 'Butterfly Booties', slot: 'feet', rarity: 'common', flavourText: "Fluttery feet that dodge everything.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'ninja-neons': { id: 'ninja-neons', name: 'Ninja Neons', slot: 'feet', rarity: 'common', flavourText: "Silent, deadly, and glowing for some reason.", statBonuses: { reflexes: 1 } },
+  'rainbow-runners': { id: 'rainbow-runners', name: 'Rainbow Runners', slot: 'feet', rarity: 'common', flavourText: "The luck pot follows your feet.", statBonuses: { luck: 1 } },
 
   // === UNCOMMON ===
   'padded-vest':      { id: 'padded-vest',       name: 'Padded Vest',      slot: 'body',   rarity: 'uncommon', flavourText: 'Absorbs tackles like a champ.',                    statBonuses: { strength: 2, height: 1 } },

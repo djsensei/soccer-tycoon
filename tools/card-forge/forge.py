@@ -343,8 +343,8 @@ def cmd_export(args):
             )
 
     out = DATA_DIR / 'export.js'
-    out.write_text('\n'.join(lines))
-    print(f"Written → {out}")
+    out.write_text('\n'.join(lines), encoding='utf-8')
+    print(f"Written -> {out}")
     print("Paste into the CARDS object in data.js.")
 
 
