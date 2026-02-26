@@ -173,19 +173,20 @@ function buildEvent(minute, prevState, currentState, nextState,
 
   // --- Goal ---
   if (nextState === 'goal_atk') {
-    return ev('goal', atkIsPlayer ? 'player' : 'opponent', true, atkStriker?.name);
+    return ev('goal', atkIsPlayer ? 'player' : 'opponent', true, atkStriker?.name, { playerId: atkStriker?.id });
   }
 
   // --- Shot saved (possibly great save) ---
   if (nextState === 'save_def') {
+    const defGK = slotPlayer(defTeam, 'GK');
     // Great save: if goal probability was >55% but keeper saved it
     const great = goalProbWhenShotWasTaken != null && goalProbWhenShotWasTaken > 0.55;
-    return ev('shot', great ? 'greatSave' : 'saved', great, atkStriker?.name);
+    return ev('shot', great ? 'greatSave' : 'saved', great, atkStriker?.name, { playerId: atkStriker?.id, savingPlayerId: defGK?.id });
   }
 
   // --- Shot off target (miss) ---
   if (nextState === 'shot_off_atk') {
-    return ev('shot', 'miss', false, atkStriker?.name);
+    return ev('shot', 'miss', false, atkStriker?.name, { playerId: atkStriker?.id });
   }
 
   // --- shot_on_atk as next: quiet state, resolved inline in simulator ---
@@ -198,7 +199,7 @@ function buildEvent(minute, prevState, currentState, nextState,
 
   // --- Tackle (defender wins the ball) ---
   if (nextState === 'poss_def_def') {
-    return ev('tackle', 'success', false, defDef?.name);
+    return ev('tackle', 'success', false, defDef?.name, { playerId: defDef?.id });
   }
 
   // --- Midfield interception (pass fail) ---
@@ -206,7 +207,7 @@ function buildEvent(minute, prevState, currentState, nextState,
     const passer = currentState === 'poss_str_atk' ? atkStriker
                  : currentState === 'poss_def_atk' ? atkDef
                  : atkMid;
-    return ev('pass', 'fail', false, passer?.name);
+    return ev('pass', 'fail', false, passer?.name, { playerId: passer?.id });
   }
 
   // --- Possession-change states that don't need events ---
@@ -219,7 +220,7 @@ function buildEvent(minute, prevState, currentState, nextState,
                  : currentState === 'poss_def_atk'  ? atkDef
                  : currentState === 'poss_str_atk'  ? atkStriker
                  : atkMid;
-    return ev('pass', 'success', false, passer?.name);
+    return ev('pass', 'success', false, passer?.name, { playerId: passer?.id });
   }
 
   return null; // No event for this transition
@@ -490,6 +491,28 @@ function getPackReward(tier, outcomeKey) {
   if (outcomeKey === 'bigWin' || outcomeKey === 'win') return rewards.win;
   if (outcomeKey === 'tie')                             return rewards.tie;
   return rewards.loss;
+}
+
+// Forge: sacrifice 3 same-rarity cards for 1 higher-rarity card
+function forgeCards(cardIds) {
+  if (!cardIds || cardIds.length !== 3) return { ok: false, error: 'Select exactly 3 cards.' };
+  const cards = cardIds.map(id => CARDS[id]);
+  if (cards.some(c => !c)) return { ok: false, error: 'Invalid card.' };
+  const rarity = cards[0].rarity;
+  if (!cards.every(c => c.rarity === rarity)) return { ok: false, error: 'All 3 cards must be the same rarity.' };
+  const rarIdx = RARITIES.indexOf(rarity);
+  if (rarIdx < 0 || rarIdx >= RARITIES.length - 1) return { ok: false, error: 'Cannot forge legendary cards.' };
+  const nextRarity = RARITIES[rarIdx + 1];
+
+  // Eligible: has stat bonuses, not a special unique, matches next rarity
+  const uniqueCardIds = new Set(OPPONENT_DEFINITIONS.filter(d => d.uniqueCardId).map(d => d.uniqueCardId));
+  const pool = Object.values(CARDS).filter(c =>
+    c.rarity === nextRarity && Object.keys(c.statBonuses).length > 0 && !uniqueCardIds.has(c.id)
+  );
+  if (!pool.length) return { ok: false, error: 'No cards available at the next rarity.' };
+
+  const resultCard = pick(pool);
+  return { ok: true, resultCardId: resultCard.id };
 }
 
 // Open a pack — returns array of card ids (no duplicates; gloves weighted lower)

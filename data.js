@@ -25,6 +25,24 @@ const RARITY_LABEL = {
   legendary: 'Legendary',
 };
 
+const STAT_COLORS = {
+  height: '#e88a3a', speed: '#42b4e8', strength: '#e05555',
+  passing: '#6dbf67', shooting: '#f0b429', reflexes: '#b47de8', luck: '#e8d84a',
+};
+const STAT_ABBR = {
+  height: 'HGT', speed: 'SPD', strength: 'STR',
+  passing: 'PAS', shooting: 'SHT', reflexes: 'REF', luck: 'LCK',
+};
+
+// Per-stat milestone thresholds (tuned to event frequency)
+const STAT_MILESTONES = {
+  goals:       { stat: 'shooting', thresholds: [3, 8, 15, 25, 40, 60] },
+  saves:       { stat: 'reflexes', thresholds: [5, 12, 25, 40, 60, 90] },
+  tackles:     { stat: 'strength', thresholds: [5, 12, 25, 40, 60, 90] },
+  passes:      { stat: 'passing',  thresholds: [30, 80, 150, 250, 400, 600] },
+  shotsMissed: { stat: 'luck',     thresholds: [10, 25, 50, 80, 120, 175] },
+};
+
 // --- Gear Cards -------------------------------------------------
 // statBonuses only lists non-zero stats. Zero-stat starting gear is valid.
 const CARDS = {

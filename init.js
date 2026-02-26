@@ -41,6 +41,8 @@ function makePlayerCharacter(id, name) {
     name,
     stats: { height: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
     gear: { head: null, body: null, feet: null, gloves: null },
+    careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
+    statBonuses: {},
   };
 }
 

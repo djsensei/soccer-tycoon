@@ -8,3 +8,6 @@ Thumbs.db
 
 # Claude internal
 .claude/
+
+# Screenshots
+img/screenshots/

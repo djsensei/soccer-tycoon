@@ -13,6 +13,13 @@ function slotName(slot) {
 // Shared between UI (screens) and simulator — keep in sync.
 function effectiveStats(player) {
   const stats = { ...player.stats };
+  // Milestone bonuses
+  if (player.statBonuses) {
+    for (const [stat, bonus] of Object.entries(player.statBonuses)) {
+      stats[stat] = (stats[stat] || 0) + bonus;
+    }
+  }
+  // Gear bonuses
   for (const cardId of Object.values(player.gear)) {
     if (cardId && CARDS[cardId]) {
       for (const [stat, bonus] of Object.entries(CARDS[cardId].statBonuses)) {
@@ -24,9 +31,13 @@ function effectiveStats(player) {
 }
 
 // UI helpers
-function statBar(value, max = 15) {
-  const pct = Math.min(100, Math.round((value / max) * 100));
-  return `<div class="stat-bar"><div class="stat-bar-fill" style="width:${pct}%"></div></div>`;
+function statBar(value, max = 15, color = null) {
+  const cap = 10;
+  const displayVal = Math.min(value, cap);
+  const pct = Math.min(100, Math.round((displayVal / cap) * 100));
+  const bg = color ? `background:${color};` : '';
+  const star = value > cap ? `<span class="stat-star" style="color:${color || 'var(--accent)'}">★</span>` : '';
+  return `<div class="stat-bar"><div class="stat-bar-fill" style="width:${pct}%;${bg}"></div></div>${star}`;
 }
 
 function rarityBadge(rarity) {

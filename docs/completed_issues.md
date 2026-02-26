@@ -2,6 +2,17 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-02-25 (M5 gear depth)
+
+### [P0] GK row layout breaks with stat bars
+**Fix**: Tightened player row layout — reduced row padding and gap (1rem → 0.5rem), shrunk `.pgr-identity` min-width (100px → 80px), removed `flex-wrap` from `.pgr-slots` so gloves no longer wrap to a second line, made `.pgr-stats` flexible (60–90px) instead of rigid. Updated column headers to match. GK row now fits all 4 gear slots + stat bars without overflow.
+
+### [UI] Gear Up layout overhaul
+**Fix**: Removed redundant per-slot labels (HEAD/BODY/FEET) from gear cells — column headers suffice. Shrunk gear slot cells and inventory tiles to card-thumbnail size. Inventory now shows only unequipped items as individual tiles (no quantity text — duplicates shown separately to encourage forging). Moved Inventory heading above the box. Fixed horizontal overflow with auto-width players column. Inventory grid fixed to 3 columns.
+
+### [UI] Stat bar cap with star indicator
+**Fix**: Stat bars in Gear Up now cap visually at 10 (was scaling to 15). Stats above 10 show a colored star (matching the stat color) with a thin gold border after a full bar. Gives clearer visual feedback on boosted players without bars stretching disproportionately.
+
 ## 2026-02-25 (M4 card art & visual identity)
 
 ### [P0] Gear stat scaling by rarity
@@ -39,6 +50,17 @@ Archive of resolved backlog items, grouped by date.
 
 ### [P1/M4] Image processing pipeline
 **Fix**: Created `tools/img-pipeline/process.py` — takes raw SD outputs from `input/`, removes background via `rembg`, resizes/pads to 512×512 transparent PNG, and saves to `img/cards/[card-id].png`. Managed with `uv`.
+
+## 2026-02-23 (M3 fan tiers, Markov sim, match events)
+
+### [P1/M3] Fan tier / progression system
+**Fix**: Added `FAN_TIERS` and `TIER_ORDER` to `data.js` mapping fan count to Local/Regional/National/International tiers. `currentFanTier()`, `tierProgress()`, and `isOpponentUnlocked()` helpers in `utils.js`. Locked opponents greyed out in match select with tier requirement hint. Tier badge + progress bar shown in hub header.
+
+### [P1/M3] In-match fan events
+**Fix**: Sim events now carry `fanDelta` values via `EVENT_FAN_DELTAS` in `data.js`, scaled by opponent tier (`FAN_EVENT_TIER_SCALE`). Epic moments (goals, great saves, blunders) move the fan counter live during the match. A fan ticker bar at the top of the match screen flashes on changes.
+
+### [P1/M3] Markov chain simulation engine
+**Fix**: Replaced the linear match sim with a second-order Markov chain in `simulator.js`. `MARKOV_TRANSITIONS` table uses `"prevState|currentState"` keys with wildcard fallbacks. `STAT_INFLUENCES` table applies player stat bonuses/penalties to transition probabilities. Match stats (shots, possession, passes) tracked and displayed on results screen.
 
 ## 2026-02-23 (M2 core loop)
 
