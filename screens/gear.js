@@ -38,7 +38,6 @@ function renderGearUp() {
     return `
       <div class="gear-slot-cell ${isSelected ? 'gsc-selected' : ''} ${card ? '' : 'gsc-empty'}"
            onclick="${onclick}">
-        <div class="gsc-label">${SLOT_LABEL[gs]}</div>
         ${card
           ? `<div class="gsc-card" title="${card.name}" style="border-color:${RARITY_COLOR[card.rarity]}">${cardImage(equippedId, 'small')}</div>`
           : `<div class="gsc-placeholder">Empty</div>`
@@ -68,7 +67,7 @@ function renderGearUp() {
     const statBarsHtml = STATS.map(s =>
       `<div class="pgr-stat-row">
          <span class="pgr-stat-abbr">${STAT_ABBR[s]}</span>
-         ${statBar(pStats[s], 15, STAT_COLORS[s])}
+         ${statBar(pStats[s], 10, STAT_COLORS[s])}
        </div>`
     ).join('');
 
@@ -108,21 +107,23 @@ function renderGearUp() {
       return `<button class="inv-filter-btn ${active}" onclick="setInvFilter('${f}')">${label}</button>`;
     }).join('');
 
-    // Filter + sort inventory
+    // Filter inventory to only available (unequipped) items, expand duplicates into separate tiles
     const filtered = gameState.inventory
       .filter(i => CARDS[i.cardId] && (_invFilter === 'all' || CARDS[i.cardId].slot === _invFilter))
       .sort((a, b) => RARITIES.indexOf(CARDS[b.cardId].rarity) - RARITIES.indexOf(CARDS[a.cardId].rarity));
 
-    const tilesHtml = filtered.length
-      ? filtered.map(i => {
-          const c = CARDS[i.cardId];
-          const qty = availableQty(c.id);
-          const totalQty = i.quantity;
+    const expandedTiles = [];
+    for (const i of filtered) {
+      const qty = availableQty(i.cardId);
+      for (let n = 0; n < qty; n++) expandedTiles.push(i.cardId);
+    }
+
+    const tilesHtml = expandedTiles.length
+      ? expandedTiles.map(cardId => {
+          const c = CARDS[cardId];
           return `
-            <div class="inv-tile" onclick="openCardModal('${c.id}')" style="border-color:${RARITY_COLOR[c.rarity]}">
+            <div class="inv-tile" onclick="openCardModal('${c.id}')" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.name}">
               ${cardImage(c.id, 'small')}
-              <div class="inv-tile-name">${c.name}</div>
-              <div class="inv-tile-qty">×${totalQty}${qty < totalQty ? ` (${qty} free)` : ''}</div>
             </div>`;
         }).join('')
       : `<p class="dim" style="grid-column:1/-1">No cards${_invFilter !== 'all' ? ` for ${_invFilter}` : ''}</p>`;
@@ -147,12 +148,14 @@ function renderGearUp() {
           ${columnHeaderHtml}
           ${playerRowsHtml}
         </div>
-        <div class="gearup-inventory">
+        <div class="gearup-inv-col">
           <div class="inv-header">
             <h2>${_forgeMode ? 'Forge' : 'Inventory'}</h2>
             <button class="btn-small" onclick="toggleForgeMode()">${forgeBtnLabel}</button>
           </div>
-          ${inventoryBodyHtml}
+          <div class="gearup-inventory">
+            ${inventoryBodyHtml}
+          </div>
         </div>
       </div>
       ${modalHtml}
@@ -290,9 +293,8 @@ function buildForgePanel() {
     if (cardId) {
       const c = CARDS[cardId];
       return `
-        <div class="forge-slot forge-slot-filled" onclick="removeFromForge(${idx})" style="border-color:${RARITY_COLOR[c.rarity]}">
+        <div class="forge-slot forge-slot-filled" onclick="removeFromForge(${idx})" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.name}">
           ${cardImage(cardId, 'small')}
-          <div class="forge-slot-name">${c.name}</div>
         </div>`;
     }
     return `<div class="forge-slot forge-slot-empty">?</div>`;
@@ -317,16 +319,20 @@ function buildForgePanel() {
     })
     .sort((a, b) => RARITIES.indexOf(CARDS[b.cardId].rarity) - RARITIES.indexOf(CARDS[a.cardId].rarity));
 
-  const forgeGridHtml = forgeable.length
-    ? forgeable.map(i => {
-        const c = CARDS[i.cardId];
-        const used = forgeSlotCounts[c.id] || 0;
-        const free = availableQty(c.id) - used;
+  const expandedForgeTiles = [];
+  for (const i of forgeable) {
+    const c = CARDS[i.cardId];
+    const used = forgeSlotCounts[c.id] || 0;
+    const free = availableQty(c.id) - used;
+    for (let n = 0; n < free; n++) expandedForgeTiles.push(c.id);
+  }
+
+  const forgeGridHtml = expandedForgeTiles.length
+    ? expandedForgeTiles.map(cardId => {
+        const c = CARDS[cardId];
         return `
-          <div class="inv-tile" onclick="addToForge('${c.id}')" style="border-color:${RARITY_COLOR[c.rarity]}">
+          <div class="inv-tile" onclick="addToForge('${c.id}')" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.name}">
             ${cardImage(c.id, 'small')}
-            <div class="inv-tile-name">${c.name}</div>
-            <div class="inv-tile-qty">×${free} free</div>
           </div>`;
       }).join('')
     : `<p class="dim" style="grid-column:1/-1">No forgeable cards${selectedRarity ? ' at this rarity' : ''}</p>`;

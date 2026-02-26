@@ -26,6 +26,7 @@ body {
   font-family: 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 { font-size: 1.8rem; }
@@ -36,6 +37,7 @@ h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.4rem; }
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
+  overflow-x: hidden;
   min-height: 100vh;
 }
 
@@ -333,8 +335,10 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 /* ---- Gear Up ---- */
 .gearup-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 1.5rem;
+  grid-template-columns: auto 220px;
+  gap: 1rem;
+  max-width: 100%;
+  justify-content: start;
   margin-top: 1rem;
   align-items: start;
 }
@@ -345,11 +349,16 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
 .gearup-players { display: flex; flex-direction: column; gap: 0.5rem; }
 
+.gearup-inv-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .gearup-inventory {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem;
+  padding: 0.75rem;
   position: sticky;
   top: 1rem;
   max-height: calc(100vh - 5rem);
@@ -368,18 +377,18 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 }
 .player-gear-row.pgr-selected { border-color: var(--accent); }
 
-.pgr-identity { min-width: 80px; flex-shrink: 0; }
+.pgr-identity { width: 120px; flex-shrink: 0; }
 .pgr-pos  { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
 .pgr-name { font-weight: bold; font-size: 0.9rem; }
 
-.pgr-slots { display: flex; gap: 0.4rem; margin-left: auto; flex-shrink: 0; }
+.pgr-slots { display: flex; gap: 0.4rem; }
 
 .gear-slot-cell {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 0.35rem 0.55rem;
+  padding: 0.2rem;
   cursor: pointer;
-  width: 72px;
+  width: 56px;
   text-align: center;
   background: var(--surface);
   transition: 0.15s;
@@ -389,9 +398,8 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .gear-slot-cell.gsc-selected { border-color: var(--accent); background: var(--card-hover); box-shadow: 0 0 0 2px var(--accent-dim); }
 .gear-slot-cell.gsc-empty { opacity: 0.55; }
 
-.gsc-label { font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
 .gsc-card  { border-bottom: 2px solid; line-height: 0; }
-.gsc-placeholder { font-size: 0.75rem; color: var(--text-dim); display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin: 0 auto; }
+.gsc-placeholder { font-size: 0.65rem; color: var(--text-dim); display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; }
 
 .inv-empty-hint { color: var(--text-dim); font-style: italic; }
 .inv-section { margin-bottom: 1rem; }
@@ -404,10 +412,10 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   gap: 0.5rem;
   padding: 0 0.6rem 0.3rem;
 }
-.gch-spacer { min-width: 80px; flex-shrink: 0; }
-.gch-slots { display: flex; gap: 0.4rem; margin-left: auto; }
+.gch-spacer { width: 120px; flex-shrink: 0; }
+.gch-slots { display: flex; gap: 0.4rem; }
 .gch-slot {
-  width: 72px;
+  width: 56px;
   text-align: center;
   font-size: 0.65rem;
   text-transform: uppercase;
@@ -418,7 +426,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
 /* ---- Gear Up: Gloves placeholder (outfield rows) ---- */
 .gsc-gloves-placeholder {
-  width: 72px;
+  width: 56px;
   visibility: hidden;
   border: none;
   padding: 0;
@@ -426,21 +434,22 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 }
 
 /* ---- Gear Up: Stat bars in player rows ---- */
-.pgr-stats { display: flex; flex-direction: column; gap: 1px; min-width: 60px; max-width: 90px; flex: 1; }
+.pgr-stats { display: flex; flex-direction: column; gap: 1px; width: 80px; flex-shrink: 0; }
 .pgr-stat-row { display: flex; align-items: center; gap: 3px; height: 10px; }
 .pgr-stat-abbr { font-size: 0.5rem; color: var(--text-dim); width: 20px; text-align: right; flex-shrink: 0; }
 .pgr-stats .stat-bar { flex: 1; height: 4px; }
 .pgr-stats .stat-bar-fill { height: 4px; }
-.gch-stats-spacer { min-width: 60px; max-width: 90px; flex: 1; }
+.stat-star { font-size: 0.6rem; line-height: 1; flex-shrink: 0; -webkit-text-stroke: 0.5px #d4a017; }
+.gch-stats-spacer { width: 80px; flex-shrink: 0; }
 
 /* ---- Gear Up: Inventory header ---- */
-.inv-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.inv-header { display: flex; align-items: flex-end; justify-content: space-between; padding: 0 0 0.3rem; }
 .inv-header h2 { margin-bottom: 0; }
 
 /* ---- Gear Up: Forge ---- */
 .forge-slots { display: flex; gap: 0.5rem; justify-content: center; margin: 0.75rem 0; }
 .forge-slot {
-  width: 72px; height: 80px;
+  width: 56px; height: 56px;
   border: 2px dashed var(--border);
   border-radius: var(--radius-sm);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -492,25 +501,24 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 /* ---- Gear Up: Inventory tile grid ---- */
 .inv-tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
 }
 .inv-tile {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 0.4rem;
+  padding: 0.2rem;
   cursor: pointer;
   transition: 0.15s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.15rem;
   text-align: center;
 }
 .inv-tile:hover { border-color: var(--accent); background: var(--card-hover); }
-.inv-tile-name { font-size: 0.65rem; font-weight: bold; line-height: 1.2; word-break: break-word; }
-.inv-tile-qty { font-size: 0.6rem; color: var(--text-dim); }
+.inv-tile-name { font-size: 0.55rem; font-weight: bold; line-height: 1.1; word-break: break-word; }
 
 /* ---- Modal ---- */
 .modal-backdrop {
@@ -858,18 +866,18 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   .player-name-grid .name-field:last-child { grid-column: 1 / -1; }
 
   /* Gear Up — column header slot widths */
-  .gch-slot { width: 80px; }
-  .gsc-gloves-placeholder { width: 80px; }
+  .gch-slot { width: 60px; }
+  .gsc-gloves-placeholder { width: 60px; }
 
   /* Gear Up — wider stat bars on tablet */
-  .pgr-stats { min-width: 100px; max-width: 120px; }
-  .gch-stats-spacer { min-width: 100px; max-width: 120px; }
+  .pgr-stats { width: 110px; }
+  .gch-stats-spacer { width: 110px; }
 
   /* Hub — roster grid fits more columns */
   .roster-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 
   /* Gear Up — wider inventory panel */
-  .gearup-layout { grid-template-columns: 1fr 340px; }
+  .gearup-layout { grid-template-columns: auto 250px; }
 
   /* Match Select — larger opponent cards */
   .opponent-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
@@ -879,7 +887,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
   /* Touch-friendly tap targets */
   .btn-primary, .btn-secondary { padding: 0.75rem 1.6rem; }
-  .gear-slot-cell { width: 80px; padding: 0.45rem 0.65rem; }
+  .gear-slot-cell { width: 60px; padding: 0.25rem; }
 
   /* Match screen — constrain width on wide tablets */
   .match-header, .match-controls, .event-log, #match-end-btn {

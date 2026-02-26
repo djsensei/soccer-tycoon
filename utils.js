@@ -32,9 +32,12 @@ function effectiveStats(player) {
 
 // UI helpers
 function statBar(value, max = 15, color = null) {
-  const pct = Math.min(100, Math.round((value / max) * 100));
+  const cap = 10;
+  const displayVal = Math.min(value, cap);
+  const pct = Math.min(100, Math.round((displayVal / cap) * 100));
   const bg = color ? `background:${color};` : '';
-  return `<div class="stat-bar"><div class="stat-bar-fill" style="width:${pct}%;${bg}"></div></div>`;
+  const star = value > cap ? `<span class="stat-star" style="color:${color || 'var(--accent)'}">★</span>` : '';
+  return `<div class="stat-bar"><div class="stat-bar-fill" style="width:${pct}%;${bg}"></div></div>${star}`;
 }
 
 function rarityBadge(rarity) {
