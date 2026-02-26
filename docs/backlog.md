@@ -38,14 +38,11 @@ Bench player rows currently show no stats. Display stats the same way starter ro
 ### Drag-and-drop gear assignment in Gear Up
 Allow dragging items between inventory and player gear slots instead of the current click-to-assign flow.
 
-### Color-coded stat attributes + mini stat bar chart on player rows
-Color-code each stat type consistently across all screens. In Gear Up, show a small bar chart between the player name and their gear slots using the same colors. Supersedes the standalone "Player stat colours" item below.
+### ~~Color-coded stat attributes + mini stat bar chart on player rows~~ *(M5 — done)*
 
-### ~~Player stat colours~~
-~~Stats should be colour-coded by value to give quick visual feedback — e.g. green for high, yellow for mid, red for low. Applies to stat bars and raw numbers.~~ *Superseded by "Color-coded stat attributes + mini stat bar chart" above.*
+### ~~Player stat colours~~ *(superseded)*
 
-### Stat bar layout — gear bonus alignment
-When gear boosts a stat, the base+bonus numbers push the stat bar out of alignment. Need more horizontal room between the numbers column and the bars column. Likely a CSS grid column-width fix.
+### ~~Stat bar layout — gear bonus alignment~~ *(M5 — done, stat bars now fixed-width with cap at 10)*
 
 ### Difficulty gap feels too small
 Starting team lost 0–4 to Rio Blazers (difficulty 9). The gap should probably be more like 0–8 or 0–10 to feel like a truly impossible wall early on. Review stat generation scaling for high-difficulty opponents.

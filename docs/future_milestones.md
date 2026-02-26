@@ -4,7 +4,7 @@ Planned milestones for Soccer Tycoon, with assigned backlog issues.
 
 ---
 
-## M5 — Gear Depth & Late-Game Loop
+## M5 — Gear Depth & Late-Game Loop *(complete)*
 
 Extend the gear system to keep progression meaningful late in the game, when packs frequently drop low-rarity items.
 
@@ -12,7 +12,8 @@ Extend the gear system to keep progression meaningful late in the game, when pac
 - ~~Item burning / crafting mechanic~~ *(done)*
 - ~~Fan acceleration for late-game~~ *(deferred to league/season redesign)*
 - ~~Gear Up stat bars & player sprite placeholder~~ *(done)*
-- Rename "Height" stat to "Jumping"
+- ~~Gear Up layout overhaul~~ *(done — compact slots, inventory cleanup, stat bar cap at 10 with star)*
+- Rename "Height" stat to "Jumping" *(minor, can land in M6)*
 
 ---
 
