@@ -16,7 +16,7 @@ from PIL import Image
 from rembg import remove
 
 INPUT_DIR  = Path(__file__).parent / "input"
-OUTPUT_DIR = Path(__file__).parent / "../../img/cards"
+OUTPUT_DIR = Path(__file__).parent / "../../img/cards/processed"
 TARGET_SIZE = 512
 EXTENSIONS  = {".png", ".jpg", ".jpeg", ".webp"}
 

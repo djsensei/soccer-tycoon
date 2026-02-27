@@ -11,3 +11,6 @@ Thumbs.db
 
 # Screenshots
 img/screenshots/
+
+# Raw diffusion outputs (large, not needed in repo)
+img/cards/originals/
