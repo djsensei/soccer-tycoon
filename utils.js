@@ -47,7 +47,7 @@ function rarityBadge(rarity) {
 function cardImage(cardId, size = 'large') {
   if (!cardId || !CARDS[cardId]) return `<div class="card-img-wrap ${size} card-img-missing"></div>`;
   return `<div class="card-img-wrap ${size}">
-    <img src="img/cards/${cardId}.png" alt="${CARDS[cardId].name}"
+    <img src="img/cards/processed/${cardId}.png" alt="${CARDS[cardId].name}"
          onerror="this.parentElement.classList.add('card-img-missing')">
   </div>`;
 }

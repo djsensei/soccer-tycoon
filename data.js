@@ -52,11 +52,6 @@ const CARDS = {
   'ratty-headband':   { id: 'ratty-headband',    name: 'Ratty Headband',   slot: 'head',   rarity: 'common', flavourText: 'Found it behind the bleachers.',      statBonuses: {} },
   'holey-gloves':     { id: 'holey-gloves',      name: 'Holey Gloves',     slot: 'gloves', rarity: 'common', flavourText: 'Half the fingers are missing.',       statBonuses: {} },
 
-  // === COMMON ===
-  'lucky-headband':   { id: 'lucky-headband',    name: 'Lucky Headband',   slot: 'head',   rarity: 'common',   flavourText: 'Brings luck. Smells weird.',                       statBonuses: { luck: 1 } },
-  'basic-shinguards': { id: 'basic-shinguards',  name: 'Basic Shin Guards',slot: 'body',   rarity: 'common',   flavourText: 'Better than nothing. Barely.',                     statBonuses: { strength: 1 } },
-  'cotton-gloves':    { id: 'cotton-gloves',     name: 'Cotton Gloves',    slot: 'gloves', rarity: 'common',   flavourText: 'For someone who tried.',                            statBonuses: { reflexes: 1 } },
-
   // === UNCOMMON ===
   'padded-vest':      { id: 'padded-vest',       name: 'Padded Vest',      slot: 'body',   rarity: 'uncommon', flavourText: 'Absorbs tackles like a champ.',                    statBonuses: { strength: 1, height: 1 } },
   'grip-gloves':      { id: 'grip-gloves',       name: 'Grip Gloves',      slot: 'gloves', rarity: 'uncommon', flavourText: 'Sticks to everything.',                            statBonuses: { reflexes: 2 } },
@@ -91,22 +86,22 @@ const CARDS = {
 
   // @forge:start — managed by `forge.py export --apply` — do not edit manually
   'zephyr-kicks': { id: 'zephyr-kicks', name: 'Zephyr Kicks', slot: 'feet', rarity: 'common', flavourText: "Channeling the ancient spirit of wind itself.", statBonuses: { speed: 1 } },
-  'mammoth-mallets': { id: 'mammoth-mallets', name: 'Mammoth Mallets', slot: 'feet', rarity: 'common', flavourText: "Beast mode: activated.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'mammoth-mallets': { id: 'mammoth-mallets', name: 'Mammoth Mallets', slot: 'feet', rarity: 'common', flavourText: "Beast mode: activated.", statBonuses: { strength: 1 } },
   'arrow-arcs': { id: 'arrow-arcs', name: 'Arrow Arcs', slot: 'feet', rarity: 'common', flavourText: "The ball follows where you point.", statBonuses: { passing: 1 } },
-  'sonic-strikes': { id: 'sonic-strikes', name: 'Sonic Strikes', slot: 'feet', rarity: 'common', flavourText: "The ball breaks the sound barrier.", statBonuses: { shooting: 1 } },  // ⚠ image pending
-  'butterfly-booties': { id: 'butterfly-booties', name: 'Butterfly Booties', slot: 'feet', rarity: 'common', flavourText: "Fluttery feet that dodge everything.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'sonic-strikes': { id: 'sonic-strikes', name: 'Sonic Strikes', slot: 'feet', rarity: 'common', flavourText: "The ball breaks the sound barrier.", statBonuses: { shooting: 1 } },
+  'butterfly-booties': { id: 'butterfly-booties', name: 'Butterfly Booties', slot: 'feet', rarity: 'common', flavourText: "Fluttery feet that dodge everything.", statBonuses: { reflexes: 1 } },
   'ninja-neons': { id: 'ninja-neons', name: 'Ninja Neons', slot: 'feet', rarity: 'common', flavourText: "Silent, deadly, and glowing for some reason.", statBonuses: { reflexes: 1 } },
   'rainbow-runners': { id: 'rainbow-runners', name: 'Rainbow Runners', slot: 'feet', rarity: 'common', flavourText: "The luck pot follows your feet.", statBonuses: { luck: 1 } },
-  'zephyr-zip-up': { id: 'zephyr-zip-up', name: 'Zephyr Zip-up', slot: 'body', rarity: 'common', flavourText: "Wind spirit captured in a hoodie.", statBonuses: { speed: 1 } },  // ⚠ image pending
-  'fortress-flannel': { id: 'fortress-flannel', name: 'Fortress Flannel', slot: 'body', rarity: 'common', flavourText: "Cozy AND indestructible.", statBonuses: { strength: 1 } },  // ⚠ image pending
-  'harmony-jersey': { id: 'harmony-jersey', name: 'Harmony Jersey', slot: 'body', rarity: 'common', flavourText: "Pass, receive, repeat in perfect balance.", statBonuses: { passing: 1 } },  // ⚠ image pending
+  'zephyr-zip-up': { id: 'zephyr-zip-up', name: 'Zephyr Zip-up', slot: 'body', rarity: 'common', flavourText: "Wind spirit captured in a hoodie.", statBonuses: { speed: 1 } },
+  'fortress-flannel': { id: 'fortress-flannel', name: 'Fortress Flannel', slot: 'body', rarity: 'common', flavourText: "Cozy AND indestructible.", statBonuses: { strength: 1 } },
+  'harmony-jersey': { id: 'harmony-jersey', name: 'Harmony Jersey', slot: 'body', rarity: 'common', flavourText: "Pass, receive, repeat in perfect balance.", statBonuses: { passing: 1 } },
   'shockwave-shirt': { id: 'shockwave-shirt', name: 'Shockwave Shirt', slot: 'body', rarity: 'common', flavourText: "Shots create literal shockwaves.", statBonuses: { shooting: 1 } },  // ⚠ image pending
   'prosperity-poncho': { id: 'prosperity-poncho', name: 'Prosperity Poncho', slot: 'body', rarity: 'common', flavourText: "Attracts wealth and goals equally.", statBonuses: { luck: 1 } },  // ⚠ image pending
   'giraffe-guard': { id: 'giraffe-guard', name: 'Giraffe Guard', slot: 'head', rarity: 'common', flavourText: "Giraffe necks are long, right?", statBonuses: { height: 1 } },  // ⚠ image pending
   'gorilla-guard': { id: 'gorilla-guard', name: 'Gorilla Guard', slot: 'head', rarity: 'common', flavourText: "Gorilla strength protecting your head.", statBonuses: { strength: 1 } },  // ⚠ image pending
-  'vision-visor': { id: 'vision-visor', name: 'Vision Visor', slot: 'head', rarity: 'common', flavourText: "See everything on the field at once.", statBonuses: { passing: 1 } },  // ⚠ image pending
-  'marksman-mask': { id: 'marksman-mask', name: 'Marksman Mask', slot: 'head', rarity: 'common', flavourText: "Only the finest shooters wear this.", statBonuses: { shooting: 1 } },  // ⚠ image pending
-  'reflex-reactor-helm': { id: 'reflex-reactor-helm', name: 'Reflex Reactor Helm', slot: 'head', rarity: 'common', flavourText: "Reacts faster than thought.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'vision-visor': { id: 'vision-visor', name: 'Vision Visor', slot: 'head', rarity: 'common', flavourText: "See everything on the field at once.", statBonuses: { passing: 1 } },
+  'marksman-mask': { id: 'marksman-mask', name: 'Marksman Mask', slot: 'head', rarity: 'common', flavourText: "Only the finest shooters wear this.", statBonuses: { shooting: 1 } },
+  'reflex-reactor-helm': { id: 'reflex-reactor-helm', name: 'Reflex Reactor Helm', slot: 'head', rarity: 'common', flavourText: "Reacts faster than thought.", statBonuses: { reflexes: 1 } },
   'blessing-band': { id: 'blessing-band', name: 'Blessing Band', slot: 'head', rarity: 'common', flavourText: "Blessed by every good luck source.", statBonuses: { luck: 1 } },  // ⚠ image pending
   // @forge:end
 };

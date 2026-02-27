@@ -4,7 +4,7 @@
 
 - **Format**: PNG with transparent background
 - **Dimensions**: 512 × 512 px
-- **Location**: `img/cards/[card-id].png` — filename must exactly match the card's `id` field in `data.js`
+- **Location**: `img/cards/processed/[card-id].png` — filename must exactly match the card's `id` field in `data.js`
 
 ## Generation workflow
 
@@ -14,7 +14,7 @@
 4. Generate images in Stable Diffusion using prompts from `tools/card-forge/data/prompts.txt`
 5. Drop raw PNG outputs into `tools/card-forge/input/`
 6. `uv run forge.py rename` — assigns card IDs; then auto-runs `process` → `export --apply`
-   - `process`: removes background (rembg), resizes/pads to 512 × 512, saves to `img/cards/`
+   - `process`: removes background (rembg), crops tight, resizes/pads to 512 × 512, saves to `img/cards/processed/`; archives raw input to `img/cards/originals/` (gitignored)
    - `export --apply`: patches the `@forge:start` / `@forge:end` sentinel block in `data.js`
 
 ## Display sizes
@@ -49,5 +49,5 @@ Trail origins by slot: feet → heel · body → shoulders · head → back · g
 
 ## Fallback behavior
 
-If `img/cards/[card-id].png` is missing, `cardImage()` renders a dark placeholder square
+If `img/cards/processed/[card-id].png` is missing, `cardImage()` renders a dark placeholder square
 tinted with the card's rarity color. The layout never breaks during incremental art rollout.

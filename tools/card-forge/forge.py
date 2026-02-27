@@ -12,6 +12,7 @@ import argparse
 import io
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -51,10 +52,11 @@ SLOT_TRAIL_ORIGIN = {
     'gloves': 'the fingertips',
 }
 
-DATA_DIR  = Path(__file__).parent / 'data'
-IMG_DIR   = Path(__file__).parent.parent.parent / 'img' / 'cards'
-INPUT_DIR = Path(__file__).parent / 'input'
-DATA_JS   = Path(__file__).parent.parent.parent / 'data.js'
+DATA_DIR     = Path(__file__).parent / 'data'
+IMG_DIR       = Path(__file__).parent.parent.parent / 'img' / 'cards' / 'processed'
+ORIGINALS_DIR = Path(__file__).parent.parent.parent / 'img' / 'cards' / 'originals'
+INPUT_DIR    = Path(__file__).parent / 'input'
+DATA_JS      = Path(__file__).parent.parent.parent / 'data.js'
 
 FORGE_START  = '  // @forge:start'
 FORGE_END    = '  // @forge:end'
@@ -363,16 +365,18 @@ def cmd_process(args):
     except ImportError:
         sys.exit("Run 'uv sync' first to install rembg and Pillow.")
 
-    if not INPUT_DIR.exists():
+    src_dir = Path(getattr(args, 'dir', None) or INPUT_DIR)
+    if not src_dir.exists():
         print("input/ directory not found — nothing to process.")
         return
 
-    imgs = sorted(INPUT_DIR.glob('*.png'))
+    imgs = sorted(src_dir.glob('*.png'))
     if not imgs:
         print("No PNG files in input/ — nothing to process.")
         return
 
     IMG_DIR.mkdir(parents=True, exist_ok=True)
+    ORIGINALS_DIR.mkdir(parents=True, exist_ok=True)
     processed = 0
 
     for img_path in imgs:
@@ -380,6 +384,14 @@ def cmd_process(args):
         raw    = img_path.read_bytes()
         output = remove(raw)
         img    = Image.open(io.BytesIO(output)).convert('RGBA')
+
+        # Crop to non-transparent bounding box with a small margin
+        bbox = img.getbbox()
+        if bbox:
+            margin = max(img.width, img.height) // 20   # ~5% padding
+            bbox = (max(0, bbox[0] - margin), max(0, bbox[1] - margin),
+                    min(img.width, bbox[2] + margin), min(img.height, bbox[3] + margin))
+            img = img.crop(bbox)
 
         # Resize to fit within 512×512 preserving aspect ratio, then center on canvas
         img.thumbnail((512, 512), Image.LANCZOS)
@@ -391,6 +403,8 @@ def cmd_process(args):
         canvas.save(dest, 'PNG')
         print(f"    → {dest}")
 
+        # Archive original, then remove from input
+        shutil.copy2(img_path, ORIGINALS_DIR / img_path.name)
         img_path.unlink()
         processed += 1
 
@@ -521,7 +535,9 @@ def main():
     p_select.add_argument('--all', action='store_true',
                           help='Also show previously viewed concepts for reconsideration')
     sub.add_parser('prompts', help='Write SD prompts for selected cards')
-    sub.add_parser('process', help='Remove backgrounds and resize images from input/ → img/cards/')
+    p_process = sub.add_parser('process', help='Remove backgrounds and resize images from input/ → img/cards/')
+    p_process.add_argument('--dir', default=str(INPUT_DIR),
+                           help='Directory containing images to process (default: input/)')
 
     p_rename = sub.add_parser('rename', help='Rename raw SD outputs; then auto: process → export --apply')
     p_rename.add_argument('--dir', default=str(INPUT_DIR),
