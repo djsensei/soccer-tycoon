@@ -69,3 +69,55 @@ For video game "card" art, a square pixelated white and cyan helmet with glowing
 # blessing-band
 # Blessing Band (common head) — +1 luck
 For video game "card" art, a square pixelated silver and white headband with blessing symbols, halos, and divine protection marks, angled diagonally towards the front corner. The style is fast and angular, with silver, white, and gold blessing symbols. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the back to indicate [speed/energy]. Plain white background.
+
+# jellyfish-jetblasts
+# Jellyfish Jetblasts (uncommon feet) — +2 luck
+For video game "card" art, a square pixelated Translucent gel-textured cleats in soft pink and purple. Wavy tentacle-like ribbons of elastic trailing from the heel and sides, giving a jellylike appearance. Bioluminescent accents in light blue that glow in the upper region. Bulbous rounded toe design., angled diagonally towards the front corner. The style is fast and angular, with pink, plum, sky blue, hot pink. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# ninja-star-slashers
+# Ninja Star Slashers (uncommon feet) — +2 shooting
+For video game "card" art, a square pixelated All-black ninja cleats with metallic silver star patterns that form sharp geometric designs. Silver shuriken shapes protrude slightly from the toe and heel. Dark gray accent stripes. The sole has razor-sharp silver cleats arranged like weapons. Minimalist and deadly aesthetic., angled diagonally towards the front corner. The style is fast and angular, with black, metallic silver, dark gray, charcoal. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# forest-flyers
+# Forest Flyers (uncommon feet) — +1 passing, +1 speed
+For video game "card" art, a square pixelated Natural leaf-green cleats with brown tree bark texture details. Bright lime and emerald accents create leaf patterns across the upper. Vines wrap around the ankle cuff in darker green. Wooden-grain texture and leaf silhouettes decorate the sides., angled diagonally towards the front corner. The style is fast and angular, with leaf green, brown, lime, dark green. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# thunderpaw-boots
+# Thunderpaw Boots (uncommon feet) — +1 shooting, +1 strength
+For video game "card" art, a square pixelated Steel gray and charcoal cleats shaped like a wolf hind paw. Bright electric blue claws extend from the toe box. Fluffy textured fur detail on the ankle with lightning bolt stitching. Feral and cool., angled diagonally towards the front corner. The style is fast and angular, with steel-gray, charcoal, electric-blue, white. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# phoenix-flame-boots
+# Phoenix Flame Boots (uncommon feet) — +1 speed, +1 strength
+For video game "card" art, a square pixelated Vibrant orange and golden red cleats with flame feather patterns. Layered feather design creating texture, transitioning from orange at base to golden-yellow at tips. Fiery wisps and ember sparkles around the heel and sole. Mythical and majestic appearance., angled diagonally towards the front corner. The style is fast and angular, with orange, golden red, yellow, black. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# mystic-moonboots
+# Mystic Moonboots (uncommon feet) — +1 passing, +1 shooting
+For video game "card" art, a square pixelated Soft silvery-white cleats with a crescent moon motif. Pale lavender and light blue accents create a mystical aurora effect across the surface. Starbursts and constellation patterns in silver thread. The heel features a large embossed crescent moon. Studs glow with pale blue ethereal light., angled diagonally towards the front corner. The style is fast and angular, with white, lavender, light blue, royal blue. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# spring-loaded-bouncy-boots
+# Spring-Loaded Bouncy Boots (uncommon feet) — +2 reflexes
+For video game "card" art, a square pixelated Bright neon green and cyan cleats with oversized coiled springs protruding from the sole and heel. The springs have a gleaming metallic silver finish with yellow accents. Cartoon-style puff clouds at the toe and heel. Striped leg section with alternating electric blue and lime stripes., angled diagonally towards the front corner. The style is fast and angular, with neon green, cyan, yellow, silver. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# pizza-stompers
+# Pizza Stompers (uncommon feet) — +2 passing
+For video game "card" art, a square pixelated Oversized pizza slice-shaped cleats with golden crust texture along edges. Bright red sauce base with yellow melted cheese dripped across. Small pepperoni circles dotted over. Basil green leaf details on the heel. Tomato-slick shine on upper surface., angled diagonally towards the front corner. The style is fast and angular, with pizza red, golden crust, cheese yellow, basil green. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# timber-beast-cleats
+# Timber Beast Cleats (uncommon feet) — +1 passing, +1 strength
+For video game "card" art, a square pixelated Rough brown leather textured cleats with bear paw pad imprints, dark wood grain patterns, sharp claw marks etched into design, wild natural fiber appearance, earthy tan and chocolate brown colors, primal beast aesthetic, carved tribal details., angled diagonally towards the front corner. The style is fast and angular, with saddle brown, sienna, dark brown, tan. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# cheetah-chompers
+# Cheetah Chompers (uncommon feet) — +2 speed
+For video game "card" art, a square pixelated Athletic cleats designed like a cheetah paw, featuring golden tan leather with black spot patterns. Sharp silver claws extend from the toe. The ankle has a furry texture detail with golden highlights., angled diagonally towards the front corner. The style is fast and angular, with golden tan, black, silver, orange. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# meteor-crushers
+# Meteor Crushers (uncommon feet) — +2 strength
+For video game "card" art, a square pixelated Space rock-textured cleats with a porous crater-covered surface, jagged irregular edges like a meteor, metallic iron core visible through breaks in the surface, glowing ember-orange cracks in darker stone., angled diagonally towards the front corner. The style is fast and angular, with charcoal grey and obsidian black with orange ember cracks. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# crystal-prism-kicks
+# Crystal Prism Kicks (uncommon feet) — +1 shooting, +1 speed
+For video game "card" art, a square pixelated Translucent iridescent cleats that refract rainbow light. Faceted gemstone pattern covering entire surface like cut diamonds. Prism-blue base with lighter diamond shapes, rainbow sparkle effects on studs and edges, mirror-like reflective sections., angled diagonally towards the front corner. The style is fast and angular, with prism blue, diamond white, rainbow spectrum, sparkle silver. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.
+
+# disco-boots-of-destiny
+# Disco Boots of Destiny (uncommon feet) — +1 luck, +1 shooting
+For video game "card" art, a square pixelated Shimmering silver and white cleats covered in thousands of small hexagonal mirrors and rhinestones. Reflective disco ball texture across entire surface with gold trim around the ankle. Leaves a glittering trail., angled diagonally towards the front corner. The style is fast and angular, with silver, gold, white, mirror. It should not use recognizable brand insignia. A thick stream of sparkles in similar colors trails from the heel to indicate [speed/energy]. Plain white background.

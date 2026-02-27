@@ -1311,5 +1311,1537 @@
     "selected": [
       3
     ]
+  },
+  {
+    "concept_id": "feet-uncommon-luck2",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 2
+    },
+    "options": [
+      {
+        "name": "Lucky Llama Loafers",
+        "flavourText": "Alpaca wool brings all the good vibes.",
+        "imageDesc": "Cozy brown loafer-style cleats with white fuzzy alpaca wool trim around the ankles. Embroidered llama faces on each heel, smiling with closed eyes. Soft fleece lining visible at the cuff. Multiple pom-poms dangling from the sides in cream and tan.",
+        "colors": "brown, white, tan, cream"
+      },
+      {
+        "name": "Four-Leaf Flyers",
+        "flavourText": "Sprout them and they grow more lucky.",
+        "imageDesc": "Bright green high-top cleats with a textured clover leaf pattern embossed across the upper. Real four-leaf clovers pressed under clear resin panels on the toe and heel. Iridescent shimmer coating that catches light. Gold metallic cleats on the sole.",
+        "colors": "green, gold, light green, dark green"
+      },
+      {
+        "name": "Cosmic Crocs",
+        "flavourText": "Luck travels at light speed in these.",
+        "imageDesc": "Neon purple high-top crocs-style cleats covered in glowing neon green star and galaxy patterns. Holes arranged in constellation shapes across the vamp. Holographic coating that shifts from purple to teal. Thick bubbly padding on the collar and insole.",
+        "colors": "neon purple, neon green, hot pink, cyan"
+      },
+      {
+        "name": "Rainbow Rovers",
+        "flavourText": "Every color means double the luck.",
+        "imageDesc": "Athletic cleats with seven distinct color bands running horizontally across the upper: red, orange, yellow, green, blue, indigo, violet. Each band has its own texture. White midsole and sole with prismatic cleats that sparkle.",
+        "colors": "red, gold, green, blue"
+      },
+      {
+        "name": "Pickle Pickers",
+        "flavourText": "Surprisingly lucky. Also smell a little funky.",
+        "imageDesc": "Yellowish-green canvas sneaker-style cleats with a bumpy pickle skin texture throughout. Dark green pickle brines dripping down from the ankle opening. Small pickle brine drops as graphic accents on the sides. Lime green sole.",
+        "colors": "yellow-green, dark green, lime, olive"
+      },
+      {
+        "name": "Jellyfish Jetblasts",
+        "flavourText": "Floats around luck like tentacles of fortune.",
+        "imageDesc": "Translucent gel-textured cleats in soft pink and purple. Wavy tentacle-like ribbons of elastic trailing from the heel and sides, giving a jellylike appearance. Bioluminescent accents in light blue that glow in the upper region. Bulbous rounded toe design.",
+        "colors": "pink, plum, sky blue, hot pink"
+      },
+      {
+        "name": "Starburst Stompers",
+        "flavourText": "Pure candy-colored good fortune.",
+        "imageDesc": "Bright candy-colored cleats with a large starburst sunburst design on the outer side. Color sections radiate outward: hot pink, neon yellow, electric blue, lime green, and purple. Glossy candy-coated finish. Glitter embedded throughout the surface.",
+        "colors": "hot pink, yellow, cyan, lime green"
+      },
+      {
+        "name": "Wishbone Warriors",
+        "flavourText": "Pulled a thousand lucky wishes. Still undefeated.",
+        "imageDesc": "Tan suede cleats shaped like a wishbone at the toe, with two points splitting apart. Cream and gold stitching outlining the wishbone design. Embroidered ornate wish symbols and stars down the sides. Bone-white accents at the heel and collar. Gold metallic trim.",
+        "colors": "tan, cream, gold, lemon"
+      },
+      {
+        "name": "Penny Pinchers",
+        "flavourText": "Every step feels like finding money.",
+        "imageDesc": "Copper and bronze metallic cleats with embossed coin patterns covering the entire upper. Raised circular penny shapes in a repeating pattern. Shiny penny-bright copper surface with darker bronze accents and shadows. Coin-slot-like design at the heel.",
+        "colors": "copper, bronze, goldenrod, dark brown"
+      },
+      {
+        "name": "Superstring Slippers",
+        "flavourText": "Knitted from the strings of fate itself.",
+        "imageDesc": "Cozy slipper-style cleats in soft gray and white, made from thick knitted fabric with a cable-knit texture. Silver thread woven through the knit in spiral patterns representing cosmic strings. Fluffy faux fur ankle cuff in white. Comfortable rounded toe.",
+        "colors": "gray, white, silver, dim gray"
+      }
+    ],
+    "selected": [
+      5
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-luck1_strength1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Dragon Scale Boots",
+        "flavourText": "They are so fierce, even the ball is scared to touch them!",
+        "imageDesc": "High-top soccer cleats covered in overlapping iridescent dragon scales that shimmer from deep purple to electric blue. Sharp metallic spikes protrude from the heel and sides. Gold trim runs along the collar. Smoke-like wisps curl around the ankle area.",
+        "colors": "purple, electric blue, gold, charcoal"
+      },
+      {
+        "name": "Rocket Sole Sneakers",
+        "flavourText": "Leaves a trail of flame, literally the hottest kicks on the pitch!",
+        "imageDesc": "Sleek futuristic soccer boots with bright orange and red flame decals along the sides. The sole features glowing blue energy lines and small rocket fins protruding from the heel. Chrome accents and triangular speed stripes emphasize velocity.",
+        "colors": "orange, red, chrome, electric blue"
+      },
+      {
+        "name": "Pizza Pouncer Cleats",
+        "flavourText": "Smells like victory and mozzarella. Coaches hate this one trick!",
+        "imageDesc": "Soccer cleats designed to look like a pepperoni pizza slice. Red canvas upper with white diagonal melted cheese drips. Brown studs represent pepperoni cups. Yellow cheese trim around the collar. Crust-colored rubber sole.",
+        "colors": "red, yellow, white, brown"
+      },
+      {
+        "name": "Thunder Kick Boots",
+        "flavourText": "Every goal scored creates an actual lightning bolt!",
+        "imageDesc": "Black and neon yellow soccer cleats with jagged lightning bolt patterns running vertically along the sides. Electric arcs crackle between the cleats visually. Bright yellow accents on the laces and collar. Metallic silver studs reflect like electricity.",
+        "colors": "black, neon yellow, metallic silver, electric blue"
+      },
+      {
+        "name": "Tiger Claw Crushers",
+        "flavourText": "Pounce on defenders and they will never recover!",
+        "imageDesc": "Orange and black striped soccer cleats with an aggressive tiger face pattern on the tongue. Sharp white claw marks rake across the sides of the shoe. Black whisker stripes run along the heel. Curved studs resemble tiger claws.",
+        "colors": "orange, black, white, cream"
+      },
+      {
+        "name": "Comet Crushers",
+        "flavourText": "Zoom through the pitch leaving blazing trails of pure glory!",
+        "imageDesc": "Sleek silver and white soccer cleats with a glowing comet tail painted on both sides. Trailing stardust and sparkle effects emanate from the heel. Constellation patterns dot the upper. Reflective material gives an outer-space sheen.",
+        "colors": "silver, white, purple, gold"
+      },
+      {
+        "name": "Volcano Vortex Kicks",
+        "flavourText": "Stomp so hard the ground shakes!",
+        "imageDesc": "Deep crimson and black soccer cleats with flowing magma texture on the upper. Bright orange glowing cracks run through the shoe as if lava leaks inside. Smoke puffs rise from the collar. Volcanic rock-textured studs.",
+        "colors": "crimson, black, bright orange, gold"
+      },
+      {
+        "name": "Quantum Quake Boots",
+        "flavourText": "They exist in two places at once. Defenders can't mark you!",
+        "imageDesc": "Neon green and deep purple soccer cleats with a split-screen design. Glitch art patterns and pixelated distortion effects cover the sides. Holographic metallic accents catch light unpredictably.",
+        "colors": "neon green, deep purple, silver, black"
+      },
+      {
+        "name": "Typhoon Twist Treads",
+        "flavourText": "Spin so fast you create your own weather system!",
+        "imageDesc": "Turquoise and cyan soccer cleats with spiral whirlwind patterns spiraling from toe to heel. Wave-like ridges texture the surface. White foam accents suggest ocean spray. Curved studs look like mini tornados. Glossy, wet-looking finish.",
+        "colors": "turquoise, cyan, white, deep blue"
+      },
+      {
+        "name": "Unicorn Glitter Stompers",
+        "flavourText": "Magical, sparkly, and somehow still effective at scoring goals!",
+        "imageDesc": "Pastel pink and lavender soccer cleats covered entirely in holographic glitter that catches rainbow light. A gold unicorn silhouette adorns each heel. Iridescent mane-like material flows from the collar. Prismatic studs sparkle with every step.",
+        "colors": "pastel pink, lavender, gold, iridescent white"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-shooting2",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "shooting": 2
+    },
+    "options": [
+      {
+        "name": "Rocket Boosters",
+        "flavourText": "Fins on the heels. Physics not included.",
+        "imageDesc": "Sleek red and silver cleats with large triangular fins protruding from the heel like rocket nozzles. Silver metallic stripes run along the sides. The sole is glowing orange-yellow as if hot from propulsion. Laces are thick silver cord.",
+        "colors": "red, silver, orange, yellow"
+      },
+      {
+        "name": "Dragon Claws",
+        "flavourText": "Now with extra pointy toe talons!",
+        "imageDesc": "Midnight blue cleats with scaled texture across the upper. Sharp golden claws extend from the toe box like dragon talons. Red accents run along the heel and sides. Spiky ridges run down the center.",
+        "colors": "midnight blue, gold, red, charcoal"
+      },
+      {
+        "name": "Enchanted Pepperonis",
+        "flavourText": "They smell like victory and marinara.",
+        "imageDesc": "Round, puffy cleats shaped like giant pepperoni slices. Reddish-brown with orange and yellow cheese spots on the surface. White stitching around the edges. The sole is yellow like melted mozzarella. Comically oversized.",
+        "colors": "red-brown, orange, yellow, white"
+      },
+      {
+        "name": "Lightning Strikers",
+        "flavourText": "Shoots faster than you can blink. Probably.",
+        "imageDesc": "Neon yellow cleats with jagged purple lightning bolt streaks covering the entire upper. Electric blue accents on the heel and toe. The laces glow bright cyan. Silver metallic treads on the sole in zigzag patterns.",
+        "colors": "neon yellow, purple, electric blue, silver"
+      },
+      {
+        "name": "Pirate Pegleg Specials",
+        "flavourText": "Wooden foot? Sounds like a goal to me.",
+        "imageDesc": "Brown wooden cleats styled like a pirate pegleg. Brass buckles and rivets cover the surface. A skull emblem is burned into the heel. Black leather straps wrap around the ankle. The sole has brass nails forming a crossbones pattern.",
+        "colors": "brown, black, brass gold, tan"
+      },
+      {
+        "name": "Spaghetti Swirlers",
+        "flavourText": "Twirl them on the field for extra zing!",
+        "imageDesc": "Tan-colored cleats with long strands of pasta spiraling around the upper in cream and light brown. Tomato red sauce splatter details across the surface. The sole is dusted with parmesan powder white. Oversized and silly proportions.",
+        "colors": "tan, cream, tomato red, powder white"
+      },
+      {
+        "name": "Atomic Roller Skates",
+        "flavourText": "Wheels not actually atomic. But they are close!",
+        "imageDesc": "Retro 1950s-style roller skate cleats in turquoise and hot pink. Four glowing green wheels on the sole instead of cleats. Chrome buckles and rivets. Lightning bolts streaked across the sides. The heel has a miniature radiation symbol.",
+        "colors": "turquoise, hot pink, lime green, chrome silver"
+      },
+      {
+        "name": "Phoenix Fire Kicks",
+        "flavourText": "They rise from the ashes. And also score goals.",
+        "imageDesc": "Deep orange cleats with flame patterns in reds, yellows, and golds. Feather-like textures cover the upper. The heel and toe glow like embers. Ash-gray accents on the sole. Wisps of smoke-like patterns spiral up the sides.",
+        "colors": "deep orange, red, gold, ash gray"
+      },
+      {
+        "name": "Bubble Tea Crushers",
+        "flavourText": "Tapioca pearls equal instant confidence boost.",
+        "imageDesc": "Cream and brown boba tea-inspired cleats. Large translucent bubble designs on the sides showing pearlescent tapioca balls inside. The upper is a warm tan with dark brown tea stains. Pink and purple gradients swirl across. Whipped cream detail on the toe.",
+        "colors": "cream, tan, purple, pearlescent pink"
+      },
+      {
+        "name": "Ninja Star Slashers",
+        "flavourText": "Silent goal-scoring. Lethal accuracy. Zero mercy.",
+        "imageDesc": "All-black ninja cleats with metallic silver star patterns that form sharp geometric designs. Silver shuriken shapes protrude slightly from the toe and heel. Dark gray accent stripes. The sole has razor-sharp silver cleats arranged like weapons. Minimalist and deadly aesthetic.",
+        "colors": "black, metallic silver, dark gray, charcoal"
+      }
+    ],
+    "selected": [
+      9
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-passing1_speed1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "speed": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Boots",
+        "flavourText": "Go so fast your teammates think you teleported.",
+        "imageDesc": "Sleek athletic cleats with a metallic silver and neon orange color scheme. The sides feature pixelated flame designs running from heel to toe. The sole has red and yellow stripes suggesting propulsion. Small rocket fins protrude from the heel.",
+        "colors": "silver, neon orange, red, yellow"
+      },
+      {
+        "name": "Dragon Stompers",
+        "flavourText": "These boots came with a fire-breathing guarantee.",
+        "imageDesc": "Rugged cleats designed like dragon feet with scaled texture. Deep purple base with golden scales across the upper. The toe box has small gold spikes. Red fabric between the scales suggests dragon skin.",
+        "colors": "deep purple, gold, red, black"
+      },
+      {
+        "name": "Pizza Kicks",
+        "flavourText": "Everyone wants to tackle you... for a slice.",
+        "imageDesc": "Comical pizza-themed cleats with a light tan base resembling crust. Red sauce drips down the sides. Pepperoni circles and green pepper toppings across the upper. Mozzarella white stripes wrap around the mid-foot.",
+        "colors": "tan, red, green, white"
+      },
+      {
+        "name": "Lightning Strikers",
+        "flavourText": "Strike the ball. Strike like lightning. Same thing.",
+        "imageDesc": "Electric blue cleats with bright yellow zigzag lightning bolt patterns covering the entire upper. White accents along the sole edge. Small electricity effects crackle down the sides. The cleats have a glossy, energetic appearance.",
+        "colors": "electric blue, bright yellow, white, light blue"
+      },
+      {
+        "name": "Ninja Slippers",
+        "flavourText": "Silent footsteps. Loud goals. Perfect combo.",
+        "imageDesc": "Sleek black cleats styled like ninja shoes with a wrapped cloth appearance. Crimson red accent stripes run along the sides. White stitching details cover the upper. Small white symbols resembling Japanese characters decorate the ankle cuff.",
+        "colors": "black, crimson red, white, dark gray"
+      },
+      {
+        "name": "Bouncy Boots",
+        "flavourText": "Gravity just became optional.",
+        "imageDesc": "Hot pink and cyan gradient cleats with spring coil designs visible on the heel and toe. Bright lime green accents highlight the midsole. The upper has a bouncy, puffy appearance with cloud-like puffing details. Stars and motion lines surround the entire shoe.",
+        "colors": "hot pink, cyan, lime green, white"
+      },
+      {
+        "name": "Tiger Talons",
+        "flavourText": "Every step sounds like a prowling predator.",
+        "imageDesc": "Orange cleats with bold black tiger stripe patterns. The toe area features sharp black claw shapes extending slightly. White accents on the inner side. Orange and black gradients fade across the mid-foot creating a fierce appearance.",
+        "colors": "orange, black, white, cream"
+      },
+      {
+        "name": "Comet Crushers",
+        "flavourText": "You'll leave a crater every time you accelerate.",
+        "imageDesc": "Metallic gray cleats with streaking cosmic effects. A trail of purple and blue space dust trails behind from heel to toe. A small comet illustration on the upper with a tail effect. Silver metal-like panels and black cosmic speckles cover the surface.",
+        "colors": "metallic gray, purple, blue, silver"
+      },
+      {
+        "name": "Forest Flyers",
+        "flavourText": "Grown from enchanted trees. Very eco-friendly.",
+        "imageDesc": "Natural leaf-green cleats with brown tree bark texture details. Bright lime and emerald accents create leaf patterns across the upper. Vines wrap around the ankle cuff in darker green. Wooden-grain texture and leaf silhouettes decorate the sides.",
+        "colors": "leaf green, brown, lime, dark green"
+      },
+      {
+        "name": "Sonic Speeders",
+        "flavourText": "Leave a blue blur trail wherever you run.",
+        "imageDesc": "Vibrant cyan and royal blue cleats designed with speed in mind. The entire shoe is covered in speed lines suggesting motion. A darker blue stripe runs along the sides. White and silver accents on the heel and toe create a sleek, aerodynamic look.",
+        "colors": "cyan, royal blue, white, silver"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-shooting1_strength1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "shooting": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Comet Kicks",
+        "flavourText": "These boots blaze trails of stardust. You are basically a meteor!",
+        "imageDesc": "Sleek silver and navy blue cleats with a trailing comet tail design running along the sides. Gold lightning bolts streak across the forefoot. Sole has chrome metallic accents with small star patterns embossed throughout.",
+        "colors": "silver, navy, gold, chrome"
+      },
+      {
+        "name": "Inferno Stompers",
+        "flavourText": "Lava-soaked boots. Enemies fear the ground you walk on.",
+        "imageDesc": "Brilliant orange and red cleats with jagged flame patterns wrapping around the ankle and toe box. Glowing yellow accents simulate hot lava flowing down the sides. Studs are darker red like cooling magma.",
+        "colors": "orange, red, yellow, darkred"
+      },
+      {
+        "name": "Kraken Grips",
+        "flavourText": "Tentacle-textured soles. Control the ball like an octopus!",
+        "imageDesc": "Deep teal and purple cleats with rippled tentacle patterns across the upper. Suction cup-like textured nodules cover the sole and heel for grip. Iridescent blue-green shimmer throughout with wave details.",
+        "colors": "teal, purple, iridescent-blue, white"
+      },
+      {
+        "name": "Popcorn Poppers",
+        "flavourText": "Fluffy, bouncy boots. Makes every touch pop with power!",
+        "imageDesc": "Pale yellow and white cleats designed to look like popcorn kernels. Bumpy, puffy texture covers the entire boot with little puffs sticking out. Golden accents simulate butter drips. Playful and cartoonish.",
+        "colors": "butter-yellow, cream, golden, white"
+      },
+      {
+        "name": "Thunderpaw Boots",
+        "flavourText": "Wild wolf paws with electric claws. Rawr and score!",
+        "imageDesc": "Steel gray and charcoal cleats shaped like a wolf hind paw. Bright electric blue claws extend from the toe box. Fluffy textured fur detail on the ankle with lightning bolt stitching. Feral and cool.",
+        "colors": "steel-gray, charcoal, electric-blue, white"
+      },
+      {
+        "name": "Dinosaur Dominators",
+        "flavourText": "T-Rex sized power in your feet. Stomp, roar, and score!",
+        "imageDesc": "Forest green and brown cleats with reptilian scaled texture across the surface. Dangerous-looking red spikes protrude from the heel and toe box like a T-Rex backbone. Claw-like studs underneath. Prehistoric ferocity.",
+        "colors": "forest-green, brown, red, tan"
+      },
+      {
+        "name": "Crystal Crushers",
+        "flavourText": "Crystalline gems studded everywhere. Sparkle and smash!",
+        "imageDesc": "Light purple and silver cleats encrusted with geometric faceted crystal formations across the entire upper. Large amethyst-like gems cluster on the toe box and heel. Reflective surfaces shimmer with rainbow light. Magical sparkle effect.",
+        "colors": "light-purple, silver, amethyst, crystal-white"
+      },
+      {
+        "name": "Rocket Blasters",
+        "flavourText": "Red-hot rocket propulsion under your feet. Blast into goal!",
+        "imageDesc": "Bright red and silver cleats with twin rocket nozzles molded into the heel. Flame-pattern decals run along the sides in orange and yellow. Metallic thruster details on the sole with grid patterns. Sci-fi speed aesthetic.",
+        "colors": "bright-red, silver, orange-flame, metallic-gray"
+      },
+      {
+        "name": "Phantom Shadows",
+        "flavourText": "So dark and sneaky, opponents can't see them coming!",
+        "imageDesc": "Midnight black and deep purple cleats with wispy shadow tendrils flowing across the surface. Ghostly white glowing accents outline the edges and studs. Smoky texture effect suggesting mystical darkness. Subtle white starry pattern.",
+        "colors": "midnight-black, deep-purple, ghost-white, charcoal"
+      },
+      {
+        "name": "Pickle Power",
+        "flavourText": "Briny boot brilliance. Dill-ightfully good at scoring!",
+        "imageDesc": "Bumpy green pickle-textured cleats with a slight shiny finish. Darker green veins crisscross the surface like pickle bumps. Yellow-brown accent patches suggest mustard seed details. Silly, playful design with orange studs underneath.",
+        "colors": "pickle-green, dark-green, yellow-brown, orange"
+      }
+    ],
+    "selected": [
+      4
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-speed1_strength1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "speed": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Stompers",
+        "flavourText": "These boots have tiny jets. Your feet go WHOOOOSH!",
+        "imageDesc": "Bright red and silver cleats with flame patterns on the sides. Small rocket nozzles protruding from the heel area, trailing cartoon fire wisps. Silver metallic accents along the sole with glowing red stripes running lengthwise.",
+        "colors": "red, silver, orange, black"
+      },
+      {
+        "name": "Dragon Scale Boots",
+        "flavourText": "Stomping feels extra powerful when you wear dragon scales.",
+        "imageDesc": "Deep purple and gold cleats covered in interlocking dragon scales. Each scale has a metallic sheen with darker purple shadows. Gold trim around the ankle area with small spiked studs. Claws etched into the toe box.",
+        "colors": "purple, gold, black, silver"
+      },
+      {
+        "name": "Lightning Zappers",
+        "flavourText": "Kick the ball so fast it leaves a smoke trail behind!",
+        "imageDesc": "Bright yellow and electric blue cleats with jagged lightning bolt patterns across the entire surface. Blue electric arcs crackling around the sole and heel. White highlights creating a 3D electric effect. Small spiky protrusions suggesting energy discharge.",
+        "colors": "yellow, electric blue, white, black"
+      },
+      {
+        "name": "Cheetah Pounce Cleats",
+        "flavourText": "Spot-on performance: literally covered in spots.",
+        "imageDesc": "Sleek tan and black cleats with realistic cheetah spot patterns. Black patches scattered organically across the shoe body. Aerodynamic striped design along the sides mimicking cheetah fur. Sharp aggressive angles in the cleat studs.",
+        "colors": "tan, black, orange, white"
+      },
+      {
+        "name": "Meteor Crushers",
+        "flavourText": "These boots hit harder than actual space rocks. Probably.",
+        "imageDesc": "Dark grey and charcoal cleats with a rocky, crater-filled texture. Impact craters scattered across the surface with lighter grey damage streaks. Deep charcoal base with bright orange cracks suggesting hot meteor interior. Rugged, rough-hewn appearance throughout.",
+        "colors": "dark grey, charcoal, orange, black"
+      },
+      {
+        "name": "Sonic Speedsters",
+        "flavourText": "Leave your opponents wondering which direction you went!",
+        "imageDesc": "Cyan blue and white cleats with aerodynamic racing stripes running front to back. Speed lines etched in white create motion effect. Streamlined shoe body mimicking a race car. Bright cyan accents with chrome-like silver sole and heel pieces.",
+        "colors": "cyan, white, silver, navy"
+      },
+      {
+        "name": "Volcano Stompers",
+        "flavourText": "Feel the heat every time you touch the ball.",
+        "imageDesc": "Deep red and orange gradient cleats resembling molten lava. Bright orange cracks running through dark red base suggesting hot magma underneath. Yellow highlights at the toe and heel for extreme heat effect. Textured, bubbly surface mimicking cooled lava.",
+        "colors": "deep red, orange, yellow, black"
+      },
+      {
+        "name": "Titanium Crushers",
+        "flavourText": "Built tough. Kicks even tougher.",
+        "imageDesc": "Gunmetal grey and silver cleats with industrial metallic panels. Geometric hexagon plating pattern across the body. Brushed metal finish with bold dark grey shadows for depth. Angular, mechanical design with reinforced ankle support visible. Steel-toed appearance.",
+        "colors": "gunmetal grey, silver, black, dark blue"
+      },
+      {
+        "name": "Phoenix Flame Boots",
+        "flavourText": "Rise from defeat with style and very hot feet.",
+        "imageDesc": "Vibrant orange and golden red cleats with flame feather patterns. Layered feather design creating texture, transitioning from orange at base to golden-yellow at tips. Fiery wisps and ember sparkles around the heel and sole. Mythical and majestic appearance.",
+        "colors": "orange, golden red, yellow, black"
+      },
+      {
+        "name": "Quantum Kickers",
+        "flavourText": "Exist in multiple places at once. Confuses defenders.",
+        "imageDesc": "Neon purple and bright green cleats with a split two-tone design. Holographic shimmer effect across the surface suggesting interdimensional energy. Bold geometric lines and pixelated pattern elements. Bright glowing accents where colors meet. Futuristic, high-tech appearance.",
+        "colors": "neon purple, neon green, cyan, silver"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-luck1_reflexes1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Booties",
+        "flavourText": "Feel the need for speed? These babies practically play by themselves!",
+        "imageDesc": "Sleek red and silver rocket-themed cleats with flame patterns on the sides, metallic accents, glowing orange streaks along the soles, small rocket fins protruding from the heel, and sci-fi tech-inspired ridged texture across the toe box.",
+        "colors": "red, silver, orange, black"
+      },
+      {
+        "name": "Dragon's Claws",
+        "flavourText": "Now your feet are as deadly as a fire-breathing soccer legend.",
+        "imageDesc": "Menacing purple and gold cleats designed like dragon claws, with sharp spike-like studs, iridescent scale texture covering the boot, glowing amber accents near the ankle, and curved talon shapes on the toe.",
+        "colors": "purple, gold, amber, dark red"
+      },
+      {
+        "name": "Penguin Waddle",
+        "flavourText": "Adorably clumsy? These boots turn stumbles into style points.",
+        "imageDesc": "Black and white cleats shaped like chubby penguin feet, with white belly section on the sole, round pom-pom details on the heel, beady eye embellishments, and fuzzy texture to look like penguin plumage.",
+        "colors": "black, white, light blue, orange"
+      },
+      {
+        "name": "Pizza Slice Kicks",
+        "flavourText": "Score so much, you'll be cheesy for days!",
+        "imageDesc": "Yellow and orange cleats designed as a pepperoni pizza slice, with red circle studs resembling pepperoni, melted cheese dripping details, wavy edges like crust, and a glossy tomato-sauce red accent stripe.",
+        "colors": "yellow, red, orange, brown"
+      },
+      {
+        "name": "Lightning Bolts",
+        "flavourText": "Struck by genius every time you kick.",
+        "imageDesc": "Bright yellow and electric blue cleats with jagged lightning bolt patterns covering the entire boot, electric crackling effects along the edges, spiky studs shaped like electric arcs, and a charged energy glow aesthetic.",
+        "colors": "yellow, electric blue, white, purple"
+      },
+      {
+        "name": "Unicorn Hooves",
+        "flavourText": "Mythical goals only. You'll need a lot of glitter to clean these up.",
+        "imageDesc": "Pastel pink and iridescent white cleats shaped like unicorn hooves, with a spiraling horn design on the ankle, shimmering glitter texture throughout, rainbow mane fringe details, and holographic sheen coating.",
+        "colors": "pink, white, rainbow, silver"
+      },
+      {
+        "name": "Ninja Tabi Boots",
+        "flavourText": "Silent strikers wear these. You won't even hear yourself score.",
+        "imageDesc": "Black and dark gray traditional ninja tabi-inspired cleats with a split toe design, textured cloth appearance, stealth-focused matte finish, white accent stripes along the sole edge, and traditional Japanese knot details.",
+        "colors": "black, dark gray, white, deep blue"
+      },
+      {
+        "name": "Bubble Gum Stompers",
+        "flavourText": "The stickier you play, the more goals you stick around for.",
+        "imageDesc": "Bright pink and magenta cleats with giant bubble texture, glossy candy-coated appearance, swirled white highlight streaks mimicking gum shine, bubble studs that look like chewed gum, and a shimmering translucent overlay.",
+        "colors": "hot pink, magenta, white, light pink"
+      },
+      {
+        "name": "Meteor Strike Cleats",
+        "flavourText": "Players don't stand a chance when you crash the field.",
+        "imageDesc": "Gray and charcoal black cleats with a cratered, pockmarked surface texture, molten red glowing cracks throughout, metallic silver rim details, impact crater studs, and a scorched, battle-worn aesthetic.",
+        "colors": "gray, charcoal, red, silver"
+      },
+      {
+        "name": "Rainbow Prism Kicks",
+        "flavourText": "Refract your opponents defenses with pure optical confusion.",
+        "imageDesc": "White base cleats with prismatic gradient bands running lengthwise in spectrum colors, crystalline faceted texture coating the entire boot, shimmering holographic sheen, light-refracting stud details, and rainbow reflect patterns.",
+        "colors": "white, rainbow spectrum, crystal blue, silver"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-passing1_shooting1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Thunderbolt Strikers",
+        "flavourText": "Zap! Your feet are now 50% more electric than your personality.",
+        "imageDesc": "Electric blue and bright yellow cleats with jagged lightning bolt patterns across the toe box and instep. Metallic silver threading follows each bolt. The sole glows with neon yellow edges. Spiky studs on the bottom gleam like tiny lightning rods.",
+        "colors": "blue, yellow, silver, dark blue"
+      },
+      {
+        "name": "Dragon Scale Boots",
+        "flavourText": "Now your feet are as legendary as your trash talk. Probably.",
+        "imageDesc": "Deep crimson red cleats covered in overlapping scale patterns like dragon armor. Each scale is outlined in gold with a shimmering gradient from red to orange. Pointed toe design. Small gold spikes emerge between scales. The heel features a stylized dragon head emblem in metallic gold.",
+        "colors": "crimson, gold, dark red, orange"
+      },
+      {
+        "name": "Rocket Feet",
+        "flavourText": "Warning: may cause uncontrollable need for speed and whooshing sounds.",
+        "imageDesc": "Sleek silver and white racing-style cleats with flame designs bursting from the heel. Red and orange gradient flames trail up the back. The toe is pointed and aerodynamic. Three metallic red stripes run along each side. The sole has rocket-themed grip patterns with small red accents.",
+        "colors": "silver, white, red, orange"
+      },
+      {
+        "name": "Pizza Kicks",
+        "flavourText": "These boots are so cheesy, they might actually mozzarella on the field.",
+        "imageDesc": "Warm golden-tan cleats styled to look like pizza crust. Red tomato-colored sections represent pizza slices with white mozzarella drip patterns. Dark red pepperoni circles dot the surface. Lighter tan edges suggest toasted crust. Studs look like scattered oregano specks.",
+        "colors": "golden tan, crimson, white, dark green"
+      },
+      {
+        "name": "Phantom Glide",
+        "flavourText": "Wear these and suddenly you are not where the ball is going. Science!",
+        "imageDesc": "Translucent ghostly white and pale blue cleats with a smoky, ethereal appearance. Swirling wisps and cloud patterns in dark blue and purple emanate from the edges. The material looks semi-transparent like mist. Glowing purple runes run along the sides. Studs appear as tiny glowing orbs.",
+        "colors": "white, pale blue, indigo, dark orchid"
+      },
+      {
+        "name": "Jungle Prowler",
+        "flavourText": "You'll run like a leopard, pass like a monkey, score like a lion.",
+        "imageDesc": "Tawny golden-brown cleats with bold black leopard spots and rosette patterns. Emerald green accents on the ankle and sole represent jungle vines. Leafy green embroidery wraps around the instep. The toe is reinforced with a bronze-colored metallic cap. Studs are earthy brown.",
+        "colors": "goldenrod, black, forest green, sienna"
+      },
+      {
+        "name": "Quantum Stompers",
+        "flavourText": "They exist in all positions at once until you look at them. Probably.",
+        "imageDesc": "Iridescent holographic cleats that shift between purple, cyan, and magenta. Geometric grid patterns and sci-fi circuit designs cover the surface in bright neon lines. Angular, futuristic shape with sharp edges. The heel features a circular glowing eye-like design. Studs glow with electric blue light.",
+        "colors": "magenta, cyan, purple, blue"
+      },
+      {
+        "name": "Comet Crushers",
+        "flavourText": "Leave a trail of stardust. And possibly some confused defenders.",
+        "imageDesc": "Deep midnight blue cleats with a cosmic theme. Silver and white star clusters burst across the surface with trailing comet tail streaks. Metallic silver swirls create galaxy patterns. The toe and heel glow with soft white highlights like celestial bodies. Studs shimmer like tiny stars.",
+        "colors": "midnight blue, silver, white, gold"
+      },
+      {
+        "name": "Inferno Treads",
+        "flavourText": "Warning: shoe may become literally too hot to handle. Cool kids only.",
+        "imageDesc": "Fiery orange and deep red cleats styled like active lava. Bright yellow and orange gradient flames consume the upper surface. Dark charcoal cracks run through like cooled magma. The sole glows bright orange-red as if still hot. Metallic bronze studs glow with heat shimmer effect.",
+        "colors": "orange-red, crimson, gold, dark slate"
+      },
+      {
+        "name": "Mystic Moonboots",
+        "flavourText": "Kick with the power of the moon. That is about 1/6 Earth power.",
+        "imageDesc": "Soft silvery-white cleats with a crescent moon motif. Pale lavender and light blue accents create a mystical aurora effect across the surface. Starbursts and constellation patterns in silver thread. The heel features a large embossed crescent moon. Studs glow with pale blue ethereal light.",
+        "colors": "white, lavender, light blue, royal blue"
+      }
+    ],
+    "selected": [
+      9
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-reflexes2",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 2
+    },
+    "options": [
+      {
+        "name": "Spring-Loaded Bouncy Boots",
+        "flavourText": "Your feet bounce before your brain catches up.",
+        "imageDesc": "Bright neon green and cyan cleats with oversized coiled springs protruding from the sole and heel. The springs have a gleaming metallic silver finish with yellow accents. Cartoon-style puff clouds at the toe and heel. Striped leg section with alternating electric blue and lime stripes.",
+        "colors": "neon green, cyan, yellow, silver"
+      },
+      {
+        "name": "Dragon Scale Traction",
+        "flavourText": "Scales catch anything. Even the referee is confused.",
+        "imageDesc": "Deep crimson red cleats covered in overlapping dragon scales in gold and bronze. Spiky ridge running down the center of the foot. Smoky purple accents on the ankle cuff. Small flame-like texture detailing around the sole edge.",
+        "colors": "crimson, gold, bronze, purple"
+      },
+      {
+        "name": "Mercury Quickstep Kicks",
+        "flavourText": "So fast, they leave a shimmering trail behind.",
+        "imageDesc": "Silver and pearl-white cleats with liquid mercury-like swirls painted across the surface. Chrome metallic spikes arranged in concentric circles. Winged ankle design inspired by the god Mercury. Iridescent shimmer effect throughout.",
+        "colors": "silver, pearl white, gray, gold"
+      },
+      {
+        "name": "Cheese Grater Grip Boots",
+        "flavourText": "Smells like cheddar. Still a tactical advantage.",
+        "imageDesc": "Golden yellow and orange cleats textured like a cheese grater surface. Tiny perforated holes covering both sides. Bright white trim and laces. Small wheels or studs arranged in grid pattern on sole. Silly googly eyes embossed on the toe area.",
+        "colors": "orange, golden yellow, white, dark orange"
+      },
+      {
+        "name": "Phantom Precision Cleats",
+        "flavourText": "Invisible to the naked eye. Visible to the ref.",
+        "imageDesc": "Semi-transparent ghostly white and pale blue cleats with an ethereal, glowing appearance. Translucent sections showing phantom foot outlines inside. Wisps of cloud-like texture around edges. Tiny sparkles floating around the sole.",
+        "colors": "white, pale blue, lavender, light blue"
+      },
+      {
+        "name": "Meteor Crushers",
+        "flavourText": "Impact crater optional. Opponent runs away.",
+        "imageDesc": "Dark charcoal and black cleats with jagged, rough crater-like surface texture. Burnt orange and deep red molten streaks running across the foot like cooling lava. Smoke-effect wisps painted on ankle. Meteor-shaped studs on sole.",
+        "colors": "charcoal, dark brown, tomato red, orange"
+      },
+      {
+        "name": "Octopus Tentacle Tread",
+        "flavourText": "Eight legs kick better than two. Science.",
+        "imageDesc": "Squishy pink and purple cleats with wavy, undulating tentacle-like patterns. Suction cup shapes embossed all over the surface. Googly eyes on each side. Wavy, organic curves instead of traditional boot shape. Bioluminescent blue accents on suction cups.",
+        "colors": "hot pink, orchid purple, royal blue, light pink"
+      },
+      {
+        "name": "Cyberpunk Reflex Boots",
+        "flavourText": "Neon lights plus robot reflexes equals unbeatable.",
+        "imageDesc": "Black and gun-metal cleats with bright neon pink and cyan circuit board patterns. Geometric lines and digital grid texture throughout. LED-style glowing accents around heel and toe. Holographic-looking stripe down the center. Futuristic jagged design.",
+        "colors": "black, neon pink, cyan, gray"
+      },
+      {
+        "name": "Lightning Rod Runners",
+        "flavourText": "Electricity is good for your reflexes. Trust us.",
+        "imageDesc": "Bright yellow and purple cleats with jagged lightning bolt patterns. Electric blue crackling energy arcs across the foot. Metallic silver studs that look like they are conducting electricity. Smoking wisp details at the sole. Spiky hair-like protrusions around ankle.",
+        "colors": "yellow, purple, royal blue, silver"
+      },
+      {
+        "name": "Sticky Honey Grip Shoes",
+        "flavourText": "Tacky and effective. Smell not included.",
+        "imageDesc": "Golden honey and amber-colored cleats with a glossy, sticky-looking finish. Honeycomb pattern embossed all over. Chunky, oversized treads coated in dripping honey effect. Tiny bee designs on the ankle patch. Sweet and slightly cartoonish aesthetic.",
+        "colors": "orange, dark goldenrod, khaki, dark yellow"
+      }
+    ],
+    "selected": [
+      0
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-luck1_passing1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "passing": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Boots",
+        "flavourText": "These feet leave fire trails. Hope they come with a fire extinguisher!",
+        "imageDesc": "Sleek futuristic rocket-powered boots with silver metal plating, glowing blue propulsion thrusters on the heels, red flame accents, and small fins on the sides. Angular sci-fi design with bold details.",
+        "colors": "silver, blue, and red with neon cyan accents"
+      },
+      {
+        "name": "Cloud Walkers",
+        "flavourText": "You can run on actual clouds now. Wet socks not guaranteed.",
+        "imageDesc": "Soft, puffy white sneakers that look like they are made from fluffy clouds, with light grey striping and a dreamy ethereal appearance. Small wisps of cloud-like material swirl around the sides and back.",
+        "colors": "white, light blue, and silver with misty white trails"
+      },
+      {
+        "name": "Dragon Claw Kicks",
+        "flavourText": "Scales, talons, and attitude. Every pass feels like fire.",
+        "imageDesc": "Aggressive crimson and gold boots with dragon scale texturing across the surface, sharp curved talons extending from the toes, golden accents along the calf, and small horn-like spikes on the heel.",
+        "colors": "crimson, gold, and deep orange with amber streaks"
+      },
+      {
+        "name": "Jellyfish Jetties",
+        "flavourText": "Bouncy, wobbly, and somehow aquatic.",
+        "imageDesc": "Translucent glowing blue and purple boots with a jellyfish-inspired bell-shaped top, trailing tentacle-like ribbed appendages hanging from the sides and back, bioluminescent glow patterns.",
+        "colors": "electric blue, purple, and cyan with translucent shimmer"
+      },
+      {
+        "name": "Spring Hoppers",
+        "flavourText": "Built-in springs make you bounce three times higher.",
+        "imageDesc": "Bright yellow and hot pink sports shoes with large visible spring coils protruding from the heels and soles, energetic design with lightning bolt decals, bouncy cushioned appearance.",
+        "colors": "bright yellow, hot pink, and white with green spring details"
+      },
+      {
+        "name": "Ninja Shadow Slippers",
+        "flavourText": "So quiet, enemies think you teleported. You are just sneaky.",
+        "imageDesc": "Black and deep purple ninja-style lightweight boots with a low profile, soft fabric appearance, grey shadow effects trailing behind, ninja star symbols on the sides, minimal but sleek design.",
+        "colors": "black, deep purple, and grey with silver trim"
+      },
+      {
+        "name": "Candy Crush Kicks",
+        "flavourText": "These boots taste like bubble gum but please don't actually eat them.",
+        "imageDesc": "Vibrant candy-colored boots with swirled pink, purple, and blue sections like swirled lollipops, shiny sugary gloss finish, candy wrapper-inspired ribbon details, round candy gem decorations.",
+        "colors": "hot pink, purple, sky blue with glossy white highlights"
+      },
+      {
+        "name": "Storm Striker Soles",
+        "flavourText": "Harness lightning with every step. Electricity bill not included.",
+        "imageDesc": "Dark grey and electric yellow boots with jagged lightning bolt patterns covering the surface, crackling electrical effects around the edges, metallic storm-grey base with bright voltage veins, dynamic angular design.",
+        "colors": "dark grey, electric yellow, and cyan with white lightning effects"
+      },
+      {
+        "name": "Mushroom Stompers",
+        "flavourText": "Bounce off enemies like they are made of soft toadstools.",
+        "imageDesc": "Cute rounded boots with a red and white spotted mushroom cap design on top, soft plush appearance with a creamy tan sole, small green stem accents on the heels, cheerful cartoonish style.",
+        "colors": "bright red, white, tan with green stem details"
+      },
+      {
+        "name": "Void Weavers",
+        "flavourText": "These boots let you run through space itself. No passport required.",
+        "imageDesc": "Deep indigo and black boots with a cosmic swirling void texture, small stars and nebula patterns scattered across the surface, purple and teal gradient wisps flowing like space dust, otherworldly ethereal appearance.",
+        "colors": "deep indigo, black, and teal with purple cosmic energy"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-passing2",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 2
+    },
+    "options": [
+      {
+        "name": "Enchanted Hoofboots",
+        "flavourText": "Centaur-approved. Makes you 40% more mystical.",
+        "imageDesc": "Sleek magical boots with glowing golden hoofprints etched into the sides. Iridescent purple accents spiral around the ankle. Small crystalline antlers protrude from the heel. Ethereal blue aura emanates from the sole.",
+        "colors": "midnight purple, gold, cyan, white"
+      },
+      {
+        "name": "Rocket Treads",
+        "flavourText": "Propelled by tiny jets. Beware of scorched grass.",
+        "imageDesc": "Futuristic boots with sleek metallic silver base and neon orange racing stripes. Small jet nozzles stick out from the heels with glowing red exhaust ports. Hexagonal vents cover the sides. Smooth, aerodynamic design with sharp edges.",
+        "colors": "silver, neon orange, crimson, charcoal"
+      },
+      {
+        "name": "Squid Slippers",
+        "flavourText": "Eight tiny tentacles hug your foot. Tickles at first.",
+        "imageDesc": "Plush fabric cleats shaped like a cute squid with a round toe pouch. Bumpy suckers textured all over in a darker shade. Two googly eyes embroidered on the top. Wavy tentacle designs wrap around the ankle cuffs.",
+        "colors": "dusty purple, bubblegum pink, pearl white, lavender"
+      },
+      {
+        "name": "Molten Lava Kicks",
+        "flavourText": "Literally hot. Ice pack not included.",
+        "imageDesc": "Fiery red boots with glossy appearance like flowing lava. Orange and yellow gradient striping from toe to heel. Darker charred texture on edges. Cracked, volcanic surface pattern across the entire boot with glowing crevices between cracks.",
+        "colors": "deep red, molten orange, golden yellow, coal black"
+      },
+      {
+        "name": "Cosmic Sneaker Socks",
+        "flavourText": "Spins faster than Saturn. Also comfier.",
+        "imageDesc": "Star-speckled boots with deep navy base and swirling galaxy patterns in purple and teal. Tiny white stars scattered across the surface. Planetary rings wrap around the ankles with Saturn-like appearance. Nebula wisps blend between colors.",
+        "colors": "navy blue, galaxy purple, teal, white"
+      },
+      {
+        "name": "Pizza Stompers",
+        "flavourText": "Cheesy passes guaranteed. Grease not mandatory.",
+        "imageDesc": "Oversized pizza slice-shaped cleats with golden crust texture along edges. Bright red sauce base with yellow melted cheese dripped across. Small pepperoni circles dotted over. Basil green leaf details on the heel. Tomato-slick shine on upper surface.",
+        "colors": "pizza red, golden crust, cheese yellow, basil green"
+      },
+      {
+        "name": "Phoenix Rising Boots",
+        "flavourText": "Bursts into flames. Your socks fear this.",
+        "imageDesc": "Majestic boots sculpted to resemble a phoenix with the toe as its head. Feather texture covering the entire boot in layered patterns. Flames rendered in orange and red gradient emerging from the sides and heel. Golden metallic accents highlight the feather tips. Tail feathers extend up the back of the boot.",
+        "colors": "flame orange, deep crimson, gold, smoky gray"
+      },
+      {
+        "name": "Tornado Turbos",
+        "flavourText": "Spin move activated. Dizzy teammates not included.",
+        "imageDesc": "Sleek wind-shaped boots with spiral grooves carved all around. Swirling cloud patterns in light blue and white. Motion lines suggest speed spiraling upward. Sharp, aerodynamic curves. Pale gray streaks like captured wind across the surface.",
+        "colors": "sky blue, white, pale gray, electric blue"
+      },
+      {
+        "name": "Dinosaur Stompers",
+        "flavourText": "Raw prehistoric power. Meteor not sold separately.",
+        "imageDesc": "Foot-shaped like a T-rex claw with sharp, curved talons wrapping around. Scaly texture in forest green with brownish edges. Three distinctive toe claws rendered in dark gray. Spiky ridge running down the center. Prehistoric carved bone-like details on the sole.",
+        "colors": "forest green, russet brown, slate gray, bone white"
+      },
+      {
+        "name": "Thunderstrike Spikes",
+        "flavourText": "Channeling Zeus himself. Electricity bills not covered.",
+        "imageDesc": "Angular boots bristling with metallic lightning bolt protrusions. Base color electric blue with white racing stripes. Jagged spike patterns across the top mimicking lightning. Copper-toned metallic accents. Crackling energy effect suggested by bright white highlights and darker blue shadows.",
+        "colors": "electric blue, copper bronze, white, charcoal"
+      }
+    ],
+    "selected": [
+      5
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-passing1_strength1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Dragon Scale Boots",
+        "flavourText": "Red scales shimmer. Gives you dragon grip strength.",
+        "imageDesc": "Sleek soccer cleats with overlapping crimson dragon scale patterns across the upper, gold metallic accents on the sole, sharp angular toe design, iridescent shimmer effect on the scales, small dragon eye emblem on heel.",
+        "colors": "crimson, gold, dark red, tomato"
+      },
+      {
+        "name": "Laser Blaster Kicks",
+        "flavourText": "Neon glow-up. Your feet have special effects now!",
+        "imageDesc": "Futuristic high-tech cleats with bright neon purple and cyan stripes, geometric patterns, LED-style light lines running down the sides, chrome metallic heel section, triangular neon yellow accents on cleats, sleek sci-fi design.",
+        "colors": "magenta, cyan, gold, dark navy"
+      },
+      {
+        "name": "Thunderstorm Stompers",
+        "flavourText": "Feel the electricity under your feet. Shocking results!",
+        "imageDesc": "Dark gray cleats with jagged electric blue lightning bolt designs, white cloud-like patterns on the upper, metallic silver streaks, electric sparks effect near the sole, dark storm cloud texture, power symbol on tongue.",
+        "colors": "dark slate gray, blue, white, gold"
+      },
+      {
+        "name": "Pizza Slice Feet",
+        "flavourText": "Cheesy moves guaranteed. Too delicious to stop!",
+        "imageDesc": "Bright red and orange cleats designed like pizza slices, melted yellow cheese drips on the upper, pepperoni circles scattered across, tan pizza crust colored sole area, playful gooey texture effect, little basil leaf details.",
+        "colors": "orange-red, gold, dark red, chocolate"
+      },
+      {
+        "name": "Galactic Starlight Shoes",
+        "flavourText": "Cosmic dust between your toes. Literally shooting stars.",
+        "imageDesc": "Deep indigo and black cleats with scattered star patterns, milky white swirling galaxy effect across the upper, purple and teal nebula clouds, glittery sparkle texture throughout, moon phase designs on sides, cosmic dust particles effect.",
+        "colors": "dark indigo, cyan, white, dark violet"
+      },
+      {
+        "name": "Jungle Venom Kicks",
+        "flavourText": "Poisonous pace. Opponents better watch out!",
+        "imageDesc": "Lime green and black spotted cleats like a snake pattern, toxic yellow-green gradient lines, venomous purple undertones on the viper-like design, natural leaf texture details, fang-inspired cleat studs, scaled texture effect on upper.",
+        "colors": "lime green, black, yellow, purple"
+      },
+      {
+        "name": "Invisible Phantom Boots",
+        "flavourText": "You can see them. Opponents can't. Mostly.",
+        "imageDesc": "Translucent semi-transparent cleats with faint silver outline, ghostly white shimmer throughout, barely visible subtle details, ethereal glow effect around edges, phantom wisps flowing from the sole, nearly invisible but with shimmering highlights.",
+        "colors": "gainsboro, white, light gray, silver"
+      },
+      {
+        "name": "Inferno Magma Treads",
+        "flavourText": "Hot lava flow feet. Leave scorched earth everywhere!",
+        "imageDesc": "Deep orange and dark red cleats with glowing yellow-orange cracks like magma, molten lava effect flowing down the sides, realistic hot stone texture, glowing ember particles, volcanic ash gray undertones, intense heat shimmer effect.",
+        "colors": "orange-red, dark red, gold, dim gray"
+      },
+      {
+        "name": "Unicorn Sparkle Glitter",
+        "flavourText": "Rainbow magic feet. Leaves a trail of fabulousness!",
+        "imageDesc": "Pastel pink and lavender cleats with rainbow gradient stripes, glitter and sparkle covering the entire surface, horn-like raised design on heel, star and cloud patterns scattered throughout, iridescent shimmer effect, whimsical magical aura.",
+        "colors": "light pink, lavender, hot pink, white"
+      },
+      {
+        "name": "Timber Beast Cleats",
+        "flavourText": "Carved from a grizzly paw. Splinter-free, somehow.",
+        "imageDesc": "Rough brown leather textured cleats with bear paw pad imprints, dark wood grain patterns, sharp claw marks etched into design, wild natural fiber appearance, earthy tan and chocolate brown colors, primal beast aesthetic, carved tribal details.",
+        "colors": "saddle brown, sienna, dark brown, tan"
+      }
+    ],
+    "selected": [
+      9
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-speed2",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "speed": 2
+    },
+    "options": [
+      {
+        "name": "Rocket Roller Boots",
+        "flavourText": "Leave opponents eating your dust... literally.",
+        "imageDesc": "High-top futuristic hover boots with metallic silver body, neon blue streaks running down the sides, and glowing red rocket thrusters on the heels. The sole is translucent with swirling energy effects inside. Small wings protrude from the ankles.",
+        "colors": "silver, neon blue, red, cyan"
+      },
+      {
+        "name": "Lightning Loafers",
+        "flavourText": "Electricity not included, but speed is!",
+        "imageDesc": "Sleek electric yellow loafers with jagged electric blue lightning bolt patterns crackling across the surface. Purple electrical aura surrounds the edges. The sole crackles with zigzag energy lines.",
+        "colors": "electric yellow, purple, blue, white"
+      },
+      {
+        "name": "Cheetah Chompers",
+        "flavourText": "Spotted for excellence, built for pouncing.",
+        "imageDesc": "Athletic cleats designed like a cheetah paw, featuring golden tan leather with black spot patterns. Sharp silver claws extend from the toe. The ankle has a furry texture detail with golden highlights.",
+        "colors": "golden tan, black, silver, orange"
+      },
+      {
+        "name": "Tornado Traction Cleats",
+        "flavourText": "Spin faster than your teammates can blink!",
+        "imageDesc": "Classic cleats with a swirling gray and white tornado pattern covering the entire shoe. The studs are spiral-shaped and glow pale blue. Wind lines swirl around the shoe edges in white.",
+        "colors": "gray, white, pale blue, silver"
+      },
+      {
+        "name": "Dragon Scale Stompers",
+        "flavourText": "When you want your feet to look absolutely legendary.",
+        "imageDesc": "Heavy-duty cleats covered in overlapping iridescent dragon scales in deep purple and teal. Each scale has a golden edge highlight. The heel features a small spiky ridge. Ember effects glow near the studs.",
+        "colors": "deep purple, teal, gold, orange"
+      },
+      {
+        "name": "Supersonic Sneakers",
+        "flavourText": "Fast enough to break the sound barrier!",
+        "imageDesc": "Aerodynamic racing-style sneakers in sleek black with bright neon green accent stripes. Speed lines angle backward across the shoe. The sole features a chrome finish with crosshatch tread pattern.",
+        "colors": "black, neon green, chrome, white"
+      },
+      {
+        "name": "Banana Blasters",
+        "flavourText": "Slip past defenders faster than you can say peel out.",
+        "imageDesc": "Bright yellow cleats shaped like giant bananas with curved soles. Brown peel texture details cover parts of the shoe. White highlights make the shoe look shiny and fresh. Googly eyes are embroidered on the toe.",
+        "colors": "bright yellow, brown, white, tan"
+      },
+      {
+        "name": "Phoenix Flame Kicks",
+        "flavourText": "Rising from the ashes of your last match, flaming fast!",
+        "imageDesc": "Cleats with a gradient from deep red at the heel to bright orange at the toe, resembling flames. Feather-like textures cover the sides in gold and crimson. The sole glows with ember particles. Wings extend slightly from the ankles.",
+        "colors": "deep red, bright orange, gold, yellow"
+      },
+      {
+        "name": "Jet Stream Jetties",
+        "flavourText": "Leave a trail of wind and wonder behind you.",
+        "imageDesc": "Futuristic jet-powered cleats in silver-white with blue accent lines. Dual vertical jet exhaust vents on the back heels glow bright cyan. The boot has an aerodynamic teardrop shape. Turbine details spiral around the ankle.",
+        "colors": "silver-white, cyan blue, dark gray, gold"
+      },
+      {
+        "name": "Quicksand Quellies",
+        "flavourText": "Your opponents will be stuck wondering how you got past them.",
+        "imageDesc": "Desert-themed cleats in tan and sandy beige with swirling brown quicksand patterns flowing across the surface. The studs are shaped like mini dunes with glittering gold accents. Ripple effects surround the shoe edges.",
+        "colors": "tan, sandy beige, brown, gold"
+      }
+    ],
+    "selected": [
+      2
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-strength2",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "strength": 2
+    },
+    "options": [
+      {
+        "name": "Kangaroo Kickers",
+        "flavourText": "Bounce so high, you forget which way is down.",
+        "imageDesc": "Oversized cartoonish kangaroo-themed cleats with exaggerated springy soles, fur-textured uppers in warm tan with darker brown stripes, bouncy coiled spring mechanisms visible at the heel, large pouch pockets detailed on the sides.",
+        "colors": "tan and brown with copper bounces"
+      },
+      {
+        "name": "Dragon Talons",
+        "flavourText": "Grip the pitch like you grip the sky itself.",
+        "imageDesc": "Mythical dragon-claw inspired cleats with sharp curved metal spikes replacing studs, scaly texture pattern covering the foot, metallic sheen with amber glints, intimidating ridged design along the heel and toe.",
+        "colors": "dark crimson and bronze with golden scales"
+      },
+      {
+        "name": "Sumo Stompers",
+        "flavourText": "Plant yourself. Nobody moves you. Ever.",
+        "imageDesc": "Thick, heavily padded sumo wrestler-themed boots with an ultra-wide base for stability, reinforced metal toe cap embossed with Japanese characters, deep treads in a dohyo ring pattern, sturdy construction with wrapped laces.",
+        "colors": "cream and dark blue with silver metal trim"
+      },
+      {
+        "name": "Brick Blasters",
+        "flavourText": "Your feet are now made of construction material.",
+        "imageDesc": "Cleats styled like actual red bricks stacked together, textured relief pattern mimicking brick mortar lines, solid geometric blocks forming the sole and sides, small grey dust particles scattered around edges.",
+        "colors": "terracotta red and grey with white mortar lines"
+      },
+      {
+        "name": "Elephant Thumpers",
+        "flavourText": "Stomp with the power of a thousand hugs.",
+        "imageDesc": "Wide, sturdy elephant-foot inspired cleats with wrinkled leathery texture, padded around ankles like elephant ears, thick columnar base for immense stability, warm grey tone with pink-tinted padding details.",
+        "colors": "elephant grey and dusty pink with white accents"
+      },
+      {
+        "name": "Iron Anchors",
+        "flavourText": "No wind, no force, no luck could budge you.",
+        "imageDesc": "Industrial nautical anchor-shaped cleats with chain links decorating the sides, heavy corroded iron aesthetic with weathered patina spots, anchor flukes forming grip points, solid metal construction throughout.",
+        "colors": "dark charcoal and rusty orange with verdigris highlights"
+      },
+      {
+        "name": "Fortress Fortunes",
+        "flavourText": "Your feet are tiny castles now. You're welcome.",
+        "imageDesc": "Cleats shaped like medieval castle towers with crenellated tops, stone texture throughout the upper, arched doorway-shaped openings revealing reinforced inner chambers, small flag emblem on the heel.",
+        "colors": "stone grey and deep slate with gold banner details"
+      },
+      {
+        "name": "Gorilla Grips",
+        "flavourText": "Your feet have the grip strength of a silverback.",
+        "imageDesc": "Bulky ape-like cleats with exaggerated wrinkled leathery texture and visible muscle definition, oversized knuckle-inspired knobs and ridges covering the sole, dark fur-textured upper with realistic primate details.",
+        "colors": "dark charcoal and leather brown with ochre muscle tones"
+      },
+      {
+        "name": "Meteor Crushers",
+        "flavourText": "Your cleats fell from space and hit HARD.",
+        "imageDesc": "Space rock-textured cleats with a porous crater-covered surface, jagged irregular edges like a meteor, metallic iron core visible through breaks in the surface, glowing ember-orange cracks in darker stone.",
+        "colors": "charcoal grey and obsidian black with orange ember cracks"
+      },
+      {
+        "name": "Tank Treads",
+        "flavourText": "Nothing stops a tank. Nothing stops you now.",
+        "imageDesc": "Military tank tread-patterned cleats with linked metallic chain pattern across the sole, armored plating visible on upper and heel, riveted metal details throughout, realistic khaki fabric with olive drab camouflage pattern.",
+        "colors": "khaki and olive drab with gunmetal grey treads"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-reflexes1_speed1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 1,
+      "speed": 1
+    },
+    "options": [
+      {
+        "name": "Flame Striker Boots",
+        "flavourText": "Your feet are literally on fire, careful not to singe the grass!",
+        "imageDesc": "Sleek red and orange cleats with flame patterns wrapping around the sides. Yellow highlights along the sole edges that look like dancing flames. Small flame-shaped studs on the bottom. Metallic gold accents near the ankles.",
+        "colors": "red, orange, yellow, gold"
+      },
+      {
+        "name": "Sonic Surge Cleats",
+        "flavourText": "Go so fast, your cleats leave sonic booms and cartoon speed lines.",
+        "imageDesc": "Bright electric blue cleats with white lightning bolt streaks across both shoes. Cyan glow effects radiating from the sides. Pointed, aerodynamic design with sharp white trim. Neon speed lines etched into the material.",
+        "colors": "electric blue, white, cyan, black"
+      },
+      {
+        "name": "Dragon Talons",
+        "flavourText": "Scaled boots that make you feel like a tiny soccer dragon warrior.",
+        "imageDesc": "Deep purple cleats with iridescent dragon scale texture across the entire surface. Sharp metallic silver claw-like studs jutting from the sole. Gold armor-plating details on the heel and toe. Glowing red gemstone accent on the ankle.",
+        "colors": "purple, silver, gold, crimson"
+      },
+      {
+        "name": "Pizza Party Kicks",
+        "flavourText": "Pepperoni power! Smelly socks not included with purchase.",
+        "imageDesc": "Warm orange-red cleats designed to look like pizza. Tan and white checkerboard pattern on the tongue representing mozzarella. Yellow-orange circles scattered across. Brown triangular studs like crusty pizza crust edges.",
+        "colors": "orange-red, tan, yellow, brown"
+      },
+      {
+        "name": "Crystal Prism Boots",
+        "flavourText": "Sparkle so bright, opponents need sunglasses to look at your feet.",
+        "imageDesc": "Clear translucent cleats with rainbow iridescent internal crystalline structures visible inside. Sharp geometric facet patterns etched across the surface. Rainbow light refraction effects. Prism-shaped studs that shimmer with multiple colors.",
+        "colors": "clear, iridescent rainbow, silver shimmer"
+      },
+      {
+        "name": "Jungle Claw Cleats",
+        "flavourText": "You are not just playing soccer, you are a wild jungle beast.",
+        "imageDesc": "Dark green and teal cleats with leopard spot patterns. Curved tiger-stripe markings in black and gold. Large curved claw-shaped studs protruding from the sole. Vine-like texture details wrapping around the ankle cuff.",
+        "colors": "dark green, teal, black, gold"
+      },
+      {
+        "name": "Icebreaker Skates",
+        "flavourText": "So cool, your opponents slip on their own sweat trying to defend.",
+        "imageDesc": "Pristine white and pale blue cleats with frosted glass texture. Crystalline ice spikes forming the studs on the sole. Snowflake etchings covering the sides. Frozen gradient effect from white to icy blue with silver frost highlights.",
+        "colors": "white, pale blue, silver, icy cyan"
+      },
+      {
+        "name": "Rocket Blaster Boots",
+        "flavourText": "With exhaust flames and a jet engine vibe, you need a landing runway.",
+        "imageDesc": "Sleek silver and black cleats styled like rocket ships. Red and orange jet flame decals on the heel area. Metallic exhaust port details on the sole. Pointed nose cone design at the toe with window-like stripe details.",
+        "colors": "silver, black, red-orange, metallic gray"
+      },
+      {
+        "name": "Goblin Gold Stompers",
+        "flavourText": "Treasure hunting midfielder? These boots attract luck and loose change.",
+        "imageDesc": "Chunky brown and bronze cleats with ornate gold trim details. Embossed gold coin patterns across the surface. Goblin-like irregular spiky studs with metallic gold coating. Leather texture with jeweled accents on the ankle.",
+        "colors": "brown, bronze, gold, deep yellow"
+      },
+      {
+        "name": "Neon Pulse Runners",
+        "flavourText": "Glow in the dark, now your sweaty feet are a nightclub on the field.",
+        "imageDesc": "Black base cleats with neon pink and neon green racing stripes down the sides. Pulsing gradient effect from neon pink to neon green. Glow-in-the-dark studs on the sole. Reflective stripe patterns mimicking futuristic gear.",
+        "colors": "black, neon pink, neon green, reflective white"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-reflexes1_shooting1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Boots",
+        "flavourText": "These babies have tiny jet engines. Your feet finally move fast.",
+        "imageDesc": "Sleek red and silver cleats with flame decals on the sides, metallic rocket fins protruding from the heels, glowing orange accents around the sole, and tiny thruster nozzles at the toe.",
+        "colors": "red, silver, orange, black"
+      },
+      {
+        "name": "Dragon Scales",
+        "flavourText": "Forged from mythical dragon hide. Opponents will think twice.",
+        "imageDesc": "Purple cleats covered in overlapping iridescent scale patterns, each scale outlined in gold, with small pointed ridges along the sides, sharp metallic spikes running down the centerline, and glowing amber gemstones embedded at pressure points.",
+        "colors": "purple, gold, amber, silver"
+      },
+      {
+        "name": "Lightning Kicks",
+        "flavourText": "Electricity not included, but bragging rights definitely are.",
+        "imageDesc": "Bright yellow cleats with electric blue zigzag patterns crackling across the surface, white lightning bolt stripes along the sides, glowing electric blue accents at the seams, and sparking effects suggested by pointed star shapes on the sole.",
+        "colors": "yellow, electric blue, white, cyan"
+      },
+      {
+        "name": "Cheese Wedges",
+        "flavourText": "Made from actual Swiss cheese. Surprisingly durable and delicious-smelling.",
+        "imageDesc": "Golden-yellow cleats shaped like wedges of cheese with realistic holes scattered across the surface at various sizes, white crust texture along the edges, dark orange shading in the holes for depth, and a tiny mouse paw print on the heel.",
+        "colors": "golden yellow, white, dark orange, tan"
+      },
+      {
+        "name": "Penguin Feet",
+        "flavourText": "Waddle onto the pitch with confidence. You are basically a pro now.",
+        "imageDesc": "Black cleats with white belly patches on the inside, orange plastic webbed feet texture, little toe details to mimic flippers, glossy shine to look like penguin feathers, and a tiny fish emblem on the side.",
+        "colors": "black, white, orange, silver"
+      },
+      {
+        "name": "Lava Stompers",
+        "flavourText": "Only slightly warm to the touch. Great for staying motivated.",
+        "imageDesc": "Deep red cleats with flowing orange and yellow lava-like patterns across the surface, black crusty texture representing cooled magma, glowing orange cracks between the crusty sections suggesting heat beneath, and molten drips hanging from the sole.",
+        "colors": "deep red, orange, yellow, black"
+      },
+      {
+        "name": "Crystal Slippers",
+        "flavourText": "Royalty not required, but your teammates will bow anyway.",
+        "imageDesc": "Light blue translucent cleats with white crystalline facets carved into geometric patterns covering the surface, sparkly silver highlights reflecting from each facet, tiny gemstone studs along the heel and toe, and an iridescent rainbow shimmer effect overall.",
+        "colors": "light blue, white, silver, iridescent"
+      },
+      {
+        "name": "Squid Grip Shoes",
+        "flavourText": "Eight tentacles of traction. You still have two feet though.",
+        "imageDesc": "Dark teal and purple cleats with suction cup designs covering the bottom and sides, wavy tentacle-like grooves running along the edges, shimmering iridescent purple patches suggesting squid ink coloring, and small curved hook shapes at pressure points.",
+        "colors": "dark teal, purple, iridescent, black"
+      },
+      {
+        "name": "Rainbow Runners",
+        "flavourText": "Leaves a trail of happiness and confused defenders in your wake.",
+        "imageDesc": "White cleats with a bold rainbow gradient stripe running from heel to toe, each color section is vibrant and distinct with glitter texture, white puffy clouds at the toe and heel, and pastel accents between colors.",
+        "colors": "white, rainbow gradient, pastel pink, gold"
+      },
+      {
+        "name": "Dinosaur Stompers",
+        "flavourText": "Three-toed prehistoric power. Your opponent will recognize the footprint.",
+        "imageDesc": "Dark green and brown cleats with three prominent clawed toes extending forward like a velociraptor foot, scaly reptilian texture across the surface with darker lines suggesting plates, a long curved spike on the heel, and muddy brown weathering marks.",
+        "colors": "dark green, brown, muddy tan, black"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-luck1_speed1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "speed": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Boots",
+        "flavourText": "Leave fiery trails as you zoom past defenders!",
+        "imageDesc": "Sleek futuristic cleats with chrome plating, bright orange and yellow flame accents along the sides, glowing neon blue heels with pointed rocket exhaust ports, metallic silver toe caps with small protruding fins.",
+        "colors": "chrome silver, neon orange, electric blue, flame yellow"
+      },
+      {
+        "name": "Dragon Talons",
+        "flavourText": "Stomp with the fury of a fire-breathing dragon!",
+        "imageDesc": "Intimidating red and purple cleats shaped like dragon feet, sharp curved metal studs resembling claws, gold trim around the ankle, dark scales pattern embossed on the sides, wisps of smoke effect around the spikes.",
+        "colors": "dragon red, deep purple, gold, charcoal black"
+      },
+      {
+        "name": "Pepper Zappers",
+        "flavourText": "Too spicy for the other team to handle!",
+        "imageDesc": "Bright red chili pepper-themed boots with yellow lightning bolt patterns, electric purple accents on the sole, small yellow spark details scattered across the surface, hot sauce drip design near the heel.",
+        "colors": "chili red, mustard yellow, electric purple, white"
+      },
+      {
+        "name": "Cloud Walkers",
+        "flavourText": "Float through the game like you are walking on air!",
+        "imageDesc": "Soft white and light blue cleats with fluffy cloud-like texture details, silver lightning bolt patterns stitched across the toe, pale cyan accents, puffy cushioning visible on the sides.",
+        "colors": "cloud white, sky blue, silver, pale cyan"
+      },
+      {
+        "name": "Jellyfish Jumpers",
+        "flavourText": "Bounce higher with squishy, wobbly superpowers!",
+        "imageDesc": "Translucent glowing blue and purple boots with a jellyfish-inspired bell-shaped top, trailing tentacle-like ribbed appendages hanging from the sides and back, gelatinous texture with shimmer effects, neon green suction cup details on the bottom.",
+        "colors": "jellyfish pink, bioluminescent purple, neon green, clear white"
+      },
+      {
+        "name": "Ninja Shadow Kicks",
+        "flavourText": "Strike without a sound. Your opponents won't see you coming!",
+        "imageDesc": "Sleek all-black stealth boots with dark purple metallic sheen, crimson red accent stripes along the sides, small throwing star emblems on the toe, matte finish with subtle shadows suggesting movement.",
+        "colors": "deep black, dark purple, crimson red, gunmetal gray"
+      },
+      {
+        "name": "Spaghetti Sprint Shoes",
+        "flavourText": "Slippery, saucy, and ready to slide to glory!",
+        "imageDesc": "Silly pasta-themed cleats with tan and wheat brown base, red marinara sauce splatter pattern across the surface, golden olive oil drip details on the sides, noodle-like laces that look like spaghetti.",
+        "colors": "pasta tan, marinara red, olive green, golden yellow"
+      },
+      {
+        "name": "Thunder Stompers",
+        "flavourText": "Every step creates a lightning bolt of pure speed!",
+        "imageDesc": "Powerful yellow and black striped cleats like a storm cloud, electric blue lightning bolt treads on the bottom, metallic silver electrodes protruding from the heel and toe, crackling energy lines etched into the surface.",
+        "colors": "storm yellow, thunder black, electric blue, metallic silver"
+      },
+      {
+        "name": "Peacock Prancers",
+        "flavourText": "Strut onto the field in fabulous, feathered style!",
+        "imageDesc": "Flamboyant cleats with iridescent turquoise and emerald base, fan-shaped feather design in rainbow colors erupting from the heel, deep purple accents, shimmering sequin-like details across the surface.",
+        "colors": "iridescent turquoise, rainbow feather mix, royal purple, emerald green"
+      },
+      {
+        "name": "Asteroid Crushers",
+        "flavourText": "Boom! You are unstoppable like a space rock!",
+        "imageDesc": "Heavy-duty gray and brown rocky cleats with crater patterns, jagged irregular surface texture like broken stone, bright orange and yellow glowing lava lines through the cracks, metallic cores visible beneath the surface.",
+        "colors": "space gray, crater brown, lava orange, molten yellow"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-shooting1_speed1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "shooting": 1,
+      "speed": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Boosters",
+        "flavourText": "So fast they leave a fiery trail behind you.",
+        "imageDesc": "Neon orange cleats with glowing blue rocket thrusters mounted on the heels. Silver metallic accents, flame patterns streaking down the sides, small circular exhaust ports on the sole.",
+        "colors": "neon orange, electric blue, silver, black"
+      },
+      {
+        "name": "Dragon Claw Kicks",
+        "flavourText": "Legendary boots that make you feel like a mythical beast.",
+        "imageDesc": "Deep crimson cleats shaped like dragon claws with golden scale texturing. Sharp pointed studs that resemble scales, glowing amber accents on the toe and ankle, wispy smoke-like patterns.",
+        "colors": "deep crimson, golden yellow, amber, dark purple"
+      },
+      {
+        "name": "Cheetah Sprint",
+        "flavourText": "Spots make you zoom faster, probably because they look cool.",
+        "imageDesc": "Golden-tan cleats with bold black spot patterns. Sleek, aerodynamic design with a muscular profile. Leopard-spot texture throughout, white stripe accents down the center, small feather-like details on the heel.",
+        "colors": "golden tan, black, white, copper"
+      },
+      {
+        "name": "Pizza Blaster",
+        "flavourText": "Cheesy boots that make you unstoppable. Literally covered in cheese.",
+        "imageDesc": "Red tomato-colored cleats with melted yellow cheese texture dripping down. Pepperoni slice circles scattered across the surface. Mozzarella white swirls, crusty crust-colored brown sole with bubbly texture details.",
+        "colors": "tomato red, melted yellow, mozzarella white, crust brown"
+      },
+      {
+        "name": "Lightning Strikers",
+        "flavourText": "Boots filled with actual lightning. Don't ask how.",
+        "imageDesc": "Sleek white cleats with jagged electric blue lightning bolt patterns covering the entire surface. Bright cyan glowing accents along edges and studs. Purple discharge effects near the sole, crackling texture details.",
+        "colors": "bright white, electric blue, cyan, purple"
+      },
+      {
+        "name": "Ninja Shadows",
+        "flavourText": "So silent, defenders won't know you are coming.",
+        "imageDesc": "All-black cleats with a ninja shoe silhouette. Dark gray striped patterns mimicking cloth bindings. Red accent stitching in geometric patterns, small metallic silver studs arranged like throwing stars, fuzzy textured ankle area.",
+        "colors": "jet black, dark gray, red, metallic silver"
+      },
+      {
+        "name": "Comet Crushers",
+        "flavourText": "Boots made from actual space rock. Totally real.",
+        "imageDesc": "Silver-gray metallic cleats with cratered, pitted texture like asteroid surface. Bright cyan crystalline formations jutting out from the studs. Swirling cosmic purple and blue gradient patterns, glowing energy core visible through translucent heel section.",
+        "colors": "silver-gray, cosmic blue, cyan, deep purple"
+      },
+      {
+        "name": "Thunder Hooves",
+        "flavourText": "Unicorn magic inside every boot. Rainbow not included.",
+        "imageDesc": "Iridescent pearl cleats that shift between pink and blue hues. Spiral horn-shaped studs, flowing mane-like fabric details on the ankle. Magical sparkle texture throughout, star and moon embellishments, ethereal wisps painted on the sides.",
+        "colors": "pearl white, iridescent pink, sky blue, sparkle gold"
+      },
+      {
+        "name": "Inferno Stompers",
+        "flavourText": "Literally on fire. Your feet are now a hazard.",
+        "imageDesc": "Intense orange-red cleats with flame licking up from the toe and heel. Glowing yellow-white hot spots on the studs and sole. Blackened charred texture on parts of the surface, with ember-like orange dots scattered throughout.",
+        "colors": "inferno orange, flame yellow, white-hot, charcoal black"
+      },
+      {
+        "name": "Crystal Prism Kicks",
+        "flavourText": "Refract light so bright, goalies can't see straight.",
+        "imageDesc": "Translucent iridescent cleats that refract rainbow light. Faceted gemstone pattern covering entire surface like cut diamonds. Prism-blue base with lighter diamond shapes, rainbow sparkle effects on studs and edges, mirror-like reflective sections.",
+        "colors": "prism blue, diamond white, rainbow spectrum, sparkle silver"
+      }
+    ],
+    "selected": [
+      9
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-passing1_reflexes1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Rocket Boots",
+        "flavourText": "Goes so fast, the ball can't keep up!",
+        "imageDesc": "Sleek silver and neon orange rocket-themed cleats with flame designs on the sides, glowing neon accents along the heel, metallic finish with sharp angular lines resembling jet engines.",
+        "colors": "silver, neon orange, black, cyan"
+      },
+      {
+        "name": "Dragon Talons",
+        "flavourText": "Claw your way to victory, one pass at a time.",
+        "imageDesc": "Crimson red cleats shaped like dragon feet with curved golden claws as studs, scaled texture across the upper, smoke-like wisps etched into the leather, fierce expression on the toe.",
+        "colors": "crimson red, gold, dark gray, orange"
+      },
+      {
+        "name": "Spaghetti Stompers",
+        "flavourText": "Ketchup AND mustard, the ultimate flavor combo!",
+        "imageDesc": "Comical red and yellow striped cleats designed to look like ketchup and mustard bottles, with white condiment drips running down the sides, googly eyes on the toe cap.",
+        "colors": "red, yellow, white, brown"
+      },
+      {
+        "name": "Bubble Blasters",
+        "flavourText": "Pop passes with explosive accuracy!",
+        "imageDesc": "Translucent iridescent cleats with colorful bubble patterns all over, shimmering pearl finish, bubble shapes of varying sizes embossed across the surface, holographic shimmer effects.",
+        "colors": "iridescent pink, pearl white, sky blue, mint green"
+      },
+      {
+        "name": "Penguin Waddles",
+        "flavourText": "Waddle faster. Pass better. Look adorable doing it.",
+        "imageDesc": "Black and white cleats shaped like penguin feet with webbed sole detail, cute round toe design, white belly patch on the front, little orange flipper-like side wings.",
+        "colors": "black, white, orange, light blue"
+      },
+      {
+        "name": "Thunder Cleats",
+        "flavourText": "Electric passes that strike opponents with awe!",
+        "imageDesc": "Deep purple cleats with bright yellow lightning bolt patterns crackling across the surface, electric blue glowing trim along edges, jagged zigzag texture, sparkling metallic accents.",
+        "colors": "deep purple, electric yellow, cyan, silver"
+      },
+      {
+        "name": "Pirate Hook-Kicks",
+        "flavourText": "Yo-ho-ho! This boot is truly legendary.",
+        "imageDesc": "Weathered brown leather cleats with a curved golden hook-shaped stud pattern, tattered rope details wrapped around the ankle area, skull and crossbones emblem on the heel, aged worn texture.",
+        "colors": "weathered brown, gold, black, cream"
+      },
+      {
+        "name": "Moonlight Slippers",
+        "flavourText": "Glide across the pitch like you are floating!",
+        "imageDesc": "Soft lavender cleats with silver crescent moon and star patterns, silky smooth gradient texture fading to pale white, glowing ethereal trim, dreamy cloud designs scattered throughout.",
+        "colors": "lavender, silver, pale blue, white"
+      },
+      {
+        "name": "Turbo Taco Boots",
+        "flavourText": "Spicy passes served faster than dinner!",
+        "imageDesc": "Golden-brown cleats molded to resemble taco shells, cheese-yellow streaks and details, red and green salsa-colored splatter patterns, crunchy texture across the surface, silly face on the toe.",
+        "colors": "golden brown, yellow, red, green"
+      },
+      {
+        "name": "Cosmic Treads",
+        "flavourText": "Star power in every step across the galaxy!",
+        "imageDesc": "Deep space blue cleats covered in constellation patterns and tiny star studs, swirling nebula effects in purple and pink, glowing white star outlines, metallic cosmic dust shimmer throughout.",
+        "colors": "deep blue, cosmic purple, hot pink, white"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "feet-uncommon-luck1_shooting1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Lobster Kicks",
+        "flavourText": "Pinching the ball into the net with oversized claws.",
+        "imageDesc": "Bright red cleats shaped like lobster claws, with thick articulated segments and prominent pincers at the toe. Covered in a chitinous texture with white accents on the joints. Small bubbles float around the heel.",
+        "colors": "red, white, ocean blue, coral"
+      },
+      {
+        "name": "Disco Boots of Destiny",
+        "flavourText": "Your feet are a mirror ball. Goals sparkle.",
+        "imageDesc": "Shimmering silver and white cleats covered in thousands of small hexagonal mirrors and rhinestones. Reflective disco ball texture across entire surface with gold trim around the ankle. Leaves a glittering trail.",
+        "colors": "silver, gold, white, mirror"
+      },
+      {
+        "name": "Comet Strikers",
+        "flavourText": "You ARE the meteor. The ball never saw it coming.",
+        "imageDesc": "Sleek white cleats with a streaking comet tail design blazing from the heel to toe in bright orange and yellow. Metallic sheen with flame-like patterns. Small trailing particles visible along edges.",
+        "colors": "white, orange, yellow, silver"
+      },
+      {
+        "name": "Jelly Bean Boosters",
+        "flavourText": "Sugary sweet feet with an unexpected kick.",
+        "imageDesc": "Plump, round cleats that look like giant translucent jelly beans in mixed candy colors. Shiny, bumpy candy-coated texture. Small sugar crystals glitter on the surface.",
+        "colors": "candy red, yellow, green, translucent"
+      },
+      {
+        "name": "Fortune Cookie Cleats",
+        "flavourText": "Each step reveals your lucky future. Usually goals.",
+        "imageDesc": "Golden-brown cleats shaped and textured like crispy fortune cookies, partially curled. Fortune paper strips peek out from the folds with gold lettering. Dusted with sesame seeds and a warm honey glow.",
+        "colors": "golden brown, cream, gold, tan"
+      },
+      {
+        "name": "Stardust Steppers",
+        "flavourText": "Leave a trail of shimmering wishes across the pitch.",
+        "imageDesc": "Pale periwinkle cleats studded with glowing star-shaped crystals in white and pale blue. Swirling cosmic dust patterns painted across the surface. Ethereal glow effect with a gradient from deep purple at heel to white at toe.",
+        "colors": "periwinkle, pale blue, white, purple"
+      },
+      {
+        "name": "Prismatic Piranhas",
+        "flavourText": "Hungry cleats that bite with kaleidoscope precision.",
+        "imageDesc": "Angular, predatory-looking cleats shaped like fish heads with open mouths. Split-colored design with geometric prism segments in cyan, magenta, and yellow. Sharp teeth texture along the toe box. Scales shimmer with iridescent effects.",
+        "colors": "cyan, magenta, yellow, silver"
+      },
+      {
+        "name": "Wishing Well Walkers",
+        "flavourText": "Every goal is a coin dropped into destiny itself.",
+        "imageDesc": "Cobalt blue cleats with a coin-inlay pattern across the toe and sides. Gold coins of various denominations embossed into the leather. Ringed water ripple texture from a central pattern. Pearl-white accents simulate light reflecting off water.",
+        "colors": "cobalt blue, gold, pearl white, copper"
+      },
+      {
+        "name": "Nebula Navigators",
+        "flavourText": "The universe bends around your footwork.",
+        "imageDesc": "Deep space-themed cleats with swirling nebula clouds in turquoise, pink, and purple. Scattered white star-like dots and glowing nebula wisps across the surface. Dark navy base with a dreamy, cosmic gradient flowing from heel to toe.",
+        "colors": "navy blue, turquoise, pink, purple"
+      },
+      {
+        "name": "Moonstone Marauders",
+        "flavourText": "Pale and mystical. The ball doesn't stand a chance.",
+        "imageDesc": "Luminescent opalescent cleats that shift between soft blue, white, and pale pink depending on the angle. Smooth, polished surface with internal milky swirls like real moonstone. Subtle crescent moon symbols etched along the side. Glowing inner light effect.",
+        "colors": "pale blue, white, pink, opal"
+      }
+    ],
+    "selected": [
+      1
+    ]
+  },
+  {
+    "concept_id": "feet-uncommon-reflexes1_strength1",
+    "slot": "feet",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Thunder Treads",
+        "flavourText": "Sparks fly with every step. Shoes smell like burnt toast.",
+        "imageDesc": "Sleek black cleats with jagged yellow lightning bolt patterns running down the sides and across the toe box. Electric blue piping along the seams. Metallic silver studs on the sole. Crackling energy effect around the edges.",
+        "colors": "black, yellow, electric blue, silver"
+      },
+      {
+        "name": "Dragon Claw Boots",
+        "flavourText": "Shaped like dragon claws. Very sharp. Very deadly.",
+        "imageDesc": "High-top dragon-inspired boots with crimson red leather and claw-like protrusions on the toe and heel. Gold accents along the edges forming dragon scales. Fiery orange flames painted on the ankle band.",
+        "colors": "crimson red, gold, orange, black"
+      },
+      {
+        "name": "Candy Crush Kicks",
+        "flavourText": "Made from compressed gummy bears. Surprisingly sticky grip.",
+        "imageDesc": "Colorful candy-themed cleats featuring swirled pastel colors: pink, mint green, and light purple. Candy wrapper-pattern panels on the sides. Glossy finish with white lollipop designs on the tongue. Sugar-crystal texture details on the sole.",
+        "colors": "candy pink, mint green, lavender, white"
+      },
+      {
+        "name": "Volcano Stompers",
+        "flavourText": "Leave burning footprints on the pitch. Groundskeeper is mad.",
+        "imageDesc": "Rugged dark brown and deep red cleats with a molten lava effect. Glowing orange cracks across the surface like active lava. Black volcanic ash texture covering the upper. Bright red ember accents on the laces and sole.",
+        "colors": "dark brown, lava red, orange, black"
+      },
+      {
+        "name": "Moonlight Prancers",
+        "flavourText": "Glow softly at night. Perfect for midnight practice.",
+        "imageDesc": "Elegant silvery-white cleats with a pearlescent sheen. Crescent moon symbols embossed on the side panels. Pale blue starlight accents trailing across the shoe. Soft cyan glow effect on the edges and sole studs.",
+        "colors": "pearl white, pale blue, silver, cyan"
+      },
+      {
+        "name": "Sticky Gecko Feet",
+        "flavourText": "Can climb anything. Even vertical walls (probably).",
+        "imageDesc": "Lime green cleats designed to mimic gecko toe pads. Bumpy textured panels covering the shoe surface in a suction-cup pattern. Brown branch-like detail on the ankle. Tiny red gecko eye symbols on the heel.",
+        "colors": "lime green, brown, red, white"
+      },
+      {
+        "name": "Ice Age Skates",
+        "flavourText": "Frozen solid. Slippery. Possibly a hazard.",
+        "imageDesc": "Crystalline icy-blue and white cleats with jagged ice-shard patterns. Frosted translucent sections revealing frozen details inside. Glacier white accents and icicle formations hanging from the sole. Light cyan shimmer across the surface.",
+        "colors": "ice blue, white, cyan, pale gray"
+      },
+      {
+        "name": "Pirate Plank Boots",
+        "flavourText": "Smells like saltwater and regret. Arrr.",
+        "imageDesc": "Weathered wooden-texture brown cleats with a pirate ship aesthetic. Tattered black fabric panels like torn sails. Gold coin decorations on the sides. Skull and crossbones emblem on the tongue. Dark red stripe mimicking dried blood.",
+        "colors": "weathered brown, black, gold, dark red"
+      },
+      {
+        "name": "Meteor Crushers",
+        "flavourText": "Hardened meteor steel. Heavier than they look.",
+        "imageDesc": "Chunky dark gray cleats with a rocky, cratered metallic surface. Streaks of bright silver and copper running through like metal ore veins. Jagged edges that look like broken meteorite fragments. Bronze studs protruding from the sole.",
+        "colors": "dark gray, silver, copper, bronze"
+      },
+      {
+        "name": "Panda Power Peds",
+        "flavourText": "Black and white. Adorably strong.",
+        "imageDesc": "Bold panda-themed cleats with primary black and white color blocking. Black paw pad patterns on the sole and heel. Large white circular panels on the sides with black ring details around them like panda eyes. Soft fuzzy texture effect on the upper.",
+        "colors": "black, white, dark gray"
+      }
+    ],
+    "selected": []
   }
 ]

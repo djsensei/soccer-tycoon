@@ -55,7 +55,6 @@ const CARDS = {
   // === UNCOMMON ===
   'padded-vest':      { id: 'padded-vest',       name: 'Padded Vest',      slot: 'body',   rarity: 'uncommon', flavourText: 'Absorbs tackles like a champ.',                    statBonuses: { strength: 1, height: 1 } },
   'grip-gloves':      { id: 'grip-gloves',       name: 'Grip Gloves',      slot: 'gloves', rarity: 'uncommon', flavourText: 'Sticks to everything.',                            statBonuses: { reflexes: 2 } },
-  'sprinting-spikes': { id: 'sprinting-spikes',  name: 'Sprinting Spikes', slot: 'feet',   rarity: 'uncommon', flavourText: 'Leave little holes everywhere.',                   statBonuses: { speed: 1, shooting: 1 } },
   'focus-visor':      { id: 'focus-visor',       name: 'Focus Visor',      slot: 'head',   rarity: 'uncommon', flavourText: 'Everything looks like a target.',                  statBonuses: { passing: 1, shooting: 1 } },
 
   // === RARE ===
@@ -103,6 +102,19 @@ const CARDS = {
   'marksman-mask': { id: 'marksman-mask', name: 'Marksman Mask', slot: 'head', rarity: 'common', flavourText: "Only the finest shooters wear this.", statBonuses: { shooting: 1 } },
   'reflex-reactor-helm': { id: 'reflex-reactor-helm', name: 'Reflex Reactor Helm', slot: 'head', rarity: 'common', flavourText: "Reacts faster than thought.", statBonuses: { reflexes: 1 } },
   'blessing-band': { id: 'blessing-band', name: 'Blessing Band', slot: 'head', rarity: 'common', flavourText: "Blessed by every good luck source.", statBonuses: { luck: 1 } },  // ⚠ image pending
+  'jellyfish-jetblasts': { id: 'jellyfish-jetblasts', name: 'Jellyfish Jetblasts', slot: 'feet', rarity: 'uncommon', flavourText: "Floats around luck like tentacles of fortune.", statBonuses: { luck: 2 } },
+  'ninja-star-slashers': { id: 'ninja-star-slashers', name: 'Ninja Star Slashers', slot: 'feet', rarity: 'uncommon', flavourText: "Silent goal-scoring. Lethal accuracy. Zero mercy.", statBonuses: { shooting: 2 } },
+  'forest-flyers': { id: 'forest-flyers', name: 'Forest Flyers', slot: 'feet', rarity: 'uncommon', flavourText: "Grown from enchanted trees. Very eco-friendly.", statBonuses: { passing: 1, speed: 1 } },
+  'thunderpaw-boots': { id: 'thunderpaw-boots', name: 'Thunderpaw Boots', slot: 'feet', rarity: 'uncommon', flavourText: "Wild wolf paws with electric claws. Rawr and score!", statBonuses: { shooting: 1, strength: 1 } },
+  'phoenix-flame-boots': { id: 'phoenix-flame-boots', name: 'Phoenix Flame Boots', slot: 'feet', rarity: 'uncommon', flavourText: "Rise from defeat with style and very hot feet.", statBonuses: { speed: 1, strength: 1 } },
+  'mystic-moonboots': { id: 'mystic-moonboots', name: 'Mystic Moonboots', slot: 'feet', rarity: 'uncommon', flavourText: "Kick with the power of the moon. That is about 1/6 Earth power.", statBonuses: { passing: 1, shooting: 1 } },
+  'spring-loaded-bouncy-boots': { id: 'spring-loaded-bouncy-boots', name: 'Spring-Loaded Bouncy Boots', slot: 'feet', rarity: 'uncommon', flavourText: "Your feet bounce before your brain catches up.", statBonuses: { reflexes: 2 } },  // ⚠ image pending
+  'pizza-stompers': { id: 'pizza-stompers', name: 'Pizza Stompers', slot: 'feet', rarity: 'uncommon', flavourText: "Cheesy passes guaranteed. Grease not mandatory.", statBonuses: { passing: 2 } },
+  'timber-beast-cleats': { id: 'timber-beast-cleats', name: 'Timber Beast Cleats', slot: 'feet', rarity: 'uncommon', flavourText: "Carved from a grizzly paw. Splinter-free, somehow.", statBonuses: { passing: 1, strength: 1 } },
+  'cheetah-chompers': { id: 'cheetah-chompers', name: 'Cheetah Chompers', slot: 'feet', rarity: 'uncommon', flavourText: "Spotted for excellence, built for pouncing.", statBonuses: { speed: 2 } },
+  'meteor-crushers': { id: 'meteor-crushers', name: 'Meteor Crushers', slot: 'feet', rarity: 'uncommon', flavourText: "Your cleats fell from space and hit HARD.", statBonuses: { strength: 2 } },
+  'crystal-prism-kicks': { id: 'crystal-prism-kicks', name: 'Crystal Prism Kicks', slot: 'feet', rarity: 'uncommon', flavourText: "Refract light so bright, goalies can't see straight.", statBonuses: { shooting: 1, speed: 1 } },  // ⚠ image pending
+  'disco-boots-of-destiny': { id: 'disco-boots-of-destiny', name: 'Disco Boots of Destiny', slot: 'feet', rarity: 'uncommon', flavourText: "Your feet are a mirror ball. Goals sparkle.", statBonuses: { luck: 1, shooting: 1 } },  // ⚠ image pending
   // @forge:end
 };
 
