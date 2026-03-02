@@ -24,3 +24,4 @@ Redesign the new-game flow to be more interactive and set the stage for player s
 ### Assigned issues
 - Interactive player creation flow (one-at-a-time name + stats, then position assignment)
 - Player stat detail modal (enlarged bars, stat explanations, base vs bonus breakdown)
+- Death screen references manager name instead of team name
