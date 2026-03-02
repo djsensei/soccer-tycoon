@@ -113,8 +113,23 @@ const CARDS = {
   'timber-beast-cleats': { id: 'timber-beast-cleats', name: 'Timber Beast Cleats', slot: 'feet', rarity: 'uncommon', flavourText: "Carved from a grizzly paw. Splinter-free, somehow.", statBonuses: { passing: 1, strength: 1 } },
   'cheetah-chompers': { id: 'cheetah-chompers', name: 'Cheetah Chompers', slot: 'feet', rarity: 'uncommon', flavourText: "Spotted for excellence, built for pouncing.", statBonuses: { speed: 2 } },
   'meteor-crushers': { id: 'meteor-crushers', name: 'Meteor Crushers', slot: 'feet', rarity: 'uncommon', flavourText: "Your cleats fell from space and hit HARD.", statBonuses: { strength: 2 } },
-  'crystal-prism-kicks': { id: 'crystal-prism-kicks', name: 'Crystal Prism Kicks', slot: 'feet', rarity: 'uncommon', flavourText: "Refract light so bright, goalies can't see straight.", statBonuses: { shooting: 1, speed: 1 } },  // ⚠ image pending
-  'disco-boots-of-destiny': { id: 'disco-boots-of-destiny', name: 'Disco Boots of Destiny', slot: 'feet', rarity: 'uncommon', flavourText: "Your feet are a mirror ball. Goals sparkle.", statBonuses: { luck: 1, shooting: 1 } },  // ⚠ image pending
+  'crystal-prism-kicks': { id: 'crystal-prism-kicks', name: 'Crystal Prism Kicks', slot: 'feet', rarity: 'uncommon', flavourText: "Refract light so bright, goalies can't see straight.", statBonuses: { shooting: 1, speed: 1 } },
+  'disco-boots-of-destiny': { id: 'disco-boots-of-destiny', name: 'Disco Boots of Destiny', slot: 'feet', rarity: 'uncommon', flavourText: "Your feet are a mirror ball. Goals sparkle.", statBonuses: { luck: 1, shooting: 1 } },
+  'valkyrie-jersey': { id: 'valkyrie-jersey', name: 'Valkyrie Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Descends from above to strike the winning goal.", statBonuses: { height: 1, shooting: 1 } },
+  'banana-bend': { id: 'banana-bend', name: 'Banana Bend', slot: 'body', rarity: 'uncommon', flavourText: "Curved shots that bend like lucky bananas.", statBonuses: { luck: 1, shooting: 1 } },
+  'pterodactyl-top': { id: 'pterodactyl-top', name: 'Pterodactyl Top', slot: 'body', rarity: 'uncommon', flavourText: "Extinct everywhere except on the football pitch.", statBonuses: { height: 1, speed: 1 } },
+  'artemis-vest': { id: 'artemis-vest', name: 'Artemis Vest', slot: 'body', rarity: 'uncommon', flavourText: "Greek goddess of the hunt. And assists. And goals.", statBonuses: { passing: 1, shooting: 1 } },
+  'spider-silk': { id: 'spider-silk', name: 'Spider Silk', slot: 'body', rarity: 'uncommon', flavourText: "Webs of passes connecting every player on the pitch.", statBonuses: { passing: 2 } },
+  'pony-express': { id: 'pony-express', name: 'Pony Express', slot: 'body', rarity: 'uncommon', flavourText: "Mail on horseback. Passes on fast-back.", statBonuses: { passing: 1, speed: 1 } },
+  'hornet-shirt': { id: 'hornet-shirt', name: 'Hornet Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Small, fast, and its sting really hurts.", statBonuses: { shooting: 1, speed: 1 } },  // ⚠ image pending
+  'wrecking-ball': { id: 'wrecking-ball', name: 'Wrecking Ball', slot: 'body', rarity: 'uncommon', flavourText: "Came in like a... well you know the song.", statBonuses: { shooting: 1, strength: 1 } },
+  'leprechaun-top': { id: 'leprechaun-top', name: 'Leprechaun Top', slot: 'body', rarity: 'uncommon', flavourText: "Catches the leprechaun AND the ball. Every time.", statBonuses: { luck: 1, speed: 1 } },  // ⚠ image pending
+  'rhino-jersey': { id: 'rhino-jersey', name: 'Rhino Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Has a horn on the collar. Yes it's regulation.", statBonuses: { strength: 2 } },  // ⚠ image pending
+  'gazelle-vest': { id: 'gazelle-vest', name: 'Gazelle Vest', slot: 'body', rarity: 'uncommon', flavourText: "Graceful AND fast — defenders hate this one trick.", statBonuses: { speed: 2 } },  // ⚠ image pending
+  'redwood-jersey': { id: 'redwood-jersey', name: 'Redwood Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Been growing taller since the dinosaurs played footy.", statBonuses: { height: 2 } },  // ⚠ image pending
+  'train-shirt': { id: 'train-shirt', name: 'Train Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Full steam ahead and no brakes whatsoever.", statBonuses: { speed: 1, strength: 1 } },  // ⚠ image pending
+  'cat-shirt': { id: 'cat-shirt', name: 'Cat Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Has nine lives and uses them all in one match.", statBonuses: { luck: 2 } },  // ⚠ image pending
+  'scorpion-vest': { id: 'scorpion-vest', name: 'Scorpion Vest', slot: 'body', rarity: 'uncommon', flavourText: "The tail strikes when you least expect it.", statBonuses: { shooting: 2 } },  // ⚠ image pending
   // @forge:end
 };
 

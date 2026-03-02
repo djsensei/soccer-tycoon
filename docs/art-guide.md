@@ -9,7 +9,7 @@
 ## Generation workflow
 
 1. `uv run forge.py concepts --slot <slot> --rarity <rarity>` — scaffolds concepts in `new_options.json`
-2. Ask Claude Code to run Haiku generation to populate 10 name/flavour/imageDesc options per concept
+2. Populate options: run `/generate-card-concepts` or ask Claude Code to generate options for all concepts in `new_options.json`
 3. `uv run forge.py select` — interactive picker; auto-generates `prompts.txt` on exit
 4. Generate images in Stable Diffusion using prompts from `tools/card-forge/data/prompts.txt`
 5. Drop raw PNG outputs into `tools/card-forge/input/`
@@ -46,6 +46,23 @@ Plain white background.
 ```
 
 Trail origins by slot: feet → heel · body → shoulders · head → back · gloves → fingertips
+
+## Option generation (step 2) — recommended approach
+
+Use a **single Task agent** that generates all concepts' options at once and writes `patch.json`, then runs `forge.py populate`. Do NOT spawn per-concept background agents — their results are lost when output files are empty.
+
+Recommended flow inside the skill / manual prompt:
+
+1. Read `tools/card-forge/data/new_options.json` to find concepts with empty `options` arrays
+2. Launch **one** foreground `general-purpose` Task agent that:
+   - Generates 10 options (name, flavourText, imageDesc, colors) per concept inline
+   - Writes the merged result as `tools/card-forge/data/patch.json`
+   - Runs `cd tools/card-forge && uv run forge.py populate --file data/patch.json`
+3. Report a preview table (concept ID → first option name) so the user can sanity-check before `select`
+
+Each option needs 4 fields: `name` (2-3 words), `flavourText` (<15 words, silly), `imageDesc` (detailed visual, no backgrounds), `colors` (3-4 color palette).
+
+Themes should be diverse per concept (fantasy, sci-fi, nature, food, animals, mythology, absurd). Stats loosely inspire the theme but creativity is encouraged.
 
 ## Fallback behavior
 
