@@ -2,6 +2,20 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-03-01 (playtest balance & polish)
+
+### [P0] [Balance] Double simulation action durations
+**Fix**: Doubled `EVENT_SECONDS_PER_STEP` in `simulator.js` from 5 to 10, halving the number of Markov steps per match (~1080 → ~540). Lowers scores and stat accumulation across the board.
+
+### [P0] [Balance] ~3x player stat milestone thresholds
+**Fix**: Approximately tripled all thresholds in `STAT_MILESTONES` in `data.js`, keeping round numbers. E.g. goals: [3,8,15,25,40,60] → [10,25,50,75,120,180], passes: [30,80,150,250,400,600] → [90,250,450,750,1200,1800].
+
+### [P0] [UX] Slow pack opening animation by 0.5x
+**Fix**: Doubled card reveal animation duration from 0.5s to 1s in `style.css`, and doubled the per-card stagger delay from 0.3s to 0.6s in `packopen.js`. Legendary pulse delay updated to match.
+
+### [P0] [Stats] Change Shooting abbreviation from SHT to SHO
+**Fix**: Updated `STAT_ABBR.shooting` from `'SHT'` to `'SHO'` in `data.js`.
+
 ## 2026-02-25 (M5 gear depth)
 
 ### [P0] GK row layout breaks with stat bars

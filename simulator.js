@@ -281,7 +281,7 @@ function simulateMatch(playerTeam, opponentTeam) {
   // Game clock — each Markov step advances by a random duration.
   // Tune EVENT_SECONDS_PER_STEP to control match pacing / average score.
   const MATCH_SECONDS          = 5400; // 90 min × 60 s
-  const EVENT_SECONDS_PER_STEP = 5;    // mean seconds per step (~1 080 steps/match)
+  const EVENT_SECONDS_PER_STEP = 10;   // mean seconds per step (~540 steps/match)
   let gameClockSeconds = 0;
 
   // Kickoff event

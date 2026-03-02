@@ -289,7 +289,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 /* ---- Rarity glows (pack opening) ---- */
 .pack-card.rarity-rare      { box-shadow: 0 0 14px #2196f355; }
 .pack-card.rarity-epic      { box-shadow: 0 0 20px #9c27b088; }
-.pack-card.rarity-legendary { animation: cardReveal 0.5s ease both, legendaryPulse 2s ease-in-out 0.5s infinite; }
+.pack-card.rarity-legendary { animation: cardReveal 1s ease both, legendaryPulse 2s ease-in-out 1s infinite; }
 @keyframes legendaryPulse {
   0%, 100% { box-shadow: 0 0 16px #ff980088; }
   50%       { box-shadow: 0 0 36px #ff9800cc; }
@@ -737,7 +737,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  animation: cardReveal 0.5s ease both;
+  animation: cardReveal 1s ease both;
 }
 
 .pack-card-slot    { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }

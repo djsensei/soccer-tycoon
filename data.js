@@ -31,16 +31,16 @@ const STAT_COLORS = {
 };
 const STAT_ABBR = {
   height: 'HGT', speed: 'SPD', strength: 'STR',
-  passing: 'PAS', shooting: 'SHT', reflexes: 'REF', luck: 'LCK',
+  passing: 'PAS', shooting: 'SHO', reflexes: 'REF', luck: 'LCK',
 };
 
 // Per-stat milestone thresholds (tuned to event frequency)
 const STAT_MILESTONES = {
-  goals:       { stat: 'shooting', thresholds: [3, 8, 15, 25, 40, 60] },
-  saves:       { stat: 'reflexes', thresholds: [5, 12, 25, 40, 60, 90] },
-  tackles:     { stat: 'strength', thresholds: [5, 12, 25, 40, 60, 90] },
-  passes:      { stat: 'passing',  thresholds: [30, 80, 150, 250, 400, 600] },
-  shotsMissed: { stat: 'luck',     thresholds: [10, 25, 50, 80, 120, 175] },
+  goals:       { stat: 'shooting', thresholds: [10, 25, 50, 75, 120, 180] },
+  saves:       { stat: 'reflexes', thresholds: [15, 35, 75, 120, 180, 270] },
+  tackles:     { stat: 'strength', thresholds: [15, 35, 75, 120, 180, 270] },
+  passes:      { stat: 'passing',  thresholds: [90, 250, 450, 750, 1200, 1800] },
+  shotsMissed: { stat: 'luck',     thresholds: [30, 75, 150, 250, 360, 525] },
 };
 
 // --- Gear Cards -------------------------------------------------
