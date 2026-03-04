@@ -4379,5 +4379,1539 @@
     "selected": [
       7
     ]
+  },
+  {
+    "concept_id": "head-uncommon-luck1_strength1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Headbutt Helm",
+        "flavourText": "Rams win all their header battles. Sometimes unintentionally.",
+        "imageDesc": "A bronze-colored metal helmet shaped like a ram's head with curved horns. The helmet has a dented center and sports glowing golden runes along the forehead.",
+        "colors": "bronze, gold, white, slate"
+      },
+      {
+        "name": "Sneaky Pickpocket Cap",
+        "flavourText": "Steals the ball AND your snacks. You won't notice until halftime.",
+        "imageDesc": "A purple jester's cap with three points, each topped with a tiny golden bell. A mischievous grin is embroidered on the front in black thread.",
+        "colors": "purple, gold, yellow, black"
+      },
+      {
+        "name": "Thunderstrike Circlet",
+        "flavourText": "Makes your hair stand on end. Literally charges your shots.",
+        "imageDesc": "A glowing electric blue circlet made of interlocking lightning bolts forming a crown. Jagged edges spark with white-hot electricity. The center gem radiates bright cyan light.",
+        "colors": "electric blue, cyan, gold, white"
+      },
+      {
+        "name": "Dragon Egg Tophat",
+        "flavourText": "Wears a dragon egg. The dragon inside cheers when you score.",
+        "imageDesc": "A tall formal top hat made of black silk with a massive iridescent dragon egg sitting on top. The egg has scales texture in deep purples and greens with hints of orange.",
+        "colors": "black, purple, iridescent green, orange"
+      },
+      {
+        "name": "Fuzzy Dice Headwrap",
+        "flavourText": "Roll the dice, not the ball. Every game's a gamble with style.",
+        "imageDesc": "A soft pink headwrap with oversized fuzzy dice sewn all over it. Each die shows different numbers with bold white dots. Rainbow-colored ribbons trail from the back.",
+        "colors": "hot pink, white, rainbow pastels, gold sparkle"
+      },
+      {
+        "name": "Strongman's Flower Crown",
+        "flavourText": "Proves real strength is beautiful. Enemies underestimate you every time.",
+        "imageDesc": "A delicate crown woven from thick thorny vines and vibrant oversized flowers in red, pink, and orange. Golden rope reinforces the structure.",
+        "colors": "emerald green, crimson, golden yellow, soft pink"
+      },
+      {
+        "name": "Rocket Pop Helmet",
+        "flavourText": "Your head smells like dessert. Also, you can now fly slightly.",
+        "imageDesc": "A helmet shaped like a giant popsicle with vertical stripes of red, white, and blue. Shiny glaze effect covers the surface. A stick protrudes from the back.",
+        "colors": "red, white, blue, light cyan"
+      },
+      {
+        "name": "Bamboo Panda Helm",
+        "flavourText": "Cute AND powerful. Opponents keep trying to take selfies instead of defending.",
+        "imageDesc": "A round white helmet designed like a cute giant panda's face with black patches around the eyes. Stalks of bamboo cross in an X pattern on the helmet.",
+        "colors": "white, black, soft green, pale pink"
+      },
+      {
+        "name": "Chaotic Cheese Crown",
+        "flavourText": "Made of real cheese. It smells questionable but works amazingly.",
+        "imageDesc": "A jagged crown carved entirely from yellow and orange cheddar cheese with holes in it. Small mice emerge from cheese holes looking shocked.",
+        "colors": "cheddar yellow, orange, pale tan, dark brown"
+      },
+      {
+        "name": "Comet Tail Headband",
+        "flavourText": "A comet crashed on your head. Now you're supernaturally fast AND lucky.",
+        "imageDesc": "A sleek metallic silver headband with a comet-shaped center piece made of glowing purple crystals. A long tail of shimmering stardust streams behind it.",
+        "colors": "metallic silver, purple crystal, cosmic blue, golden white"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "head-uncommon-reflexes2",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 2
+    },
+    "options": [
+      {
+        "name": "Laser Cat Visor",
+        "flavourText": "Now you've got cat-like reflexes. Literally. The whiskers help.",
+        "imageDesc": "A sleek sports visor shaped like a cat's head in profile. Pointed cat ears extend upward, striped with hot pink and silver. The visor itself is chrome metallic with glowing green neon eyes that look forward. Laser beam patterns etched across the front. Whiskers made of thin metallic strips.",
+        "colors": "hot pink, chrome silver, neon green, black"
+      },
+      {
+        "name": "Rocket Helm",
+        "flavourText": "This helmet runs on pure chaos and maybe some snack crumbs.",
+        "imageDesc": "A retro 1950s-style rocket ship helmet with a domed clear top. Red and white chevron stripes wrap around the base. Glowing orange flames painted on the sides pointing backward. Rivets and metallic panels cover the surface. A antenna with a little star on top sticks out from the crown.",
+        "colors": "red, white, orange, metallic gold"
+      },
+      {
+        "name": "Pineapple Crown",
+        "flavourText": "Tropical reflexes activate. Also, you're magically delicious? No, wait...",
+        "imageDesc": "A helmet shaped like a pineapple with geometric diamond-pattern bumps covering the entire surface. Yellow base color with darker gold for the diamond recesses. A leafy green crown of spiky leaves radiates from the top, each leaf distinct and sharp-pointed. Brown accents in crevices.",
+        "colors": "golden yellow, lime green, brown, tan"
+      },
+      {
+        "name": "Thunder Helmet",
+        "flavourText": "Strikes like lightning! Mostly harmless (lightning not included).",
+        "imageDesc": "A futuristic sports helmet with a metallic base. Electric blue zigzag patterns crackle across the surface like lightning bolts. Purple accents in the crevices and vents. Yellow highlights on sharp edges where electricity seems to gather. Small metallic spikes positioned on the crown.",
+        "colors": "electric blue, purple, yellow, metallic silver"
+      },
+      {
+        "name": "Ninja Mask Crown",
+        "flavourText": "So stealthy, defenders can't even see you moving. Awkward.",
+        "imageDesc": "A black fabric face mask merged with a golden crown. The mask covers the eyes with a thin horizontal slit, detailed with white stitching around the edges. The crown sits atop with 5 pointed golden peaks, each peak decorated with a small red gem. White and red accents on the fabric bands.",
+        "colors": "black, gold, red, white"
+      },
+      {
+        "name": "Owl Vision Cap",
+        "flavourText": "You can now turn your head 270 degrees. Don't overdo it.",
+        "imageDesc": "A sports cap with enormous round owl eyes set into the front panel. Large circular eyes with golden-yellow rings around dark pupils. The cap itself is mottled brown and grey in feather-like patterns. A small curved beak detail protrudes from the bill. Feather texture details cover the crown.",
+        "colors": "golden yellow, brown, grey, dark amber"
+      },
+      {
+        "name": "Bubble Helmet",
+        "flavourText": "Bounces perfectly! Your brain stays very, very safe. Squishy.",
+        "imageDesc": "A transparent helmet that looks like a giant clear bubble made of iridescent material. Inside, colorful gel shifts between blue, pink, and green with tiny floating sphere bubbles suspended in it. The rim is thick rubber in bright cyan. Reflective sheen makes it look glossy and wet.",
+        "colors": "cyan blue, iridescent pink, lime green, translucent clear"
+      },
+      {
+        "name": "Peacock Plume Helm",
+        "flavourText": "Reflexes so good, you dodge left while looking fabulous right.",
+        "imageDesc": "An elegant helmet with a large fan of peacock feathers spreading upward and backward from the crown. Each feather displays an iridescent eye-spot pattern: dark blue center rings surrounded by green and gold. The helmet base is ornate bronze with swirling patterns. Emerald gems dot the surface.",
+        "colors": "peacock blue, emerald green, bronze gold, purple-iridescent"
+      },
+      {
+        "name": "Clock Face Helm",
+        "flavourText": "Time moves slower when you're this quick. Physics is weird.",
+        "imageDesc": "A steampunk-style helmet shaped like an enormous pocket watch face. The front displays clock numbers 1-12 in old-fashioned script around the perimeter. Golden gears of different sizes visible through transparent sections on the sides. Brass and copper panels with intricate mechanical etchings.",
+        "colors": "brass gold, copper brown, dark bronze, cream white"
+      },
+      {
+        "name": "Dragon Scale Crest",
+        "flavourText": "Feel the ancient dragon power. Hopefully just the reflexes part.",
+        "imageDesc": "A helmeted crest covered in overlapping metallic scales that shimmer between deep purple and iridescent blue. Larger golden scales accent the center and edges. A dragon's mane of spiky quills extends from the back, alternating purple and gold. Two large gemstones mounted on the crown like a dragon's eyes.",
+        "colors": "dragon purple, iridescent blue, gold, ruby red"
+      }
+    ],
+    "selected": [
+      0
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-luck1_shooting1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Clover Cap",
+        "flavourText": "Four-leaf clover spins when you score. Slightly dizzying.",
+        "imageDesc": "A bright green baseball cap with a large embroidered four-leaf clover on the front that appears to be slowly rotating. Shamrock patterns decorate the sides. White trim around the bill. The clover has a glowing, almost magical outline.",
+        "colors": "lime green, white, gold, emerald"
+      },
+      {
+        "name": "Dragon Spike Helm",
+        "flavourText": "Pointy. Very pointy. Opponents find it distracting.",
+        "imageDesc": "A fantasy-style helmet with three large crimson spikes protruding from the crown. Metallic gold base with dragon scale textures embossed across the surface. Orange accents along the edges. Small dragon eye design on the forehead.",
+        "colors": "crimson red, gold, burnt orange, metallic silver"
+      },
+      {
+        "name": "Chaos Spiral Headband",
+        "flavourText": "Hypnotic spiral mesmerizes defenders. Ref says it's legal-ish.",
+        "imageDesc": "A tie-dye inspired headband with a mesmerizing black and white spiral pattern radiating from the center. Purple, pink, and teal swirls blend between the spiral lines. Soft fuzzy texture suggesting velvet material.",
+        "colors": "purple, teal, hot pink, black"
+      },
+      {
+        "name": "Comet Helmet",
+        "flavourText": "Leaves a trail of sparkles when you sprint. Very cool. Very distracting.",
+        "imageDesc": "A sleek white space helmet with a curved transparent visor. A bright comet tail design trails across the back, rendered in streaking blues and yellows with star particles. Small chrome accents and futuristic panel lines across the surface.",
+        "colors": "white, electric blue, yellow, chrome silver"
+      },
+      {
+        "name": "Unicorn Horn Tiara",
+        "flavourText": "Shoots rainbows. Probably. At least you'll be fabulous.",
+        "imageDesc": "A glittery tiara with a long, spiraling unicorn horn in the center. The horn transitions from pink at the base to gold to white at the tip, with subtle gradient shading. Rainbow shimmer around the base. Covered in rhinestones and pearls.",
+        "colors": "hot pink, gold, rainbow holographic, white"
+      },
+      {
+        "name": "Laser Focus Goggles",
+        "flavourText": "Red tinted lenses make everything look like a target. You become unstoppable.",
+        "imageDesc": "Cyberpunk-style wraparound goggles with deep red tinted lenses. Glowing red crosshair pattern visible on each lens. Metallic black frame with circuit board details etched along the edges. Small LED details that appear to glow.",
+        "colors": "black, red, electric neon green, metallic silver"
+      },
+      {
+        "name": "Meteor Dust Crown",
+        "flavourText": "Space rock powder gives your shots cosmic accuracy. Smells weird.",
+        "imageDesc": "A crown-like headpiece made of jagged dark gray and dark brown meteor-like chunks held together with shimmering gold bands. Iridescent purple and blue dust clings to the surface, creating an ethereal glow. Points upward dramatically.",
+        "colors": "dark gray, meteor black, gold, purple-blue iridescent"
+      },
+      {
+        "name": "Banana Bonanza Hat",
+        "flavourText": "Shaped like a giant banana. Your hairline thanks you. Your dignity doesn't.",
+        "imageDesc": "A tall, curved yellow hat shaped exactly like a peeled banana. Brown spots pattern the surface like a real banana. A small green leaf sits at the top. The hat has a soft, plush texture and an absolutely ridiculous silhouette.",
+        "colors": "bright yellow, brown, forest green, cream"
+      },
+      {
+        "name": "Thunderbolt Headpiece",
+        "flavourText": "Crackles with electricity. Your shots are literally charged. Insurance problem.",
+        "imageDesc": "A jagged lightning bolt-shaped headpiece in bright yellow and white with electric blue accents. Purple electricity arcs visible crackling around the edges. Metallic silver inlays form circuitry patterns. Spiky protrusions follow the bolt's shape.",
+        "colors": "electric yellow, royal blue, purple, silver"
+      },
+      {
+        "name": "Phoenix Plume Helm",
+        "flavourText": "Blazing feathers reignite your momentum. Also ignites the grass sometimes.",
+        "imageDesc": "A warrior helmet with massive flaming feathers sprouting from the top in vibrant orange, red, and golden hues. The feathers graduate from red at the base to yellow at the tips, with flickering orange outlines. Gold metallic helmet base with embossed bird motifs.",
+        "colors": "fiery orange, crimson red, golden yellow, bronze"
+      }
+    ],
+    "selected": [
+      5
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-passing2",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 2
+    },
+    "options": [
+      {
+        "name": "Radar Crown",
+        "flavourText": "Beep boop! Your head's a satellite dish now.",
+        "imageDesc": "A shiny metallic crown with three rotating satellite dishes pointing in different directions. The dishes have small blinking lights. Band is silver with circuit patterns etched in. Futuristic antenna tips glow softly.",
+        "colors": "silver, cyan, navy, gold"
+      },
+      {
+        "name": "Owl's Wisdom Helm",
+        "flavourText": "Sees passes three fields away. Hoo-ray!",
+        "imageDesc": "A leather helmet shaped like a wise owl's head with big round eyes on the front. Feather texture covers the sides. Two ear tufts stick up. Eyes have glowing pupils that seem to track movement. Brown and cream colored leather.",
+        "colors": "brown, cream, gold, orange"
+      },
+      {
+        "name": "Pretzel Twist Crown",
+        "flavourText": "So twisted, your passes become unstoppable knots.",
+        "imageDesc": "A golden-brown helmet shaped like a giant pretzel with crisscross patterns and salt crystals studded on top. The twisted sections create a woven pattern across the dome. Shiny glazed coating makes it look delicious and slightly sticky.",
+        "colors": "golden brown, tan, white, dark brown"
+      },
+      {
+        "name": "Compass Captain's Hat",
+        "flavourText": "Always knows which way the goal is. Even backwards.",
+        "imageDesc": "A captain's hat with a giant spinning compass rose embedded in the front. Cardinal direction letters (N, S, E, W) glow softly. Striped fabric in nautical blue and white. Golden compass needle spins constantly. Feather plume on top.",
+        "colors": "navy, white, gold, light blue"
+      },
+      {
+        "name": "Peacock Plume Helmet",
+        "flavourText": "Your passes are so fancy, defenders stop to admire them.",
+        "imageDesc": "A helmet covered in iridescent peacock feathers fanning out in a magnificent display. Feathers shimmer blue, green, and purple with eye-spot patterns. Gold headband underneath.",
+        "colors": "iridescent blue, emerald, purple, gold"
+      },
+      {
+        "name": "Cloud Cushion Cap",
+        "flavourText": "Soft as a cloud, sharp as lightning. Impossible combo!",
+        "imageDesc": "A puffy helmet that looks like a fluffy white cumulus cloud. The surface has soft quilting patterns like padding. Lightning bolt stitches run across in metallic blue thread. Silver lining around the edges.",
+        "colors": "white, light gray, electric blue, silver"
+      },
+      {
+        "name": "Spider Silk Circlet",
+        "flavourText": "Weaves a web of perfectly connected passes.",
+        "imageDesc": "A delicate headband made of shimmering silk strands in an intricate web pattern. Fine geometric triangles and hexagons create the design. Center jewel is a purple amethyst. Strands glow faintly.",
+        "colors": "iridescent silver, purple, white, dark violet"
+      },
+      {
+        "name": "Rocket Brain Helmet",
+        "flavourText": "Makes your thinking SO fast, grass gets jealous.",
+        "imageDesc": "A futuristic helmet with a sleek pointed nose cone like a rocket. Jet exhaust ports on the sides with glowing red flame decals. Window at the front shows gears turning inside. Neon green accent stripes.",
+        "colors": "chrome silver, neon green, red, dark gray"
+      },
+      {
+        "name": "Mirror Ball Disco Dome",
+        "flavourText": "Your passes are so lit, the defender's disco dancing.",
+        "imageDesc": "A helmet covered in hundreds of tiny mirror tiles that sparkle and reflect light. Each tile is different pastel colors (pink, yellow, blue, purple). Center has a rotating prism. Rainbow light rays bounce off in all directions.",
+        "colors": "holographic, pastel pink, pastel blue, gold"
+      },
+      {
+        "name": "Telescope Turban",
+        "flavourText": "Spot open teammates from the stratosphere!",
+        "imageDesc": "A colorful wrapped turban with a telescope tube extending from the front. The fabric has spiral patterns in reds, golds, and blues with star embroidery. The telescope lens is polished brass and glass with crosshairs visible.",
+        "colors": "crimson red, gold, royal blue, brass"
+      }
+    ],
+    "selected": [
+      3
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-passing1_shooting1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Thinking Cap",
+        "flavourText": "Big brain energy. Makes your passes accidentally brilliant.",
+        "imageDesc": "A oversized mortarboard graduation cap with propeller spinning on top, surrounded by tiny lightbulbs. Golden tassels dangle on both sides. Painted with calculation symbols and equations.",
+        "colors": "#FFD700 #4A90E2 #FFFFFF #FF6B6B"
+      },
+      {
+        "name": "Laser Visor",
+        "flavourText": "Shoots first, asks questions later. Your passes are locked in.",
+        "imageDesc": "Sleek futuristic headband with glowing neon-green laser sight visor across the eyes. Metallic silver frame with blue accent strips. Sci-fi design with grid patterns etched into the sides.",
+        "colors": "#00FF00 #333333 #4A90E2 #00FFFF"
+      },
+      {
+        "name": "Crown of Chaos",
+        "flavourText": "Royalty who doesn't follow rules. Unpredictable shots, amazing passes.",
+        "imageDesc": "A crooked golden crown with mismatched jewels (rubies, sapphires, emeralds) sitting at odd angles. Dripping with multicolored gems and slightly tilted. Magical sparkles surrounding the peaks.",
+        "colors": "#FFD700 #FF1493 #00CED1 #FF6347"
+      },
+      {
+        "name": "Hawk Eyes Mask",
+        "flavourText": "Sees the field like a predator sees prey. Nothing escapes your vision.",
+        "imageDesc": "Leather aviator helmet styled like a hawk's head with sharp, pointed ear-tufts. Brown and gold coloring with intense fierce eyes painted on. Small feathers detail the sides and back.",
+        "colors": "#8B4513 #DAA520 #D2691E #FFFACD"
+      },
+      {
+        "name": "Comet Helmet",
+        "flavourText": "Zooming across the pitch at impossible speeds. Passes blur through air.",
+        "imageDesc": "Aerodynamic space helmet shaped like a comet with a flaming tail streaming behind. Bright orange and yellow gradient flames. Metallic chrome visor with cosmic stars and planets painted across it.",
+        "colors": "#FF4500 #FFD700 #1F1F2E #00BFFF"
+      },
+      {
+        "name": "Kraken Cap",
+        "flavourText": "Eight-armed strategy. Your passes go everywhere at once somehow.",
+        "imageDesc": "Navy blue beanie with glowing purple tentacles protruding all directions like a squid's arms. Suction cups are shiny circles down each tentacle. Luminous eyes glow from underneath. Sea creature aesthetic.",
+        "colors": "#191970 #9932CC #00CED1 #FFD700"
+      },
+      {
+        "name": "Pizza Slice",
+        "flavourText": "Cheesy plays, cheesier passes. Always the hardest working slice.",
+        "imageDesc": "Head shaped like a huge triangular pizza slice with melted yellow cheese stretching across. Pepperoni circles dotted on top. Crust textured edges with breadcrumbs. A single basil leaf garnish sits at the point.",
+        "colors": "#FF6347 #FFD700 #228B22 #CD853F"
+      },
+      {
+        "name": "Mirror Ball Dome",
+        "flavourText": "Reflect every opponent's expectations. They never see your passes coming.",
+        "imageDesc": "A glittering disco ball helmet covered entirely in tiny reflective square mirrors (silver, holographic, and iridescent). Each square reflects differently. Lights shimmer across the surface creating a dazzling effect.",
+        "colors": "#C0C0C0 #FFD700 #FF69B4 #00FFFF"
+      },
+      {
+        "name": "Dragon Crested Helm",
+        "flavourText": "Fierce as a dragon, smart as one too. Double threat playstyle.",
+        "imageDesc": "Medieval knight helmet with a spiky dragon crest erupting from the top. Emerald green scales cover the crest with gold spikes. Breathing effect with orange and yellow highlights around the mouth opening. Gold accents on the visor.",
+        "colors": "#228B22 #FFD700 #FF4500 #2F4F4F"
+      },
+      {
+        "name": "Bubble Helm",
+        "flavourText": "Float through defenses like soap. Passes pop into perfect spaces.",
+        "imageDesc": "A translucent iridescent bubble-shaped helmet with rainbow gradient shimmer. Inside floats smaller bubbles of different sizes. Pearlescent sheen with hints of pink, blue, and green reflections throughout. Glossy and rounded smooth.",
+        "colors": "#FFB6C1 #87CEEB #DDA0DD #F0F8FF"
+      }
+    ],
+    "selected": [
+      4
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-height1_strength1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "height": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Cloud Crown",
+        "flavourText": "Floating headwear that makes you feel lighter AND heavier somehow.",
+        "imageDesc": "A fluffy white cotton-candy-like crown that hovers slightly above the head. Made of puffy cumulus cloud shapes stacked in a tiered crown design. Soft blue accents peek through the cotton. Silver trim at the edges.",
+        "colors": "white, light blue, silver, golden yellow"
+      },
+      {
+        "name": "Rocket Helmet",
+        "flavourText": "Red hot propulsion headgear. Go fast, stand tall, defy physics.",
+        "imageDesc": "A sleek chrome and red rocket-shaped helmet with pointed nosecone. Metallic silver body with red racing stripes down the sides. Three small circular exhaust ports at the back releasing stylized flame patterns in orange and yellow.",
+        "colors": "chrome silver, fire red, orange, deep blue"
+      },
+      {
+        "name": "Rhino Helm",
+        "flavourText": "Charging with confidence. Horns included, bruises not guaranteed.",
+        "imageDesc": "A heavy armor helm shaped like a rhinoceros head. Dark gray metallic plating with a prominent curved horn protruding forward. Textured grooves etched into the metal mimic rhino skin patterns.",
+        "colors": "gunmetal gray, dark brown, bronze, shadow black"
+      },
+      {
+        "name": "Wizard's Peak",
+        "flavourText": "Pointy hat science: the higher you go, the stronger you get.",
+        "imageDesc": "A tall, elegant conical wizard's hat in deep purple velvet with golden star and moon embroidery scattered across its surface. A wide brim decorated with intricate gold threading forming mystical runes.",
+        "colors": "deep purple, gold, crystal blue, silver"
+      },
+      {
+        "name": "Sunflower Helm",
+        "flavourText": "Be strong and bright. Also, bees might follow you.",
+        "imageDesc": "A cheerful helmet designed like an enormous sunflower bloom. Large golden-yellow petals radiate outward from a dark brown center disk. Thick dark green stem wraps around as a chin strap with detailed leaf textures.",
+        "colors": "golden yellow, dark brown, forest green, lime accent"
+      },
+      {
+        "name": "Dragon Scale Crown",
+        "flavourText": "Wear reptilian royalty. Becomes shinier when you win.",
+        "imageDesc": "A regal crown made of overlapping emerald-green dragon scales. Each scale has iridescent shimmering effects and detailed ridge patterns. Gold trim frames the base and connects scale segments.",
+        "colors": "emerald green, gold, ruby red, amethyst purple"
+      },
+      {
+        "name": "Bowling Ball Brain",
+        "flavourText": "It's heavy, it's round, it makes strikes happen.",
+        "imageDesc": "A black and white bowling ball-style helmet with finger holes sized appropriately at the front. Glossy polished finish with a diamond-shaped white patch on the back. Red and yellow swirled patterns accent the sides.",
+        "colors": "jet black, glossy white, crimson red, golden yellow"
+      },
+      {
+        "name": "Viking Thunderhorn",
+        "flavourText": "Twin horns, unbridled confidence, legendary hair volume.",
+        "imageDesc": "A classic Viking helm with two large curved horns extending diagonally outward and slightly upward. Brushed steel metallic body with hammered texture covering the surface. Gold inlay follows the horn curves.",
+        "colors": "brushed steel, brass gold, fiery red-orange, bronze"
+      },
+      {
+        "name": "Jellyfish Crown",
+        "flavourText": "Float tall, sting strong, confuse defenders completely.",
+        "imageDesc": "A translucent aqua and purple jellyfish-inspired helmet with a domed transparent top. Long flowing tentacles in gradient purple-to-pink hang down from the sides and back. Bioluminescent spots glow softly in blues and purples throughout.",
+        "colors": "aqua transparent, gradient purple, glowing cyan, soft pink"
+      },
+      {
+        "name": "Anvil Helmet",
+        "flavourText": "Heavy as sin, sturdy as legend. Take hits and keep playing.",
+        "imageDesc": "A solid iron anvil-shaped helmet with the characteristic broad flat top and tapered horn at the back. Aged metallic gray with darker scorch marks and soot stains.",
+        "colors": "iron gray, charcoal black, burnt orange, metallic silver"
+      }
+    ],
+    "selected": [
+      7
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-luck1_passing1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "passing": 1
+    },
+    "options": [
+      {
+        "name": "Mystic Bandana",
+        "flavourText": "Blessed by fortune tellers. Your passes find their target... weirdly often.",
+        "imageDesc": "A flowing purple and gold headband with mystical symbols (stars, moons, swirls) embroidered across it. Crystal charm dangling from the center. Silky fabric with a slight sheen.",
+        "colors": "purple, gold, white, indigo"
+      },
+      {
+        "name": "Lucky Leprechaun Hat",
+        "flavourText": "Rainbow-powered. Even your bad passes somehow work out great.",
+        "imageDesc": "A tiny green top hat with a golden buckle and a glowing four-leaf clover on the front. Fluffy white fur trim around the brim. Cartoonish and oversized.",
+        "colors": "green, gold, white, rainbow"
+      },
+      {
+        "name": "Fortunate Frog Crown",
+        "flavourText": "Ribbit! This crowned frog helmet makes every pass magical.",
+        "imageDesc": "A bulbous lime-green helmet shaped like a frog's head with a tiny golden crown on top. Big round eyes with yellow pupils, a smiling mouth, and bumpy textured skin. Wet-looking sheen.",
+        "colors": "lime, gold, yellow, teal"
+      },
+      {
+        "name": "Comet Crash Cap",
+        "flavourText": "Streaking through the sky, trailing stardust. Passes become cosmic wonders.",
+        "imageDesc": "A sleek helmet resembling a meteor with a fiery tail. Silver and orange metallic coating with streaking blue flame patterns. Glowing cracks like molten lava lines across the surface.",
+        "colors": "silver, orange, blue, white"
+      },
+      {
+        "name": "Enchanted Acorn Helm",
+        "flavourText": "Grown by woodland magic. Your teammates always know where the ball is.",
+        "imageDesc": "A polished brown acorn-shaped helmet with a textured nutty surface. A tiny green leaf sprouts from the top. Golden threading wraps around like vines. Earthy and natural.",
+        "colors": "brown, green, gold, tan"
+      },
+      {
+        "name": "Starlight Streaker",
+        "flavourText": "Powered by shooting stars. Passes become pinpoint perfect every time.",
+        "imageDesc": "A white helmet with trailing streaks of light blue and purple, like a comet tail wrapping around. Silver star studs scattered across. Translucent glowing effect on the edges.",
+        "colors": "white, silver, light blue, purple"
+      },
+      {
+        "name": "Cosmic Clown Wig",
+        "flavourText": "Ridiculous hair, ridiculous luck. Defenders never see the pass coming.",
+        "imageDesc": "A wild, gravity-defying afro wig in electric rainbow colors (hot pink, electric yellow, neon green, bright blue) with springs and spirals. Oversized and bouncy-looking.",
+        "colors": "hot pink, neon yellow, neon green, electric blue"
+      },
+      {
+        "name": "Phoenix Plume Helmet",
+        "flavourText": "Reborn from flames. Your passes soar like an immortal bird.",
+        "imageDesc": "A sleek crimson helmet with long golden and orange feathers sprouting from the back like a majestic tail. Glowing embers trail from the feather tips. Fire-like patterns on the visor.",
+        "colors": "crimson, gold, orange, yellow"
+      },
+      {
+        "name": "Rainbow Rabbit Ears",
+        "flavourText": "Hopping into luck. These ears bring perfect pass accuracy.",
+        "imageDesc": "A pastel headband with two tall, fluffy bunny ears in soft pink and lavender. Rainbow gradient stripes run down each ear. Small white puffball tail at the back. Cute and whimsical.",
+        "colors": "pink, lavender, white, rainbow"
+      },
+      {
+        "name": "Thunderbolt Tiara",
+        "flavourText": "Royalty powered by lightning. Every pass crackles with precision.",
+        "imageDesc": "A regal golden tiara with jagged blue lightning bolt spikes instead of jewels. Electric purple glow arcing between the spikes. Highly polished metal with gemstone details at the base.",
+        "colors": "gold, electric blue, purple, white"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-luck2",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 2
+    },
+    "options": [
+      {
+        "name": "Fortune Tiara",
+        "flavourText": "Sparkles mysteriously. Probably loaded with actual luck crystals.",
+        "imageDesc": "A delicate crown-like headpiece with 5 pointed stars alternating with glowing orbs. Purple gradient background, silver filigree details, and tiny twinkling sparkles embedded throughout. Elegant but playful.",
+        "colors": "purple, silver, gold, pink"
+      },
+      {
+        "name": "Rabbit's Paw Hat",
+        "flavourText": "One size fits all. Does NOT come from an actual rabbit.",
+        "imageDesc": "A fuzzy white beanie with a puffy white pom-pom on top shaped like a rabbit's foot. Soft, cottony texture with a lucky charm tag hanging from the side. Pink nose detail on the pom-pom.",
+        "colors": "white, pink, gray, gold"
+      },
+      {
+        "name": "Clover Crown",
+        "flavourText": "Four leaves good. More leaves gooder. Math probably broken.",
+        "imageDesc": "A green leaf-shaped crown made of oversized four-leaf clovers arranged in a circle. Glossy emerald leaves with golden veins running through them. Golden band connecting the leaves at the base.",
+        "colors": "green, gold, emerald, lime"
+      },
+      {
+        "name": "Cosmic Helmet",
+        "flavourText": "Contains actual stardust. Or just glitter. Same thing, basically.",
+        "imageDesc": "A sleek space-age helmet with a dark blue base covered in white and yellow stars of varying sizes. A crescent moon visor glows with a soft cyan light. Swirling nebula patterns in purples and blues.",
+        "colors": "navy, cyan, purple, gold"
+      },
+      {
+        "name": "Dice Cap",
+        "flavourText": "Every kick is a roll of the dice. Statistically, you'll win eventually.",
+        "imageDesc": "A red and white checkered baseball cap designed like a giant die. White dots (1-6) distributed randomly across the front panels. White piping around the brim and back strap.",
+        "colors": "red, white, black, gold"
+      },
+      {
+        "name": "Unicorn Horn Headband",
+        "flavourText": "Magical. Majestic. Probably impractical in goal.",
+        "imageDesc": "A pastel pink and purple rainbow-striped spiraling horn mounted on a glittery headband. The horn has pearl-like iridescent scales and a golden base. Sparkles radiating from the tip.",
+        "colors": "pink, purple, rainbow, gold"
+      },
+      {
+        "name": "Golden Acorn Helm",
+        "flavourText": "Oak trees are lucky in football. Probably. We didn't fact-check.",
+        "imageDesc": "A bronze-and-gold acorn-shaped helmet with detailed ridged cap texture. The bowl portion is polished gold with a warm amber sheen. Leather chin strap with bronze buckles.",
+        "colors": "gold, bronze, brown, amber"
+      },
+      {
+        "name": "Kitty Luck Mask",
+        "flavourText": "With nine lives, you can afford to miss some shots. Probably.",
+        "imageDesc": "A sleek black cat-ear headband with golden whiskers extending outward. White and gold facial markings like a lucky beckoning cat. Red gem jewels replacing cat's eyes that sparkle.",
+        "colors": "black, gold, white, red"
+      },
+      {
+        "name": "Rainbow Sherbet Crown",
+        "flavourText": "Tastes like luck. Wait, don't lick it. Please.",
+        "imageDesc": "A whimsical crown made of stacked scoops of rainbow ice cream (red, orange, yellow, green, blue). Strawberry on top with a cherry. Cone-shaped base in tan/brown. Melting drips on the sides.",
+        "colors": "rainbow, cream, brown, gold"
+      },
+      {
+        "name": "Thunderbolt Visor",
+        "flavourText": "Harnesses the chaos of the gods. Or just looks totally rad.",
+        "imageDesc": "A sleek black visor with bold yellow lightning bolt striking diagonally across the front. Electric blue glow lines trace along the bolt. White trim on edges. Metallic sheen on the hard plastic base.",
+        "colors": "black, yellow, electric blue, white"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-passing1_reflexes1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Octopus Visor",
+        "flavourText": "Eight eyes see everything. Passes are always perfect.",
+        "imageDesc": "A translucent visor shaped like an octopus head with eight glowing purple eyespots arranged around the dome. Suction cup details line the edges. Tentacle-like fabric straps hang down. Bioluminescent glow effect.",
+        "colors": "#9933FF #FFD700 #00CCFF #111111"
+      },
+      {
+        "name": "Conductor's Crown",
+        "flavourText": "You orchestrate the midfield like a symphony. Very musical.",
+        "imageDesc": "A conductor's baton-inspired headpiece with a tall, pointed crown made of golden rods. Sheet music patterns engrave the surface. Musical note symbols float around. Velvet band wraps around forehead in deep blue.",
+        "colors": "#FFD700 #1E3A8A #FFFFFF #C0C0C0"
+      },
+      {
+        "name": "Radar Headset",
+        "flavourText": "Military-grade tech. Detect every pass before it happens.",
+        "imageDesc": "Sleek tactical headset with rotating radar antenna on top. Circuit board patterns embedded in matte black helm. Glowing lime-green display visor covers eyes. Leather chin strap with tech buckles.",
+        "colors": "#00FF00 #000000 #FF6600 #333333"
+      },
+      {
+        "name": "Mystic Moon Hat",
+        "flavourText": "Lunar energy guides your reflexes. Very on-brand.",
+        "imageDesc": "A wide-brimmed hat resembling a crescent moon, deep indigo with silver stars scattered across. Glowing edges that pulse softly. Moon phases embroidered along the brim. Mystical swirl patterns in lighter purple.",
+        "colors": "#2C1A4E #C0C0C0 #E6D5FF #FFFFFF"
+      },
+      {
+        "name": "Butterfly Crown",
+        "flavourText": "Fluttery wings mean fluttery passes and lightning reflexes.",
+        "imageDesc": "Delicate headpiece with oversized butterfly wings extending from each side, iridescent blue and green. Antennae curve upward from crown. Body made of woven natural fibers with flower details. Jeweled pattern on wings.",
+        "colors": "#0099FF #00DD88 #FFD700 #FFC0CB"
+      },
+      {
+        "name": "Compass Cap",
+        "flavourText": "Always find your teammates no matter what. Navigation genius.",
+        "imageDesc": "Baseball-style cap with a working compass rose embedded in the front panel. Cardinal directions marked in brass. Leather with tan and brown tones. Metal ring compass spins around the crown. Vintage explorer style.",
+        "colors": "#8B6914 #FFFFFF #FF0000 #000000"
+      },
+      {
+        "name": "Sparkplug Helm",
+        "flavourText": "Electrical synapses firing at maximum. Your brain is FAST.",
+        "imageDesc": "Futuristic helmet with jagged electricity bolts etched across surface. Bright yellow and electric blue color scheme. Tesla coil-style spikes ring the top. Glowing power lines trace from temples. Cyberpunk aesthetic.",
+        "colors": "#FFFF00 #0099FF #FF00FF #333333"
+      },
+      {
+        "name": "Fortune Fish Bowl",
+        "flavourText": "Goldfish have weird instincts. Also this is waterproof somehow.",
+        "imageDesc": "A transparent dome helmet containing a swirling aqua-blue glowing fluid with a magical goldfish silhouette swimming inside eternally. Bubbles float upward. Gold filigree decorates the dome rim. Ridiculous and charming.",
+        "colors": "#FFD700 #87CEEB #FF6600 #FFFFFF"
+      },
+      {
+        "name": "Whirlwind Bonnet",
+        "flavourText": "Air currents around your head make you a reaction machine.",
+        "imageDesc": "A bonnet-style helmet with swirling wind stream designs in graduated blues and whites. Flowing ribbons attached at sides appear to be caught in eternal motion. Cloud-like puffs texture the surface. Tornado spiral pattern on crown.",
+        "colors": "#87CEEB #FFFFFF #4FC3F7 #0D47A1"
+      },
+      {
+        "name": "Detective's Deerstalker",
+        "flavourText": "You see passes and reflexes the ref can't even spot. Very clever.",
+        "imageDesc": "Classic deerstalker hat with magnifying glass detailing stamped on front. Plaid pattern in red and brown tweed. Pipe holster accent on side. Oversized magnifying glass peak. Sherlock Holmes meets soccer genius.",
+        "colors": "#8B4513 #DC143C #FFFFFF #FFD700"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "head-uncommon-reflexes1_strength1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Tornado Crown",
+        "flavourText": "Spins so fast your head becomes a blur of reflexes and power.",
+        "imageDesc": "A spiral-shaped crown made of swirling wind patterns, with white and cyan swirls forming a vortex. Golden crown rim at the base with little lightning bolts crackling around it.",
+        "colors": "cyan, white, gold, deep blue"
+      },
+      {
+        "name": "Comet Helmet",
+        "flavourText": "Streaks across the field leaving a trail of impressive plays.",
+        "imageDesc": "A sleek, aerodynamic helmet shaped like a comet with a fiery tail. The front is polished silver with a pointed visor, and a bright orange and yellow tail flows backward.",
+        "colors": "silver, orange, yellow, white"
+      },
+      {
+        "name": "Viking Beetlebrow",
+        "flavourText": "Thick brow armor makes you look both scary and hilariously grumpy.",
+        "imageDesc": "An oversized bronze helmet with exaggerated beetle-like mandible protection over the eyebrows. Spiky ridges run along the top like a real beetle's carapace.",
+        "colors": "bronze, brown, copper, dark green"
+      },
+      {
+        "name": "Pineapple Power",
+        "flavourText": "Spiky and sweet \u2014 stronger than it looks, faster than it tastes.",
+        "imageDesc": "A bright yellow headgear shaped like a pineapple with green leafy crown on top. The body is covered in raised diamond pattern bumps in yellow and light green.",
+        "colors": "bright yellow, lime green, golden yellow, cream"
+      },
+      {
+        "name": "Dragon Scale Crown",
+        "flavourText": "Each scale glimmers with ancient dragon power and quick reflexes.",
+        "imageDesc": "A crown made entirely of overlapping iridescent scales in purple and teal. Scales are shiny with metallic reflections. Red gemstone centerpiece on the forehead.",
+        "colors": "purple, teal, red, metallic silver"
+      },
+      {
+        "name": "Rocket Goggles",
+        "flavourText": "Jet-powered vision means you see plays 0.5 seconds before they happen.",
+        "imageDesc": "Oversized retro-futuristic goggles with dome-shaped lenses glowing neon blue. Twin exhaust ports on either side. Chrome metal frame with rivets.",
+        "colors": "chrome silver, neon blue, orange, red"
+      },
+      {
+        "name": "Meteor Cap",
+        "flavourText": "Hit the field with the impact of a space rock nobody saw coming.",
+        "imageDesc": "A cap-style helmet textured like a rough meteorite with dark gray and black swirled stone texture. Streaks of bright orange and yellow run across it like re-entry burn marks.",
+        "colors": "dark gray, black, orange, yellow"
+      },
+      {
+        "name": "Falcon Sight",
+        "flavourText": "Eyes like a hunting bird means faster reflexes, stronger instincts.",
+        "imageDesc": "A headband with a carved wooden falcon's head mounted on the front, fierce expression. Feather-like ridges radiate outward. Gold and brown wood tones.",
+        "colors": "brown, gold, tan, white"
+      },
+      {
+        "name": "Thunder Crown Tiara",
+        "flavourText": "Crackling with power \u2014 you're royalty and a lightning bolt at once.",
+        "imageDesc": "An elegant tiara with jagged lightning bolt points instead of traditional spikes. Bright yellow and white lightning bolts branch upward from a golden band.",
+        "colors": "gold, bright yellow, purple, white"
+      },
+      {
+        "name": "Bouncy Bubble Helm",
+        "flavourText": "Bounces on impact \u2014 your head's stronger than their kick.",
+        "imageDesc": "A translucent bubble-shaped helmet with a glossy, reflective surface. Iridescent gradient from light pink to light blue with rainbow shine effects.",
+        "colors": "light pink, light blue, white, iridescent rainbow"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "head-uncommon-height1_luck1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "height": 1,
+      "luck": 1
+    },
+    "options": [
+      {
+        "name": "Lucky Horseshoe Crown",
+        "flavourText": "Shiny gold horseshoes attract good fortune and extra inches!",
+        "imageDesc": "A golden crown made of interlocking horseshoes, each one polished to a mirror shine. The horseshoes are arranged in a circular pattern with small lucky coins dangling from delicate chains between them. The top features a large radiant star made of precious metal.",
+        "colors": "gold, silver, white, yellow"
+      },
+      {
+        "name": "Cloud Nine Turban",
+        "flavourText": "Soft and fluffy\u2014literally lifts your head closer to the sky.",
+        "imageDesc": "A billowing turban made of puffy white and pale blue cloud-like fabric with a dreamy, cotton-candy texture. Small silver stars are embroidered throughout, and the fabric appears to gently float upward. A crescent moon brooch holds it in place at the front.",
+        "colors": "white, pale blue, silver, light purple"
+      },
+      {
+        "name": "Asteroid Acrobat Hat",
+        "flavourText": "This space helmet makes you bounce higher and break physics.",
+        "imageDesc": "A retro-futuristic helmet with a transparent dome visor showing swirling nebula patterns inside. The base is metallic silver with glowing neon pink and cyan stripes running vertically. Small spinning asteroid chunks orbit around the helmet on invisible wires. The faceplate has playful crosshairs.",
+        "colors": "silver, hot pink, cyan, deep purple"
+      },
+      {
+        "name": "Flamingo Fountain Helm",
+        "flavourText": "Pink, plucky, and surprisingly good at defying gravity.",
+        "imageDesc": "A whimsical helmet shaped like a flamingo's head, with bright pink feathers covering the crown. A tiny fountain sprouting from the top creates a delicate water arc. The beak is ornately decorated with swirling gold patterns, and large teal gemstones serve as eye decorations that sparkle.",
+        "colors": "hot pink, teal, gold, white"
+      },
+      {
+        "name": "Dragonscale Tiara",
+        "flavourText": "Iridescent scales that shimmer with ancient dragon luck.",
+        "imageDesc": "An elegant tiara made of overlapping iridescent dragon scales in emerald, purple, and blue tones that shift color as you look at them. Crystalline spikes jut out from the center in a crown pattern. The base is wrapped in deep purple velvet with small rubies embedded along the band.",
+        "colors": "emerald, purple, sapphire blue, silver"
+      },
+      {
+        "name": "Spinning Disco Ball Helmet",
+        "flavourText": "Blinds opponents with pure luck-powered sparkle power!",
+        "imageDesc": "A helmet entirely covered in small reflective mirror tiles in various colors, with the tiles arranged in a hypnotic spiral pattern. The center has a large spinning disc mechanism (frozen in one spinning pose) that glints with rainbow light. A disco ball dangles from a chain on top.",
+        "colors": "rainbow metallic, silver, gold, prismatic"
+      },
+      {
+        "name": "Giraffe Growth Goggles",
+        "flavourText": "Spot lucky opportunities from way up high.",
+        "imageDesc": "Oversized steampunk-style goggles with warm brown and tan spotted giraffe-print leather around the eyes. The lenses are large and amber-colored with intricate brass gears visible around the edges. A long flexible brass telescope extends upward from the top, and the straps are adorned with small golden bells.",
+        "colors": "tan, brown, brass gold, amber"
+      },
+      {
+        "name": "Meteor Rainbow Visor",
+        "flavourText": "Crashes through luck like a meteor through the sky.",
+        "imageDesc": "A sleek racing visor in a gradient that shifts from deep orange and red at the edges (like a meteor) to bright yellow at the center. The bill is extra long and aerodynamic with chrome metallic trim. Trails of colorful streaks (orange, yellow, pink) follow the contours as if it's zooming through space.",
+        "colors": "orange, yellow, red, chrome silver"
+      },
+      {
+        "name": "Peacock Proud Crown",
+        "flavourText": "Legendary feathers mean legendary jumps and lucky breaks.",
+        "imageDesc": "A regal crown fashioned from peacock feathers with vibrant iridescent blues, greens, and purples that showcase the natural eye-spot patterns. The crown's base is ornate gold filigree with emerald and sapphire gem inlays. A single large peacock eye dominates the front with perfect circular patterns.",
+        "colors": "iridescent blue, emerald green, gold, sapphire"
+      },
+      {
+        "name": "Rocket Boot Beanie",
+        "flavourText": "Part headwear, part jetpack\u2014luck? More like launch power!",
+        "imageDesc": "A sleek beanie with integrated rocket-ship designs embroidered across it. The top features two small 3D rocket cones in metallic silver with red and orange flame details shooting upward. The beanie is predominantly deep space blue with neon yellow accents and little floating rocket ship graphics scattered throughout.",
+        "colors": "deep blue, silver, neon yellow, red-orange"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "head-uncommon-shooting2",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "shooting": 2
+    },
+    "options": [
+      {
+        "name": "Bullseye Beanie",
+        "flavourText": "Stare at it long enough and your shots find the target.",
+        "imageDesc": "A stretchy knit beanie with concentric circles in red, white, and blue forming a target bullseye pattern on the front. The center circle has a small golden star. Ribbed texture throughout with a folded cuff.",
+        "colors": "red, white, blue, gold"
+      },
+      {
+        "name": "Hawk Helm",
+        "flavourText": "Grants you the piercing vision of a swooping bird of prey.",
+        "imageDesc": "A leather helmet styled like a hawk's head with a curved beak protector. Feathered texture painted in brown and cream. Two pointed ear-like tufts at the crown. A sharp golden eye painted on each side.",
+        "colors": "brown, cream, gold, bronze"
+      },
+      {
+        "name": "Plasma Crown",
+        "flavourText": "Shoot lightning-fast. Side effects: minor hair standing on end.",
+        "imageDesc": "A sleek metallic helmet with electric blue energy lines crackling across its surface. Sharp geometric patterns resembling circuitry. Purple accents at the temples. A glowing crystal point at the center of the forehead.",
+        "colors": "electric blue, purple, silver, cyan"
+      },
+      {
+        "name": "Cheese Noggin",
+        "flavourText": "Works better when it's aged to perfection. Goals guaranteed.",
+        "imageDesc": "A round helmet shaped and colored like a block of yellow cheddar cheese. Dotted texture for holes. Orange-yellow gradient. A tiny mouse wearing a chef's hat sits perched on top as a decal.",
+        "colors": "yellow, orange, white, brown"
+      },
+      {
+        "name": "Dragon's Crown",
+        "flavourText": "Made from shed dragon scales. Still a little warm.",
+        "imageDesc": "A majestic helmet crafted from iridescent dragon scales in deep purple and emerald green. Pointed ridges along the top like a dragon's back. Gold trim along edges. Glowing amber eyes painted on the forehead.",
+        "colors": "purple, emerald, gold, amber"
+      },
+      {
+        "name": "Cannon Cap",
+        "flavourText": "Pretend your head is a cannon. Confidence = accuracy.",
+        "imageDesc": "A steampunk-style helmet with a short cylindrical cannon barrel protruding from the front. Brass and copper plating with gear patterns etched throughout. Steam vents on the sides. Dark bronze body with polished metal accents.",
+        "colors": "brass, copper, bronze, charcoal"
+      },
+      {
+        "name": "Tiger Stripe Turban",
+        "flavourText": "Roooar your goals past the goalkeeper. Focus achieved.",
+        "imageDesc": "A wrapped turban-style headwrap in white and orange stripes like a tiger. Bold black stripe details across the forehead and sides. A small fabric tiger face appliqu\u00e9 on the front. Textured cotton weave pattern.",
+        "colors": "orange, white, black, gold"
+      },
+      {
+        "name": "Moonstone Circlet",
+        "flavourText": "Harness lunar power for night vision and perfect passes.",
+        "imageDesc": "A delicate circlet crown made of pale blue moonstone with silver metalwork. A crescent moon shape at the front center. Starry patterns etched around the band. Luminescent white gemstones set at intervals.",
+        "colors": "pale blue, silver, white, indigo"
+      },
+      {
+        "name": "Rocket Headgear",
+        "flavourText": "Goes fast. You go faster. Physics not included.",
+        "imageDesc": "A futuristic helmet shaped like a rocket ship with a pointed cone nose. Bright red body with white racing stripes. Porthole windows on the sides showing tiny windows inside. Yellow and orange flame exhaust painted at the back.",
+        "colors": "red, white, yellow, orange"
+      },
+      {
+        "name": "Prism Headband",
+        "flavourText": "Splits your shots into rainbow angles. Goalkeeper confused.",
+        "imageDesc": "A fabric headband in translucent rainbow layers that appear to refract light. A large triangular prism crystal embedded at the center of the forehead. Iridescent shimmer across the whole piece. Subtle gradient from red through indigo.",
+        "colors": "rainbow spectrum, clear, white, silver"
+      }
+    ],
+    "selected": [
+      4
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-passing1_strength1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "passing": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Fortress Visor",
+        "flavourText": "Block passes AND throw them harder. Double trouble!",
+        "imageDesc": "A sleek sports visor with reinforced steel plating across the brow and temple areas. Metallic silver with emerald-green trim along the edges. Features a small castle icon embossed in the center.",
+        "colors": "silver, emerald green, white, gray"
+      },
+      {
+        "name": "Thunder Crown",
+        "flavourText": "Wearing lightning that passes through defenses with electric power.",
+        "imageDesc": "A crown-like headpiece made of golden metal with jagged lightning bolt spikes protruding upward. Electric blue arcs crackle between the spikes with white highlights.",
+        "colors": "gold, electric blue, white, sapphire"
+      },
+      {
+        "name": "Anchor Brain",
+        "flavourText": "Steady passes meet unshakeable strength. You're grounded, literally.",
+        "imageDesc": "A nautical-themed headband with a rope-texture weave in navy blue and white. A large golden anchor is mounted on the front center, with chain-link patterns bordering the sides.",
+        "colors": "navy blue, gold, white, cream"
+      },
+      {
+        "name": "Phoenix Helm",
+        "flavourText": "Rise from tackles and pass like you're made of fire and fury.",
+        "imageDesc": "A mythical helmet shaped like a phoenix head with outstretched wings on both sides. Flames in shades of orange, red, and yellow cover the surface with golden accents.",
+        "colors": "gold, orange, red, crimson"
+      },
+      {
+        "name": "Octopus Cap",
+        "flavourText": "Eight arms mean eight passing options and way more tackles!",
+        "imageDesc": "A whimsical helmet covered in eight springy octopus tentacles in shades of purple and pink. Each tentacle has suction cups with white and pink details.",
+        "colors": "deep purple, pink, white, coral"
+      },
+      {
+        "name": "Meteoric Medal",
+        "flavourText": "A cosmic headpiece that passes perfectly and hits harder than gravity.",
+        "imageDesc": "A helmet shaped like a meteor with trailing space dust effects. Dark gray and black base with metallic silver streaks running across it like a comet's tail.",
+        "colors": "dark gray, silver, cyan, white"
+      },
+      {
+        "name": "Volcano Bonnet",
+        "flavourText": "Explosive passes meet molten strength in this bubbly head-gear!",
+        "imageDesc": "A helmet shaped like a volcano with ridged layers in volcanic gray and charcoal. Orange and red lava colors flow down the sides with glowing yellow highlights.",
+        "colors": "charcoal gray, orange, yellow, white"
+      },
+      {
+        "name": "Titanium Coconut",
+        "flavourText": "Tropical toughness meets precision passing. Hang ten wins!",
+        "imageDesc": "A headpiece resembling a coconut shell with a futuristic twist. Brown woven fiber texture with silver-metallic reinforcement bands crossing the surface.",
+        "colors": "brown, silver, cyan, white"
+      },
+      {
+        "name": "Prism Spike",
+        "flavourText": "Rainbow-powered passes scattered with devastating strength spikes!",
+        "imageDesc": "A sleek helmet with a tall geometric spike in the center made of prismatic crystal that refracts light into rainbow colors. The base helmet is white with iridescent coating.",
+        "colors": "white, iridescent rainbow, emerald, diamond"
+      },
+      {
+        "name": "Muscle Mushroom",
+        "flavourText": "A magical fungi cap that grows your passes AND your power-ups!",
+        "imageDesc": "An oversized mushroom-shaped helmet in bright red and white spotted pattern. The cap is classic red with white circular spots. A muscular bicep symbol embroidered in gold thread on the red surface.",
+        "colors": "bright red, white, pale cream, gold"
+      }
+    ],
+    "selected": [
+      9
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-height1_shooting1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "height": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Cloud Crown",
+        "flavourText": "Float higher, shoot straighter. Mostly clouds.",
+        "imageDesc": "a fluffy white crown woven from actual cumulus clouds with silver lightning bolts crackling around the edges",
+        "colors": "white, silver, pale blue"
+      },
+      {
+        "name": "Archer's Antlers",
+        "flavourText": "Deer aren't known for shooting, but these are.",
+        "imageDesc": "a headband with oversized bronze antlers that curve upward with target reticles etched along each point",
+        "colors": "bronze, dark brown, golden yellow"
+      },
+      {
+        "name": "Sniper Sombrero",
+        "flavourText": "Mexican hat of precision. Goal scorer's delight.",
+        "imageDesc": "a wide brimmed sombrero with red and gold embroidery, featuring a built-in scope lens on one side",
+        "colors": "deep red, gold thread, metallic gray"
+      },
+      {
+        "name": "Rocket Head Wrap",
+        "flavourText": "Your head becomes a guided missile. Metaphorically.",
+        "imageDesc": "a sleek crimson headwrap with silver rocket fins protruding from the sides and flame designs",
+        "colors": "crimson red, silver metallic, orange"
+      },
+      {
+        "name": "Eagle's Eye Helm",
+        "flavourText": "See your target from a mile away. Hit it from one.",
+        "imageDesc": "a golden helmet shaped like an eagle's head with piercing yellow eyes and feather detailing",
+        "colors": "golden bronze, amber yellow, white"
+      },
+      {
+        "name": "Pineapple Spike Cap",
+        "flavourText": "Spiky fruit energy powers your head-to-goal shots.",
+        "imageDesc": "a yellow and orange cap shaped like a pineapple with textured diamond patterns and spiky leafy crown on top",
+        "colors": "golden yellow, orange, bright green"
+      },
+      {
+        "name": "Comet Circlet",
+        "flavourText": "A tiny space rock orbits your skull. Goals follow.",
+        "imageDesc": "a thin metallic circlet with a glowing comet trailing luminescent tail arcing overhead",
+        "colors": "icy blue, silver white, cyan"
+      },
+      {
+        "name": "Archer Knight's Crown",
+        "flavourText": "Medieval meets modern. Arrows optional but encouraged.",
+        "imageDesc": "a pointed crown made of shimmering steel with archer symbols and crossbow designs along the rim",
+        "colors": "steel gray, dark blue, gold"
+      },
+      {
+        "name": "Peacock Plume Mask",
+        "flavourText": "Showing off has never been more effective.",
+        "imageDesc": "an ornate mask with iridescent peacock feathers fanning out from the sides in shades of turquoise and violet",
+        "colors": "turquoise, purple, emerald green, gold"
+      },
+      {
+        "name": "Asteroid Headgear",
+        "flavourText": "Literally wear a space rock. Physics don't apply here.",
+        "imageDesc": "a bulky gray and black helmet shaped like a jagged asteroid chunk with impact craters and a glowing impact point",
+        "colors": "charcoal gray, slate black, electric blue"
+      }
+    ],
+    "selected": [
+      2
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-luck1_reflexes1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "luck": 1,
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Chaos Crown",
+        "flavourText": "Randomly bounces in the right direction at the right time.",
+        "imageDesc": "A jagged crown made of mismatched metals and glowing crystals. Spikes point in chaotic directions. Center gem pulses with violet energy. Asymmetrical and wild-looking, one side has more gems than the other. Gold and silver bands spiral unpredictably.",
+        "colors": "violet, gold, silver, white"
+      },
+      {
+        "name": "Zen Headband",
+        "flavourText": "Eyes closed. Still catches everything somehow.",
+        "imageDesc": "A smooth silk headband with a meditative monk aesthetic. Simple yin-yang symbol embroidered in the center. Flowing fabric tails behind. Minimalist design with calming waves pattern. Soft blues and whites with hints of gold trim.",
+        "colors": "azure, white, gold, navy"
+      },
+      {
+        "name": "Sparkle Helm",
+        "flavourText": "Blinds opponents while you dodge flawlessly.",
+        "imageDesc": "A sleek helmet encrusted with sparkling gems and sequins. Each facet reflects light differently. Metallic base with rainbow-colored crystal clusters. Looks like it's covered in glitter. Pointed design with a diamond-shaped crest.",
+        "colors": "magenta, cyan, gold, white"
+      },
+      {
+        "name": "Foxy Fedora",
+        "flavourText": "A cunning hat that predicts where the ball goes.",
+        "imageDesc": "A classic fedora with fox ears attached on top. Burnt orange and cream colored with a black band around the base. Embroidered fox face on the front. Fluffy texture on the ears. Mischievous expression with tiny nose and whiskers.",
+        "colors": "burnt orange, cream, black, rust"
+      },
+      {
+        "name": "Comet Visor",
+        "flavourText": "Moving so fast, luck has to catch up with you.",
+        "imageDesc": "A sleek astronaut-style visor helmet with a wraparound visor tinted electric blue. Metallic silver and chrome body with glowing neon blue accents and streak marks suggesting motion. Star pattern etched into the crown. Futuristic and aerodynamic.",
+        "colors": "silver, neon blue, chrome, white"
+      },
+      {
+        "name": "Lucky Leprechaun Topper",
+        "flavourText": "Four-leaf clover hairpin grants miracles weekly.",
+        "imageDesc": "A tiny green leprechaun hat with a gold buckle, sitting atop a rainbow-colored plume. Four-leaf clovers dangling from the brim on thin strings. Tiny bells attached that jingle when you move. Pot of gold embroidery on the back.",
+        "colors": "forest green, gold, rainbow pastels, white"
+      },
+      {
+        "name": "Butterfly Rush Helm",
+        "flavourText": "Flutters left when you mean to go right. Works out.",
+        "imageDesc": "Butterfly wings sprouting from the sides of a lightweight helmet. Iridescent wings with intricate vein patterns in blues, purples, and teals. Fuzzy antennae bobbing on top. Delicate but sturdy-looking construction. Golden metallic body underneath.",
+        "colors": "iridescent blue, purple, teal, gold"
+      },
+      {
+        "name": "Pancake Power-Up",
+        "flavourText": "Syrup-slick reflexes keep you sliding away danger.",
+        "imageDesc": "A ridiculous helmet shaped like a fluffy pancake with syrup drizzling down the sides. Golden-brown pancake texture with butter melting on top. Blueberries embedded like jewels. Whipped cream swirl detail. Looks delicious and slightly absurd.",
+        "colors": "golden brown, amber, cream, blue"
+      },
+      {
+        "name": "Stargazer Helm",
+        "flavourText": "Reads the cosmos. Predicts saves three seconds early.",
+        "imageDesc": "A celestial-themed helmet with constellations etched and glowing across the surface. Deep navy blue base with silver star markers connected by glowing lines. Moon crescent symbol on the front. Mysterious and cosmic energy vibe.",
+        "colors": "navy, silver, sky blue, white"
+      },
+      {
+        "name": "Gummy Glow Cap",
+        "flavourText": "Tastes like fruit loops, defends like a legend.",
+        "imageDesc": "A puffy helmet that looks like a oversized gummy bear head. Translucent shiny exterior in bright fruity colors - reds, oranges, yellows, and greens swirled together. Glossy candy finish. Round googly eyes. Jiggly-looking but protective.",
+        "colors": "candy red, orange, yellow, lime green"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-strength2",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "strength": 2
+    },
+    "options": [
+      {
+        "name": "Iron Acorn",
+        "flavourText": "This tiny helmet packs the toughness of an ancient oak tree.",
+        "imageDesc": "A helmet shaped like a giant acorn with a shiny bronze metallic finish. The pointed top has reinforced ridges. The cap features a cross-hatch oak bark texture pattern in dark brown and tan.",
+        "colors": "bronze, dark brown, tan, gold"
+      },
+      {
+        "name": "Void Crown",
+        "flavourText": "Wear the cosmos on your head and confuse everyone.",
+        "imageDesc": "A crown-like helmet with a deep indigo base studded with glowing star-shaped gems. Nebula swirls of purple and cyan wrap around it. Spikes radiate outward like a supernova.",
+        "colors": "deep indigo, purple, cyan, silver"
+      },
+      {
+        "name": "Gigantic Pepper",
+        "flavourText": "Helmet so fiery, opponents think you're actually on fire.",
+        "imageDesc": "A large red pepper-shaped helmet with glossy finish and subtle green highlights. A leafy crown sits on top with wavy details. Small bumps cover the surface for texture.",
+        "colors": "bright red, forest green, gold, orange"
+      },
+      {
+        "name": "Rhinoceros Horn",
+        "flavourText": "A single mighty spiral that screams 'don't mess with me!'",
+        "imageDesc": "A pearlescent spiral horn helmet in silvery-white with iridescent sheen. The base wraps like a rhino's face with textured grey hide. Sharp pointed tip dominates the design.",
+        "colors": "pearlescent white, grey, silver, lavender"
+      },
+      {
+        "name": "Molten Meteorite",
+        "flavourText": "Crash-landed from space and ready to rumble.",
+        "imageDesc": "A jagged, porous grey helmet resembling a meteorite with dark char marks. Glowing orange-red cracks run through it like lava flows. Rough, bumpy surface with sharp protrusions.",
+        "colors": "charcoal grey, orange-red, bright yellow, black"
+      },
+      {
+        "name": "Titanium Taco",
+        "flavourText": "Crunchy defense that's delicious to opponents (not really).",
+        "imageDesc": "A taco-shell-shaped helmet in metallic bronze-gold with a crunchy wavy edge. Cheese-yellow sections alternate with orange-red meat texture stripes. Lettuce-green trim along the curved opening.",
+        "colors": "metallic gold, cheese-yellow, orange-red, leaf-green"
+      },
+      {
+        "name": "Thunderbolt Crown",
+        "flavourText": "Gets your hair standing on end even under the helmet.",
+        "imageDesc": "A crown made of jagged lightning bolts in electric yellow and bright blue. Sharp points zigzag upward with crackling energy effects. Base is storm-grey with white highlights for shine.",
+        "colors": "electric yellow, bright blue, storm grey, white"
+      },
+      {
+        "name": "Obsidian Turtle",
+        "flavourText": "Protected like a turtle, strong like a tank.",
+        "imageDesc": "A glossy black dome helmet shaped like a turtle shell. Geometric hexagonal plates cover it with deep purple and dark green iridescent sheen. Small carved ridges create texture throughout.",
+        "colors": "obsidian black, deep purple, dark green, silver"
+      },
+      {
+        "name": "Volcanic Coconut",
+        "flavourText": "Tropical toughness with explosive power inside.",
+        "imageDesc": "A large coconut-shaped helmet with fibrous brown exterior texture. Volcanic orange-red and yellow glowing cracks erupt across the surface. A single dark hole at the center glows ominously.",
+        "colors": "burnt brown, volcanic orange, glowing yellow, deep red"
+      },
+      {
+        "name": "Fortress Stone",
+        "flavourText": "Built like a castle wall\u2014defenders bounce right off you.",
+        "imageDesc": "A blocky stone helmet resembling a castle turret or fortress. Stacked rectangular grey and tan stone layers with mortar lines. Crenellated (notched) top edge. Weathered moss-green creeping along cracks.",
+        "colors": "slate grey, tan stone, moss-green, charcoal"
+      }
+    ],
+    "selected": [
+      8
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-shooting1_strength1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "shooting": 1,
+      "strength": 1
+    },
+    "options": [
+      {
+        "name": "Bullseye Beret",
+        "flavourText": "Dapper AND deadly accurate to the post.",
+        "imageDesc": "classic black beret with a bright red bullseye target printed on the front, accented with gold crosshairs and small shooting star embroideries",
+        "colors": "black, crimson red, gold"
+      },
+      {
+        "name": "Sledgehammer Helm",
+        "flavourText": "Shaped like the tool. Hits like it too.",
+        "imageDesc": "oversized gray metal helmet designed to look like a sledgehammer head, with a wooden-look band across the bottom and dents showing impact history",
+        "colors": "gunmetal gray, dark brown, bronze"
+      },
+      {
+        "name": "Phoenix Plumage Crown",
+        "flavourText": "Burning determination and deadly accuracy combined.",
+        "imageDesc": "ornate crown with tall feathers in flame colors rising from a golden band, each feather tipped with glowing embers and swirling fire patterns",
+        "colors": "gold, fiery orange, crimson red, deep purple"
+      },
+      {
+        "name": "Cannonball Cap",
+        "flavourText": "Your head became a weapon. Refs are confused.",
+        "imageDesc": "rounded steel cap shaped like a cannonball with fuse details, painted with crosshatch patterns and tiny explosion designs, mounted on a leather band",
+        "colors": "iron black, silver, orange-yellow"
+      },
+      {
+        "name": "Sniper's Scope Visor",
+        "flavourText": "See the target, become the target.",
+        "imageDesc": "tactical headband with a front-mounted brass scope-like attachment featuring concentric circles and crosshair engravings",
+        "colors": "olive green, brass brown, reflective silver"
+      },
+      {
+        "name": "Meteor Spike Helm",
+        "flavourText": "Fell from space. Scorched and pointy.",
+        "imageDesc": "dark metallic helmet covered in jagged spikes of varying heights, with charred scorching and space dust texture all over",
+        "colors": "charcoal black, burnt sienna, silver-white"
+      },
+      {
+        "name": "Archer's Glory Headguard",
+        "flavourText": "Ancient bowmasters reborn as your headgear.",
+        "imageDesc": "leather headband with ornate wooden bow-shaped decorations on both sides, adorned with feather fletching, archery target symbols embossed on the front",
+        "colors": "rich brown, tan gold, forest green"
+      },
+      {
+        "name": "Warhammer Headpiece",
+        "flavourText": "Heavy, intimidating, and unstoppable.",
+        "imageDesc": "solid iron helmet with a wide domed crown, featuring embossed hammer head designs down the front and thick leather straps with metal studs",
+        "colors": "deep iron gray, copper orange, aged leather brown"
+      },
+      {
+        "name": "Comet Crest Cap",
+        "flavourText": "You're a shooting star. The ball follows.",
+        "imageDesc": "sleek white and blue cap with a tall comet tail swooshing from front to back, trails of sparkles and light streaks embedded",
+        "colors": "pearl white, cobalt blue, glowing silver"
+      },
+      {
+        "name": "Titan's Crowned Helm",
+        "flavourText": "Built for giants. Works on kids too.",
+        "imageDesc": "massive bronze-tinted helmet with towering rectangular crown designs resembling ancient warrior royalty, etched with muscle patterns and power symbols",
+        "colors": "bronze gold, deep burgundy, charcoal"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "head-uncommon-height1_reflexes1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "height": 1,
+      "reflexes": 1
+    },
+    "options": [
+      {
+        "name": "Owl Crown",
+        "flavourText": "Those giant eyes see everything. Even the sneaky goals.",
+        "imageDesc": "A whimsical crown made from interlocking feathers in cream and brown, with exaggerated round owl eyes embedded on the front. The crown has three peaks resembling owl ears. Feather texture throughout with subtle gold trim along the base.",
+        "colors": "brown, tan, gold, black"
+      },
+      {
+        "name": "Giraffe Helm",
+        "flavourText": "Extra height from your new tall friend. They're very supportive.",
+        "imageDesc": "A headband with a small 3D giraffe head sticking up from the crown, with a long neck extending upward. The giraffe is orange-yellow with brown spot patches. The headband itself is tan leather with a brown geometric pattern.",
+        "colors": "orange-yellow, brown, tan, dark brown"
+      },
+      {
+        "name": "Mercury Wings",
+        "flavourText": "You're basically telepathic now. Also slightly dizzy.",
+        "imageDesc": "A Roman-inspired helmet with small silver-white wings attached to both sides of the head. The wings shimmer with feather details. The helmet base is polished silver with teal accent stripes.",
+        "colors": "silver, teal, white, dark gray"
+      },
+      {
+        "name": "Stilt-Walker's Crown",
+        "flavourText": "Psychologically taller. Which is basically scientifically taller.",
+        "imageDesc": "A tall, striped top hat in bright pink and white stripes with a black base band. A small platform or pedestal-like extension rises from the crown. Decorated with tiny bells.",
+        "colors": "hot pink, white, black, light pink"
+      },
+      {
+        "name": "Hawk Headpiece",
+        "flavourText": "Predator vision unlocked. RIP to the ball's sense of safety.",
+        "imageDesc": "A fierce hawk mask that covers the forehead and extends over the eyes with a sharp, pointed beak. Golden-brown feathers cover the skull area with white undertones. Fierce orange eyes and a hooked yellow beak.",
+        "colors": "golden brown, orange, dark brown, black"
+      },
+      {
+        "name": "Telescope Tiara",
+        "flavourText": "You can see plays happening in the future. Probably. Maybe.",
+        "imageDesc": "A fancy tiara with a small brass telescope or spyglass mounted on top, pointing slightly forward. The base is ornate gold with crystalline gems embedded around the band.",
+        "colors": "gold, copper, blue, purple"
+      },
+      {
+        "name": "Dragon's Crescent",
+        "flavourText": "A dragon's horn makes you mysterious and impossibly cool.",
+        "imageDesc": "A half-moon shaped headpiece with a single curved dragon horn extending upward from the center. The crescent is deep crimson red with gold dragon scale texturing. The horn is iridescent.",
+        "colors": "crimson red, gold, green, purple"
+      },
+      {
+        "name": "Springy Antenna",
+        "flavourText": "Boinging with pure reflex power. Also just fun to boing.",
+        "imageDesc": "A headband with two large spiral antennae sticking up. Each antenna is bright lime green with a springy, coiled appearance. The headband is neon yellow with small polka dots. Tips have tiny metallic ball bearings.",
+        "colors": "lime green, neon yellow, silver, hot pink"
+      },
+      {
+        "name": "Flamingo Feather Crown",
+        "flavourText": "Pretty AND reflexive. The ball never knows what hit it.",
+        "imageDesc": "A crown made of long, flowing hot pink flamingo feathers arranged in a dramatic arc above the head. Feathers have white and coral accents at the tips. A thin gold band serves as the base, studded with small pearls.",
+        "colors": "hot pink, light pink, gold, white"
+      },
+      {
+        "name": "Lightning Crest",
+        "flavourText": "Static electricity makes your reflexes literally spark.",
+        "imageDesc": "A jagged lightning bolt that forms a crest along the top of the head, crackling with energy. Base color is electric blue with bright yellow highlights. Small bolts branch off from the main crest. The headband underneath is sleek black.",
+        "colors": "electric blue, yellow, black, cyan"
+      }
+    ],
+    "selected": [
+      0
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-reflexes1_shooting1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "reflexes": 1,
+      "shooting": 1
+    },
+    "options": [
+      {
+        "name": "Laser Visor",
+        "flavourText": "Makes your eyes glow red when you spot a goal-scoring opportunity.",
+        "imageDesc": "A sleek silver motorcycle-style helmet with a crimson LED visor strip across the eyes. The visor glows neon red. Metallic gray plating covers the forehead with small geometric circuit patterns etched in. Racing stripes in electric blue run down the sides. Aerodynamic vents along the temple.",
+        "colors": "silver, crimson, electric-blue, dark-gray"
+      },
+      {
+        "name": "Eagle Crown",
+        "flavourText": "Gives you the reflexes of a diving bird hunting for prey.",
+        "imageDesc": "A golden helmet shaped like an eagle's head with a sharp pointed beak protruding forward. Brown feather textures cover the crown with darker brown stripes. Two fierce yellow eyes stare forward. White feather details accent the sides and back. A sharp golden crest runs down the middle.",
+        "colors": "gold, brown, yellow, white"
+      },
+      {
+        "name": "Bubble Helm",
+        "flavourText": "Pop! Your instincts burst through defenders instantly.",
+        "imageDesc": "A translucent iridescent bubble-shaped helmet that catches light with rainbow shimmer. Inside visible gears and clockwork mechanisms. Pink and blue gradients swirl throughout like liquid. Small geometric bubbles float suspended inside. Silver reinforcement bands wrap around equator and vertically.",
+        "colors": "iridescent-pink, light-blue, silver, white"
+      },
+      {
+        "name": "Storm Cap",
+        "flavourText": "Lightning reflexes come when you wear a hat that smells like rain.",
+        "imageDesc": "A dark charcoal helmet with dramatic purple and white lightning bolt patterns streaking across. Jagged edges look like electricity crackling. Swirling white cloud textures billow from the crown. Small static-like spikes protrude randomly. Silver rivets hold storm clouds imagery across the surface.",
+        "colors": "charcoal, purple, white, silver"
+      },
+      {
+        "name": "Rocket Beanie",
+        "flavourText": "Shoot faster when your hat has actual rocket propulsion (not really).",
+        "imageDesc": "A bright red knit beanie with a silver rocket ship design on the front. Orange and yellow flame textures erupt from the tip like a blast-off. Small yellow stripes accent the rocket. Blue circular portholes dot the rocket body. White fluffy knit texture throughout the beanie sides.",
+        "colors": "bright-red, silver, orange, yellow"
+      },
+      {
+        "name": "Octopus Headwrap",
+        "flavourText": "Eight tentacle reflexes mean eight different passing options at once.",
+        "imageDesc": "A teal headwrap with eight purple tentacles extending upward and outward in different directions. Each tentacle has pink suckers running along the bottom. Yellow eyes peer from the center. Wavy patterns ripple across the main wrap like ocean water. Coral pink accents on tentacle tips.",
+        "colors": "teal, purple, pink, yellow"
+      },
+      {
+        "name": "Porcupine Spikes",
+        "flavourText": "Pointy reflexes are the sharpest reflexes \u2014 just ask the spikes.",
+        "imageDesc": "A tan/beige base helm completely covered in long sharp tan spikes pointing outward in all directions. Dark brown striped patterns run through the base. Some spikes have golden tips. A few burgundy accents highlight the foremost spikes. Rough textured appearance like actual quills.",
+        "colors": "tan, dark-brown, gold, burgundy"
+      },
+      {
+        "name": "Comet Crash",
+        "flavourText": "You shoot with the power of a space rock slamming into the planet.",
+        "imageDesc": "A dark navy helmet shaped like a streaking comet with a long glowing tail behind it. Bright cyan glow surrounds the trail. The front is charred dark gray with impact cracks glowing orange. White hot spots mark collision points. Trailing wisps of yellow and orange energy extend back.",
+        "colors": "navy, cyan, dark-gray, orange"
+      },
+      {
+        "name": "Ninja Mask",
+        "flavourText": "You don't see the shot coming \u2014 just the net rippling mysteriously.",
+        "imageDesc": "A jet-black face mask helmet with white eye holes outlined in white stitching. A crimson symbol (like an ancient rune) marks the forehead. Layers of dark fabric drape from neck area. White patterns edge the cheekbones. Small red accent ties hang from the sides.",
+        "colors": "jet-black, white, crimson, dark-gray"
+      },
+      {
+        "name": "Crystal Flux",
+        "flavourText": "Shooting precision powered by shimmering magical rocks on your head.",
+        "imageDesc": "A sleek white helmet with large geometric amethyst and blue crystal formations jutting from the crown. Crystals catch prismatic light with purple and blue sparkles. Clear quartz smaller crystals fill gaps. Silver metallic base beneath crystals. Faint rainbow iridescence reflects across crystal surfaces.",
+        "colors": "white, amethyst, crystal-blue, silver"
+      }
+    ],
+    "selected": []
+  },
+  {
+    "concept_id": "head-uncommon-height2",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "height": 2
+    },
+    "options": [
+      {
+        "name": "Giraffe Coronet",
+        "flavourText": "Neck stretches. Head rises. Opponents very confused.",
+        "imageDesc": "A tall golden coronet shaped like a giraffe's head with brown spot patterns. Two curved horn-like protrusions extend upward with small leaves adorning the tips. Made of shimmering metal with a spotted leather base.",
+        "colors": "gold, brown, cream, emerald"
+      },
+      {
+        "name": "Cloud Cap",
+        "flavourText": "So fluffy it adds three inches instantly.",
+        "imageDesc": "A puffy white and pale blue helmet resembling a cumulus cloud. Has silver lightning bolt stitching across the surface. Soft-looking with wispy edges that stick out in all directions. Fluffy texture with small star embroidery.",
+        "colors": "white, light blue, silver, gold"
+      },
+      {
+        "name": "Rocket Helm",
+        "flavourText": "Launches you into the air. Mostly.",
+        "imageDesc": "A sleek metallic helmet shaped like a rocket nosecone in bright red and silver. Has blue flame designs racing down the sides. Three small exhaust vents at the base glow with painted orange streaks. Aerodynamic with a pointed top.",
+        "colors": "red, silver, blue, orange"
+      },
+      {
+        "name": "Beanstalk Bonnet",
+        "flavourText": "Magic beans optional. Growing guaranteed.",
+        "imageDesc": "A green fabric hat shaped like climbing vines and beanstalk leaves. Has tan burlap texture with embroidered brown vines spiraling up. Large green leaves stick out from the crown. Small gold coins dangle from the brim as decoration.",
+        "colors": "green, tan, brown, gold"
+      },
+      {
+        "name": "Flamingo Fascinator",
+        "flavourText": "Pink, proud, and definitely taller.",
+        "imageDesc": "A vibrant hot pink headband with a long curved ostrich-feather plume extending upward. Has a pearl and diamond brooch at the front with iridescent shine. Feathers have purple and magenta gradients with glittery accents throughout.",
+        "colors": "hot pink, purple, white, silver"
+      },
+      {
+        "name": "Lighthouse Top Hat",
+        "flavourText": "Warns opponents from a great height.",
+        "imageDesc": "A tall cylindrical hat painted red and white in horizontal stripes like a lighthouse. A glowing yellow light sits on the very top with painted rays emanating outward. Brass band around the base with small anchor engravings.",
+        "colors": "red, white, yellow, brass"
+      },
+      {
+        "name": "Redwood Crown",
+        "flavourText": "Ancient tree power. Head in the clouds.",
+        "imageDesc": "A majestic helmet made to look like the crown of a towering redwood tree. Deep brown bark texture with orange-red details. Has small branch protrusions with green needle-like leaves. Moss-green accents at the base.",
+        "colors": "brown, green, red-orange, moss"
+      },
+      {
+        "name": "Sunflower Halo",
+        "flavourText": "Keeps your head high and face sunny.",
+        "imageDesc": "A cheerful yellow headband with large golden sunflower petals radiating outward from a brown seeded center. Petals have orange and gold gradients with dark vein details. Center has intricate dot patterns like real sunflower seeds.",
+        "colors": "yellow, gold, brown, orange"
+      },
+      {
+        "name": "Trampoline Tiara",
+        "flavourText": "Bounces. Therefore taller. Science!",
+        "imageDesc": "A shimmering silver tiara with springs and coils built into the frame. Pink and purple striped fabric stretches between the points. Has tiny trampolines depicted in the design with painted motion lines. Glitter and pearl accents throughout.",
+        "colors": "silver, pink, purple, white"
+      },
+      {
+        "name": "Giant's Iron Crown",
+        "flavourText": "Borrowed from someone who is WAY bigger.",
+        "imageDesc": "An oversized chunky iron crown with dark gray metal and dents showing battle wear. Has five pointed spikes extending high upward with rough, unfinished edges. Jewels in deep purple and ruby red embedded at the base between each spike.",
+        "colors": "dark gray, purple, ruby red, bronze"
+      }
+    ],
+    "selected": [
+      4
+    ]
+  },
+  {
+    "concept_id": "head-uncommon-height1_passing1",
+    "slot": "head",
+    "rarity": "uncommon",
+    "statBonuses": {
+      "height": 1,
+      "passing": 1
+    },
+    "options": [
+      {
+        "name": "Giraffe Visor",
+        "flavourText": "Long necks see further. So do long heads.",
+        "imageDesc": "a tan and brown headband with a stretchy giraffe neck pattern extending upward, covered in brown spots and safari-style details",
+        "colors": "tan, brown, cream, orange"
+      },
+      {
+        "name": "Antenna Arrows",
+        "flavourText": "These antennas point exactly where to kick.",
+        "imageDesc": "a sleek black headband with two metallic arrow-shaped antennas jutting from the top, glowing with blue direction lines",
+        "colors": "metallic silver, electric blue, black"
+      },
+      {
+        "name": "Cloud Crown",
+        "flavourText": "Floats high above the field. Literally.",
+        "imageDesc": "a fluffy white and light blue headband designed like a puffy cloud with wispy strands, looks soft and dreamy",
+        "colors": "white, pale blue, silver shimmer"
+      },
+      {
+        "name": "Peacock Plume",
+        "flavourText": "Eyes on the back of your head? Sure.",
+        "imageDesc": "an iridescent headband with colorful peacock feathers fanning out from the crown, each feather detailed with eye patterns",
+        "colors": "emerald green, sapphire blue, purple, gold"
+      },
+      {
+        "name": "Telescope Top",
+        "flavourText": "Sees the future. Mostly just the goal.",
+        "imageDesc": "a brass and copper headpiece resembling a telescope with a leather adjustment band, detailed vintage pipe fittings",
+        "colors": "brass gold, copper brown, dark leather"
+      },
+      {
+        "name": "Rocket Helm",
+        "flavourText": "Launches your passes into orbit.",
+        "imageDesc": "a bright red and silver helmet shaped like a rocket ship with flame exhausts on the sides, pointed nose cone on top",
+        "colors": "hot red, silver, neon orange"
+      },
+      {
+        "name": "Owl Oracle",
+        "flavourText": "Wise owls know where to pass. Obviously.",
+        "imageDesc": "a brown and tan headband with a wise owl face on the front, oversized round eyes with golden iris details",
+        "colors": "warm brown, tan, golden yellow, dark brown"
+      },
+      {
+        "name": "Satellite Spike",
+        "flavourText": "Receives signals from the goal.",
+        "imageDesc": "a futuristic black headband with angular geometric spike projections topped with glowing white satellite dishes",
+        "colors": "matte black, silver, neon white"
+      },
+      {
+        "name": "Compass Crown",
+        "flavourText": "Always points the right way to pass.",
+        "imageDesc": "a golden headband with a large compass rose design on the front and directional cardinal markings etched around",
+        "colors": "gold, cream white, navy blue, rose gold"
+      },
+      {
+        "name": "Lighthouse Loop",
+        "flavourText": "Your passes shine bright enough to guide ships.",
+        "imageDesc": "a striped red and white headband with a tiny rotating beacon light on top, detailed with nautical rope patterns",
+        "colors": "bright red, white, golden yellow, navy blue"
+      }
+    ],
+    "selected": []
   }
 ]

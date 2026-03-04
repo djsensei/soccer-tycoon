@@ -39,7 +39,7 @@ const STAT_MILESTONES = {
   goals:       { stat: 'shooting', thresholds: [10, 25, 50, 75, 120, 180] },
   saves:       { stat: 'reflexes', thresholds: [15, 35, 75, 120, 180, 270] },
   tackles:     { stat: 'strength', thresholds: [15, 35, 75, 120, 180, 270] },
-  passes:      { stat: 'passing',  thresholds: [90, 250, 450, 750, 1200, 1800] },
+  passes:      { stat: 'passing',  thresholds: [200, 600, 1500, 3000, 5000, 7500] },
   shotsMissed: { stat: 'luck',     thresholds: [30, 75, 150, 250, 360, 525] },
 };
 
@@ -124,12 +124,26 @@ const CARDS = {
   'hornet-shirt': { id: 'hornet-shirt', name: 'Hornet Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Small, fast, and its sting really hurts.", statBonuses: { shooting: 1, speed: 1 } },  // ⚠ image pending
   'wrecking-ball': { id: 'wrecking-ball', name: 'Wrecking Ball', slot: 'body', rarity: 'uncommon', flavourText: "Came in like a... well you know the song.", statBonuses: { shooting: 1, strength: 1 } },
   'leprechaun-top': { id: 'leprechaun-top', name: 'Leprechaun Top', slot: 'body', rarity: 'uncommon', flavourText: "Catches the leprechaun AND the ball. Every time.", statBonuses: { luck: 1, speed: 1 } },  // ⚠ image pending
-  'rhino-jersey': { id: 'rhino-jersey', name: 'Rhino Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Has a horn on the collar. Yes it's regulation.", statBonuses: { strength: 2 } },  // ⚠ image pending
+  'rhino-jersey': { id: 'rhino-jersey', name: 'Rhino Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Has a horn on the collar. Yes it's regulation.", statBonuses: { strength: 2 } },
   'gazelle-vest': { id: 'gazelle-vest', name: 'Gazelle Vest', slot: 'body', rarity: 'uncommon', flavourText: "Graceful AND fast — defenders hate this one trick.", statBonuses: { speed: 2 } },  // ⚠ image pending
-  'redwood-jersey': { id: 'redwood-jersey', name: 'Redwood Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Been growing taller since the dinosaurs played footy.", statBonuses: { height: 2 } },  // ⚠ image pending
-  'train-shirt': { id: 'train-shirt', name: 'Train Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Full steam ahead and no brakes whatsoever.", statBonuses: { speed: 1, strength: 1 } },  // ⚠ image pending
+  'redwood-jersey': { id: 'redwood-jersey', name: 'Redwood Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Been growing taller since the dinosaurs played footy.", statBonuses: { height: 2 } },
+  'train-shirt': { id: 'train-shirt', name: 'Train Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Full steam ahead and no brakes whatsoever.", statBonuses: { speed: 1, strength: 1 } },
   'cat-shirt': { id: 'cat-shirt', name: 'Cat Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Has nine lives and uses them all in one match.", statBonuses: { luck: 2 } },  // ⚠ image pending
-  'scorpion-vest': { id: 'scorpion-vest', name: 'Scorpion Vest', slot: 'body', rarity: 'uncommon', flavourText: "The tail strikes when you least expect it.", statBonuses: { shooting: 2 } },  // ⚠ image pending
+  'scorpion-vest': { id: 'scorpion-vest', name: 'Scorpion Vest', slot: 'body', rarity: 'uncommon', flavourText: "The tail strikes when you least expect it.", statBonuses: { shooting: 2 } },
+  'laser-cat-visor': { id: 'laser-cat-visor', name: 'Laser Cat Visor', slot: 'head', rarity: 'uncommon', flavourText: "Now you've got cat-like reflexes. Literally. The whiskers help.", statBonuses: { reflexes: 2 } },
+  'laser-focus-goggles': { id: 'laser-focus-goggles', name: 'Laser Focus Goggles', slot: 'head', rarity: 'uncommon', flavourText: "Red tinted lenses make everything look like a target. You become unstoppable.", statBonuses: { luck: 1, shooting: 1 } },
+  'compass-captain-s-hat': { id: 'compass-captain-s-hat', name: 'Compass Captain Hat', slot: 'head', rarity: 'uncommon', flavourText: "Always knows which way the goal is. Even backwards.", statBonuses: { passing: 2 } },
+  'comet-helmet': { id: 'comet-helmet', name: 'Comet Helmet', slot: 'head', rarity: 'uncommon', flavourText: "Zooming across the pitch at impossible speeds. Passes blur through air.", statBonuses: { passing: 1, shooting: 1 } },
+  'viking-thunderhorn': { id: 'viking-thunderhorn', name: 'Viking Thunderhorn', slot: 'head', rarity: 'uncommon', flavourText: "Twin horns, unbridled confidence, legendary hair volume.", statBonuses: { height: 1, strength: 1 } },
+  'rainbow-rabbit-ears': { id: 'rainbow-rabbit-ears', name: 'Rainbow Rabbit Ears', slot: 'head', rarity: 'uncommon', flavourText: "Hopping into luck. These ears bring perfect pass accuracy.", statBonuses: { luck: 1, passing: 1 } },  // ⚠ image pending
+  'rainbow-sherbet-crown': { id: 'rainbow-sherbet-crown', name: 'Rainbow Sherbet Crown', slot: 'head', rarity: 'uncommon', flavourText: "Tastes like luck. Wait, don't lick it. Please.", statBonuses: { luck: 2 } },  // ⚠ image pending
+  'dragon-s-crown': { id: 'dragon-s-crown', name: 'Dragon Crown', slot: 'head', rarity: 'uncommon', flavourText: "Made from shed dragon scales. Still a little warm.", statBonuses: { shooting: 2 } },
+  'muscle-mushroom': { id: 'muscle-mushroom', name: 'Muscle Mushroom', slot: 'head', rarity: 'uncommon', flavourText: "A magical fungi cap that grows your passes AND your power-ups!", statBonuses: { passing: 1, strength: 1 } },  // ⚠ image pending
+  'sniper-sombrero': { id: 'sniper-sombrero', name: 'Sniper Sombrero', slot: 'head', rarity: 'uncommon', flavourText: "Mexican hat of precision. Goal scorer's delight.", statBonuses: { height: 1, shooting: 1 } },
+  'stargazer-helm': { id: 'stargazer-helm', name: 'Stargazer Helm', slot: 'head', rarity: 'uncommon', flavourText: "Reads the cosmos. Predicts saves three seconds early.", statBonuses: { luck: 1, reflexes: 1 } },
+  'volcanic-coconut': { id: 'volcanic-coconut', name: 'Volcanic Coconut', slot: 'head', rarity: 'uncommon', flavourText: "Tropical toughness with explosive power inside.", statBonuses: { strength: 2 } },  // ⚠ image pending
+  'owl-crown': { id: 'owl-crown', name: 'Owl Crown', slot: 'head', rarity: 'uncommon', flavourText: "Those giant eyes see everything. Even the sneaky goals.", statBonuses: { height: 1, reflexes: 1 } },  // ⚠ image pending
+  'flamingo-fascinator': { id: 'flamingo-fascinator', name: 'Flamingo Fascinator', slot: 'head', rarity: 'uncommon', flavourText: "Pink, proud, and definitely taller.", statBonuses: { height: 2 } },  // ⚠ image pending
   // @forge:end
 };
 
