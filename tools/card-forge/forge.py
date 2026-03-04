@@ -160,7 +160,7 @@ def build_card_lines(concepts):
         picks = c.get('selected') or []
         for idx in picks:
             opt     = c['options'][idx]
-            name    = opt['name']
+            name    = re.sub(r"['\"]", '', opt['name'])
             slug    = slugify(name)
             bonuses = ', '.join(f'{s}: {v}' for s, v in c['statBonuses'].items())
             flavour = opt['flavourText'].replace('"', '\\"')
@@ -339,7 +339,7 @@ def cmd_prompts(args):
         picks = c.get('selected') or []
         for idx in picks:
             opt    = c['options'][idx]
-            name   = opt['name']
+            name   = re.sub(r"['\"]", '', opt['name'])
             colors = opt.get('colors') or RARITY_COLORS[c['rarity']]
             origin = SLOT_TRAIL_ORIGIN[c['slot']]
             item   = opt.get('imageDesc') or name.lower()
