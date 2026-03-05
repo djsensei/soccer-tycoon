@@ -91,10 +91,6 @@ function _renderTeamStep() {
 }
 
 function _renderPlayerStep() {
-  // Preserve name from DOM if it exists (re-render during stat allocation)
-  const nameInput = document.getElementById('wiz-pname');
-  if (nameInput) _currentPlayerName = nameInput.value;
-
   const posIdx = _creationStep - 1;
   const pos = POSITIONS[posIdx];
   const label = _POSITION_LABELS[pos];
@@ -167,7 +163,7 @@ function wizNextFromTeam() {
   _creationData.teamName = document.getElementById('wiz-team').value.trim() || generateTeamName();
   _creationData.managerName = document.getElementById('wiz-manager').value.trim() || 'Coach';
   _creationStep = 1;
-  _currentPlayerName = '';
+  _currentPlayerName = generatePlayerName();
   _initAllocStats();
   render();
 }
@@ -210,9 +206,15 @@ function wizNextFromPlayer() {
   }
 
   _creationStep++;
-  _currentPlayerName = '';
+  _currentPlayerName = generatePlayerName();
   _initAllocStats();
   render();
+}
+
+// Snapshot the player name from the DOM before re-rendering
+function _savePlayerName() {
+  const el = document.getElementById('wiz-pname');
+  if (el) _currentPlayerName = el.value;
 }
 
 function allocStat(stat, delta) {
@@ -220,10 +222,12 @@ function allocStat(stat, delta) {
   if (newVal < _STAT_BASE || newVal > _STAT_MAX + _STAT_BASE) return;
   if (delta > 0 && _allocRemaining() <= 0) return;
   _allocStats[stat] = newVal;
+  _savePlayerName();
   render();
 }
 
 function wizRandomize() {
+  _savePlayerName();
   _randomizeAlloc();
   render();
 }
