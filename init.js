@@ -46,14 +46,20 @@ function makePlayerCharacter(id, name) {
   };
 }
 
-function createNewGame(teamName, playerNames) {
-  // playerNames: array of 5 strings in slot order [GK, D, M1, M2, S]
-  const rosterPlayers = playerNames.map((name, i) =>
-    makePlayerCharacter(`player-${i}`, name)
-  );
+function createNewGame(teamName, managerName, playerDefs) {
+  // playerDefs: array of 5 { name, stats } in slot order [GK, D, M1, M2, S]
+  const rosterPlayers = playerDefs.map((def, i) => ({
+    id: `player-${i}`,
+    name: def.name,
+    stats: { ...def.stats },
+    gear: { head: null, body: null, feet: null, gloves: null },
+    careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
+    statBonuses: {},
+  }));
 
   return {
     teamName,
+    managerName,
     fans: 1000,
     matchesPlayed: 0,
 

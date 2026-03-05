@@ -42,6 +42,8 @@ window.addEventListener('DOMContentLoaded', () => {
         if ('height' in p.statBonuses) { p.statBonuses.jumping = p.statBonuses.height; delete p.statBonuses.height; }
       }
     }
+    // M6: add managerName
+    if (!gameState.managerName) gameState.managerName = 'Coach';
     // M6: remove bench players — keep only those in starting slots
     if (gameState.slots) {
       const slotIds = new Set(Object.values(gameState.slots));
