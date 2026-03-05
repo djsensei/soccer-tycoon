@@ -9,8 +9,9 @@ let _creationData = {
   managerName: '',
   playerDefs: [],  // { name, stats } for each completed player
 };
-// Current player's stat allocation (reset each step)
+// Current player's stat allocation and name (reset each step)
 let _allocStats = {};
+let _currentPlayerName = '';
 const _POINTS_PER_PLAYER = 15;
 const _STAT_MAX = 5;
 const _STAT_BASE = 1;
@@ -19,6 +20,7 @@ function _resetWizard() {
   _creationStep = 0;
   _creationData = { teamName: '', managerName: '', playerDefs: [] };
   _allocStats = {};
+  _currentPlayerName = '';
 }
 
 function _initAllocStats() {
@@ -89,10 +91,14 @@ function _renderTeamStep() {
 }
 
 function _renderPlayerStep() {
+  // Preserve name from DOM if it exists (re-render during stat allocation)
+  const nameInput = document.getElementById('wiz-pname');
+  if (nameInput) _currentPlayerName = nameInput.value;
+
   const posIdx = _creationStep - 1;
   const pos = POSITIONS[posIdx];
   const label = _POSITION_LABELS[pos];
-  const nameVal = generatePlayerName();
+  const nameVal = _currentPlayerName || generatePlayerName();
   const remaining = _allocRemaining();
 
   // If stats not initialized for this step, init them
@@ -133,7 +139,7 @@ function _renderPlayerStep() {
           <label>Player Name</label>
           <div class="name-row">
             <input type="text" id="wiz-pname" placeholder="Player name" value="${nameVal}" />
-            <button class="btn-small" onclick="document.getElementById('wiz-pname').value = generatePlayerName()">🎲</button>
+            <button class="btn-small" onclick="wizRandomizeName()">🎲</button>
           </div>
         </div>
         <div class="alloc-section">
@@ -161,6 +167,7 @@ function wizNextFromTeam() {
   _creationData.teamName = document.getElementById('wiz-team').value.trim() || generateTeamName();
   _creationData.managerName = document.getElementById('wiz-manager').value.trim() || 'Coach';
   _creationStep = 1;
+  _currentPlayerName = '';
   _initAllocStats();
   render();
 }
@@ -176,8 +183,10 @@ function wizBack() {
   const prev = _creationData.playerDefs.pop();
   if (prev) {
     _allocStats = { ...prev.stats };
+    _currentPlayerName = prev.name;
   } else {
     _initAllocStats();
+    _currentPlayerName = '';
   }
   render();
 }
@@ -201,6 +210,7 @@ function wizNextFromPlayer() {
   }
 
   _creationStep++;
+  _currentPlayerName = '';
   _initAllocStats();
   render();
 }
@@ -216,6 +226,11 @@ function allocStat(stat, delta) {
 function wizRandomize() {
   _randomizeAlloc();
   render();
+}
+
+function wizRandomizeName() {
+  _currentPlayerName = generatePlayerName();
+  document.getElementById('wiz-pname').value = _currentPlayerName;
 }
 
 function startNewGame() {

@@ -25,8 +25,7 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P0 — Bugs / Urgent
 
-### [Bug] Player name resets when allocating stats in creation wizard
-Every stat +/- button press re-renders the wizard with a fresh `generatePlayerName()` call, overwriting any custom name. The name input value needs to be preserved across re-renders.
+*(none)*
 
 ---
 
