@@ -25,7 +25,8 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P0 — Bugs / Urgent
 
-*(none)*
+### [Bug] Player name resets when allocating stats in creation wizard
+Every stat +/- button press re-renders the wizard with a fresh `generatePlayerName()` call, overwriting any custom name. The name input value needs to be preserved across re-renders.
 
 ---
 
@@ -71,7 +72,7 @@ Replace the flat dark green page background with fuzzy stadium art that evolves 
 ### ~~[Balance] Lower starting player stats with more variation~~ *(moot — M6 wizard uses fixed 22-point allocation)*
 
 ### [UI] Unify roster and gear-up stat presentation
-Hub roster screen stats should use the same colored bar format as the Gear Up screen. May become moot if roster and gear screens are merged (see P3 combined screen).
+Hub roster screen stats should use the same colored bar format as the Gear Up screen instead of acronym text chips. May become moot if roster and gear screens are merged (see P3 combined screen) or reconsidered in M7 with league-based screen flow.
 
 ---
 

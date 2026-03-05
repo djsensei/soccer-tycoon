@@ -33,8 +33,10 @@ Redesign the new-game flow to be more interactive, simplify the roster, rename t
 ## M7 — Refactor Advancement and Opponents
 
 Rework progression from a flat opponent list to a league structure with promotion and relegation.
+Reevaluate roster/gear/match screen flow since a game schedule exists.
 
 ### Candidate issues
+- Generate more teams and players to populate leagues
 - League/season structure with promotion/relegation
 - Fan acceleration tied to league tier
 - Opponent difficulty scaling per league
