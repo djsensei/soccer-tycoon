@@ -13,15 +13,29 @@ Extend the gear system to keep progression meaningful late in the game, when pac
 - ~~Fan acceleration for late-game~~ *(deferred to league/season redesign)*
 - ~~Gear Up stat bars & player sprite placeholder~~ *(done)*
 - ~~Gear Up layout overhaul~~ *(done — compact slots, inventory cleanup, stat bar cap at 10 with star)*
-- Rename "Height" stat to "Jumping" *(minor, can land in M6)*
 
 ---
 
-## M6 — Onboarding & Tutorial
+## M6 — Onboarding, Stat Rename & Roster Simplification *(complete)*
 
-Redesign the new-game flow to be more interactive and set the stage for player sprites. Light tutorial elements where helpful, but nothing heavy — the game is simple enough to pick up with minimal guidance.
+Redesign the new-game flow to be more interactive, simplify the roster, rename the height stat, and add stat transparency.
 
 ### Assigned issues
-- Interactive player creation flow (one-at-a-time name + stats, then position assignment)
-- Player stat detail modal (enlarged bars, stat explanations, base vs bonus breakdown)
-- Death screen references manager name instead of team name
+- ~~Rename "Height" stat to "Jumping"~~ *(done)*
+- ~~Remove bench players — roster is starting 5 only~~ *(done)*
+- ~~Interactive player creation wizard (step-by-step, stat allocation)~~ *(done)*
+- ~~Player stat detail modal (base/gear/milestone breakdown)~~ *(done)*
+- ~~Death screen references manager name~~ *(done)*
+- ~~Lower starting player stats~~ *(moot — wizard uses fixed 22-point allocation)*
+
+---
+
+## M7 — Refactor Advancement and Opponents
+
+Rework progression from a flat opponent list to a league structure with promotion and relegation.
+
+### Candidate issues
+- League/season structure with promotion/relegation
+- Fan acceleration tied to league tier
+- Opponent difficulty scaling per league
+- Season-end rewards and pack upgrades
