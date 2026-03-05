@@ -37,6 +37,17 @@ window.addEventListener('DOMContentLoaded', () => {
       for (const p of gameState.players) {
         if (!p.careerStats) p.careerStats = { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 };
         if (!p.statBonuses) p.statBonuses = {};
+        // M6: rename height → jumping
+        if ('height' in p.stats) { p.stats.jumping = p.stats.height; delete p.stats.height; }
+        if ('height' in p.statBonuses) { p.statBonuses.jumping = p.statBonuses.height; delete p.statBonuses.height; }
+      }
+    }
+    // M6: rename height → jumping in opponent teams
+    if (gameState.opponentTeams) {
+      for (const t of gameState.opponentTeams) {
+        for (const p of t.players) {
+          if ('height' in p.stats) { p.stats.jumping = p.stats.height; delete p.stats.height; }
+        }
       }
     }
     // Reset screens that can't meaningfully resume mid-session

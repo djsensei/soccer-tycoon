@@ -9,7 +9,7 @@ function buildOpponentTeam(def) {
     return {
       id: `${def.id}-p${i}`,
       name,
-      stats: { height: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
+      stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
       gear: { head: null, body: null, feet: null, gloves: null },
     };
   });
@@ -39,7 +39,7 @@ function makePlayerCharacter(id, name) {
   return {
     id,
     name,
-    stats: { height: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
+    stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
     gear: { head: null, body: null, feet: null, gloves: null },
     careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
     statBonuses: {},
