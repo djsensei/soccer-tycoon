@@ -674,6 +674,28 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   justify-content: center;
 }
 
+/* ---- Stat Detail Modal ---- */
+.sdm-modal { max-width: 380px; text-align: left; }
+.sdm-title { font-size: 1.2rem; font-weight: bold; text-align: center; width: 100%; margin-bottom: 0.5rem; }
+.sdm-rows { display: flex; flex-direction: column; gap: 0.6rem; width: 100%; }
+.sdm-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 80px;
+  gap: 0.5rem;
+  align-items: start;
+}
+.sdm-stat-name { font-weight: bold; font-size: 0.8rem; padding-top: 2px; }
+.sdm-stat-total { font-weight: bold; font-size: 1.1rem; }
+.sdm-stat-parts { display: flex; gap: 0.5rem; font-size: 0.75rem; color: var(--text-dim); flex-wrap: wrap; }
+.sdm-stat-parts .sdm-gear { color: var(--accent); }
+.sdm-stat-parts .sdm-milestone { color: var(--gold); }
+.sdm-stat-desc { font-size: 0.72rem; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+.sdm-stat-bar-wrap { padding-top: 5px; }
+.sdm-stat-bar-wrap .stat-bar { height: 6px; }
+
+.player-stats-mini { cursor: pointer; }
+.player-stats-mini:hover span { background: var(--card-hover); }
+
 /* ---- Match Select ---- */
 .matchselect-screen { }
 .tier-group { margin-bottom: 1.5rem; }

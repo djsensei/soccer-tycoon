@@ -34,6 +34,16 @@ const STAT_ABBR = {
   passing: 'PAS', shooting: 'SHO', reflexes: 'REF', luck: 'LCK',
 };
 
+const STAT_DESCRIPTIONS = {
+  jumping:  'How high you can jump — headers, goalkeeper reach, aerial duels.',
+  speed:    'Raw pace — chasing down balls, outrunning defenders.',
+  strength: 'Physical power — tackles, holding off opponents, shielding the ball.',
+  passing:  'Accuracy and vision — through balls, crosses, key passes.',
+  shooting: 'Finishing ability — shot power, placement, long-range strikes.',
+  reflexes: 'Reaction speed — saves, quick turns, reading the play.',
+  luck:     'Pure randomness — deflections, bounces, last-minute miracles.',
+};
+
 // Per-stat milestone thresholds (tuned to event frequency)
 const STAT_MILESTONES = {
   goals:       { stat: 'shooting', thresholds: [10, 25, 50, 75, 120, 180] },

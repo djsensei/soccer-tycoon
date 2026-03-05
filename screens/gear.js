@@ -66,6 +66,7 @@ function renderGearUp() {
          ${statBar(pStats[s], 10, STAT_COLORS[s])}
        </div>`
     ).join('');
+    const statsClickable = `onclick="openStatModal('${p.id}', event)"`;
 
     return `
       <div class="player-gear-row ${isRowSelected ? 'pgr-selected' : ''}">
@@ -73,7 +74,7 @@ function renderGearUp() {
           <div class="pgr-pos">${posSlot ? slotName(posSlot) : 'Bench'}</div>
           <div class="pgr-name">${p.name}</div>
         </div>
-        <div class="pgr-stats">${statBarsHtml}</div>
+        <div class="pgr-stats" ${statsClickable} style="cursor:pointer">${statBarsHtml}</div>
         <div class="pgr-slots">
           ${slotsHtml}
         </div>
@@ -155,6 +156,7 @@ function renderGearUp() {
         </div>
       </div>
       ${modalHtml}
+      ${buildStatDetailModal()}
     </div>
   `;
 }

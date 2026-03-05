@@ -39,8 +39,8 @@ function renderHub() {
       <div class="player-card ${isSwapSrc ? 'swap-selected' : ''}" onclick="selectForSwap('${p.id}')">
         <div class="slot-label">${slotName(slot)}</div>
         <div class="slot-name">${p.name}</div>
-        <div class="player-stats-mini">
-          ${STATS.map(s => `<span title="${s}">${s.slice(0, 3).toUpperCase()} ${eff[s]}</span>`).join('')}
+        <div class="player-stats-mini" onclick="openStatModal('${p.id}', event)">
+          ${STATS.map(s => `<span title="${s}">${STAT_ABBR[s]} ${eff[s]}</span>`).join('')}
         </div>
         ${swapHint}
       </div>
@@ -80,6 +80,7 @@ function renderHub() {
 
       ${fans >= 1000000 ? '<div class="win-banner">🏆 YOU REACHED 1,000,000 FANS! YOU WIN!! 🏆</div>' : ''}
       ${fans < 100      ? '<div class="lose-banner">😱 UNDER 100 FANS — YOU\'RE GETTING SACKED!</div>' : ''}
+      ${buildStatDetailModal()}
     </div>
   `;
 }
