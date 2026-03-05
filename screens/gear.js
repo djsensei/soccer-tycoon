@@ -21,10 +21,6 @@ function renderGearUp() {
     posSlot,
   })).filter(x => x.p);
 
-  const benchEntries = gameState.players
-    .filter(p => !Object.values(gameState.slots).includes(p.id))
-    .map(p => ({ p, posSlot: null }));
-
   function gearSlotCell(p, gs, isPlaceholder) {
     if (isPlaceholder) {
       return `<div class="gear-slot-cell gsc-gloves-placeholder"></div>`;
@@ -55,7 +51,7 @@ function renderGearUp() {
       </div>
     </div>`;
 
-  const playerRowsHtml = [...startingEntries, ...benchEntries].map(({ p, posSlot }) => {
+  const playerRowsHtml = startingEntries.map(({ p, posSlot }) => {
     const isGK = gameState.slots.GK === p.id;
     const isRowSelected = _gearSel.playerId === p.id;
     // All rows render in SLOT_ORDER; non-GK get invisible gloves placeholder

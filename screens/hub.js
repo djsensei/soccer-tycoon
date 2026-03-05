@@ -47,25 +47,6 @@ function renderHub() {
     `;
   });
 
-  const benchPlayers = players.filter(p => !Object.values(slots).includes(p.id));
-  const benchHtml = benchPlayers.length
-    ? benchPlayers.map(p => {
-        const isSwapSrc = _swapTarget === p.id;
-        const swapHint = isSwapSrc
-          ? `<div class="swap-hint selected">Selected — tap another to swap</div>`
-          : _swapTarget
-            ? `<div class="swap-hint">Tap to swap in</div>`
-            : `<div class="swap-hint">Tap to swap in</div>`;
-        return `
-          <div class="player-card bench-card ${isSwapSrc ? 'swap-selected' : ''}" onclick="selectForSwap('${p.id}')">
-            <div class="slot-label">Bench</div>
-            <div class="slot-name">${p.name}</div>
-            ${swapHint}
-          </div>
-        `;
-      }).join('')
-    : '<p class="dim">No bench players</p>';
-
   const invCount = gameState.inventory.reduce((sum, i) => sum + i.quantity, 0);
   const swapBadge = _swapTarget ? ' <span class="swap-mode-badge">Swap Mode</span>' : '';
 
@@ -86,11 +67,6 @@ function renderHub() {
       <section>
         <h2>Starting XI${swapBadge}</h2>
         <div class="roster-grid">${rosterSlots.join('')}</div>
-      </section>
-
-      <section>
-        <h2>Bench</h2>
-        <div class="bench-grid">${benchHtml}</div>
       </section>
 
       <div class="hub-actions">
@@ -126,14 +102,7 @@ function selectForSwap(playerId) {
       // Both are starters — swap their slots
       slots[sourceSlot] = playerId;
       slots[targetSlot] = _swapTarget;
-    } else if (sourceSlot) {
-      // Source is a starter, clicked player is on bench — bench player takes starter slot
-      slots[sourceSlot] = playerId;
-    } else if (targetSlot) {
-      // Source is bench, clicked player is a starter — bench source takes starter slot
-      slots[targetSlot] = _swapTarget;
     }
-    // Both bench: nothing to do (bench has no positional slots)
 
     _swapTarget = null;
     updateState({ slots });

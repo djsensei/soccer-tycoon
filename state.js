@@ -42,6 +42,11 @@ window.addEventListener('DOMContentLoaded', () => {
         if ('height' in p.statBonuses) { p.statBonuses.jumping = p.statBonuses.height; delete p.statBonuses.height; }
       }
     }
+    // M6: remove bench players — keep only those in starting slots
+    if (gameState.slots) {
+      const slotIds = new Set(Object.values(gameState.slots));
+      gameState.players = gameState.players.filter(p => slotIds.has(p.id));
+    }
     // M6: rename height → jumping in opponent teams
     if (gameState.opponentTeams) {
       for (const t of gameState.opponentTeams) {

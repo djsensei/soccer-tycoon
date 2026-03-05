@@ -52,15 +52,12 @@ function createNewGame(teamName, playerNames) {
     makePlayerCharacter(`player-${i}`, name)
   );
 
-  // One bench player generated with random name
-  const benchPlayer = makePlayerCharacter('player-bench-0', generatePlayerName());
-
   return {
     teamName,
     fans: 1000,
     matchesPlayed: 0,
 
-    players: [...rosterPlayers, benchPlayer],
+    players: rosterPlayers,
     slots: { GK: 'player-0', D: 'player-1', M1: 'player-2', M2: 'player-3', S: 'player-4' },
 
     inventory: [],     // [{ cardId, quantity }]
