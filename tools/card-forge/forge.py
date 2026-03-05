@@ -26,7 +26,7 @@ SLOT_EXCLUSIONS = {
     'feet':   {'height'},
     'body':   {'reflexes'},
     'head':   {'speed'},
-    'gloves': {'shooting', 'speed'},
+    'gloves': {'shooting', 'speed', 'height'},
 }
 
 RARITY_BUDGET = {
@@ -109,26 +109,14 @@ def stat_combos(slot, rarity):
             for s2 in stats[i+1:]:
                 add((s1, 4), (s2, 2))
                 add((s1, 3), (s2, 3))
-        for i, s1 in enumerate(stats):
-            for j, s2 in enumerate(stats[i+1:], i+1):
-                for s3 in stats[j+1:]:
-                    add((s1, 2), (s2, 2), (s3, 2))
 
     elif rarity == 'legendary':
+        for s in stats:
+            add((s, 8))
         for i, s1 in enumerate(stats):
             for s2 in stats[i+1:]:
                 add((s1, 5), (s2, 3))
                 add((s1, 4), (s2, 4))
-        for i, s1 in enumerate(stats):
-            for j, s2 in enumerate(stats[i+1:], i+1):
-                for s3 in stats[j+1:]:
-                    add((s1, 4), (s2, 2), (s3, 2))
-                    add((s1, 3), (s2, 3), (s3, 2))
-        for i, s1 in enumerate(stats):
-            for j, s2 in enumerate(stats[i+1:], i+1):
-                for k, s3 in enumerate(stats[j+1:], j+1):
-                    for s4 in stats[k+1:]:
-                        add((s1, 2), (s2, 2), (s3, 2), (s4, 2))
 
     return combos
 
@@ -172,7 +160,7 @@ def build_card_lines(concepts):
         picks = c.get('selected') or []
         for idx in picks:
             opt     = c['options'][idx]
-            name    = opt['name']
+            name    = re.sub(r"['\"]", '', opt['name'])
             slug    = slugify(name)
             bonuses = ', '.join(f'{s}: {v}' for s, v in c['statBonuses'].items())
             flavour = opt['flavourText'].replace('"', '\\"')
@@ -210,6 +198,53 @@ def cmd_concepts(args):
     print(f"Added {new_count} new concepts ({args.slot}/{args.rarity}) — {len(combos)} total for this combo.")
     print(f"new_options.json now has {len(new_queue)} unselected concepts.")
     print(f"\nNext: ask Claude Code to run Haiku generation on new_options.json.")
+
+
+def cmd_populate(args):
+    """Merge Haiku-generated options into new_options.json from a patch file.
+
+    Patch file is JSON: {"concept_id": [array of 10 options], ...}
+    Each option must have: name, flavourText, imageDesc, colors.
+    """
+    patch_path = Path(args.file)
+    if not patch_path.exists():
+        sys.exit(f"Patch file not found: {patch_path}")
+
+    patch = json.loads(patch_path.read_text(encoding='utf-8'))
+    if not isinstance(patch, dict):
+        sys.exit("Patch file must be a JSON object mapping concept_id → options array.")
+
+    required_keys = {'name', 'flavourText', 'imageDesc', 'colors'}
+    concepts = load_new()
+    cid_map  = {c['concept_id']: c for c in concepts}
+    filled   = 0
+    errors   = []
+
+    for cid, options in patch.items():
+        if cid not in cid_map:
+            errors.append(f"  Unknown concept_id: {cid}")
+            continue
+        if not isinstance(options, list) or len(options) != 10:
+            errors.append(f"  {cid}: expected 10 options, got {len(options) if isinstance(options, list) else 'non-list'}")
+            continue
+        bad = [i for i, o in enumerate(options) if not required_keys.issubset(o.keys())]
+        if bad:
+            errors.append(f"  {cid}: options {bad} missing keys (need {required_keys})")
+            continue
+        cid_map[cid]['options'] = options
+        filled += 1
+
+    save_new(concepts)
+    print(f"Populated {filled}/{len(patch)} concepts in new_options.json.")
+    if errors:
+        print("Errors:")
+        for e in errors:
+            print(e)
+    empty = sum(1 for c in concepts if not c['options'])
+    if empty:
+        print(f"{empty} concept(s) still have empty options.")
+    else:
+        print("All concepts populated! Next: uv run forge.py select")
 
 
 def cmd_select(args):
@@ -304,7 +339,7 @@ def cmd_prompts(args):
         picks = c.get('selected') or []
         for idx in picks:
             opt    = c['options'][idx]
-            name   = opt['name']
+            name   = re.sub(r"['\"]", '', opt['name'])
             colors = opt.get('colors') or RARITY_COLORS[c['rarity']]
             origin = SLOT_TRAIL_ORIGIN[c['slot']]
             item   = opt.get('imageDesc') or name.lower()
@@ -531,6 +566,10 @@ def main():
     p_concepts.add_argument('--slot',   required=True, choices=SLOTS)
     p_concepts.add_argument('--rarity', required=True, choices=RARITIES)
 
+    p_populate = sub.add_parser('populate', help='Merge Haiku-generated options from a JSON patch file')
+    p_populate.add_argument('--file', required=True,
+                            help='JSON file mapping concept_id → array of 10 options')
+
     p_select = sub.add_parser('select', help='Browse new options and pick favourites (auto-generates prompts.txt)')
     p_select.add_argument('--all', action='store_true',
                           help='Also show previously viewed concepts for reconsideration')
@@ -548,9 +587,10 @@ def main():
                           help='Patch data.js between sentinel markers instead of writing export.js')
 
     args = parser.parse_args()
-    {'concepts': cmd_concepts, 'select':  cmd_select,
-     'prompts':  cmd_prompts,  'process': cmd_process,
-     'rename':   cmd_rename,   'export':  cmd_export}[args.cmd](args)
+    {'concepts': cmd_concepts, 'populate': cmd_populate,
+     'select':  cmd_select,   'prompts':  cmd_prompts,
+     'process': cmd_process,  'rename':   cmd_rename,
+     'export':  cmd_export}[args.cmd](args)
 
 if __name__ == '__main__':
     main()

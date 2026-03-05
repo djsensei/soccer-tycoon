@@ -14,3 +14,7 @@ img/screenshots/
 
 # Raw diffusion outputs (large, not needed in repo)
 img/cards/originals/
+
+# Forge pipeline intermediate files
+tools/card-forge/data/
+tools/card-forge/__pycache__/

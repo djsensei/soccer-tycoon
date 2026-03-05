@@ -22,6 +22,9 @@ Clicking a player's stats opens a modal showing enlarged stat bars with labels e
 ### [Feature] Interactive player creation flow *(M6)*
 Redesign the New Game screen to create players one at a time: enter (or randomize) a name, view randomly generated stats, then assign positions after all 5 are created. Later: let the user allocate a fixed starting stat point pool. Opens the door for player sprites and light tutorial elements explaining how stats affect gameplay.
 
+### [UI] Death screen should reference manager name *(M6)*
+Game-over headlines should say the manager was sacked (using the manager's name), not blame the team. Depends on M6 onboarding flow where the player enters a manager name.
+
 ---
 
 ## P0 — Bugs / Urgent
@@ -47,8 +50,7 @@ Allow dragging items between inventory and player gear slots instead of the curr
 ### Difficulty gap feels too small
 Starting team lost 0–4 to Rio Blazers (difficulty 9). The gap should probably be more like 0–8 or 0–10 to feel like a truly impossible wall early on. Review stat generation scaling for high-difficulty opponents.
 
-### Death screen wording — manager not team
-Headlines currently say e.g. "THE SLEEPY NARWHALS COLLAPSE IN DISGRACE" — should say the manager was sacked, not the team. Reframe headlines to be about the manager's dismissal.
+### ~~Death screen wording — manager not team~~ *(superseded by P1/M6 manager name item)*
 
 ### Fan floor — friends and family never leave
 Players should never drop to 0 fans. A minimum of ~50 fans (friends and family) always remains, no matter how badly you lose. Adjust the fan floor in `goToResults`.
