@@ -26,7 +26,7 @@ SLOT_EXCLUSIONS = {
     'feet':   {'height'},
     'body':   {'reflexes'},
     'head':   {'speed'},
-    'gloves': {'shooting', 'speed'},
+    'gloves': {'shooting', 'speed', 'height'},
 }
 
 RARITY_BUDGET = {
