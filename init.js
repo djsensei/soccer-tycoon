@@ -9,7 +9,7 @@ function buildOpponentTeam(def) {
     return {
       id: `${def.id}-p${i}`,
       name,
-      stats: { height: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
+      stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
       gear: { head: null, body: null, feet: null, gloves: null },
     };
   });
@@ -39,28 +39,31 @@ function makePlayerCharacter(id, name) {
   return {
     id,
     name,
-    stats: { height: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
+    stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
     gear: { head: null, body: null, feet: null, gloves: null },
     careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
     statBonuses: {},
   };
 }
 
-function createNewGame(teamName, playerNames) {
-  // playerNames: array of 5 strings in slot order [GK, D, M1, M2, S]
-  const rosterPlayers = playerNames.map((name, i) =>
-    makePlayerCharacter(`player-${i}`, name)
-  );
-
-  // One bench player generated with random name
-  const benchPlayer = makePlayerCharacter('player-bench-0', generatePlayerName());
+function createNewGame(teamName, managerName, playerDefs) {
+  // playerDefs: array of 5 { name, stats } in slot order [GK, D, M1, M2, S]
+  const rosterPlayers = playerDefs.map((def, i) => ({
+    id: `player-${i}`,
+    name: def.name,
+    stats: { ...def.stats },
+    gear: { head: null, body: null, feet: null, gloves: null },
+    careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
+    statBonuses: {},
+  }));
 
   return {
     teamName,
+    managerName,
     fans: 1000,
     matchesPlayed: 0,
 
-    players: [...rosterPlayers, benchPlayer],
+    players: rosterPlayers,
     slots: { GK: 'player-0', D: 'player-1', M1: 'player-2', M2: 'player-3', S: 'player-4' },
 
     inventory: [],     // [{ cardId, quantity }]

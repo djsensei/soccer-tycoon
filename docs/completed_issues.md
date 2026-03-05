@@ -2,6 +2,11 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-03-04 (M6 playtest)
+
+### [P0] [Bug] Player name resets when allocating stats in creation wizard
+**Fix**: Added `_currentPlayerName` module-level variable to preserve the player name across re-renders. Name is read from the DOM input before each render, restored when going back, and reset only when advancing to a new player step or clicking the dice button.
+
 ## 2026-03-01 (playtest balance & polish)
 
 ### [P0] [Balance] Double simulation action durations

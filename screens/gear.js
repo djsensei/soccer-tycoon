@@ -21,10 +21,6 @@ function renderGearUp() {
     posSlot,
   })).filter(x => x.p);
 
-  const benchEntries = gameState.players
-    .filter(p => !Object.values(gameState.slots).includes(p.id))
-    .map(p => ({ p, posSlot: null }));
-
   function gearSlotCell(p, gs, isPlaceholder) {
     if (isPlaceholder) {
       return `<div class="gear-slot-cell gsc-gloves-placeholder"></div>`;
@@ -55,7 +51,7 @@ function renderGearUp() {
       </div>
     </div>`;
 
-  const playerRowsHtml = [...startingEntries, ...benchEntries].map(({ p, posSlot }) => {
+  const playerRowsHtml = startingEntries.map(({ p, posSlot }) => {
     const isGK = gameState.slots.GK === p.id;
     const isRowSelected = _gearSel.playerId === p.id;
     // All rows render in SLOT_ORDER; non-GK get invisible gloves placeholder
@@ -70,6 +66,7 @@ function renderGearUp() {
          ${statBar(pStats[s], 10, STAT_COLORS[s])}
        </div>`
     ).join('');
+    const statsClickable = `onclick="openStatModal('${p.id}', event)"`;
 
     return `
       <div class="player-gear-row ${isRowSelected ? 'pgr-selected' : ''}">
@@ -77,7 +74,7 @@ function renderGearUp() {
           <div class="pgr-pos">${posSlot ? slotName(posSlot) : 'Bench'}</div>
           <div class="pgr-name">${p.name}</div>
         </div>
-        <div class="pgr-stats">${statBarsHtml}</div>
+        <div class="pgr-stats" ${statsClickable} style="cursor:pointer">${statBarsHtml}</div>
         <div class="pgr-slots">
           ${slotsHtml}
         </div>
@@ -159,6 +156,7 @@ function renderGearUp() {
         </div>
       </div>
       ${modalHtml}
+      ${buildStatDetailModal()}
     </div>
   `;
 }

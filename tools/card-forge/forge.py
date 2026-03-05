@@ -18,15 +18,15 @@ from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-STATS    = ['height', 'speed', 'strength', 'passing', 'shooting', 'reflexes', 'luck']
+STATS    = ['jumping', 'speed', 'strength', 'passing', 'shooting', 'reflexes', 'luck']
 SLOTS    = ['feet', 'body', 'head', 'gloves']
 RARITIES = ['common', 'uncommon', 'rare', 'epic', 'legendary']
 
 SLOT_EXCLUSIONS = {
-    'feet':   {'height'},
+    'feet':   {'jumping'},
     'body':   {'reflexes'},
     'head':   {'speed'},
-    'gloves': {'shooting', 'speed', 'height'},
+    'gloves': {'shooting', 'speed', 'jumping'},
 }
 
 RARITY_BUDGET = {

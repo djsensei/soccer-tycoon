@@ -79,6 +79,72 @@ function availableQty(cardId) {
   return inventoryCount(cardId) - equippedCount(cardId);
 }
 
+// --- Stat Detail Modal -----------------------------------------
+function statBreakdown(player) {
+  const result = {};
+  for (const s of STATS) {
+    const base = player.stats[s] || 0;
+    const milestone = (player.statBonuses && player.statBonuses[s]) || 0;
+    let gear = 0;
+    for (const cardId of Object.values(player.gear)) {
+      if (cardId && CARDS[cardId] && CARDS[cardId].statBonuses[s]) {
+        gear += CARDS[cardId].statBonuses[s];
+      }
+    }
+    result[s] = { base, gear, milestone, total: base + gear + milestone };
+  }
+  return result;
+}
+
+let _statModalPlayerId = null;
+
+function openStatModal(playerId, evt) {
+  if (evt) evt.stopPropagation();
+  _statModalPlayerId = playerId;
+  render();
+}
+
+function closeStatModal() {
+  _statModalPlayerId = null;
+  render();
+}
+
+function buildStatDetailModal() {
+  if (!_statModalPlayerId) return '';
+  const p = getPlayer(_statModalPlayerId);
+  if (!p) return '';
+  const bd = statBreakdown(p);
+  const rowsHtml = STATS.map(s => {
+    const d = bd[s];
+    const desc = STAT_DESCRIPTIONS[s] || '';
+    return `
+      <div class="sdm-row">
+        <div class="sdm-stat-name" style="color:${STAT_COLORS[s]}">${STAT_ABBR[s]}</div>
+        <div class="sdm-stat-detail">
+          <div class="sdm-stat-total">${d.total}</div>
+          <div class="sdm-stat-parts">
+            <span>Base: ${d.base}</span>
+            ${d.gear ? `<span class="sdm-gear">+${d.gear} gear</span>` : ''}
+            ${d.milestone ? `<span class="sdm-milestone">+${d.milestone} milestone</span>` : ''}
+          </div>
+          <div class="sdm-stat-desc">${desc}</div>
+        </div>
+        <div class="sdm-stat-bar-wrap">
+          ${statBar(d.total, 10, STAT_COLORS[s])}
+        </div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="modal-backdrop" onclick="closeStatModal()">
+      <div class="modal-content sdm-modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeStatModal()">✕</button>
+        <div class="sdm-title">${p.name}</div>
+        <div class="sdm-rows">${rowsHtml}</div>
+      </div>
+    </div>`;
+}
+
 // --- Fan Tier Helpers (Phase 1) ---------------------------------
 function currentFanTier(fans) {
   for (const key of TIER_ORDER) {

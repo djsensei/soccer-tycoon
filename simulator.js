@@ -4,8 +4,8 @@
 
 // How much each stat contributes per position slot
 const POSITION_WEIGHTS = {
-  GK: { reflexes: 4, height: 3, strength: 1, luck: 1 },
-  D:  { strength: 3, height: 2, speed: 1,    luck: 1 },
+  GK: { reflexes: 4, jumping: 3, strength: 1, luck: 1 },
+  D:  { strength: 3, jumping: 2, speed: 1,    luck: 1 },
   M1: { passing: 3,  speed: 2,  strength: 1, luck: 1 },
   M2: { passing: 3,  speed: 2,  strength: 1, luck: 1 },
   S:  { shooting: 4, speed: 2,  luck: 2 },

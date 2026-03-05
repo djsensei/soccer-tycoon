@@ -4,11 +4,12 @@
 
 function renderGameOver() {
   const m = gameState.currentMatch;
+  const mgr = gameState.managerName || 'Coach';
   const headlines = [
     `${gameState.teamName} COLLAPSE IN HISTORIC DISGRACE`,
     `FANS FLEE AS ${gameState.teamName.toUpperCase()} HIT ROCK BOTTOM`,
-    `MANAGER ESCORTED FROM STADIUM`,
-    `LOCAL SOURCES CONFIRM: IT WAS BAD`,
+    `${mgr.toUpperCase()} ESCORTED FROM STADIUM`,
+    `LOCAL SOURCES CONFIRM: ${mgr.toUpperCase()} BLEW IT`,
     `${gameState.teamName.toUpperCase()}: A CAUTIONARY TALE`,
   ];
   const headline = pick(headlines);
@@ -21,8 +22,8 @@ function renderGameOver() {
         <div class="newspaper-header">⚽ THE DAILY BOOT ⚽</div>
         <div class="newspaper-headline">${headline}</div>
         <div class="newspaper-subhead">
-          Following a ${score} defeat to ${opponent}, ${gameState.teamName} have been
-          sacked with just ${gameState.fans.toLocaleString()} fans remaining.
+          Following a ${score} defeat to ${opponent}, manager ${mgr} has been
+          sacked from ${gameState.teamName} with just ${gameState.fans.toLocaleString()} fans remaining.
           Witnesses described the scenes as "genuinely sad."
         </div>
         <div class="newspaper-stats">

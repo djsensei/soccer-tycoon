@@ -13,17 +13,13 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ### ~~[UI] Gear Up stat bars & player sprite placeholder~~ *(M5 — done)*
 
-### [Feature] Rename "Height" stat to "Jumping" *(M5)*
-Replace the Height stat with Jumping across data definitions, UI labels, and simulator. Jumping better represents a trainable attribute that can be improved via gear and milestones.
+### ~~[Feature] Rename "Height" stat to "Jumping"~~ *(M6 — done)*
 
-### [Feature] Player stat detail modal *(M6)*
-Clicking a player's stats opens a modal showing enlarged stat bars with labels explaining what each stat affects. Distinguishes base stats from gear bonuses and milestone bonuses. Doubles as a lightweight tutorial.
+### ~~[Feature] Player stat detail modal~~ *(M6 — done)*
 
-### [Feature] Interactive player creation flow *(M6)*
-Redesign the New Game screen to create players one at a time: enter (or randomize) a name, view randomly generated stats, then assign positions after all 5 are created. Later: let the user allocate a fixed starting stat point pool. Opens the door for player sprites and light tutorial elements explaining how stats affect gameplay.
+### ~~[Feature] Interactive player creation flow~~ *(M6 — done)*
 
-### [UI] Death screen should reference manager name *(M6)*
-Game-over headlines should say the manager was sacked (using the manager's name), not blame the team. Depends on M6 onboarding flow where the player enters a manager name.
+### ~~[UI] Death screen should reference manager name~~ *(M6 — done)*
 
 ---
 
@@ -35,8 +31,7 @@ Game-over headlines should say the manager was sacked (using the manager's name)
 
 ## P2 — Polish
 
-### Bench player stats visible on Roster screen
-Bench player rows currently show no stats. Display stats the same way starter rows do.
+### ~~Bench player stats visible on Roster screen~~ *(moot — bench removed in M6)*
 
 ### Drag-and-drop gear assignment in Gear Up
 Allow dragging items between inventory and player gear slots instead of the current click-to-assign flow.
@@ -73,11 +68,10 @@ Extract item/player/team names, stats, and narrative templates into standalone s
 ### [UI] Tier-based stadium backgrounds
 Replace the flat dark green page background with fuzzy stadium art that evolves with fan tier: local = rough pitch with sideline fans, regional = high school stadium, national = large day stadium, international = packed night stadium. Strong visual progression reward.
 
-### [Balance] Lower starting player stats with more variation
-Starting stat range (currently 3–5) is too clustered, leaving little room for gear and milestone growth. Widen the range (e.g. 1–5 or 2–5) so players feel more distinct from the start and progression has more headroom.
+### ~~[Balance] Lower starting player stats with more variation~~ *(moot — M6 wizard uses fixed 22-point allocation)*
 
 ### [UI] Unify roster and gear-up stat presentation
-Hub roster screen stats should use the same colored bar format as the Gear Up screen. May become moot if roster and gear screens are merged (see P3 combined screen).
+Hub roster screen stats should use the same colored bar format as the Gear Up screen instead of acronym text chips. May become moot if roster and gear screens are merged (see P3 combined screen) or reconsidered in M7 with league-based screen flow.
 
 ---
 
