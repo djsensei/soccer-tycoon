@@ -68,7 +68,6 @@ const CARDS = {
 
   // === EPIC ===
   'timefreeze-whistle': { id: 'timefreeze-whistle', name: 'Time-Freeze Whistle', slot: 'body', rarity: 'epic', flavourText: 'One blow stops everyone. Except you.',              statBonuses: { shooting: 3, passing: 2, luck: 1 } },
-  'invisible-boots':  { id: 'invisible-boots',   name: 'Invisible Boots',  slot: 'feet',   rarity: 'epic',     flavourText: 'WHERE DID THEY GO?',                               statBonuses: { speed: 4, luck: 2 } },
   'mind-helmet':      { id: 'mind-helmet',       name: 'Mind Helmet',      slot: 'head',   rarity: 'epic',     flavourText: "Read the opponent's thoughts. Try not to laugh.",  statBonuses: { passing: 4, reflexes: 2 } },
 
   // === LEGENDARY ===
@@ -155,12 +154,25 @@ const CARDS = {
   'cat-paws': { id: 'cat-paws', name: 'Cat Paws', slot: 'gloves', rarity: 'common', flavourText: "Land on your hands every single time.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
   'scorpion-stingers': { id: 'scorpion-stingers', name: 'Scorpion Stingers', slot: 'gloves', rarity: 'uncommon', flavourText: "Quick sting and a crushing grip in one package.", statBonuses: { reflexes: 1, strength: 1 } },  // ⚠ image pending
   'carrier-pigeon-boots': { id: 'carrier-pigeon-boots', name: 'Carrier Pigeon Boots', slot: 'feet', rarity: 'rare', flavourText: "Feathered delivery service right from your talented feet.", statBonuses: { passing: 4 } },
-  'mecha-dragon-claws': { id: 'mecha-dragon-claws', name: 'Mecha Dragon Claws', slot: 'gloves', rarity: 'epic', flavourText: "Cybernetic dragon tech for ultimate saves and power.", statBonuses: { reflexes: 4, strength: 2 } },  // ⚠ image pending
-  'thunder-drum-boots': { id: 'thunder-drum-boots', name: 'Thunder Drum Boots', slot: 'feet', rarity: 'rare', flavourText: "Every shot makes a boom heard three fields away.", statBonuses: { shooting: 4 } },  // ⚠ image pending
-  'pancake-pressers': { id: 'pancake-pressers', name: 'Pancake Pressers', slot: 'gloves', rarity: 'common', flavourText: "Flatten every shot like Sunday morning breakfast.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'mecha-dragon-claws': { id: 'mecha-dragon-claws', name: 'Mecha Dragon Claws', slot: 'gloves', rarity: 'epic', flavourText: "Cybernetic dragon tech for ultimate saves and power.", statBonuses: { reflexes: 4, strength: 2 } },
+  'thunder-drum-boots': { id: 'thunder-drum-boots', name: 'Thunder Drum Boots', slot: 'feet', rarity: 'rare', flavourText: "Every shot makes a boom heard three fields away.", statBonuses: { shooting: 4 } },
+  'pancake-pressers': { id: 'pancake-pressers', name: 'Pancake Pressers', slot: 'gloves', rarity: 'common', flavourText: "Flatten every shot like Sunday morning breakfast.", statBonuses: { strength: 1 } },
   'mantis-shrimp-smacks': { id: 'mantis-shrimp-smacks', name: 'Mantis Shrimp Smacks', slot: 'gloves', rarity: 'rare', flavourText: "Fastest punch in the ocean now in glove form.", statBonuses: { reflexes: 3, strength: 1 } },  // ⚠ image pending
-  'steel-titan-cleats': { id: 'steel-titan-cleats', name: 'Steel Titan Cleats', slot: 'feet', rarity: 'rare', flavourText: "Forged in a giant robot factory last Tuesday.", statBonuses: { strength: 4 } },  // ⚠ image pending
+  'steel-titan-cleats': { id: 'steel-titan-cleats', name: 'Steel Titan Cleats', slot: 'feet', rarity: 'rare', flavourText: "Forged in a giant robot factory last Tuesday.", statBonuses: { strength: 4 } },
   'thunderbird-talons': { id: 'thunderbird-talons', name: 'Thunderbird Talons', slot: 'gloves', rarity: 'epic', flavourText: "Mythical storm bird brings lightning saves and luck.", statBonuses: { reflexes: 3, luck: 2, passing: 1 } },  // ⚠ image pending
+  'cannonball-express': { id: 'cannonball-express', name: 'Cannonball Express', slot: 'feet', rarity: 'rare', flavourText: "Fired from a cannon and still running at full speed.", statBonuses: { speed: 3, strength: 1 } },
+  'grizzly-bolt-cleats': { id: 'grizzly-bolt-cleats', name: 'Grizzly Bolt Cleats', slot: 'feet', rarity: 'epic', flavourText: "Bear charging at lightning speed is unfair but legal.", statBonuses: { speed: 4, strength: 2 } },
+  'hermes-express-kicks': { id: 'hermes-express-kicks', name: 'Hermes Express Kicks', slot: 'feet', rarity: 'epic', flavourText: "Overnight divine delivery service. Passes arrive before you kick.", statBonuses: { passing: 4, speed: 2 } },
+  'mako-shark-blitz': { id: 'mako-shark-blitz', name: 'Mako Shark Blitz', slot: 'feet', rarity: 'epic', flavourText: "Fastest shark alive with jaws that score from anywhere.", statBonuses: { speed: 4, shooting: 2 } },
+  'catfish-creek-cleats': { id: 'catfish-creek-cleats', name: 'Catfish Creek Cleats', slot: 'feet', rarity: 'rare', flavourText: "Slippery smooth passes gliding through water like catfish whiskers.", statBonuses: { passing: 3, speed: 1 } },
+  'koi-fish-drifters': { id: 'koi-fish-drifters', name: 'Koi Fish Drifters', slot: 'feet', rarity: 'rare', flavourText: "Lucky fish swimming upstream faster than the current flows.", statBonuses: { speed: 2, luck: 2 } },  // ⚠ image pending
+  'ace-of-spades-kicks': { id: 'ace-of-spades-kicks', name: 'Ace of Spades Kicks', slot: 'feet', rarity: 'rare', flavourText: "Always dealt the best shot card in the deck.", statBonuses: { shooting: 3, luck: 1 } },  // ⚠ image pending
+  'pixie-turbo-kicks': { id: 'pixie-turbo-kicks', name: 'Pixie Turbo Kicks', slot: 'feet', rarity: 'epic', flavourText: "Tiny fairy magic granting turbocharged speed and incredible luck.", statBonuses: { luck: 4, speed: 2 } },  // ⚠ image pending
+  'basilisk-gaze-kicks': { id: 'basilisk-gaze-kicks', name: 'Basilisk Gaze Kicks', slot: 'feet', rarity: 'epic', flavourText: "One look paralyzes. One shot petrifies every single goalkeeper.", statBonuses: { shooting: 4, passing: 2 } },  // ⚠ image pending
+  'poseidon-trident-kicks': { id: 'poseidon-trident-kicks', name: 'Poseidon Trident Kicks', slot: 'feet', rarity: 'epic', flavourText: "Three-pronged shots that even the ocean cannot stop today.", statBonuses: { shooting: 6 } },  // ⚠ image pending
+  'dynamite-kickers': { id: 'dynamite-kickers', name: 'Dynamite Kickers', slot: 'feet', rarity: 'rare', flavourText: "Explosive shots with the strength to demolish any wall.", statBonuses: { shooting: 3, strength: 1 } },  // ⚠ image pending
+  'peregrine-falcon-mach': { id: 'peregrine-falcon-mach', name: 'Peregrine Falcon Mach', slot: 'feet', rarity: 'epic', flavourText: "Fastest animal on earth now fastest shoe on earth.", statBonuses: { speed: 6 } },  // ⚠ image pending
+  'chameleon-charm-boots': { id: 'chameleon-charm-boots', name: 'Chameleon Charm Boots', slot: 'feet', rarity: 'rare', flavourText: "Blend in then react with the luckiest color change ever.", statBonuses: { luck: 3, reflexes: 1 } },  // ⚠ image pending
   // @forge:end
 };
 
