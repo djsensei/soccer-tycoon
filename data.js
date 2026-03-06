@@ -62,13 +62,7 @@ const CARDS = {
   'ratty-headband':   { id: 'ratty-headband',    name: 'Ratty Headband',   slot: 'head',   rarity: 'common', flavourText: 'Found it behind the bleachers.',      statBonuses: {} },
   'holey-gloves':     { id: 'holey-gloves',      name: 'Holey Gloves',     slot: 'gloves', rarity: 'common', flavourText: 'Half the fingers are missing.',       statBonuses: {} },
 
-  // === UNCOMMON ===
-  'grip-gloves':      { id: 'grip-gloves',       name: 'Grip Gloves',      slot: 'gloves', rarity: 'uncommon', flavourText: 'Sticks to everything.',                            statBonuses: { reflexes: 2 } },
-
   // === RARE ===
-  'rocket-boots':     { id: 'rocket-boots',      name: 'Rocket Boots',     slot: 'feet',   rarity: 'rare',     flavourText: 'Actual small rockets. Safety not guaranteed.',     statBonuses: { speed: 3, shooting: 1 } },
-  'gravity-gloves':   { id: 'gravity-gloves',    name: 'Gravity Gloves',   slot: 'gloves', rarity: 'rare',     flavourText: 'The ball just... comes to them.',                  statBonuses: { reflexes: 3, jumping: 1 } },
-  'rock-gloves':      { id: 'rock-gloves',       name: 'Rock Gloves',      slot: 'gloves', rarity: 'rare',     flavourText: 'Chiseled from actual boulders. Punching the ball rules.', statBonuses: { reflexes: 2, strength: 2 } },
   'iron-jersey':      { id: 'iron-jersey',       name: 'Iron Jersey',      slot: 'body',   rarity: 'rare',     flavourText: 'Heavy. Very heavy. Nothing gets through.',         statBonuses: { strength: 3, jumping: 1 } },
   'eagle-eye-cap':    { id: 'eagle-eye-cap',     name: 'Eagle Eye Cap',    slot: 'head',   rarity: 'rare',     flavourText: 'See the field like a majestic bird.',              statBonuses: { passing: 2, luck: 2 } },
 
@@ -76,7 +70,6 @@ const CARDS = {
   'timefreeze-whistle': { id: 'timefreeze-whistle', name: 'Time-Freeze Whistle', slot: 'body', rarity: 'epic', flavourText: 'One blow stops everyone. Except you.',              statBonuses: { shooting: 3, passing: 2, luck: 1 } },
   'invisible-boots':  { id: 'invisible-boots',   name: 'Invisible Boots',  slot: 'feet',   rarity: 'epic',     flavourText: 'WHERE DID THEY GO?',                               statBonuses: { speed: 4, luck: 2 } },
   'mind-helmet':      { id: 'mind-helmet',       name: 'Mind Helmet',      slot: 'head',   rarity: 'epic',     flavourText: "Read the opponent's thoughts. Try not to laugh.",  statBonuses: { passing: 4, reflexes: 2 } },
-  'antigrav-gloves':  { id: 'antigrav-gloves',   name: 'Anti-Grav Gloves', slot: 'gloves', rarity: 'epic',     flavourText: 'Every ball floats gently into your hands.',        statBonuses: { reflexes: 4, jumping: 2 } },
 
   // === LEGENDARY ===
   'clone-jersey':     { id: 'clone-jersey',      name: 'Clone Jersey',     slot: 'body',   rarity: 'legendary', flavourText: 'The player is everywhere at once. Somehow legal.', statBonuses: { speed: 2, strength: 2, shooting: 2, passing: 2 } },
@@ -151,6 +144,23 @@ const CARDS = {
   'volcanic-coconut': { id: 'volcanic-coconut', name: 'Volcanic Coconut', slot: 'head', rarity: 'uncommon', flavourText: "Tropical toughness with explosive power inside.", statBonuses: { strength: 2 } },  // ⚠ image pending
   'owl-crown': { id: 'owl-crown', name: 'Owl Crown', slot: 'head', rarity: 'uncommon', flavourText: "Those giant eyes see everything. Even the sneaky goals.", statBonuses: { jumping: 1, reflexes: 1 } },
   'flamingo-fascinator': { id: 'flamingo-fascinator', name: 'Flamingo Fascinator', slot: 'head', rarity: 'uncommon', flavourText: "Pink, proud, and definitely taller.", statBonuses: { jumping: 2 } },
+  'black-cat-boots': { id: 'black-cat-boots', name: 'Black Cat Boots', slot: 'feet', rarity: 'rare', flavourText: "Cross the path of defenders and curse their tackles.", statBonuses: { luck: 4 } },
+  'plasma-jet-cleats': { id: 'plasma-jet-cleats', name: 'Plasma Jet Cleats', slot: 'feet', rarity: 'rare', flavourText: "Sci-fi thrusters that make running feel like flying.", statBonuses: { speed: 4 } },
+  'jackpot-jammers': { id: 'jackpot-jammers', name: 'Jackpot Jammers', slot: 'gloves', rarity: 'uncommon', flavourText: "Three cherries and the ball is saved. JACKPOT.", statBonuses: { luck: 2 } },
+  'slingshot-mitts': { id: 'slingshot-mitts', name: 'Slingshot Mitts', slot: 'gloves', rarity: 'common', flavourText: "Pull back and TWANG the ball downfield.", statBonuses: { passing: 1 } },
+  'penny-pinchers': { id: 'penny-pinchers', name: 'Penny Pinchers', slot: 'gloves', rarity: 'common', flavourText: "Find a penny pick it up and save every shot.", statBonuses: { luck: 1 } },
+  'phoenix-talons': { id: 'phoenix-talons', name: 'Phoenix Talons', slot: 'gloves', rarity: 'rare', flavourText: "Rise from every near-miss with fiery clutch saves.", statBonuses: { luck: 1, reflexes: 3 } },
+  'viper-strikes': { id: 'viper-strikes', name: 'Viper Strikes', slot: 'gloves', rarity: 'uncommon', flavourText: "Two fangs of pure reaction speed in every save.", statBonuses: { reflexes: 2 } },
+  'sushi-chef-hands': { id: 'sushi-chef-hands', name: 'Sushi Chef Hands', slot: 'gloves', rarity: 'uncommon', flavourText: "Fastest hands in the kitchen and the goal.", statBonuses: { passing: 1, reflexes: 1 } },
+  'cat-paws': { id: 'cat-paws', name: 'Cat Paws', slot: 'gloves', rarity: 'common', flavourText: "Land on your hands every single time.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  'scorpion-stingers': { id: 'scorpion-stingers', name: 'Scorpion Stingers', slot: 'gloves', rarity: 'uncommon', flavourText: "Quick sting and a crushing grip in one package.", statBonuses: { reflexes: 1, strength: 1 } },  // ⚠ image pending
+  'carrier-pigeon-boots': { id: 'carrier-pigeon-boots', name: 'Carrier Pigeon Boots', slot: 'feet', rarity: 'rare', flavourText: "Feathered delivery service right from your talented feet.", statBonuses: { passing: 4 } },
+  'mecha-dragon-claws': { id: 'mecha-dragon-claws', name: 'Mecha Dragon Claws', slot: 'gloves', rarity: 'epic', flavourText: "Cybernetic dragon tech for ultimate saves and power.", statBonuses: { reflexes: 4, strength: 2 } },  // ⚠ image pending
+  'thunder-drum-boots': { id: 'thunder-drum-boots', name: 'Thunder Drum Boots', slot: 'feet', rarity: 'rare', flavourText: "Every shot makes a boom heard three fields away.", statBonuses: { shooting: 4 } },  // ⚠ image pending
+  'pancake-pressers': { id: 'pancake-pressers', name: 'Pancake Pressers', slot: 'gloves', rarity: 'common', flavourText: "Flatten every shot like Sunday morning breakfast.", statBonuses: { strength: 1 } },  // ⚠ image pending
+  'mantis-shrimp-smacks': { id: 'mantis-shrimp-smacks', name: 'Mantis Shrimp Smacks', slot: 'gloves', rarity: 'rare', flavourText: "Fastest punch in the ocean now in glove form.", statBonuses: { reflexes: 3, strength: 1 } },  // ⚠ image pending
+  'steel-titan-cleats': { id: 'steel-titan-cleats', name: 'Steel Titan Cleats', slot: 'feet', rarity: 'rare', flavourText: "Forged in a giant robot factory last Tuesday.", statBonuses: { strength: 4 } },  // ⚠ image pending
+  'thunderbird-talons': { id: 'thunderbird-talons', name: 'Thunderbird Talons', slot: 'gloves', rarity: 'epic', flavourText: "Mythical storm bird brings lightning saves and luck.", statBonuses: { reflexes: 3, luck: 2, passing: 1 } },  // ⚠ image pending
   // @forge:end
 };
 

@@ -45,3 +45,7 @@ soccer-tycoon/
 - Match outcomes are calculated, never scripted
 - `simulator.js` must have zero DOM dependencies — it should be testable in a console
 - Keep code readable; a future Claude session may need to pick this up mid-build
+
+## Git Instructions
+- Only commit changes to a feature branch, PRs are required to merge to main
+- Check which folder you are in before executing git commands - you probably don't need to `cd` and trigger a user approval
