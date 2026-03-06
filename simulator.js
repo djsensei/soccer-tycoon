@@ -275,8 +275,9 @@ function simulateMatch(playerTeam, opponentTeam) {
   let currentState = 'poss_mid_atk';
   let halfAdded    = false;
 
-  // Tier scale for per-event fan deltas
-  const tierScale = FAN_EVENT_TIER_SCALE[opponentTeam.tier] || 1.0;
+  // Tier scale for per-event fan deltas (use league key if available, fall back to opponent tier)
+  const tierKey = opponentTeam.league || opponentTeam.tier || 'local';
+  const tierScale = FAN_EVENT_TIER_SCALE[tierKey] || 1.0;
 
   // Game clock — each Markov step advances by a random duration.
   // Tune EVENT_SECONDS_PER_STEP to control match pacing / average score.
@@ -413,8 +414,9 @@ function simulateMatch(playerTeam, opponentTeam) {
   }
 
   // Full time — compute margin-based fan bonus and attach to fulltime event
+  const fanTierKey = opponentTeam.league || opponentTeam.tier || 'local';
   const { delta: marginBonus } = calculateFanDelta(
-    opponentTeam.tier, playerScore, opponentScore, opponentTeam.fanRewardBase
+    fanTierKey, playerScore, opponentScore, opponentTeam.fanRewardBase || FAN_BASE[fanTierKey]
   );
   events.push({
     minute: 90, second: MATCH_SECONDS, team: null, type: 'fulltime', outcome: null,
@@ -468,6 +470,32 @@ function renderEventText(event) {
   });
 }
 
+// --- NPC Match Simulation (M7) ---------------------------------
+// Simple Poisson-based goal generator using team difficulty
+function simulateNPCMatch(homeTeam, awayTeam) {
+  // Expected goals based on difficulty: higher diff = more goals expected
+  const homeExpected = 0.5 + homeTeam.difficulty * 0.15;
+  const awayExpected = 0.5 + awayTeam.difficulty * 0.15;
+
+  function poisson(lambda) {
+    let L = Math.exp(-lambda), k = 0, p = 1;
+    do { k++; p *= Math.random(); } while (p > L);
+    return k - 1;
+  }
+
+  return { homeScore: poisson(homeExpected), awayScore: poisson(awayExpected) };
+}
+
+function updateStandings(standings, teamId, goalsFor, goalsAgainst) {
+  const s = standings[teamId];
+  if (!s) return;
+  s.gf += goalsFor;
+  s.ga += goalsAgainst;
+  if (goalsFor > goalsAgainst) { s.w++; s.pts += 3; }
+  else if (goalsFor === goalsAgainst) { s.d++; s.pts += 1; }
+  else { s.l++; }
+}
+
 // --- Post-match calculations ------------------------------------
 function calculateFanDelta(tier, playerScore, opponentScore, fanRewardBase) {
   const base = fanRewardBase || FAN_BASE[tier] || FAN_BASE.local;
@@ -486,7 +514,8 @@ function calculateFanDelta(tier, playerScore, opponentScore, fanRewardBase) {
 
 function getPackReward(tier, outcomeKey) {
   if (outcomeKey === 'bigLoss') return null; // humiliating defeat, no reward
-  const rewards = TIER_PACK_REWARDS[tier];
+  // Try league pack rewards first (M7), fall back to tier pack rewards
+  const rewards = LEAGUE_PACK_REWARDS[tier] || TIER_PACK_REWARDS[tier];
   if (!rewards) return null;
   if (outcomeKey === 'bigWin' || outcomeKey === 'win') return rewards.win;
   if (outcomeKey === 'tie')                             return rewards.tie;

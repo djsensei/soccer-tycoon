@@ -12,14 +12,14 @@ const TRASH_TALK = [
 ];
 
 function renderPreMatch() {
-  const opp = getOpponent(gameState.selectedOpponentId);
+  const opp = findLeagueTeam(gameState.selectedOpponentId) || getOpponent(gameState.selectedOpponentId);
   if (!opp) return `<div class="screen"><p>Opponent not found.</p></div>`;
   const talk = pick(TRASH_TALK);
 
   return `
     <div class="screen prematch-screen">
       <div class="screen-header">
-        <button class="btn-back" onclick="updateState({screen:'matchselect'})">← Back</button>
+        <button class="btn-back" onclick="updateState({screen:'table'})">← Back</button>
         <h1>Pre-Match</h1>
       </div>
       <div class="prematch-layout">
@@ -33,26 +33,32 @@ function renderPreMatch() {
           <p class="opp-note-big">${opp.specialNote}</p>
           <blockquote class="trash-talk">${talk}</blockquote>
         </div>
-        <button class="btn-primary btn-large" onclick="kickOff()">🏁 KICK OFF!</button>
+        <button class="btn-primary btn-large" onclick="kickOff()">KICK OFF!</button>
       </div>
     </div>
   `;
 }
 
 function kickOff() {
-  const opp = getOpponent(gameState.selectedOpponentId);
+  const opp = findLeagueTeam(gameState.selectedOpponentId) || getOpponent(gameState.selectedOpponentId);
+  const leagueKey = gameState.currentLeague || opp.league || opp.tier || 'local';
+
   const playerTeamFull = {
     id: 'player',
     name: gameState.teamName,
+    league: leagueKey,
     players: gameState.players,
     slots: gameState.slots,
   };
-  const result  = simulateMatch(playerTeamFull, opp);
+
+  // Add league to opponent for tier scale
+  const oppWithLeague = { ...opp, league: opp.league || leagueKey };
+  const result  = simulateMatch(playerTeamFull, oppWithLeague);
   const outcome = computeOutcome(result.playerScore, result.opponentScore);
 
   // Total fan delta: sum of all per-event deltas (including fulltime margin bonus)
   const totalFanDelta = result.events.reduce((sum, e) => sum + (e.fanDelta || 0), 0);
-  const packEarned    = getPackReward(opp.tier, outcome);
+  const packEarned    = getPackReward(leagueKey, outcome);
 
   updateState({
     screen: 'match',

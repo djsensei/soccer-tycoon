@@ -184,10 +184,11 @@ const STARTING_GEAR = {
 // --- Pack Types -------------------------------------------------
 // weights array: [common, uncommon, rare, epic, legendary]
 const PACK_TYPES = {
-  basic:   { id: 'basic',   name: 'Basic Pack',   description: 'Three random cards. Could be anything!',   cardsPerPack: 3, weights: [0.70, 0.25, 0.05, 0.00, 0.00] },
-  silver:  { id: 'silver',  name: 'Silver Pack',  description: 'Better odds. Better gear.',                cardsPerPack: 3, weights: [0.40, 0.35, 0.20, 0.05, 0.00] },
-  gold:    { id: 'gold',    name: 'Gold Pack',    description: "Now we're talking.",                       cardsPerPack: 3, weights: [0.15, 0.30, 0.35, 0.15, 0.05] },
-  special: { id: 'special', name: 'Special Pack', description: 'Only from the weird teams.',               cardsPerPack: 4, weights: [0.05, 0.20, 0.35, 0.28, 0.12] },
+  basic:     { id: 'basic',     name: 'Basic Pack',     description: 'Three random cards. Could be anything!',   cardsPerPack: 3, weights: [0.70, 0.25, 0.05, 0.00, 0.00] },
+  silver:    { id: 'silver',    name: 'Silver Pack',    description: 'Better odds. Better gear.',                cardsPerPack: 3, weights: [0.40, 0.35, 0.20, 0.05, 0.00] },
+  gold:      { id: 'gold',      name: 'Gold Pack',      description: "Now we're talking.",                       cardsPerPack: 3, weights: [0.15, 0.30, 0.35, 0.15, 0.05] },
+  special:   { id: 'special',   name: 'Special Pack',   description: 'Only from the weird teams.',               cardsPerPack: 4, weights: [0.05, 0.20, 0.35, 0.28, 0.12] },
+  promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 5, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
 };
 
 const TIER_PACK_REWARDS = {
@@ -200,7 +201,9 @@ const TIER_PACK_REWARDS = {
 // --- Fan Math ---------------------------------------------------
 const FAN_BASE = {
   local:         1000,
-  national:      5000,
+  regional:      2500,
+  state:         5000,
+  national:      10000,
   international: 20000,
   special:       15000,
 };
@@ -259,8 +262,25 @@ const NARRATIVE = {
 const NAME_GEN = {
   teamAdjectives: ['Wobbly','Muddy','Rusty','Dizzy','Sleepy','Sneaky','Bouncy','Wiggly','Lumpy','Grumpy','Chompy','Zippy','Floppy','Squishy','Wacky','Blobby','Soggy','Crusty','Frizzy','Gangly'],
   teamNouns:      ['Narwhals','Capybaras','Wombats','Penguins','Badgers','Hedgehogs','Llamas','Platypuses','Sloths','Ferrets','Otters','Raccoons','Armadillos','Axolotls','Blobfish','Echidnas','Quokkas','Tapirs','Manatees','Numbats'],
-  playerFirst:    ['Bobbo','Jimbo','Fizzy','Buzzy','Zippy','Plonky','Boingo','Whumpo','Zappy','Dingus','Flumbo','Grumbo','Sploosh','Blorb','Yoink','Kerfuffle','Snazzle','Fumble','Wobble','Zonk'],
-  playerLast:     ['Jenkins','McBonk','Fumblesworth','Kicksalot','Dribbleson','Shooterman','Tackleton','O\'Goalie','Tripsalot','McShooty','Passmore','Headbutt','Goalposts','Nettingham','McWhistle','Offsides','Penaltyson','Redcardigan','Freekick','Yellowstone'],
+  playerFirst: [
+    'Bobbo','Jimbo','Fizzy','Buzzy','Zippy','Plonky','Boingo','Whumpo','Zappy','Dingus',
+    'Flumbo','Grumbo','Sploosh','Blorb','Yoink','Kerfuffle','Snazzle','Fumble','Wobble','Zonk',
+    'Bongo','Noodle','Sprocket','Waffle','Turbo','Pickles','Nugget','Gizmo','Scooter','Muffin',
+    'Toots','Bonk','Squish','Rascal','Blinky','Chomps','Wiggles','Doodle','Spud','Frazzle',
+    'Tater','Chonk','Blip','Goober','Twitch','Skipper','Pudding','Binky','Wombat','Crouton',
+    'Clonk','Noobert','Zinger','Jellybean','Kazoo','Burrito','Snorkel','Toffee','Dibble','Pistachio',
+  ],
+  playerLast: [
+    'Jenkins','McBonk','Fumblesworth','Kicksalot','Dribbleson','Shooterman','Tackleton','O\'Goalie',
+    'Tripsalot','McShooty','Passmore','Headbutt','Goalposts','Nettingham','McWhistle','Offsides',
+    'Penaltyson','Redcardigan','Freekick','Yellowstone',
+    'McThunder','Bananakick','Von Dribble','Soccerball','Goalsworth','Thunderboot','Tackleberry',
+    'Nutmeg','Bouncefield','Crunchtackle','Volley','Offside-Trap','Crossbar','Dribbleton','McHeader',
+    'Whistleblower','Longshot','Bicycle','Slidetackle','Hatrick',
+    'Fluffington','Von Biscuit','Wobblebottom','Snoozleton','McSnack','Pancake','Giggles',
+    'Bumbleton','Noodlearm','Tumbleweed','Dingbat','Snickerdoodle','Cabbagehead','Mudpie','Clodhopper',
+    'Butterfingers','Fizzbomb','Splatsworth','Wafflehaus','Pretzelberg',
+  ],
 };
 
 function generateTeamName() {
@@ -275,6 +295,82 @@ function generatePlayerName() {
   return `${first} ${last}`;
 }
 
+// --- League System (M7) ----------------------------------------
+const LEAGUE_ORDER = ['local', 'regional', 'state', 'national', 'international'];
+
+const LEAGUE_DEFINITIONS = {
+  local:         { name: 'Marin County League',    geography: 'Marin County', size: 6,  diffMin: 1, diffMax: 3  },
+  regional:      { name: 'Bay Area League',         geography: 'Bay Area',     size: 8,  diffMin: 3, diffMax: 5  },
+  state:         { name: 'California League',       geography: 'California',   size: 10, diffMin: 5, diffMax: 7  },
+  national:      { name: 'USA League',              geography: 'USA',          size: 12, diffMin: 7, diffMax: 9  },
+  international: { name: 'World League',            geography: 'World',        size: 14, diffMin: 9, diffMax: 10 },
+};
+
+const LEAGUE_TEAMS = [
+  // Local — Marin County (5 NPC teams)
+  { id: 'sausalito-seals',     name: 'Sausalito Seals',      league: 'local', difficulty: 1, specialNote: 'Trained by actual seals. Allegedly.' },
+  { id: 'tiburon-sharks',      name: 'Tiburon Sharks',       league: 'local', difficulty: 2, specialNote: 'Named after sharks. Play like goldfish.' },
+  { id: 'mill-valley-mushrooms', name: 'Mill Valley Mushrooms', league: 'local', difficulty: 2, specialNote: 'They grow on you. Literally.' },
+  { id: 'novato-narwhals',     name: 'Novato Narwhals',      league: 'local', difficulty: 3, specialNote: 'Landlocked narwhals. Very confused.' },
+  { id: 'larkspur-ladybugs',   name: 'Larkspur Ladybugs',    league: 'local', difficulty: 3, specialNote: 'Small but surprisingly bitey.' },
+
+  // Regional — Bay Area (7 NPC teams)
+  { id: 'oakland-ogres',       name: 'Oakland Ogres',        league: 'regional', difficulty: 3, specialNote: 'Big, green, and grumpy about it.' },
+  { id: 'sf-fog-machines',     name: 'SF Fog Machines',      league: 'regional', difficulty: 3, specialNote: 'You literally cannot see them.' },
+  { id: 'berkeley-brainiacs',  name: 'Berkeley Brainiacs',   league: 'regional', difficulty: 4, specialNote: 'Calculated your defeat in advance.' },
+  { id: 'palo-alto-pixels',    name: 'Palo Alto Pixels',     league: 'regional', difficulty: 4, specialNote: 'Buffering... buffering... GOAL.' },
+  { id: 'san-jose-jackrabbits', name: 'San Jose Jackrabbits', league: 'regional', difficulty: 4, specialNote: 'Fast and jumpy. Very jumpy.' },
+  { id: 'fremont-fireballs',   name: 'Fremont Fireballs',    league: 'regional', difficulty: 5, specialNote: 'Everything they touch burns. Metaphorically.' },
+  { id: 'santa-cruz-surfers',  name: 'Santa Cruz Surfers',   league: 'regional', difficulty: 5, specialNote: 'Ride the wave. Score the goal. Hang ten.' },
+
+  // State — California (9 NPC teams)
+  { id: 'la-lasers',           name: 'LA Lasers',            league: 'state', difficulty: 5, specialNote: 'Hollywood special effects on the pitch.' },
+  { id: 'sacramento-scorpions', name: 'Sacramento Scorpions', league: 'state', difficulty: 5, specialNote: 'Capital punishment for defenders.' },
+  { id: 'san-diego-sunburns',  name: 'San Diego Sunburns',   league: 'state', difficulty: 6, specialNote: 'Too much beach. Not enough sunscreen.' },
+  { id: 'fresno-falcons',      name: 'Fresno Falcons',       league: 'state', difficulty: 6, specialNote: 'Swooping in from the Central Valley.' },
+  { id: 'bakersfield-boulders', name: 'Bakersfield Boulders', league: 'state', difficulty: 6, specialNote: 'Immovable. Unstoppable. Unmotivated.' },
+  { id: 'tahoe-yetis',         name: 'Tahoe Yetis',          league: 'state', difficulty: 7, specialNote: 'Spotted on the field. Never confirmed.' },
+  { id: 'redding-rattlesnakes', name: 'Redding Rattlesnakes', league: 'state', difficulty: 7, specialNote: 'Listen for the rattle. Then run.' },
+  { id: 'stockton-stingrays',  name: 'Stockton Stingrays',   league: 'state', difficulty: 7, specialNote: 'Silent. Deadly. Surprisingly flat.' },
+  { id: 'napa-grape-stompers', name: 'Napa Grape Stompers',  league: 'state', difficulty: 7, specialNote: 'Wine connoisseurs. Goal connoisseurs.' },
+
+  // National — USA (11 NPC teams)
+  { id: 'nyc-skyscrapers',     name: 'NYC Skyscrapers',      league: 'national', difficulty: 7, specialNote: 'Tall players. Taller buildings. Tallest egos.' },
+  { id: 'chicago-cyclones',    name: 'Chicago Cyclones',     league: 'national', difficulty: 7, specialNote: 'The Windy City blows everyone away.' },
+  { id: 'miami-flamingos',     name: 'Miami Flamingos',      league: 'national', difficulty: 8, specialNote: 'Standing on one leg is their warm-up.' },
+  { id: 'dallas-dust-devils',  name: 'Dallas Dust Devils',   league: 'national', difficulty: 8, specialNote: 'Everything is bigger. Including defeats.' },
+  { id: 'seattle-sasquatches', name: 'Seattle Sasquatches',  league: 'national', difficulty: 8, specialNote: 'Large. Hairy. Suspiciously good at headers.' },
+  { id: 'denver-avalanche',    name: 'Denver Avalanche',     league: 'national', difficulty: 8, specialNote: 'They come downhill. Fast.' },
+  { id: 'boston-brawlers',      name: 'Boston Brawlers',      league: 'national', difficulty: 8, specialNote: 'Wicked strong tackles. Very pahked.' },
+  { id: 'phoenix-firebirds',   name: 'Phoenix Firebirds',    league: 'national', difficulty: 9, specialNote: 'Reborn from defeat every single match.' },
+  { id: 'detroit-diesel',      name: 'Detroit Diesel',       league: 'national', difficulty: 9, specialNote: 'Built like engines. Run like engines.' },
+  { id: 'atlanta-alligators',  name: 'Atlanta Alligators',   league: 'national', difficulty: 9, specialNote: 'Death roll tackles. Totally fair.' },
+  { id: 'portland-peculiars',  name: 'Portland Peculiars',   league: 'national', difficulty: 9, specialNote: 'Weird strategy. Somehow works.' },
+
+  // International — World (13 NPC teams)
+  { id: 'tokyo-thunder',       name: 'Tokyo Thunder',        league: 'international', difficulty: 9,  specialNote: 'Lightning-fast attacks. Anime celebrations.' },
+  { id: 'london-legends',      name: 'London Legends',       league: 'international', difficulty: 9,  specialNote: 'Drinking tea at halftime. Still winning.' },
+  { id: 'paris-phantoms',      name: 'Paris Phantoms',       league: 'international', difficulty: 9,  specialNote: 'Oui oui, they scored again.' },
+  { id: 'rio-samba-stars',     name: 'Rio Samba Stars',      league: 'international', difficulty: 9,  specialNote: 'Dancing while dribbling. HOW?!' },
+  { id: 'sydney-stormers',     name: 'Sydney Stormers',      league: 'international', difficulty: 9,  specialNote: 'Upside-down football. Still counts.' },
+  { id: 'cairo-cobras',        name: 'Cairo Cobras',         league: 'international', difficulty: 10, specialNote: 'Ancient soccer wisdom. Pharaoh-level.' },
+  { id: 'berlin-blitz',        name: 'Berlin Blitz',         league: 'international', difficulty: 10, specialNote: 'Precision passes. Zero wasted moves.' },
+  { id: 'mexico-city-jaguars', name: 'Mexico City Jaguars',  league: 'international', difficulty: 10, specialNote: 'Jungle speed. Jungle strength. Jungle goals.' },
+  { id: 'mumbai-monsoons',     name: 'Mumbai Monsoons',      league: 'international', difficulty: 10, specialNote: 'A torrential flood of goals.' },
+  { id: 'toronto-timber-wolves', name: 'Toronto Timber Wolves', league: 'international', difficulty: 10, specialNote: 'Pack hunting formation. No escape.' },
+  { id: 'moscow-mammoths',     name: 'Moscow Mammoths',      league: 'international', difficulty: 10, specialNote: 'Prehistoric power. Modern problems.' },
+  { id: 'nairobi-nighthawks',  name: 'Nairobi Nighthawks',   league: 'international', difficulty: 10, specialNote: 'Strike under cover of darkness.' },
+  { id: 'seoul-strikers',      name: 'Seoul Strikers',       league: 'international', difficulty: 10, specialNote: 'K-pop celebrations after every goal.' },
+];
+
+const LEAGUE_PACK_REWARDS = {
+  local:         { win: 'basic',  tie: null,     loss: null    },
+  regional:      { win: 'silver', tie: 'basic',  loss: null    },
+  state:         { win: 'silver', tie: 'basic',  loss: null    },
+  national:      { win: 'gold',   tie: 'silver', loss: 'basic' },
+  international: { win: 'gold',   tie: 'silver', loss: 'basic' },
+};
+
 // --- Fan Tier Progression (Phase 1) ----------------------------
 const FAN_TIERS = {
   local:         { label: 'Local',         min: 0,      max: 4999   },
@@ -284,7 +380,7 @@ const FAN_TIERS = {
 };
 const TIER_ORDER = ['local', 'regional', 'national', 'international'];
 
-// Opponent tier -> required fan tier to challenge
+// Opponent tier -> required fan tier to challenge (legacy — kept for save compat)
 const TIER_UNLOCK = { local: 'local', national: 'regional', international: 'national' };
 
 // --- Markov Chain Transitions (Phase 2) ------------------------
@@ -390,7 +486,7 @@ const EVENT_FAN_DELTAS = {
 };
 
 // Opponent tier → fan delta multiplier for per-event deltas
-const FAN_EVENT_TIER_SCALE = { local: 0.5, national: 1.0, international: 2.0, special: 1.5 };
+const FAN_EVENT_TIER_SCALE = { local: 0.5, regional: 0.7, state: 1.0, national: 1.5, international: 2.0, special: 1.5 };
 
 // --- Utility ----------------------------------------------------
 function pick(arr) {

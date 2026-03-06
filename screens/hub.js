@@ -5,19 +5,25 @@
 // Module-level swap state (not persisted)
 let _swapTarget = null;
 
-function renderTierDisplay(fans) {
-  const { tier, pct, nextTier } = tierProgress(fans);
-  const tierData = FAN_TIERS[tier];
-  const hint = nextTier
-    ? `Next: ${FAN_TIERS[nextTier].label} at ${(FAN_TIERS[nextTier].min).toLocaleString()}`
-    : 'MAX TIER';
+function renderLeagueIndicator() {
+  const leagueKey = gameState.currentLeague || 'local';
+  const leagueDef = LEAGUE_DEFINITIONS[leagueKey];
+  const season = gameState.season;
+  const leagueIdx = LEAGUE_ORDER.indexOf(leagueKey);
+  const totalLeagues = LEAGUE_ORDER.length;
+
+  let seasonProgress = '';
+  if (season) {
+    const totalMD = season.schedule.length;
+    const currentMD = Math.min(season.matchday, totalMD);
+    seasonProgress = `Matchday ${currentMD} / ${totalMD}`;
+  }
+
   return `
-    <div class="tier-display">
-      <span class="tier-badge">${tierData.label}</span>
-      <div class="tier-progress-bar" title="${hint}">
-        <div class="tier-progress-fill" style="width:${pct}%"></div>
-      </div>
-      <span class="tier-next-hint">${hint}</span>
+    <div class="league-indicator">
+      <span class="league-badge">${leagueDef ? leagueDef.name : leagueKey}</span>
+      <span class="league-progress">${seasonProgress}</span>
+      <span class="league-level">League ${leagueIdx + 1} of ${totalLeagues}</span>
     </div>
   `;
 }
@@ -54,13 +60,13 @@ function renderHub() {
     <div class="screen hub-screen">
       <header class="hub-header">
         <div class="hub-title">
-          <h1>⚽ ${teamName}</h1>
-          <div class="fans-display">👥 ${fans.toLocaleString()} fans</div>
-          ${renderTierDisplay(fans)}
+          <h1>${teamName}</h1>
+          <div class="fans-display">Fans: ${fans.toLocaleString()}</div>
+          ${renderLeagueIndicator()}
         </div>
         <div class="hub-meta">
           <span>Match ${matchesPlayed}</span>
-          <span>🃏 ${invCount} cards</span>
+          <span>Cards: ${invCount}</span>
         </div>
       </header>
 
@@ -70,16 +76,14 @@ function renderHub() {
       </section>
 
       <div class="hub-actions">
-        <button class="btn-primary btn-large" onclick="updateState({screen:'matchselect'})">⚔️ Play a Match</button>
-        <button class="btn-secondary" onclick="updateState({screen:'managegear'})">🎽 Gear Up</button>
+        <button class="btn-primary btn-large" onclick="updateState({screen:'table'})">Play a Match</button>
+        <button class="btn-secondary" onclick="updateState({screen:'managegear'})">Gear Up</button>
       </div>
 
       <div class="hub-footer">
-        <button class="btn-small btn-danger" onclick="startOver()">↺ Start Over</button>
+        <button class="btn-small btn-danger" onclick="startOver()">Start Over</button>
       </div>
 
-      ${fans >= 1000000 ? '<div class="win-banner">🏆 YOU REACHED 1,000,000 FANS! YOU WIN!! 🏆</div>' : ''}
-      ${fans < 100      ? '<div class="lose-banner">😱 UNDER 100 FANS — YOU\'RE GETTING SACKED!</div>' : ''}
       ${buildStatDetailModal()}
     </div>
   `;

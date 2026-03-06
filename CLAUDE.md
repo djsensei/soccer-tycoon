@@ -29,12 +29,23 @@ A browser-based soccer management game built as a birthday gift for a 10-year-ol
 soccer-tycoon/
   index.html           # Entry point
   style.css            # All styles
-  game.js              # State, updateState(), render(), screen functions
+  state.js             # gameState, updateState(), render(), bootstrap + save migrations
   simulator.js         # Match engine — pure functions, zero DOM
-  data.js              # Content: teams, gear cards, narrative templates, packs
+  data.js              # Content: teams, leagues, gear cards, narrative templates, packs
+  init.js              # New game creation, league team + season generation
+  utils.js             # Shared utilities (effectiveStats, UI helpers, findLeagueTeam)
   save.js              # localStorage save/load helpers
+  screens/
+    newgame.js         # Multi-step creation wizard
+    hub.js             # Main hub (roster, league indicator, navigation)
+    gear.js            # Gear Up + forge mode
+    table.js           # League standings, matchday, NPC results
+    prematch.js        # Pre-match hype screen
+    match.js           # Live match playback + goToResults()
+    results.js         # Post-match results + season-end messaging
+    packopen.js        # Card pack opening
+    gameover.js        # Game over (relegation) + game win
   docs/                # Design documentation
-  soccer_game_spec.md  # Original design spec (reference only)
   CLAUDE.md            # This file
 ```
 

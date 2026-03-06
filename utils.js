@@ -4,7 +4,38 @@
 
 // State accessors
 function getPlayer(id) { return gameState.players.find(p => p.id === id); }
-function getOpponent(id) { return gameState.opponentTeams.find(t => t.id === id); }
+function getOpponent(id) {
+  // Legacy: search opponentTeams if present
+  if (gameState.opponentTeams) return gameState.opponentTeams.find(t => t.id === id);
+  return findLeagueTeam(id);
+}
+
+function findLeagueTeam(id) {
+  if (!gameState.leagueTeams) return null;
+  for (const leagueKey of LEAGUE_ORDER) {
+    const teams = gameState.leagueTeams[leagueKey];
+    if (!teams) continue;
+    const found = teams.find(t => t.id === id);
+    if (found) return found;
+  }
+  return null;
+}
+
+function getTeamName(teamId) {
+  if (teamId === 'player') return gameState.teamName;
+  const team = findLeagueTeam(teamId);
+  return team ? team.name : teamId;
+}
+
+function sortStandings(standings) {
+  return Object.entries(standings).sort(([, a], [, b]) => {
+    if (b.pts !== a.pts) return b.pts - a.pts;
+    const gdA = a.gf - a.ga, gdB = b.gf - b.ga;
+    if (gdB !== gdA) return gdB - gdA;
+    return b.gf - a.gf;
+  });
+}
+
 function slotName(slot) {
   return ({ GK: 'Goalkeeper', D: 'Defender', M1: 'Midfielder', M2: 'Midfielder', S: 'Striker' })[slot] || slot;
 }

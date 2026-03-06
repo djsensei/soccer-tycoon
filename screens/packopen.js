@@ -48,9 +48,15 @@ function renderPackOpening() {
       </div>`;
   }).join('');
 
-  const nextBtn = gameState.pendingPacks.length > 0
-    ? `<button class="btn-primary" onclick="openNextPack()">Open Next Pack</button>`
-    : `<button class="btn-primary btn-large" onclick="updateState({screen:'hub'})">Back to Hub</button>`;
+  let nextBtn;
+  if (gameState.pendingPacks.length > 0) {
+    nextBtn = `<button class="btn-primary" onclick="openNextPack()">Open Next Pack</button>`;
+  } else {
+    nextBtn = `<div class="pack-nav-buttons">
+      <button class="btn-primary" onclick="updateState({screen:'table'})">View Table</button>
+      <button class="btn-secondary" onclick="updateState({screen:'managegear'})">Gear Up</button>
+    </div>`;
+  }
 
   return `
     <div class="screen packopen-screen">

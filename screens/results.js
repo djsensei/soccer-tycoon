@@ -2,17 +2,14 @@
 // screens/results.js — Post-match results screen
 // ============================================================
 
-// Tally shot and possession stats from the event stream
 function computeMatchStats(events) {
   let playerShots = 0, playerOnTarget = 0;
   let oppShots    = 0, oppOnTarget    = 0;
   let playerTicks = 0, oppTicks       = 0;
 
   for (const e of events) {
-    if (!e.team) continue; // halftime / fulltime have no team
+    if (!e.team) continue;
     const mine = e.team === 'player';
-
-    // Possession proxy: every team-tagged event is one "tick"
     if (mine) playerTicks++; else oppTicks++;
 
     if (e.type === 'goal') {
@@ -43,11 +40,11 @@ function renderResults() {
   const m = gameState.currentMatch;
 
   const outcomeMessages = {
-    bigWin:  '🏆 DOMINANT VICTORY!',
-    win:     '✅ VICTORY!',
-    tie:     '🤝 IT\'S A DRAW',
-    loss:    '😬 Defeat...',
-    bigLoss: '💀 HUMILIATING DEFEAT',
+    bigWin:  'DOMINANT VICTORY!',
+    win:     'VICTORY!',
+    tie:     'IT\'S A DRAW',
+    loss:    'Defeat...',
+    bigLoss: 'HUMILIATING DEFEAT',
   };
 
   const deltaSign  = m.fanDelta >= 0 ? '+' : '';
@@ -78,23 +75,46 @@ function renderResults() {
   const milestones = m.milestones || [];
   const milestoneHtml = milestones.length ? `
     <div class="milestone-section">
-      <h2>⬆ Player Upgrades!</h2>
+      <h2>Player Upgrades!</h2>
       ${milestones.map(ms => `
         <div class="milestone-card">
           <div class="milestone-player">${ms.playerName}</div>
           <div class="milestone-detail">
-            ${ms.threshold} career ${ms.careerStat} → <strong>+1 ${ms.statUpgrade}</strong>
+            ${ms.threshold} career ${ms.careerStat} -> <strong>+1 ${ms.statUpgrade}</strong>
           </div>
         </div>
       `).join('')}
     </div>` : '';
 
-  const packHtml = m.packEarned
-    ? `<div class="pack-earned">
-         🃏 You earned a <strong>${PACK_TYPES[m.packEarned]?.name}</strong>!
-       </div>
-       <button class="btn-primary btn-large" onclick="openNextPack()">Open Pack! 🎁</button>`
-    : `<button class="btn-secondary btn-large" onclick="updateState({screen:'hub'})">Back to Hub</button>`;
+  // Season status message
+  let seasonMsg = '';
+  if (m.seasonResult === 'promoted') {
+    const nextLeague = LEAGUE_ORDER[LEAGUE_ORDER.indexOf(gameState.currentLeague) + 1];
+    const nextName = nextLeague ? LEAGUE_DEFINITIONS[nextLeague]?.name : 'the next league';
+    seasonMsg = `<div class="season-msg season-promo">PROMOTED! Moving up to ${nextName}!</div>`;
+  } else if (m.seasonResult === 'gameWin') {
+    seasonMsg = `<div class="season-msg season-win">YOU WON THE WORLD LEAGUE! CHAMPION!</div>`;
+  } else if (m.seasonResult === 'mid') {
+    seasonMsg = `<div class="season-msg">Season over. Same league next season.</div>`;
+  }
+
+  // Navigation buttons
+  let navHtml = '';
+  if (m.packEarned) {
+    navHtml = `
+      <div class="pack-earned">
+        You earned a <strong>${PACK_TYPES[m.packEarned]?.name}</strong>!
+      </div>
+      <button class="btn-primary btn-large" onclick="openNextPack()">Open Pack!</button>`;
+  } else if (m.seasonResult === 'promoted' || m.seasonResult === 'gameWin') {
+    navHtml = `<button class="btn-primary btn-large" onclick="updateState({screen:'table'})">View Table</button>`;
+  } else {
+    navHtml = `
+      <div class="results-nav">
+        <button class="btn-primary" onclick="updateState({screen:'table'})">View Table</button>
+        <button class="btn-secondary" onclick="updateState({screen:'managegear'})">Gear Up</button>
+      </div>`;
+  }
 
   return `
     <div class="screen results-screen">
@@ -102,10 +122,11 @@ function renderResults() {
       <div class="result-score-big">${m.playerScore} – ${m.opponentScore}</div>
       <div class="result-teams">${gameState.teamName} vs ${m.opponentName}</div>
       <div class="fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
-      <div class="fans-total">Total: 👥 ${gameState.fans.toLocaleString()}</div>
+      <div class="fans-total">Total: ${gameState.fans.toLocaleString()} fans</div>
       ${statsHtml}
       ${milestoneHtml}
-      ${packHtml}
+      ${seasonMsg}
+      ${navHtml}
     </div>
   `;
 }
