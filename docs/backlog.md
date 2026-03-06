@@ -25,7 +25,11 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P0 — Bugs / Urgent
 
-*(none)*
+### [Bug] Table screen missing "Gear Up" button; remove Hub as intermediary
+The Table screen has no Gear Up button — user must go back to Hub first. Rework navigation so Table and Gear Up are the two main screens (remove Hub as a separate destination).
+
+### [UI] Table screen shouldn't show promotion/relegation colors at 0 points
+Before matchday 1, when all teams are tied at 0 pts, the green (promotion) and red (relegation) row highlights are misleading. Only show zone coloring after at least 1 matchday is completed.
 
 ---
 
@@ -69,6 +73,15 @@ Extract item/player/team names, stats, and narrative templates into standalone s
 Replace the flat dark green page background with fuzzy stadium art that evolves with fan tier: local = rough pitch with sideline fans, regional = high school stadium, national = large day stadium, international = packed night stadium. Strong visual progression reward.
 
 ### ~~[Balance] Lower starting player stats with more variation~~ *(moot — M6 wizard uses fixed 22-point allocation)*
+
+### [Feature] Inventory limit of 15 with forced forge/drop
+Cap inventory at 15 items. If a pack opening pushes above 15, items still go in, but the player must forge or drop down to 15 before leaving Gear Up.
+
+### [Graphics] Redo sushi-chef-hands image + update glove prompt for correct finger count
+Regenerate sushi-chef-hands card art and update glove image prompts to specify "one thumb and four fingers" to avoid generative image finger bugs.
+
+### [UX] Title screen + "Welcome to the league" post-creation flow *(M9)*
+Add a title screen before the creation wizard and a "Welcome to the league" interstitial after roster creation that flows into the Table screen.
 
 ### [UI] Unify roster and gear-up stat presentation
 Hub roster screen stats should use the same colored bar format as the Gear Up screen instead of acronym text chips. May become moot if roster and gear screens are merged (see P3 combined screen) or reconsidered in M7 with league-based screen flow.
