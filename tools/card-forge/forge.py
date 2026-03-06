@@ -535,7 +535,33 @@ def cmd_export(args):
             sys.exit("Sentinel markers not found in data.js — add them first.")
 
         start_line_end = content.index('\n', start_idx) + 1
-        inner = ('\n'.join(card_lines) + '\n') if card_lines else ''
+        existing_block = content[start_line_end:end_idx]
+
+        # Parse existing card IDs from the sentinel block
+        existing_ids = set(re.findall(r"'([^']+)':\s*\{", existing_block))
+
+        # Only add new cards that aren't already in the block
+        new_lines = [l for l in card_lines
+                     if re.search(r"'([^']+)':", l) and
+                        re.search(r"'([^']+)':", l).group(1) not in existing_ids]
+
+        # Also refresh image-pending markers on existing lines
+        updated_existing = []
+        for line in existing_block.rstrip('\n').split('\n') if existing_block.strip() else []:
+            m = re.search(r"'([^']+)':\s*\{", line)
+            if m:
+                slug = m.group(1)
+                img_ok = (IMG_DIR / f'{slug}.png').exists()
+                # Strip old pending marker, then re-add if still missing
+                clean = re.sub(r'\s*// ⚠ image pending$', '', line)
+                if not img_ok:
+                    clean += '  // ⚠ image pending'
+                updated_existing.append(clean)
+            else:
+                updated_existing.append(line)
+
+        all_lines = updated_existing + new_lines
+        inner = ('\n'.join(all_lines) + '\n') if all_lines else ''
         new_content = content[:start_line_end] + inner + content[end_idx:]
 
         DATA_JS.write_text(new_content, encoding='utf-8')
