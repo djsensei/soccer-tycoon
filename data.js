@@ -62,14 +62,6 @@ const CARDS = {
   'ratty-headband':   { id: 'ratty-headband',    name: 'Ratty Headband',   slot: 'head',   rarity: 'common', flavourText: 'Found it behind the bleachers.',      statBonuses: {} },
   'holey-gloves':     { id: 'holey-gloves',      name: 'Holey Gloves',     slot: 'gloves', rarity: 'common', flavourText: 'Half the fingers are missing.',       statBonuses: {} },
 
-  // === RARE ===
-  'iron-jersey':      { id: 'iron-jersey',       name: 'Iron Jersey',      slot: 'body',   rarity: 'rare',     flavourText: 'Heavy. Very heavy. Nothing gets through.',         statBonuses: { strength: 3, jumping: 1 } },
-  'eagle-eye-cap':    { id: 'eagle-eye-cap',     name: 'Eagle Eye Cap',    slot: 'head',   rarity: 'rare',     flavourText: 'See the field like a majestic bird.',              statBonuses: { passing: 2, luck: 2 } },
-
-  // === EPIC ===
-  'timefreeze-whistle': { id: 'timefreeze-whistle', name: 'Time-Freeze Whistle', slot: 'body', rarity: 'epic', flavourText: 'One blow stops everyone. Except you.',              statBonuses: { shooting: 3, passing: 2, luck: 1 } },
-  'mind-helmet':      { id: 'mind-helmet',       name: 'Mind Helmet',      slot: 'head',   rarity: 'epic',     flavourText: "Read the opponent's thoughts. Try not to laugh.",  statBonuses: { passing: 4, reflexes: 2 } },
-
   // === LEGENDARY ===
   'clone-jersey':     { id: 'clone-jersey',      name: 'Clone Jersey',     slot: 'body',   rarity: 'legendary', flavourText: 'The player is everywhere at once. Somehow legal.', statBonuses: { speed: 2, strength: 2, shooting: 2, passing: 2 } },
   'blackhole-gloves': { id: 'blackhole-gloves',  name: 'Black Hole Gloves',slot: 'gloves', rarity: 'legendary', flavourText: 'Nothing gets past. Nothing. Ever.',                statBonuses: { reflexes: 5, jumping: 3 } },
