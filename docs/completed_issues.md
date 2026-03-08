@@ -2,6 +2,14 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-03-08
+
+### [P0] [Bug] Table screen missing "Gear Up" button; remove Hub as intermediary
+**Fix**: Made Table the main screen instead of Hub. Added team header (name, fans, league indicator, match count, card count), "Gear Up" button, and "Start Over" button to the Table screen. Changed all `screen:'hub'` navigation targets to `screen:'table'` (Gear Up back button, pack opening fallback, init, save migration, matchselect). Hub render case in router now redirects to Table. Hub.js retained for `renderLeagueIndicator()` and `startOver()` which are called from the Table screen.
+
+### [P0] [UI] Table screen shouldn't show promotion/relegation colors at 0 points
+**Fix**: Added `currentMD > 0` guard to the `tbl-promo` and `tbl-danger` class assignments in `renderTable()`. Zone colors only appear after at least 1 matchday has been completed.
+
 ## 2026-03-04 (M6 playtest)
 
 ### [P0] [Bug] Player name resets when allocating stats in creation wizard

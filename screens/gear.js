@@ -137,7 +137,7 @@ function renderGearUp() {
   return `
     <div class="screen gearup-screen">
       <div class="screen-header">
-        <button class="btn-back" onclick="updateState({screen:'hub'})">← Back</button>
+        <button class="btn-back" onclick="updateState({screen:'table'})">← Back</button>
         <h1>Gear Up</h1>
       </div>
       <div class="gearup-layout">

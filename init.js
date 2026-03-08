@@ -169,7 +169,7 @@ function createNewGame(teamName, managerName, playerDefs) {
     season,
 
     // Transient screen state
-    screen: 'hub',
+    screen: 'table',
     selectedOpponentId: null,
     currentMatch: null,
     pendingPacks: [],

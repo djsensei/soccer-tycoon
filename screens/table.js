@@ -25,8 +25,8 @@ function renderTable() {
     const isFirst = rank === 1;
     const isLast = rank === sorted.length;
     let rowClass = isPlayer ? 'tbl-player' : '';
-    if (isFirst) rowClass += ' tbl-promo';
-    if (isLast) rowClass += ' tbl-danger';
+    if (currentMD > 0 && isFirst) rowClass += ' tbl-promo';
+    if (currentMD > 0 && isLast) rowClass += ' tbl-danger';
     return `<tr class="${rowClass}">
       <td>${rank}</td>
       <td class="tbl-team-name">${name}${isPlayer ? ' (You)' : ''}</td>
@@ -95,16 +95,31 @@ function renderTable() {
     }
   }
 
+  const invCount = gameState.inventory.reduce((sum, i) => sum + i.quantity, 0);
+
   return `
     <div class="screen table-screen">
-      <div class="screen-header">
-        <button class="btn-back" onclick="updateState({screen:'hub'})">← Hub</button>
-        <h1>${leagueDef.name}</h1>
-      </div>
+      <header class="hub-header">
+        <div class="hub-title">
+          <h1>${gameState.teamName}</h1>
+          <div class="fans-display">Fans: ${gameState.fans.toLocaleString()}</div>
+          ${renderLeagueIndicator()}
+        </div>
+        <div class="hub-meta">
+          <span>Match ${gameState.matchesPlayed}</span>
+          <span>Cards: ${invCount}</span>
+        </div>
+      </header>
       <div class="matchday-label">Matchday ${Math.min(currentMD, totalMatchdays)} of ${totalMatchdays}${seasonOver ? ' — Season Complete' : ''}</div>
       ${tableHtml}
       ${resultsHtml}
       ${actionHtml}
+      <div class="table-bottom-actions">
+        <button class="btn-secondary btn-large" onclick="updateState({screen:'managegear'})">Gear Up</button>
+      </div>
+      <div class="hub-footer">
+        <button class="btn-small btn-danger" onclick="startOver()">Start Over</button>
+      </div>
     </div>
   `;
 }

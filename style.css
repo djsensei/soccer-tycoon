@@ -1071,6 +1071,13 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .league-table .tbl-promo td:first-child { border-left: 3px solid var(--accent); }
 .league-table .tbl-danger td:first-child { border-left: 3px solid var(--danger); }
 
+.table-bottom-actions {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
 .npc-results {
   margin-bottom: 1.2rem;
 }

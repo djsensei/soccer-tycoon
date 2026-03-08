@@ -25,11 +25,7 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ## P0 — Bugs / Urgent
 
-### [Bug] Table screen missing "Gear Up" button; remove Hub as intermediary
-The Table screen has no Gear Up button — user must go back to Hub first. Rework navigation so Table and Gear Up are the two main screens (remove Hub as a separate destination).
-
-### [UI] Table screen shouldn't show promotion/relegation colors at 0 points
-Before matchday 1, when all teams are tied at 0 pts, the green (promotion) and red (relegation) row highlights are misleading. Only show zone coloring after at least 1 matchday is completed.
+*(none)*
 
 ---
 

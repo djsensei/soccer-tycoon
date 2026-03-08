@@ -16,7 +16,7 @@ function render() {
   const app = document.getElementById('app');
   switch (gameState.screen) {
     case 'newgame':    app.innerHTML = renderNewGame();      break;
-    case 'hub':        app.innerHTML = renderHub();          break;
+    case 'hub':        gameState.screen = 'table'; app.innerHTML = renderTable(); break;
     case 'managegear': app.innerHTML = renderGearUp();       break;
     case 'table':      app.innerHTML = renderTable();        break;
     case 'prematch':   app.innerHTML = renderPreMatch();     break;
@@ -73,7 +73,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     // Reset screens that can't meaningfully resume mid-session
     if (['match', 'prematch', 'packopen', 'matchselect'].includes(gameState.screen)) {
-      gameState.screen = 'hub';
+      gameState.screen = 'table';
     }
   } else {
     gameState = { screen: 'newgame' };

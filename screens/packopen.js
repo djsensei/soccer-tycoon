@@ -6,7 +6,7 @@
 // This is called by buttons — render functions never mutate state.
 function openNextPack() {
   const pending = gameState.pendingPacks[0];
-  if (!pending) { updateState({ screen: 'hub' }); return; }
+  if (!pending) { updateState({ screen: 'table' }); return; }
 
   // Support both old format (string) and new format ({ packId, opponentId })
   const packId     = typeof pending === 'string' ? pending : pending.packId;
