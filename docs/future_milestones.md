@@ -137,3 +137,29 @@ Full NPC team simulation: real rosters with gear, full match engine for NPC-NPC 
 - Visible gear on NPC players (card names/rarity badges)
 - Pre-game commentary: key matchups ("Their striker has 12 shooting vs your GK's 8 reflexes"), form/streaks, notable career stats
 - Keep the trash talk — it's fun
+
+---
+
+## M12 — New Gameplay Decisions *(tentative)*
+
+Add meaningful between-match and possibly in-match decisions so the player's choices impact outcomes beyond gear equipping.
+
+### Training focus (between matches)
+- After each match, choose a stat to train — gives a small chance for players to permanently improve that stat (not guaranteed, keeps it exciting)
+- Alternative: choose to rest instead of training
+- Introduces energy/fatigue system that fluctuates over the course of a season — tired players perform worse
+- Resting recovers energy; training doesn't (or costs energy)
+- Creates a recurring resource tradeoff: push for stat gains vs keep the team fresh for tough upcoming matches
+- Season cadence matters: maybe rest before the top-of-table clash, train hard during the easy stretch
+
+### Match tactics cards *(needs more design thinking)*
+- Dual-use card system: equip for passive stat bonuses (existing) OR hold in hand for one-time match effects
+- Draw a hand of tactic cards before each match from your inventory
+- Play cards during the match for powerful one-shot effects (counter attack, defensive wall, lucky bounce, etc.)
+- Creates interesting tension: is this epic card better as permanent gear or as a clutch match-winner?
+- Builds on existing card/pack infrastructure — no new reward pipeline needed
+- **Open questions:** how many cards in hand? When can you play them? Do they get consumed? How does this interact with the auto-playing match?
+
+### Ideas considered but deferred
+- **Formation picker:** not enough wiggle room with 4 field players, adds complexity to Markov engine disproportionate to decision depth
+- **Transfer market / draft:** may not resonate — players likely get attached to their original roster. Revisit after real playtesting with the target audience
