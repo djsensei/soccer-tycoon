@@ -106,3 +106,22 @@ Rework the match simulation to be less rigid about player roles, and recalibrate
 - Expand `NARRATIVE` templates so the same event type doesn't repeat the same text
 - Add context-aware variants (scoreline, minute, player name callbacks)
 - More personality and humor in line with the game's silly tone
+
+---
+
+## M11 — NPC Gear & Pre-Match Overhaul
+
+Give NPC teams gear scaled by league tier, and rebuild the pre-match screen into a proper matchup breakdown.
+
+### NPC gear
+- Assign gear cards to NPC players in `buildLeagueTeam()` based on league tier
+- Rarity pool scales up: local = none, regional = common, ... international = rare-epic
+- Breaks the stat-10 ceiling for NPCs — effective stats can reach 14+ in upper leagues
+- Bot already uses `effectiveStats()` so this flows through simulation automatically
+
+### Pre-match screen redesign
+- Side-by-side roster comparison: player vs opponent, position by position
+- Show effective stats (with gear) for both teams — let the player see what they're up against
+- Visible gear on NPC players (card names/rarity badges)
+- Pre-game commentary: key matchups ("Their striker has 12 shooting vs your GK's 8 reflexes"), form/streaks, notable career stats
+- Keep the trash talk — it's fun
