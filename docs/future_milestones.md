@@ -48,23 +48,23 @@ Replaced flat opponent list with structured league/season system: 5 leagues (Loc
 
 ---
 
-## M8 — Playtest Bot & Balance Tooling
+## M8 — Playtest Bot & Balance Tooling *(V1 complete)*
 
 Automated bot that plays through the game headlessly, collecting stats for balance analysis. Runs in Node.js (no browser needed) by importing the pure-logic modules.
 
 ### V1 — Naive random bot
-- Bot script (`tools/playtest-bot/bot.js`) that imports data.js, init.js, simulator.js, utils.js
-- Randomizes all player creation decisions (stat allocation, names)
-- Plays every match in the season schedule automatically
-- Gear strategy: equip highest-rarity items available; forge whenever 3 unused same-rarity cards exist for a slot
-- Collects stats per run:
-  - Match records (W/D/L per season, goals scored/conceded)
-  - Season outcomes (promoted/relegated/mid-table, which matchday)
-  - Player career stats and milestone timing (which match triggered each milestone)
-  - Inventory state over time (cards earned, forged, equipped)
-  - Total matches to win the game (or how far the bot got before relegation)
-- Runs N simulations and outputs aggregate summary (CSV or JSON)
-- CLI: `node tools/playtest-bot/bot.js --runs 100 --output results.json`
+- ~~Bot script (`tools/playtest-bot/bot.js`) that imports data.js, init.js, simulator.js, utils.js~~ *(done — vm sandbox loader)*
+- ~~Randomizes all player creation decisions (stat allocation, names)~~ *(done)*
+- ~~Plays every match in the season schedule automatically~~ *(done)*
+- ~~Gear strategy: equip highest-rarity items available; forge whenever 3 unused same-rarity cards exist for a slot~~ *(done)*
+- ~~Collects stats per run~~ *(done)*:
+  - ~~Match records (W/D/L per season, goals scored/conceded)~~ *(done)*
+  - ~~Season outcomes (promoted/relegated/mid-table, which matchday)~~ *(done)*
+  - ~~Player career stats and milestone timing (which match triggered each milestone)~~ *(done)*
+  - ~~Inventory state over time (cards earned, forged, equipped)~~ *(done)*
+  - ~~Total matches to win the game (or how far the bot got before relegation)~~ *(done)*
+- ~~Runs N simulations and outputs aggregate summary (CSV or JSON)~~ *(done — JSON)*
+- ~~CLI: `node tools/playtest-bot/bot.js --runs 100 --output results.json`~~ *(done)*
 
 ### V2+ — Configurable & comparative (future)
 - Parameterize game config: stat milestone thresholds, opponent difficulties, pack weights, Poisson lambda
