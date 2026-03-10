@@ -101,3 +101,8 @@ Rework the match simulation to be less rigid about player roles, and recalibrate
 - Make stat boosts feel like a big moment: full-screen celebration, animation, sound cue
 - Show milestone progress ("12/25 goals until next shooting boost") somewhere accessible
 - Rarer boosts justify flashier presentation — each one should feel like an event
+
+### Match commentary
+- Expand `NARRATIVE` templates so the same event type doesn't repeat the same text
+- Add context-aware variants (scoreline, minute, player name callbacks)
+- More personality and humor in line with the game's silly tone
