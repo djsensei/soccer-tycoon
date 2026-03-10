@@ -119,11 +119,17 @@ Full NPC team simulation: real rosters with gear, full match engine for NPC-NPC 
 - Breaks the stat-10 ceiling for NPCs — effective stats can reach 14+ in upper leagues
 - Bot already uses `effectiveStats()` so this flows through simulation automatically
 
+### Adaptive league generation
+- Generate NPC rosters (stats + gear) at promotion time, not at game start
+- Calibrate to the player's current effective stats — stronger player = tougher league
+- Ensures each league is a meaningful step up relative to how the player actually progressed
+- Still use league-tier difficulty as a baseline, but scale/jitter around the player's power level
+- Per-season jitter (±1) so the same teams aren't always top/bottom in repeat seasons
+
 ### Full NPC-NPC match simulation
 - Replace Poisson shortcut (`simulateNPCMatch`) with full `simulateMatch()` for NPC-NPC games
-- NPC teams already have full rosters with stats — just need gear to complete the picture
-- Solves the standings compression problem: real stat matchups create natural separation between strong and weak teams instead of coin-flip results
-- Per-season difficulty jitter (±1) so the same teams aren't always top/bottom in repeat seasons
+- NPC teams have full rosters with stats and gear — real matchups create natural standings separation
+- Solves the standings compression problem: no more coin-flip results between uniform-difficulty teams
 
 ### Pre-match screen redesign
 - Side-by-side roster comparison: player vs opponent, position by position
