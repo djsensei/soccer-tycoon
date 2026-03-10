@@ -109,15 +109,21 @@ Rework the match simulation to be less rigid about player roles, and recalibrate
 
 ---
 
-## M11 — NPC Gear & Pre-Match Overhaul
+## M11 — NPC Overhaul & Pre-Match Redesign
 
-Give NPC teams gear scaled by league tier, and rebuild the pre-match screen into a proper matchup breakdown.
+Full NPC team simulation: real rosters with gear, full match engine for NPC-NPC games, and a redesigned pre-match screen.
 
 ### NPC gear
 - Assign gear cards to NPC players in `buildLeagueTeam()` based on league tier
 - Rarity pool scales up: local = none, regional = common, ... international = rare-epic
 - Breaks the stat-10 ceiling for NPCs — effective stats can reach 14+ in upper leagues
 - Bot already uses `effectiveStats()` so this flows through simulation automatically
+
+### Full NPC-NPC match simulation
+- Replace Poisson shortcut (`simulateNPCMatch`) with full `simulateMatch()` for NPC-NPC games
+- NPC teams already have full rosters with stats — just need gear to complete the picture
+- Solves the standings compression problem: real stat matchups create natural separation between strong and weak teams instead of coin-flip results
+- Per-season difficulty jitter (±1) so the same teams aren't always top/bottom in repeat seasons
 
 ### Pre-match screen redesign
 - Side-by-side roster comparison: player vs opponent, position by position
