@@ -12,7 +12,7 @@ function renderMatchScreen() {
         <div class="match-team">${m.opponentName}</div>
       </div>
       <div class="fan-ticker" id="fan-ticker">
-        👥 <span id="fan-ticker-count">${gameState.fans.toLocaleString()}</span>
+        Fans: <span id="fan-ticker-count">${gameState.fans.toLocaleString()}</span>
         <span id="fan-ticker-delta"></span>
       </div>
       <div class="match-controls">
@@ -20,11 +20,11 @@ function renderMatchScreen() {
           <input type="checkbox" id="highlights-toggle" checked>
           Highlights only
         </label>
-        <button class="btn-small" onclick="skipToEnd()">Skip ⏩</button>
+        <button class="btn-small" onclick="skipToEnd()">Skip</button>
       </div>
       <div class="event-log" id="event-log"></div>
       <div id="match-end-btn" style="display:none">
-        <button class="btn-primary btn-large" onclick="goToResults()">See Results →</button>
+        <button class="btn-primary btn-large" onclick="goToResults()">See Results</button>
       </div>
     </div>
   `;
@@ -52,7 +52,6 @@ function startMatchPlayback() {
       deltaEl.textContent = `(${sign}${runningFanDelta.toLocaleString()})`;
       deltaEl.className = runningFanDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
     }
-    // Flash ticker for large single-event swings
     if (Math.abs(delta) > 50) {
       const ticker = document.getElementById('fan-ticker');
       if (ticker) {
@@ -98,7 +97,6 @@ function startMatchPlayback() {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
 
-    // Update fan ticker
     const delta = event.fanDelta || 0;
     runningFanDelta += delta;
     updateFanTicker(delta);
@@ -141,7 +139,6 @@ function skipToEnd() {
   }
   log.scrollTop = log.scrollHeight;
 
-  // Update ticker to show final total
   const deltaEl = document.getElementById('fan-ticker-delta');
   if (deltaEl && totalDelta !== 0) {
     const sign = totalDelta >= 0 ? '+' : '';
@@ -154,13 +151,11 @@ function skipToEnd() {
 
 function goToResults() {
   const m   = gameState.currentMatch;
-  const opp = getOpponent(m.opponentId);
 
   // --- Tally career stats from match events ---
   const careerDeltas = {};
   for (const e of m.events) {
     const pid = e.meta?.playerId;
-    // Player-team events: goals, tackles, passes, shot misses
     if (e.team === 'player' && pid) {
       if (!careerDeltas[pid]) careerDeltas[pid] = { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 };
       if (e.type === 'goal' && e.outcome === 'player') careerDeltas[pid].goals++;
@@ -168,7 +163,6 @@ function goToResults() {
       if (e.type === 'pass' && e.outcome === 'success') careerDeltas[pid].passes++;
       if (e.type === 'shot' && e.outcome === 'miss') careerDeltas[pid].shotsMissed++;
     }
-    // Saves: opponent shot events where our GK saved
     if (e.team === 'opponent' && e.type === 'shot' && (e.outcome === 'saved' || e.outcome === 'greatSave')) {
       const gkId = e.meta?.savingPlayerId;
       if (gkId && gameState.players.some(p => p.id === gkId)) {
@@ -216,31 +210,72 @@ function goToResults() {
     packEarned:    m.packEarned,
   }];
 
-  // Manage special team appearance logic
-  let opponentTeams = gameState.opponentTeams.map(t => t.id === opp.id
-    ? { ...t, appearsForMatches: t.appearsForMatches != null ? t.appearsForMatches - 1 : null }
-    : t
-  ).map(t => t.tier === 'special' && t.appearsForMatches != null && t.appearsForMatches <= 0
-    ? { ...t, isAvailable: false, appearsForMatches: null }
-    : t
-  );
+  // --- League season updates (M7) ---
+  const season = gameState.season ? { ...gameState.season } : null;
+  let seasonEnded = false;
+  let seasonResult = null; // 'promoted', 'relegated', 'mid', 'gameWin'
 
-  let matchesUntilSpecialCheck = gameState.matchesUntilSpecialCheck - 1;
-  if (matchesUntilSpecialCheck <= 0) {
-    const hidden = opponentTeams.filter(t => t.tier === 'special' && !t.isAvailable);
-    if (hidden.length > 0) {
-      const chosen = pick(hidden);
-      opponentTeams = opponentTeams.map(t => t.id === chosen.id
-        ? { ...t, isAvailable: true, appearsForMatches: 2 + Math.floor(Math.random() * 2) }
-        : t
-      );
+  if (season && season.matchday < season.schedule.length) {
+    const matchdayIdx = season.matchday;
+    const matchday = season.schedule[matchdayIdx];
+
+    // Deep copy standings
+    const standings = {};
+    for (const [id, rec] of Object.entries(season.standings)) {
+      standings[id] = { ...rec };
     }
-    matchesUntilSpecialCheck = 3 + Math.floor(Math.random() * 3);
+
+    // Update standings with player match result
+    updateStandings(standings, 'player', m.playerScore, m.opponentScore);
+    updateStandings(standings, m.opponentId, m.opponentScore, m.playerScore);
+
+    // Simulate all NPC-NPC games for this matchday
+    const npcResults = [];
+    for (const match of matchday.matches) {
+      if (match.home === 'player' || match.away === 'player') continue;
+      const homeTeam = findLeagueTeam(match.home);
+      const awayTeam = findLeagueTeam(match.away);
+      if (!homeTeam || !awayTeam) continue;
+      const result = simulateNPCMatch(homeTeam, awayTeam);
+      updateStandings(standings, match.home, result.homeScore, result.awayScore);
+      updateStandings(standings, match.away, result.awayScore, result.homeScore);
+      npcResults.push({ home: match.home, away: match.away, homeScore: result.homeScore, awayScore: result.awayScore });
+    }
+    // Add player result to results display
+    npcResults.unshift({ home: 'player', away: m.opponentId, homeScore: m.playerScore, awayScore: m.opponentScore });
+
+    // Update season state
+    const newSchedule = season.schedule.map((md, i) =>
+      i === matchdayIdx ? { ...md, completed: true } : md
+    );
+    season.schedule = newSchedule;
+    season.standings = standings;
+    season.lastResults = npcResults;
+    season.matchday = matchdayIdx + 1;
+
+    // Check if season is over
+    if (season.matchday >= season.schedule.length) {
+      seasonEnded = true;
+      const sorted = sortStandings(standings);
+      const playerRank = sorted.findIndex(([id]) => id === 'player') + 1;
+      if (playerRank === 1 && season.league === 'international') {
+        seasonResult = 'gameWin';
+      } else if (playerRank === 1) {
+        seasonResult = 'promoted';
+      } else if (playerRank === sorted.length) {
+        seasonResult = 'relegated';
+      } else {
+        seasonResult = 'mid';
+      }
+    }
   }
 
-  const nextScreen = newFans < 100 ? 'gameover' : 'results';
+  // Determine next screen
+  let nextScreen = 'results';
+  if (seasonResult === 'relegated') {
+    nextScreen = 'gameover';
+  }
 
-  // Phase 4: store opponentId with pack so openPack() can inject unique card
   const pendingPacks = m.packEarned
     ? [{ packId: m.packEarned, opponentId: m.opponentId }]
     : [];
@@ -250,10 +285,9 @@ function goToResults() {
     fans: newFans,
     matchesPlayed: gameState.matchesPlayed + 1,
     matchHistory,
-    opponentTeams,
-    matchesUntilSpecialCheck,
     pendingPacks,
     players: updatedPlayers,
-    currentMatch: { ...m, milestones: newMilestones },
+    season,
+    currentMatch: { ...m, milestones: newMilestones, seasonResult },
   });
 }

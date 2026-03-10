@@ -1017,6 +1017,136 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   }
 }
 
+/* ---- League Indicator (M7) ---- */
+.league-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+}
+.league-badge {
+  background: var(--accent-dim);
+  color: var(--text);
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.league-progress, .league-level {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* ---- League Table Screen (M7) ---- */
+.table-screen .matchday-label {
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.league-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.2rem;
+  font-size: 0.9rem;
+}
+.league-table th {
+  background: var(--surface);
+  color: var(--accent);
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.8rem;
+}
+.league-table th:nth-child(2) { text-align: left; }
+.league-table td {
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.league-table .tbl-team-name { text-align: left; }
+.league-table .tbl-player { background: rgba(109, 191, 103, 0.12); font-weight: 600; }
+.league-table .tbl-promo td:first-child { border-left: 3px solid var(--accent); }
+.league-table .tbl-danger td:first-child { border-left: 3px solid var(--danger); }
+
+.table-bottom-actions {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.npc-results {
+  margin-bottom: 1.2rem;
+}
+.npc-result-row {
+  background: var(--card);
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 0.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.next-fixture {
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+.next-opp-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0.3rem 0;
+}
+.next-opp-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.season-end-msg {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.season-end-msg.season-promo { background: rgba(109, 191, 103, 0.15); color: var(--accent); }
+.season-end-msg.season-relegated { background: rgba(224, 85, 85, 0.15); color: var(--danger); }
+.season-end-msg.season-win { background: rgba(240, 180, 41, 0.15); color: var(--gold); }
+
+/* Season message on results screen */
+.season-msg {
+  text-align: center;
+  padding: 0.6rem;
+  margin: 0.8rem 0;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+.season-msg.season-promo { color: var(--accent); }
+.season-msg.season-win { color: var(--gold); }
+
+.results-nav {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.pack-nav-buttons {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+/* Game win variant */
+.game-win .newspaper-header { color: var(--gold); }
+.game-win .newspaper-headline { color: var(--gold); }
+
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--surface); }

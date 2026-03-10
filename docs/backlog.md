@@ -70,6 +70,15 @@ Replace the flat dark green page background with fuzzy stadium art that evolves 
 
 ### ~~[Balance] Lower starting player stats with more variation~~ *(moot — M6 wizard uses fixed 22-point allocation)*
 
+### [Feature] Inventory limit of 15 with forced forge/drop
+Cap inventory at 15 items. If a pack opening pushes above 15, items still go in, but the player must forge or drop down to 15 before leaving Gear Up.
+
+### [Graphics] Redo sushi-chef-hands image + update glove prompt for correct finger count
+Regenerate sushi-chef-hands card art and update glove image prompts to specify "one thumb and four fingers" to avoid generative image finger bugs.
+
+### [UX] Title screen + "Welcome to the league" post-creation flow *(M9)*
+Add a title screen before the creation wizard and a "Welcome to the league" interstitial after roster creation that flows into the Table screen.
+
 ### [UI] Unify roster and gear-up stat presentation
 Hub roster screen stats should use the same colored bar format as the Gear Up screen instead of acronym text chips. May become moot if roster and gear screens are merged (see P3 combined screen) or reconsidered in M7 with league-based screen flow.
 

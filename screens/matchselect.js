@@ -58,7 +58,7 @@ function renderMatchSelect() {
   return `
     <div class="screen matchselect-screen">
       <div class="screen-header">
-        <button class="btn-back" onclick="updateState({screen:'hub'})">← Back</button>
+        <button class="btn-back" onclick="updateState({screen:'table'})">← Back</button>
         <h1>Pick Your Opponent</h1>
       </div>
       ${groupsHtml || '<p class="dim">No opponents available.</p>'}

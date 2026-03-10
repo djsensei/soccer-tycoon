@@ -30,14 +30,53 @@ Redesign the new-game flow to be more interactive, simplify the roster, rename t
 
 ---
 
-## M7 — Refactor Advancement and Opponents
+## M7 — League Seasons & Progression *(complete)*
 
-Rework progression from a flat opponent list to a league structure with promotion and relegation.
-Reevaluate roster/gear/match screen flow since a game schedule exists.
+Replaced flat opponent list with structured league/season system: 5 leagues (Local through International), round-robin seasons, standings, promotion, and relegation.
 
-### Candidate issues
-- Generate more teams and players to populate leagues
-- League/season structure with promotion/relegation
-- Fan acceleration tied to league tier
-- Opponent difficulty scaling per league
-- Season-end rewards and pack upgrades
+### Assigned issues
+- ~~45 NPC teams across 5 geographically-themed leagues~~ *(done)*
+- ~~Round-robin season schedule with NPC-NPC match simulation~~ *(done)*
+- ~~League standings table screen~~ *(done)*
+- ~~Promotion (1st place) + Promotion Pack reward~~ *(done)*
+- ~~Relegation (last place) = game over~~ *(done)*
+- ~~Win International league = game victory~~ *(done)*
+- ~~Fan system now cosmetic (no gameplay gating)~~ *(done)*
+- ~~Expanded name generator (60x60 combos)~~ *(done)*
+- ~~Save migration from old opponent system~~ *(done)*
+- ~~Removed matchselect screen~~ *(done)*
+
+---
+
+## M8 — Playtest Bot & Balance Tooling
+
+Automated bot that plays through the game headlessly, collecting stats for balance analysis. Runs in Node.js (no browser needed) by importing the pure-logic modules.
+
+### V1 — Naive random bot
+- Bot script (`tools/playtest-bot/bot.js`) that imports data.js, init.js, simulator.js, utils.js
+- Randomizes all player creation decisions (stat allocation, names)
+- Plays every match in the season schedule automatically
+- Gear strategy: equip highest-rarity items available; forge whenever 3 unused same-rarity cards exist for a slot
+- Collects stats per run:
+  - Match records (W/D/L per season, goals scored/conceded)
+  - Season outcomes (promoted/relegated/mid-table, which matchday)
+  - Player career stats and milestone timing (which match triggered each milestone)
+  - Inventory state over time (cards earned, forged, equipped)
+  - Total matches to win the game (or how far the bot got before relegation)
+- Runs N simulations and outputs aggregate summary (CSV or JSON)
+- CLI: `node tools/playtest-bot/bot.js --runs 100 --output results.json`
+
+### V2+ — Configurable & comparative (future)
+- Parameterize game config: stat milestone thresholds, opponent difficulties, pack weights, Poisson lambda
+- Run batches with different configs and compare outcomes
+- Smarter bot strategies (e.g. position-aware stat allocation, targeted forging)
+- Dashboard or notebook for visualizing balance data
+
+---
+
+## M9 — Cosmetic Improvements
+
+Visual polish pass: backgrounds, extra screens, title screen, and other cosmetic upgrades.
+
+### Assigned issues
+- [UX] Title screen + "Welcome to the league" post-creation flow

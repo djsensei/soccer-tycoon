@@ -10,7 +10,7 @@ Card = {
   flavourText,  // "Guaranteed to go vroom"
   rarity,       // 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
   slot,         // 'head' | 'body' | 'feet' | 'gloves'
-  statBonuses,  // { speed: 2, shooting: 1, ... } — omit zero-value stats
+  statBonuses,  // { speed: 2, shooting: 1, ... } -- omit zero-value stats
                 // all zeros = valid (starting gear)
 }
 ```
@@ -22,7 +22,7 @@ Player = {
   id,
   name,
   stats: {
-    height,    // aerial duels, blocking
+    jumping,   // aerial duels, headers, goalkeeper reach
     speed,     // breaking through, catching up
     strength,  // tackles, physical duels
     passing,   // distribution success
@@ -34,23 +34,42 @@ Player = {
     head:   cardId | null,
     body:   cardId | null,
     feet:   cardId | null,
-    gloves: cardId | null,  // GK slot only — hidden/locked for non-GK positions
-  }
+    gloves: cardId | null,  // GK slot only
+  },
+  // Player's team only:
+  careerStats: { goals, saves, tackles, passes, shotsMissed },
+  statBonuses: { [stat]: bonusInt },  // from milestones
 }
 ```
 
-## Team
-Same model for the player's team and all opponents.
+## Team (League NPC)
 ```js
-Team = {
+LeagueTeam = {
   id,
   name,
-  tier,           // 'local' | 'national' | 'international' | 'special'
+  league,       // 'local' | 'regional' | 'state' | 'national' | 'international'
+  difficulty,   // 1-10
+  specialNote,  // flavor text
   players: [Player],
-  // opponent-only fields (ignored/undefined for player's team):
-  difficulty,     // numeric, used for fan math and pack quality
-  fanRewardBase,  // base fan delta before margin multiplier
-  specialNote,    // e.g. "Undefeated this season!" shown on match select screen
+  slots: { GK, D, M1, M2, S },
+}
+```
+
+## Season
+```js
+Season = {
+  league,           // league key
+  matchday,         // current matchday index (0-based)
+  schedule: [{      // one entry per matchday
+    matches: [{ home: teamId, away: teamId }],
+    completed: bool,
+  }],
+  standings: {      // keyed by teamId
+    [teamId]: { w, d, l, gf, ga, pts },
+  },
+  lastResults: [{   // most recent matchday results
+    home, away, homeScore, awayScore,
+  }],
 }
 ```
 
@@ -58,45 +77,27 @@ Team = {
 ```js
 InventoryItem = {
   cardId,    // references Card.id
-  quantity,  // integer ≥ 1
+  quantity,  // integer >= 1
 }
 ```
-
-## EarnedPack
-Packs are **fully determined at earn time**, not at open time. The `id` is a
-deterministic encoding of the contents — opening a pack is just revealing what
-was already decided.
-
-```js
-EarnedPack = {
-  id,       // deterministic hash of contents, e.g. btoa(cards.join(','))
-  typeId,   // 'basic' | 'silver' | 'gold' | 'special' — for display name/art
-  cards,    // [cardId, cardId, ...] — already rolled, in order
-}
-```
-
-`GameState.pendingPacks` is therefore `[EarnedPack]`, not `[packTypeId]`.
 
 ## MatchEvent
 Output unit of the simulator. Renderer is a pure function over an array of these.
 ```js
 MatchEvent = {
-  minute,       // 0–90
-  team,         // 'player' | 'opponent'
-  type,         // 'pass' | 'shot' | 'goal' | 'save' | 'tackle' | 'foul' |
-                //  'corner' | 'throwin' | ...
-  player:    { id, name, position },  // who initiated the action
-  recipient: {                        // where the ball ended up — always known
-    kind:   'player' | 'net' | 'out' | 'keeper' | 'foul',
-    player: { id, name, position } | null,  // only when kind === 'player' or 'keeper'
-  },
-  outcome,      // 'success' | 'fail' | 'goal' | 'saved' | 'blocked' | 'miss' | ...
-  isHighlight,  // bool — pre-flagged by simulator; renderer uses for highlights mode
+  minute,       // 0-90
+  second,       // game clock seconds
+  team,         // 'player' | 'opponent' | null
+  type,         // 'pass' | 'shot' | 'goal' | 'tackle' | 'foul' |
+                //  'corner' | 'throwin' | 'kickoff' | 'halftime' | 'fulltime'
+  outcome,      // 'success' | 'fail' | 'player' | 'opponent' | 'miss' | 'saved' | 'greatSave' | ...
+  isHighlight,  // bool
+  fanDelta,     // per-event fan change
   meta: {
-    // intendedRecipient: { id, name, position } | null
-    //   — for failed passes: who was targeted (they don't appear in recipient)
-    // gearTriggered: cardId | null
-    //   — if a gear item visibly influenced the outcome
+    playerName, teamName, opponentName,
+    playerTeamName, opponentTeamName,
+    playerScore, opponentScore,
+    playerId, savingPlayerId,
   }
 }
 ```
@@ -106,21 +107,32 @@ Root object. Serialised to/from `localStorage` on every mutation.
 ```js
 GameState = {
   teamName,
+  managerName,
   fans,
   matchesPlayed,
-  players: [Player],     // ALL players — roster + bench
-  slots: {               // which player is in each position (bench = absent from slots)
-    GK: playerId | null,
-    D:  playerId | null,
-    M1: playerId | null,
-    M2: playerId | null,
-    S:  playerId | null,
-  },
+
+  players: [Player],     // starting 5 only
+  slots: { GK, D, M1, M2, S },
+
   inventory: [InventoryItem],
-  matchHistory: [
-    { opponentId, score, fanDelta, packsEarned: [packId] }
-  ],
-  unlockedPacks: [packId],  // pack types the player has access to
+  matchHistory: [{ opponentId, playerScore, opponentScore, fanDelta, packEarned }],
+  unlockedPacks: [packId],
+
+  // League system (M7)
+  currentLeague,         // 'local' | 'regional' | 'state' | 'national' | 'international'
+  leagueTeams: {         // keyed by league
+    [leagueKey]: [LeagueTeam],
+  },
+  season: Season,
+
+  // Transient screen state
+  screen,
+  selectedOpponentId,
+  currentMatch,
+  pendingPacks,
+  lastOpenedCards,
+  lastOpenedPackId,
+  selectedPlayerId,
 }
 ```
 
@@ -128,8 +140,9 @@ GameState = {
 ```js
 TEAM_SIZE = 5
 POSITIONS = ['GK', 'D', 'M1', 'M2', 'S']
-STATS = ['height', 'speed', 'strength', 'passing', 'shooting', 'reflexes', 'luck']
-GEAR_SLOTS = ['head', 'body', 'feet']          // all players
-GK_GEAR_SLOTS = ['head', 'body', 'feet', 'gloves']  // GK position only
+STATS = ['jumping', 'speed', 'strength', 'passing', 'shooting', 'reflexes', 'luck']
+GEAR_SLOTS = ['head', 'body', 'feet']
+GK_GEAR_SLOTS = ['head', 'body', 'feet', 'gloves']
 RARITIES = ['common', 'uncommon', 'rare', 'epic', 'legendary']
+LEAGUE_ORDER = ['local', 'regional', 'state', 'national', 'international']
 ```

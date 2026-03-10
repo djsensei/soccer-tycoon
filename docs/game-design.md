@@ -2,36 +2,46 @@
 
 ## Core Game Loop
 1. **Hub** — manage roster, assign gear, view stats, craft cards
-2. **Match Selection** — choose an opponent from available teams
+2. **League Table** — view standings, matchday progress, play next match
 3. **Pre-Match** — story moment, trash talk
 4. **Match** — simulator runs; renderer shows play-by-play narrative
-5. **Results** — fan count changes, earn card pack(s)
-6. **Back to Hub** — repeat
+5. **Results** — fan count changes, earn card pack(s), NPC results
+6. **Back to Table/Hub** — repeat
 
 ## Win / Lose Conditions
-- **Win**: Reach 1,000,000 fans
-- **Lose**: Drop below 100 fans (get sacked as manager)
-- **Starting fans**: ~1,000
+- **Win**: Finish 1st in the International (World) league
+- **Lose**: Finish last in any league (relegated/sacked)
+- **Starting fans**: ~1,000 (cosmetic stat, no gameplay impact)
+
+## League System (M7)
+5 geographically-themed leagues with increasing difficulty:
+
+| League | Geography | Teams | Difficulty |
+|---|---|---|---|
+| Local | Marin County | 6 | 1-3 |
+| Regional | Bay Area | 8 | 3-5 |
+| State | California | 10 | 5-7 |
+| National | USA | 12 | 7-9 |
+| International | World | 14 | 9-10 |
+
+- **Season**: Round-robin (play each opponent once)
+- **NPC games**: Simulated each matchday (Poisson-based scores)
+- **Standings**: W/D/L, points (3/1/0), goal difference
+- **1st place**: Promotion to next league + Promotion Pack
+- **Last place**: Game over (relegated)
+- **Mid-table**: Replay same league
 
 ## Fan System
-Fans are the primary score. Changes depend on opponent difficulty and match margin:
+Fans are a cosmetic vanity stat. Changes depend on league tier and match events:
 
 | Situation | Fan Change |
 |---|---|
-| Big win vs tough opponent | +large (base × 2) |
-| Narrow win vs tough opponent | +medium (base × 1) |
-| Tie vs tough opponent | +small (base × 0.75) |
-| Narrow loss vs tough opponent | −tiny (base × 0.25) — fans respect the effort |
+| Big win vs tough opponent | +large (base x 2) |
+| Narrow win vs tough opponent | +medium (base x 1) |
+| Tie vs tough opponent | +small (base x 0.75) |
+| Narrow loss vs tough opponent | -tiny (base x 0.25) |
 | Win vs weak opponent | +tiny (boring) |
-| Lose vs weak opponent | −large (humiliating) |
-
-## Opponent Tiers
-1. **Local League** (Easy) — low risk, low reward, lower pack quality
-2. **National Teams** (Medium) — balanced risk/reward
-3. **International Clubs** (Hard) — high stakes, high reward, better packs
-4. **Special Teams** (Rare) — appear every 3–5 matches, stick around 2–3 cycles
-   - Examples: The Robo-Kickers, Alien All-Stars, Dinosaur FC, The Grandmas, Shadow Squad
-   - Unique rewards, unlock special card packs
+| Lose vs weak opponent | -large (humiliating) |
 
 ## Card Pack & Equipment System
 
@@ -73,7 +83,7 @@ Every player starts with zero-stat gear — sandlot underdog vibes:
 ### Player Stats
 | Stat | Best For |
 |---|---|
-| Height | GK, D — aerial duels, blocking |
+| Jumping | GK, D — aerial duels, headers, goalkeeper reach |
 | Speed | M, S — breaking through, catching up |
 | Strength | D, M — tackles, physical duels |
 | Passing | M — successful distribution |
