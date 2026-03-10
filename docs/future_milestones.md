@@ -80,3 +80,24 @@ Visual polish pass: backgrounds, extra screens, title screen, and other cosmetic
 
 ### Assigned issues
 - [UX] Title screen + "Welcome to the league" post-creation flow
+
+---
+
+## M10 — Match Engine Rework & Stat Boost Calibration
+
+Rework the match simulation to be less rigid about player roles, and recalibrate the stat milestone system so boosts feel rarer and more exciting.
+
+### Engine flexibility
+- Loosen strict role assignments — midfielders and defenders should occasionally shoot, strikers should be involved in buildup play
+- Revisit `POSITION_WEIGHTS` and Markov state structure to allow more varied match narratives
+- Ensure all positions contribute meaningfully (not just striker = goals, GK = saves)
+
+### Stat boost calibration
+- Raise `STAT_MILESTONES` thresholds so boosts are rarer — currently ~26 milestones per full playthrough is too frequent
+- Rebalance per-stat thresholds using playtest bot data (goals vs saves vs passes frequency)
+- Consider diminishing returns or larger gaps between later thresholds
+
+### UX — milestone presentation
+- Make stat boosts feel like a big moment: full-screen celebration, animation, sound cue
+- Show milestone progress ("12/25 goals until next shooting boost") somewhere accessible
+- Rarer boosts justify flashier presentation — each one should feel like an event
