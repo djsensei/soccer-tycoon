@@ -16,7 +16,3 @@ function loadGame() {
 function deleteSave() {
   localStorage.removeItem(SAVE_KEY);
 }
-
-function hasSave() {
-  return !!localStorage.getItem(SAVE_KEY);
-}

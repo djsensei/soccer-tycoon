@@ -98,10 +98,6 @@ Every player starts with zero-stat gear — sandlot underdog vibes:
 - Inside jokes can be slotted into team names and special moves
 - Protagonist manager name, family names: fill in before shipping (TBD)
 
-### Bench & Roster Changes
-- Bench exists as a first-class concept — players not assigned to a slot
-- Gaining/losing players is a planned future feature (p2)
-
 ## Tone & Style
 - Silly and unrealistic — NOT a serious sim
 - Absurd gear, ridiculous special teams, fun trash talk

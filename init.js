@@ -2,38 +2,6 @@
 // init.js — New game creation, league team + season generation
 // ============================================================
 
-function buildOpponentTeam(def) {
-  const d = def.difficulty;
-  const players = def.playerNames.map((name, i) => {
-    const stat = () => Math.max(1, Math.min(10, d + Math.floor(Math.random() * 3) - 1));
-    return {
-      id: `${def.id}-p${i}`,
-      name,
-      stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
-      gear: { head: null, body: null, feet: null, gloves: null },
-    };
-  });
-
-  return {
-    id:            def.id,
-    name:          def.name,
-    tier:          def.tier,
-    difficulty:    def.difficulty,
-    fanRewardBase: FAN_BASE[def.tier],
-    specialNote:   def.specialNote,
-    players,
-    slots: {
-      GK: `${def.id}-p0`,
-      D:  `${def.id}-p1`,
-      M1: `${def.id}-p2`,
-      M2: `${def.id}-p3`,
-      S:  `${def.id}-p4`,
-    },
-    appearsForMatches: def.tier === 'special' ? 2 + Math.floor(Math.random() * 2) : null,
-    isAvailable: def.tier !== 'special',
-  };
-}
-
 function buildLeagueTeam(def) {
   const d = def.difficulty;
   const playerNames = [];
@@ -114,18 +82,6 @@ function generateSeason(leagueKey, playerTeamId) {
     schedule: rounds,
     standings,
     lastResults: [],
-  };
-}
-
-function makePlayerCharacter(id, name) {
-  const stat = () => 3 + Math.floor(Math.random() * 3); // 3-5
-  return {
-    id,
-    name,
-    stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
-    gear: { head: null, body: null, feet: null, gloves: null },
-    careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
-    statBonuses: {},
   };
 }
 

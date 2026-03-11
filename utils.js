@@ -83,13 +83,6 @@ function cardImage(cardId, size = 'large') {
   </div>`;
 }
 
-function cardMini(cardId) {
-  if (!cardId) return `<span class="gear-empty">Empty</span>`;
-  const c = CARDS[cardId];
-  const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(', ') || 'No bonus';
-  return `<span class="gear-chip" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.flavourText} | ${bonuses}">${c.name}</span>`;
-}
-
 function tierStars(difficulty) {
   const full = Math.round(difficulty / 2);
   return '★'.repeat(full) + '☆'.repeat(5 - full);
