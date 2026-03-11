@@ -37,6 +37,9 @@ soccer-tycoon/
   save.js              # localStorage save/load helpers
   screens/
     newgame.js         # Multi-step creation wizard
+    title.js           # Title screen (new game / continue)
+    welcome.js         # "Welcome to the League" post-creation interstitial
+    newgame.js         # Multi-step creation wizard
     hub.js             # Main hub (roster, league indicator, navigation)
     gear.js            # Gear Up + forge mode
     table.js           # League standings, matchday, NPC results

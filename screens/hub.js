@@ -21,7 +21,7 @@ function renderLeagueIndicator() {
 
   return `
     <div class="league-indicator">
-      <span class="league-badge">${leagueDef ? leagueDef.name : leagueKey}</span>
+      <span class="league-badge" data-league="${leagueKey}">${leagueDef ? leagueDef.name : leagueKey}</span>
       <span class="league-progress">${seasonProgress}</span>
       <span class="league-level">League ${leagueIdx + 1} of ${totalLeagues}</span>
     </div>
@@ -56,7 +56,7 @@ function selectForSwap(playerId) {
 function startOver() {
   if (confirm('Start over? All progress will be lost.')) {
     deleteSave();
-    gameState = { screen: 'newgame' };
+    gameState = { screen: 'title' };
     render();
   }
 }

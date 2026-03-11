@@ -77,6 +77,6 @@ function renderGameWin() {
 
 function restartGame() {
   deleteSave();
-  gameState = { screen: 'newgame' };
+  gameState = { screen: 'title' };
   render();
 }
