@@ -249,19 +249,7 @@ const FAN_MULTIPLIERS = {
 
 // --- Opponent Teams ---------------------------------------------
 const OPPONENT_DEFINITIONS = [
-  // Local League
-  { id: 'bronze-city-fc',    name: 'Bronze City FC',    tier: 'local',         difficulty: 2, specialNote: "Haven't won in three seasons.",           playerNames: ['Gary Fumble',     'Pete Trips',     'Dave Wobble',    'Norm Huffpuff',  'Barry Misses'    ] },
-  { id: 'riverside-rangers', name: 'Riverside Rangers', tier: 'local',         difficulty: 3, specialNote: 'Play next to a swamp. Smells.',           playerNames: ['Bog McSwamp',     'Muddy Rivers',   'Slimy Green',    'Wet Socks',      'Damp Trousers'   ] },
-  { id: 'mudfield-united',   name: 'Mudfield United',   tier: 'local',         difficulty: 3, specialNote: 'Always muddy. Always.',                   playerNames: ['Clods McGee',     'Earl Muckface',  'Grim Splotch',   'Clump Hopper',   'Dirt Magnet'     ] },
-  // National
-  { id: 'capital-united',    name: 'Capital United',    tier: 'national',      difficulty: 5, specialNote: 'Very serious. Very boring.',               playerNames: ['Frederick Posh',  'Reginald Smart', 'Edmund Proper',  'Algernon Stiff', 'Cornelius Starch'] },
-  { id: 'northern-thunder',  name: 'Northern Thunder',  tier: 'national',      difficulty: 5, specialNote: 'Loud fans. Very loud.',                   playerNames: ['Big Tam',         'Huge Hamish',    'Massive Morag',  'Enormous Ewan',  'Gigantic Graeme' ] },
-  { id: 'coastal-storm-fc',  name: 'Coastal Storm FC',  tier: 'national',      difficulty: 6, specialNote: 'Undefeated at home. This is away.',       playerNames: ['Squall McGale',   'Breeze Windson', 'Gust Tempest',   'Storm Warning',  'Typhoon Terry'   ] },
-  // International
-  { id: 'europa-phoenix',    name: 'Europa Phoenix',    tier: 'international', difficulty: 8, specialNote: 'Champions three years running.',           playerNames: ['Blaz Flicker',    'Ember Hotfoot',  'Scorch Blazer',  'Inferno Kick',   'Ash Riser'       ] },
-  { id: 'tokyo-strikers',    name: 'Tokyo Strikers',    tier: 'international', difficulty: 8, specialNote: 'Known for lightning-fast attacks.',        playerNames: ['Zap Thunderfoot', 'Bolt Quickstep', 'Flash Zipkick',  'Blitz Dashrun',  'Spark Turboleg'  ] },
-  { id: 'rio-blazers',       name: 'Rio Blazers',       tier: 'international', difficulty: 9, specialNote: "They're dancing while playing. HOW?!",    playerNames: ['Samba Footwork',  'Bossa Kickspin', 'Tango Dribble',  'Rumba Goalie',   'Salsa Flick'     ] },
-  // Special
+  // Special teams — unique card drops, not part of the league system
   { id: 'robo-kickers',      name: 'The Robo-Kickers',  tier: 'special',       difficulty: 7, specialNote: 'All robots. Beep boop. BEEP BOOP.',       playerNames: ['Unit-GK7',        'Defense-Bot',    'Midfield-3000',  'Passing-Unit',   'StrikeBot-X'     ], uniqueCardId: 'robo-arm'          },
   { id: 'alien-all-stars',   name: 'Alien All-Stars',   tier: 'special',       difficulty: 9, specialNote: 'Eight legs. Four eyes. Zero mercy.',      playerNames: ['Zorbax',          'Glurp',          'Fizznok',        'Blargle',        'Zeeble'          ], uniqueCardId: 'gravity-boots'     },
   { id: 'dinosaur-fc',       name: 'Dinosaur FC',       tier: 'special',       difficulty: 10,specialNote: 'They are DINOSAURS.',                     playerNames: ['Rex Rampage',     'Pterry Swoop',   'Trike Horn',     'Stego Tail',     'Raptor Dash'     ], uniqueCardId: 'dino-stomp-cleats' },
@@ -412,7 +400,6 @@ const FAN_TIERS = {
 const TIER_ORDER = ['local', 'regional', 'national', 'international'];
 
 // Opponent tier -> required fan tier to challenge (legacy — kept for save compat)
-const TIER_UNLOCK = { local: 'local', national: 'regional', international: 'national' };
 
 // --- Markov Chain Transitions (Phase 2) ------------------------
 // Keys: "prevState|currentState" for second-order, "*|currentState" for wildcard fallbacks

@@ -177,19 +177,6 @@ function currentFanTier(fans) {
   return TIER_ORDER[TIER_ORDER.length - 1];
 }
 
-function requiredTierForOpponent(opponent) {
-  if (opponent.tier !== 'special') return TIER_UNLOCK[opponent.tier] || 'local';
-  if (opponent.difficulty <= 6) return 'regional';
-  if (opponent.difficulty <= 8) return 'national';
-  return 'international';
-}
-
-function isOpponentUnlocked(opponent, fans) {
-  const playerTierIdx   = TIER_ORDER.indexOf(currentFanTier(fans));
-  const requiredTierIdx = TIER_ORDER.indexOf(requiredTierForOpponent(opponent));
-  return playerTierIdx >= requiredTierIdx;
-}
-
 function tierProgress(fans) {
   const tier     = currentFanTier(fans);
   const tierData = FAN_TIERS[tier];
