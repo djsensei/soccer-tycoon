@@ -124,14 +124,31 @@ def concept_id(slot, rarity, bonuses):
     stat_str = '_'.join(f'{s}{v}' for s, v in sorted(bonuses.items()))
     return f'{slot}-{rarity}-{stat_str}'
 
+# Legacy stat names that were renamed — normalise on load
+STAT_ALIASES = {'height': 'jumping'}
+
+def _normalize_concepts(concepts):
+    """Fix legacy stat names in concept data."""
+    for c in concepts:
+        bonuses = c.get('statBonuses', {})
+        for old, new in STAT_ALIASES.items():
+            if old in bonuses:
+                bonuses[new] = bonuses.pop(old)
+        cid = c.get('concept_id', '')
+        for old, new in STAT_ALIASES.items():
+            if old in cid:
+                c['concept_id'] = cid.replace(old, new)
+                cid = c['concept_id']
+    return concepts
+
 def _load_json(path):
     return json.loads(path.read_text()) if path.exists() else []
 
 def load_new():
-    return _load_json(NEW_FILE)
+    return _normalize_concepts(_load_json(NEW_FILE))
 
 def load_viewed():
-    return _load_json(VIEWED_FILE)
+    return _normalize_concepts(_load_json(VIEWED_FILE))
 
 def load_options():
     """All concepts (viewed + new) for use by prompts/export/concepts."""

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 DATA = {
-    "body-uncommon-height2": [
+    "body-uncommon-jumping2": [
         {"name": "Cloud Jersey", "flavourText": "So tall it has its own weather system up top.", "imageDesc": "A puffy white jersey made of cloud material with tiny lightning bolts around the collar, cotton-candy texture, wispy edges", "colors": "white, sky blue, light grey"},
         {"name": "Giraffe Vest", "flavourText": "Warning: may cause neck pain from looking down at opponents.", "imageDesc": "A spotted orange and brown vest with a giraffe-neck collar that extends upward, cute giraffe face on chest", "colors": "orange, brown, yellow"},
         {"name": "Beanstalk Shirt", "flavourText": "Fee fi fo fum, here comes a header from above!", "imageDesc": "A green vine-wrapped jersey with leaves and beans spiraling up from waist to shoulders, magical sparkles at the top", "colors": "green, brown, gold"},
@@ -76,7 +76,7 @@ DATA = {
         {"name": "Penny Vest", "flavourText": "Found heads-up. Picked it up. Won the match.", "imageDesc": "A copper-toned jersey with giant shiny penny on chest, Lincoln profile, date stamps, coin stack patterns along sides", "colors": "copper, brown, gold"},
         {"name": "Ladybug Jersey", "flavourText": "Seven spots of pure concentrated luck power.", "imageDesc": "A red jersey with black polka dots in ladybug pattern, cute ladybug face on collar, tiny wing details on back, antennae trim", "colors": "red, black, white"},
     ],
-    "body-uncommon-height1_speed1": [
+    "body-uncommon-jumping1_speed1": [
         {"name": "Falcon Shirt", "flavourText": "Dives from above at two hundred miles per hour.", "imageDesc": "A brown and white feathered jersey with falcon wings spread across chest, sharp beak on collar, talon marks on sides, streamlined shape", "colors": "brown, white, gold"},
         {"name": "Crane Vest", "flavourText": "Tall, elegant, and surprisingly quick on its feet.", "imageDesc": "A white jersey with Japanese crane design in mid-flight, long legs pattern down sides, red crown accent on collar, reed patterns", "colors": "white, red, grey"},
         {"name": "Pterodactyl Top", "flavourText": "Extinct everywhere except on the football pitch.", "imageDesc": "A leathery green-brown jersey with pterodactyl wing membranes on sides, prehistoric crest on collar, fossil bone patterns", "colors": "green-brown, tan, orange"},
@@ -88,7 +88,7 @@ DATA = {
         {"name": "Bamboo Jersey", "flavourText": "Grows tall overnight and bends without breaking.", "imageDesc": "A green segmented jersey with bamboo stalk pattern, panda face peeking out from behind stalks on chest, leaf accents", "colors": "green, cream, black"},
         {"name": "Albatross Vest", "flavourText": "Wingspan of a bus, speed of a sports car.", "imageDesc": "A white jersey with enormous albatross wings spanning the full width, ocean wave hem, wind current line patterns, seabird grey accents", "colors": "white, grey, blue"},
     ],
-    "body-uncommon-height1_strength1": [
+    "body-uncommon-jumping1_strength1": [
         {"name": "Giant Shirt", "flavourText": "Fee fi fo fum, I smell a defender to outmuscle.", "imageDesc": "A massive brown leather jersey with giant's belt buckle on waist, beanstalk vine accents, cloud collar trim, fairy tale runes", "colors": "brown, gold, green"},
         {"name": "Tower Jersey", "flavourText": "A living fortress that also happens to play football.", "imageDesc": "A grey stone castle tower jersey with crenellation collar, arrow slit patterns, brick texture, drawbridge design at waist", "colors": "grey, dark grey, brown"},
         {"name": "Oak Vest", "flavourText": "Eight hundred years old and still unbeatable.", "imageDesc": "A thick bark-textured brown jersey with mighty oak branches on shoulders, acorn buttons, deep root patterns at hem, green leaf crown", "colors": "brown, green, dark brown"},
@@ -100,7 +100,7 @@ DATA = {
         {"name": "Troll Shirt", "flavourText": "Lives under a bridge. Dominates above it.", "imageDesc": "A craggy grey-green jersey with troll face on chest, stone bridge arch across waist, moss patches, glowing yellow eyes on collar", "colors": "grey-green, yellow, brown"},
         {"name": "Moai Vest", "flavourText": "Easter Island called. They want their defender back.", "imageDesc": "A stone-carved grey jersey with Easter Island head profile on chest, volcanic rock texture, mysterious petroglyph patterns", "colors": "grey, brown, red"},
     ],
-    "body-uncommon-height1_passing1": [
+    "body-uncommon-jumping1_passing1": [
         {"name": "Eagle Shirt", "flavourText": "Sees teammates from a mile up and delivers.", "imageDesc": "A dark brown feathered jersey with golden eagle on chest with spread wings, sharp eye designs on collar, mountain silhouette hem", "colors": "dark brown, gold, white"},
         {"name": "Crane Top", "flavourText": "Graceful paper-folding precision in every pass.", "imageDesc": "A white jersey with origami crane patterns in various sizes, Japanese ink wash landscape on chest, bamboo trim, paper fold lines", "colors": "white, red, black"},
         {"name": "Lighthouse Vest", "flavourText": "Guides the ball safely to its destination.", "imageDesc": "A white and red striped jersey with lighthouse beam sweeping across chest, ocean wave hem, starry night shoulder accents, lantern glow", "colors": "white, red, yellow"},
@@ -112,7 +112,7 @@ DATA = {
         {"name": "Kite Jersey", "flavourText": "Soars high and the string always stays connected.", "imageDesc": "A colorful diamond kite design across chest with long tail streaming down, cloud patterns, wind swirl lines, string bow accents", "colors": "red, yellow, blue, green"},
         {"name": "Condor Shirt", "flavourText": "Massive wingspan for massive cross-field passes.", "imageDesc": "A dark feathered jersey with Andean condor soaring across chest, mountain peak shoulders, thermal updraft swirl patterns", "colors": "black, white, grey"},
     ],
-    "body-uncommon-height1_shooting1": [
+    "body-uncommon-jumping1_shooting1": [
         {"name": "Hawk Strike", "flavourText": "Dives from the sky and strikes the net.", "imageDesc": "A brown and cream jersey with swooping hawk talons reaching down the front, fierce eye on collar, wing tip shoulders, prey-tracking lines", "colors": "brown, cream, gold"},
         {"name": "Mortar Vest", "flavourText": "Lobs shots that fall from the heavens. Kaboom.", "imageDesc": "A military green jersey with mortar tube on shoulder, arc trajectory dotted line across chest, explosion star at impact point", "colors": "military green, orange, grey"},
         {"name": "Thunderbird Top", "flavourText": "A mythical beast that shoots lightning goals.", "imageDesc": "A bright blue and red jersey with Native American thunderbird design wings spread, lightning from beak, storm cloud patterns", "colors": "blue, red, yellow"},
@@ -124,12 +124,12 @@ DATA = {
         {"name": "Zeus Jersey", "flavourText": "Throws thunderbolts from Mount Olympus into the net.", "imageDesc": "A white and gold jersey with Zeus thunderbolt in hand pose, Greek temple columns on sides, cloud toga draping, lightning crown", "colors": "white, gold, electric blue"},
         {"name": "Sniper Vest", "flavourText": "One shot. One goal. From the other end.", "imageDesc": "A dark camo jersey with crosshair scope on chest, precision targeting lines, bullet trail pattern from shoulder to waist", "colors": "dark camo, red, black"},
     ],
-    "body-uncommon-height1_luck1": [
+    "body-uncommon-jumping1_luck1": [
         {"name": "Beanstalk Vest", "flavourText": "Climbed up and found a golden football.", "imageDesc": "A green vine jersey with magical beanstalk spiraling up, golden goose peeking from collar, cloud castle at shoulder, giant footprints", "colors": "green, gold, white"},
         {"name": "Shooting Star", "flavourText": "Make a wish! Wished for a goal. Got three.", "imageDesc": "A dark navy jersey with bright shooting star streaking across chest, sparkle trail, wish upon a star text in starlight, constellation dots", "colors": "navy, gold, silver"},
         {"name": "Unicorn Shirt", "flavourText": "Magical, tall, and impossibly lucky. Also sparkly.", "imageDesc": "A white jersey with rainbow unicorn horn on collar, pastel mane flowing down side, hoof prints in glitter, magical sparkle dust", "colors": "white, pastel pink, purple, gold"},
         {"name": "Jack Jersey", "flavourText": "Jack and the beanstalk but with better footwork.", "imageDesc": "A fairy tale themed jersey with Jack climbing design on chest, magic beans in pocket, golden harp on shoulder, giant's shadow", "colors": "green, brown, gold"},
-        {"name": "Moon Shirt", "flavourText": "Full moon means full luck and extra height.", "imageDesc": "A dark blue jersey with glowing full moon on chest, moonbeam rays, howling wolf silhouette on back, tidal wave patterns at hem", "colors": "dark blue, silver, grey"},
+        {"name": "Moon Shirt", "flavourText": "Full moon means full luck and extra jumping.", "imageDesc": "A dark blue jersey with glowing full moon on chest, moonbeam rays, howling wolf silhouette on back, tidal wave patterns at hem", "colors": "dark blue, silver, grey"},
         {"name": "Genie Vest", "flavourText": "Three wishes: tall, lucky, and more wishes.", "imageDesc": "A purple and gold jersey with magic lamp on chest, genie smoke swirling up to shoulders, sparkle stars, wish granting hand", "colors": "purple, gold, turquoise"},
         {"name": "Aurora Top", "flavourText": "Northern lights of pure magical lucky energy.", "imageDesc": "A dark jersey with shimmering aurora borealis waves across chest in green and pink, starfield background, snow-capped mountain hem", "colors": "dark blue, green, pink, purple"},
         {"name": "Pixie Jersey", "flavourText": "Sprinkles fairy dust and suddenly everything works out.", "imageDesc": "A light green jersey with pixie wings on back, fairy dust trail across chest, tiny mushroom patterns, enchanted forest leaves", "colors": "light green, gold, purple"},
