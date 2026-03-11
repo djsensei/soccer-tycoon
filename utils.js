@@ -83,13 +83,6 @@ function cardImage(cardId, size = 'large') {
   </div>`;
 }
 
-function cardMini(cardId) {
-  if (!cardId) return `<span class="gear-empty">Empty</span>`;
-  const c = CARDS[cardId];
-  const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(', ') || 'No bonus';
-  return `<span class="gear-chip" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.flavourText} | ${bonuses}">${c.name}</span>`;
-}
-
 function tierStars(difficulty) {
   const full = Math.round(difficulty / 2);
   return '★'.repeat(full) + '☆'.repeat(5 - full);
@@ -182,19 +175,6 @@ function currentFanTier(fans) {
     if (fans <= FAN_TIERS[key].max) return key;
   }
   return TIER_ORDER[TIER_ORDER.length - 1];
-}
-
-function requiredTierForOpponent(opponent) {
-  if (opponent.tier !== 'special') return TIER_UNLOCK[opponent.tier] || 'local';
-  if (opponent.difficulty <= 6) return 'regional';
-  if (opponent.difficulty <= 8) return 'national';
-  return 'international';
-}
-
-function isOpponentUnlocked(opponent, fans) {
-  const playerTierIdx   = TIER_ORDER.indexOf(currentFanTier(fans));
-  const requiredTierIdx = TIER_ORDER.indexOf(requiredTierForOpponent(opponent));
-  return playerTierIdx >= requiredTierIdx;
 }
 
 function tierProgress(fans) {

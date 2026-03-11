@@ -29,10 +29,13 @@ function showHub() {
 |---|---|
 | `index.html` | Shell — loads all scripts, contains `#app` container |
 | `style.css` | All styles — card layout, animations, colours |
-| `game.js` | `gameState`, `updateState()`, all screen render functions, event handlers |
+| `state.js` | `gameState`, `updateState()`, `render()`, bootstrap + save migrations |
 | `simulator.js` | Match engine — pure functions, **zero DOM dependencies** |
 | `data.js` | Static content — gear card definitions, team definitions, narrative templates, pack configs |
-| `save.js` | `saveToLocalStorage()`, `loadFromLocalStorage()`, new-game initialisation |
+| `init.js` | New game creation, league team + season generation |
+| `utils.js` | Shared utilities (`effectiveStats`, UI helpers, `findLeagueTeam`) |
+| `save.js` | `saveGame()`, `loadGame()`, `deleteSave()` |
+| `screens/*.js` | One file per screen — hub, gear, table, match, results, etc. |
 
 ### CSS Approach
 - Roster = CSS Grid; player cards are grid items
@@ -73,7 +76,7 @@ Stats are probability weights, not guarantees. Better stats = better odds, not c
 | Reflexes | Probability a save is made |
 | Passing | Probability a pass finds its target |
 | Strength | Probability of winning a tackle or physical duel |
-| Height | Probability of winning headers and corners |
+| Jumping | Probability of winning headers and corners |
 | Speed | Probability of breaking through or catching a run |
 | Luck | Small wildcard modifier on any event — upsets live here |
 

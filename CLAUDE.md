@@ -52,7 +52,7 @@ soccer-tycoon/
 ## Conventions
 - Plain JS only — no frameworks, no npm, no bundler
 - Game state is one JS object; mutations go through `updateState()` which saves and re-renders
-- Separate content (`data.js`) from logic (`game.js`, `simulator.js`)
+- Separate content (`data.js`) from logic (`state.js`, `simulator.js`)
 - Match outcomes are calculated, never scripted
 - `simulator.js` must have zero DOM dependencies — it should be testable in a console
 - Keep code readable; a future Claude session may need to pick this up mid-build
