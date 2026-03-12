@@ -2,9 +2,33 @@
 
 A soccer management game for goofballs. Collect gear cards, equip your squad, and climb through five leagues from your local park to the world stage.
 
+Best on an iPad in landscape mode — works in any modern browser.
+
 ## How to Play
 
-TKTK!
+**[Play it now](https://djsensei.github.io/soccer-tycoon/)**
+
+You're the manager of a 5-player soccer squad (4 outfield + 1 goalkeeper). Your goal: climb from a tiny local league all the way to the International stage.
+
+### The Loop
+
+1. **Gear Up** — equip cards to boost your players' stats. Each player has gear slots (head, body, feet — goalkeepers get gloves too).
+2. **Play your match** — watch the play-by-play unfold. Stats influence outcomes, but upsets happen!
+3. **Open packs** — earn new gear cards after each match.
+4. **Forge** — got duplicates? Sacrifice three cards of the same rarity to forge one of the next tier.
+5. **Repeat** — climb the standings, win the league, get promoted.
+
+### Five Leagues
+
+| League | Location | Teams |
+|---|---|---|
+| Local | Marin County | 6 |
+| Regional | Bay Area | 8 |
+| State | California | 10 |
+| National | USA | 12 |
+| International | World | 14 |
+
+Finish 1st to get promoted. Finish last and you're sacked. Everyone else runs it back.
 
 ## Running Locally
 
