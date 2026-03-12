@@ -10,7 +10,7 @@
   <script>
     // Soft access gate — not cryptographically secure
     !function(){
-      var PW='soccer', K='st-auth';
+      var PW='HBBD', K='st-auth';
       if(localStorage.getItem(K)===PW) return;
       var p=prompt('⚽ Soccer Tycoon — enter the access code:');
       if(p!==PW){document.documentElement.innerHTML='<body style="padding:3rem;font-family:sans-serif;background:#0d1f0d;color:#e4f0e4;text-align:center"><h2>Wrong code.</h2><p>Reload the page to try again.</p></body>';throw'denied';}
