@@ -21,3 +21,6 @@ tools/card-forge/__pycache__/
 
 # Playtest bot output
 tools/playtest-bot/results*.json
+
+# Internal working docs (keep local)
+docs/internal/

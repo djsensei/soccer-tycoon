@@ -15,6 +15,8 @@ function render() {
   if (matchPlayback) { clearInterval(matchPlayback); matchPlayback = null; }
   const app = document.getElementById('app');
   switch (gameState.screen) {
+    case 'title':      app.innerHTML = renderTitle();        break;
+    case 'welcome':    app.innerHTML = renderWelcome();      break;
     case 'newgame':    app.innerHTML = renderNewGame();      break;
     case 'hub':        gameState.screen = 'table'; app.innerHTML = renderTable(); break;
     case 'managegear': app.innerHTML = renderGearUp();       break;
@@ -72,11 +74,11 @@ window.addEventListener('DOMContentLoaded', () => {
       delete gameState.matchesUntilSpecialCheck;
     }
     // Reset screens that can't meaningfully resume mid-session
-    if (['match', 'prematch', 'packopen', 'matchselect'].includes(gameState.screen)) {
+    if (['match', 'prematch', 'packopen', 'matchselect', 'welcome'].includes(gameState.screen)) {
       gameState.screen = 'table';
     }
   } else {
-    gameState = { screen: 'newgame' };
+    gameState = { screen: 'title' };
   }
   render();
 });

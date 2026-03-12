@@ -66,8 +66,7 @@ function _renderTeamStep() {
   const mgrVal  = _creationData.managerName || generatePlayerName();
   return `
     <div class="screen newgame-screen">
-      <h1>Soccer Tycoon</h1>
-      <p class="subtitle">Build a team. Win fans. Become a legend.</p>
+      <h1>New Game</h1>
       <div class="card setup-card">
         <h2>Name Your Club</h2>
         <div class="name-field">
@@ -193,12 +192,13 @@ function wizNextFromPlayer() {
   _creationData.playerDefs.push({ name, stats: { ..._allocStats } });
 
   if (_creationStep >= 5) {
-    // All players created — start the game
+    // All players created — start the game, show welcome screen
     gameState = createNewGame(
       _creationData.teamName,
       _creationData.managerName,
       _creationData.playerDefs,
     );
+    gameState.screen = 'welcome';
     _resetWizard();
     saveGame(gameState);
     render();

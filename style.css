@@ -22,6 +22,9 @@
 
 body {
   background: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(109, 191, 103, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(109, 191, 103, 0.03) 0%, transparent 50%);
   color: var(--text);
   font-family: 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
@@ -39,7 +42,9 @@ h3 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.4rem; }
   padding: 1rem;
   overflow-x: hidden;
   min-height: 100vh;
+  animation: screenFadeIn 0.2s ease;
 }
+@keyframes screenFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .screen-header {
   display: flex;
@@ -1146,6 +1151,103 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 /* Game win variant */
 .game-win .newspaper-header { color: var(--gold); }
 .game-win .newspaper-headline { color: var(--gold); }
+
+/* ---- Title Screen ---- */
+.title-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  text-align: center;
+  padding-top: 0;
+}
+.title-logo {
+  font-size: 5rem;
+  line-height: 1;
+  animation: titleBounce 2s ease-in-out infinite;
+}
+@keyframes titleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.title-heading {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(109, 191, 103, 0.3);
+  animation: titleFadeIn 0.8s ease both;
+}
+@keyframes titleFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.title-tagline {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  animation: titleFadeIn 0.8s ease 0.2s both;
+}
+.title-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  animation: titleFadeIn 0.8s ease 0.4s both;
+  min-width: 200px;
+}
+
+/* ---- Welcome Screen ---- */
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2rem;
+}
+.welcome-newspaper {
+  animation: titleFadeIn 0.6s ease both;
+}
+.welcome-opponents {
+  width: 100%;
+  max-width: 540px;
+  animation: titleFadeIn 0.6s ease 0.2s both;
+}
+.welcome-opp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.welcome-opp-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+.welcome-opp-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-width: 140px;
+}
+.welcome-opp-stars {
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+.welcome-opp-note {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ---- League Badge Colors (M9) ---- */
+.league-badge[data-league="local"]         { background: var(--accent-dim); }
+.league-badge[data-league="regional"]      { background: #2e6fa8; }
+.league-badge[data-league="state"]         { background: #a87e2e; }
+.league-badge[data-league="national"]      { background: #8e2e2e; }
+.league-badge[data-league="international"] { background: #b8860b; box-shadow: 0 0 8px rgba(184, 134, 11, 0.4); }
 
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar       { width: 6px; }
