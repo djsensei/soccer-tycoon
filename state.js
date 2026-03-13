@@ -13,6 +13,7 @@ function updateState(patch) {
 
 function render() {
   if (matchPlayback) { clearInterval(matchPlayback); matchPlayback = null; }
+  document.body.dataset.tier = gameState.currentLeague || 'local';
   const app = document.getElementById('app');
   switch (gameState.screen) {
     case 'title':      app.innerHTML = renderTitle();        break;

@@ -39,18 +39,33 @@ function computeMatchStats(events) {
 function renderResults() {
   const m = gameState.currentMatch;
 
-  const outcomeMessages = {
-    bigWin:  'DOMINANT VICTORY!',
-    win:     'VICTORY!',
-    tie:     'IT\'S A DRAW',
-    loss:    'Defeat...',
-    bigLoss: 'HUMILIATING DEFEAT',
-  };
-
   const deltaSign  = m.fanDelta >= 0 ? '+' : '';
   const deltaClass = m.fanDelta >= 0 ? 'fan-gain' : 'fan-loss';
 
   const stats = computeMatchStats(m.events || []);
+
+  // Newspaper headline + flavor
+  const outcome = m.outcome || 'tie';
+  const headlineTemplates = RESULT_HEADLINES[outcome] || RESULT_HEADLINES.tie;
+  const flavorTemplates   = RESULT_FLAVOR[outcome]   || RESULT_FLAVOR.tie;
+  const fillTemplate = (t) => t
+    .replace(/\{team\}/g, gameState.teamName)
+    .replace(/\{opponent\}/g, m.opponentName)
+    .replace(/\{manager\}/g, gameState.managerName || 'Coach')
+    .replace(/\{score\}/g, `${m.playerScore}–${m.opponentScore}`);
+
+  const headline = fillTemplate(pick(headlineTemplates));
+  const flavor   = fillTemplate(pick(flavorTemplates));
+
+  const newspaperHtml = `
+    <div class="newspaper results-newspaper">
+      <div class="newspaper-header">THE DAILY BOOT</div>
+      <div class="newspaper-headline">${headline}</div>
+      <div class="newspaper-subhead">${flavor}</div>
+      <div class="newspaper-stats">
+        <span>${gameState.teamName} ${m.playerScore} – ${m.opponentScore} ${m.opponentName}</span>
+      </div>
+    </div>`;
 
   function statRow(pVal, label, oVal) {
     return `<div class="stats-row">
@@ -116,17 +131,24 @@ function renderResults() {
       </div>`;
   }
 
+  const fanHtml = `
+    <div class="fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
+    <div class="fans-total">Total: ${gameState.fans.toLocaleString()} fans</div>`;
+
   return `
     <div class="screen results-screen">
-      <h1>${outcomeMessages[m.outcome] || 'Match Over'}</h1>
-      <div class="result-score-big">${m.playerScore} – ${m.opponentScore}</div>
-      <div class="result-teams">${gameState.teamName} vs ${m.opponentName}</div>
-      <div class="fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
-      <div class="fans-total">Total: ${gameState.fans.toLocaleString()} fans</div>
-      ${statsHtml}
-      ${milestoneHtml}
-      ${seasonMsg}
-      ${navHtml}
+      <div class="results-columns">
+        <div class="results-col-left">
+          ${newspaperHtml}
+          ${statsHtml}
+        </div>
+        <div class="results-col-right">
+          ${fanHtml}
+          ${milestoneHtml}
+          ${seasonMsg}
+          ${navHtml}
+        </div>
+      </div>
     </div>
   `;
 }

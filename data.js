@@ -219,7 +219,7 @@ const PACK_TYPES = {
   silver:    { id: 'silver',    name: 'Silver Pack',    description: 'Better odds. Better gear.',                cardsPerPack: 3, weights: [0.40, 0.35, 0.20, 0.05, 0.00] },
   gold:      { id: 'gold',      name: 'Gold Pack',      description: "Now we're talking.",                       cardsPerPack: 3, weights: [0.15, 0.30, 0.35, 0.15, 0.05] },
   special:   { id: 'special',   name: 'Special Pack',   description: 'Only from the weird teams.',               cardsPerPack: 4, weights: [0.05, 0.20, 0.35, 0.28, 0.12] },
-  promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 5, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
+  promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 4, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
 };
 
 const TIER_PACK_REWARDS = {
@@ -505,6 +505,59 @@ const EVENT_FAN_DELTAS = {
 
 // Opponent tier → fan delta multiplier for per-event deltas
 const FAN_EVENT_TIER_SCALE = { local: 0.5, regional: 0.7, state: 1.0, national: 1.5, international: 2.0, special: 1.5 };
+
+// --- Result Headlines & Flavor (Post-Match Newspaper) -----------
+const RESULT_HEADLINES = {
+  bigWin: [
+    '{team} DESTROY {opponent} IN STUNNING ROUT',
+    'TOTAL DOMINATION! {team} CRUSH {opponent}',
+    '{opponent} LEFT IN RUINS BY {team} MASTERCLASS',
+  ],
+  win: [
+    '{team} CLAIM VICTORY OVER {opponent}',
+    '{team} GET THE JOB DONE AGAINST {opponent}',
+    'WELL DESERVED! {team} BEAT {opponent}',
+    '{opponent} FALL SHORT AGAINST {team}',
+  ],
+  tie: [
+    '{team} AND {opponent} BATTLE TO A DRAW',
+    'HONORS EVEN AS {team} HOLD {opponent}',
+    'STALEMATE! NEITHER {team} NOR {opponent} CAN BREAK THROUGH',
+  ],
+  loss: [
+    '{team} STUMBLE AGAINST {opponent}',
+    '{opponent} EDGE PAST {team} IN TIGHT CONTEST',
+    'DISAPPOINTING DAY FOR {team} AS {opponent} WIN',
+  ],
+  bigLoss: [
+    '{team} HUMILIATED BY {opponent}',
+    'DISASTER! {opponent} RUN RIOT AGAINST {team}',
+    '{team} SUFFER EMBARRASSING DEFEAT TO {opponent}',
+  ],
+};
+
+const RESULT_FLAVOR = {
+  bigWin: [
+    'In a performance that had the fans on their feet from start to finish, {team} absolutely dismantled {opponent} with a commanding {score} victory. Manager {manager} could barely contain a grin.',
+    'It was never even close. {team} dominated every phase of play, cruising to a {score} win that left {opponent} wondering what hit them.',
+  ],
+  win: [
+    '{team} secured a solid {score} win over {opponent} today. Manager {manager} will be pleased with the result as the team continues to build momentum.',
+    'A professional performance from {team} saw them past {opponent} with a {score} scoreline. The fans went home happy.',
+  ],
+  tie: [
+    'Despite their best efforts, neither {team} nor {opponent} could find a winner, sharing the points in a {score} draw. Manager {manager} called it "a fair result."',
+    'A hard-fought {score} draw between {team} and {opponent}. Both sides had chances, but neither could land the decisive blow.',
+  ],
+  loss: [
+    'A tough day for {team} as {opponent} came away with a {score} victory. Manager {manager} insisted the team would "bounce back stronger."',
+    '{opponent} proved too strong for {team} today, winning {score}. Back to the training ground for {manager} and the squad.',
+  ],
+  bigLoss: [
+    'There are no words. {team} were torn apart by {opponent} in a devastating {score} defeat. Manager {manager} declined to comment.',
+    'Fans streamed for the exits early as {opponent} demolished {team} {score}. A day {manager} will want to forget quickly.',
+  ],
+};
 
 // --- Utility ----------------------------------------------------
 function pick(arr) {
