@@ -2,6 +2,13 @@
 // screens/packopen.js — Card pack opening screen
 // ============================================================
 
+// Module state for card-by-card reveal
+let _revealIndex  = 0;
+let _sortedCards  = [];
+let _skipRevealed = false;
+
+const RARITY_SORT = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4 };
+
 // Handler: open the next pending pack, add cards to inventory, then render.
 // This is called by buttons — render functions never mutate state.
 function openNextPack() {
@@ -20,6 +27,16 @@ function openNextPack() {
     else newInventory.push({ cardId, quantity: 1 });
   }
 
+  // Reset reveal state before rendering
+  _revealIndex  = 0;
+  _skipRevealed = false;
+  _sortedCards  = [...cardIds].sort((a, b) => {
+    const ra = RARITY_SORT[CARDS[a]?.rarity] ?? 0;
+    const rb = RARITY_SORT[CARDS[b]?.rarity] ?? 0;
+    if (ra !== rb) return ra - rb;
+    return (CARDS[a]?.name || '').localeCompare(CARDS[b]?.name || '');
+  });
+
   updateState({
     screen: 'packopen',
     pendingPacks:     gameState.pendingPacks.slice(1),
@@ -29,16 +46,77 @@ function openNextPack() {
   });
 }
 
+function revealNextCard() {
+  if (_revealIndex < _sortedCards.length) {
+    _revealIndex++;
+    render();
+  }
+}
+
+function skipReveal() {
+  _skipRevealed = true;
+  _revealIndex  = _sortedCards.length;
+  render();
+}
+
 function renderPackOpening() {
   const packId  = gameState.lastOpenedPackId;
   const pack    = PACK_TYPES[packId];
-  const cardIds = gameState.lastOpenedCards || [];
+  const allRevealed = _revealIndex >= _sortedCards.length;
 
-  const cardsHtml = cardIds.map((cardId, i) => {
+  // If skip was pressed or all cards revealed, show classic grid
+  if (_skipRevealed || allRevealed) {
+    return renderPackGrid(pack);
+  }
+
+  // Card-by-card reveal mode
+  return renderPackReveal(pack);
+}
+
+function renderPackReveal(pack) {
+  const total = _sortedCards.length;
+
+  // Previously revealed cards as thumbnails
+  const prevHtml = _sortedCards.slice(0, _revealIndex).map(cardId => {
+    const c = CARDS[cardId];
+    return `<div class="reveal-prev-card rarity-${c.rarity}" style="border-color:${RARITY_COLOR[c.rarity]}">
+      ${cardImage(cardId, 'small')}
+    </div>`;
+  }).join('');
+
+  // Current card to reveal (cardback)
+  const currentId = _sortedCards[_revealIndex];
+  const currentCard = CARDS[currentId];
+  const stageHtml = `
+    <div class="reveal-cardback rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}" onclick="revealNextCard()">
+      <div class="cardback-silhouette">
+        ${cardImage(currentId, 'large')}
+      </div>
+      <div class="reveal-hint">Tap to reveal</div>
+      <div class="reveal-count">Card ${_revealIndex + 1} of ${total}</div>
+    </div>`;
+
+  return `
+    <div class="screen packopen-screen">
+      <h1>${pack?.name || 'Pack Opening'}</h1>
+      ${prevHtml ? `<div class="reveal-prev-row">${prevHtml}</div>` : ''}
+      <div class="reveal-stage">${stageHtml}</div>
+      <div class="pack-actions">
+        <button class="btn-secondary" onclick="skipReveal()">Skip</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderPackGrid(pack) {
+  const cards = _sortedCards.length ? _sortedCards : (gameState.lastOpenedCards || []);
+  const stagger = _skipRevealed ? 0.15 : 0.6;
+
+  const cardsHtml = cards.map((cardId, i) => {
     const c       = CARDS[cardId];
     const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No stat bonus';
     return `
-      <div class="pack-card rarity-${c.rarity}" style="animation-delay:${i * 0.6}s; border-color:${RARITY_COLOR[c.rarity]}">
+      <div class="pack-card rarity-${c.rarity}" style="animation-delay:${i * stagger}s; border-color:${RARITY_COLOR[c.rarity]}">
         ${cardImage(cardId, 'large')}
         ${rarityBadge(c.rarity)}
         <div class="pack-card-slot">${c.slot.charAt(0).toUpperCase() + c.slot.slice(1)}</div>
@@ -60,7 +138,7 @@ function renderPackOpening() {
 
   return `
     <div class="screen packopen-screen">
-      <h1>🎁 ${pack?.name || 'Pack Opening'}</h1>
+      <h1>${pack?.name || 'Pack Opening'}</h1>
       <div class="pack-cards">${cardsHtml}</div>
       <div class="pack-actions">${nextBtn}</div>
     </div>

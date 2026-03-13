@@ -809,9 +809,9 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
 /* ---- Results ---- */
 .results-screen { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 2rem; text-align: center; }
-.results-screen h1 { font-size: 2rem; }
-.result-score-big { font-size: 4rem; font-weight: 900; color: var(--gold); }
-.result-teams { color: var(--text-dim); margin-top: -0.5rem; }
+.results-columns { display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
+.results-col-left, .results-col-right { display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
+.results-newspaper { margin-bottom: 0.5rem; }
 .fan-delta { font-size: 2rem; font-weight: bold; }
 .fan-delta.fan-gain { color: var(--accent); }
 .fan-delta.fan-loss { color: var(--danger); }
@@ -880,6 +880,60 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 @keyframes cardReveal {
   from { opacity: 0; transform: scale(0.7) rotateY(90deg); }
   to   { opacity: 1; transform: scale(1) rotateY(0); }
+}
+
+/* ---- Pack Opening: Card-by-Card Reveal ---- */
+.reveal-stage { display: flex; justify-content: center; }
+
+.reveal-cardback {
+  background: var(--surface);
+  border: 3px solid;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transition: transform 0.15s;
+  touch-action: manipulation;
+}
+.reveal-cardback:hover { transform: scale(1.03); }
+.reveal-cardback.rarity-rare      { box-shadow: 0 0 18px #2196f344; }
+.reveal-cardback.rarity-epic      { box-shadow: 0 0 24px #9c27b066; }
+.reveal-cardback.rarity-legendary { box-shadow: 0 0 30px #ff980088; animation: legendaryPulse 2s ease-in-out infinite; }
+
+.cardback-silhouette { filter: brightness(0.08); pointer-events: none; }
+
+.reveal-hint {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  animation: revealPulse 1.5s ease-in-out infinite;
+}
+@keyframes revealPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+.reveal-count {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.reveal-prev-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.reveal-prev-card {
+  border: 2px solid;
+  border-radius: var(--radius-sm);
+  padding: 0.2rem;
+  animation: cardReveal 0.4s ease both;
 }
 
 /* ---- Game Over ---- */
@@ -1028,6 +1082,17 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
   /* Match ticker — limit height so "See Results" is visible without scrolling */
   .event-log { max-height: 50vh; }
+
+  /* Results — two-column layout on landscape/tablet */
+  .results-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .results-col-left .match-stats,
+  .results-col-right .milestone-section { max-width: none; }
 }
 
 /* ---- League Indicator (M7) ---- */
@@ -1248,6 +1313,37 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   font-size: 0.78rem;
   color: var(--text-dim);
   font-style: italic;
+}
+
+/* ---- Tier-Based Stadium Backgrounds (M9) ---- */
+body[data-tier="local"] {
+  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+              url(img/backgrounds/tier-local-1.jpg) center/cover no-repeat;
+  background-attachment: fixed;
+}
+body[data-tier="regional"] {
+  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+              url(img/backgrounds/tier-regional-1.jpg) center/cover no-repeat;
+  background-attachment: fixed;
+}
+body[data-tier="state"] {
+  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+              url(img/backgrounds/tier-state-1.jpg) center/cover no-repeat;
+  background-attachment: fixed;
+}
+body[data-tier="national"] {
+  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+              url(img/backgrounds/tier-national-1.jpg) center/cover no-repeat;
+  background-attachment: fixed;
+}
+body[data-tier="international"] {
+  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+              url(img/backgrounds/tier-international-1.jpg) center/cover no-repeat;
+  background-attachment: fixed;
+}
+/* iOS/touch: background-attachment:fixed causes rendering issues */
+@media (pointer: coarse) {
+  body[data-tier] { background-attachment: scroll; }
 }
 
 /* ---- League Badge Colors (M9) ---- */
