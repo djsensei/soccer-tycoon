@@ -219,7 +219,7 @@ const PACK_TYPES = {
   silver:    { id: 'silver',    name: 'Silver Pack',    description: 'Better odds. Better gear.',                cardsPerPack: 3, weights: [0.40, 0.35, 0.20, 0.05, 0.00] },
   gold:      { id: 'gold',      name: 'Gold Pack',      description: "Now we're talking.",                       cardsPerPack: 3, weights: [0.15, 0.30, 0.35, 0.15, 0.05] },
   special:   { id: 'special',   name: 'Special Pack',   description: 'Only from the weird teams.',               cardsPerPack: 4, weights: [0.05, 0.20, 0.35, 0.28, 0.12] },
-  promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 5, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
+  promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 4, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
 };
 
 const TIER_PACK_REWARDS = {

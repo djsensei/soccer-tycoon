@@ -20,6 +20,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Prevent double-tap zoom on iOS/iPad for all interactive elements */
+button, input, select, textarea, label, a, .player-card, .opponent-card, .inventory-card, .inv-tile, .gear-slot-cell, .forge-slot, .btn-alloc {
+  touch-action: manipulation;
+}
+
 body {
   background: var(--bg);
   background-image:
@@ -1020,6 +1025,9 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Match ticker — limit height so "See Results" is visible without scrolling */
+  .event-log { max-height: 50vh; }
 }
 
 /* ---- League Indicator (M7) ---- */
