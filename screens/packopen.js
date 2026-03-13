@@ -3,9 +3,10 @@
 // ============================================================
 
 // Module state for card-by-card reveal
-let _revealIndex  = 0;
-let _sortedCards  = [];
-let _skipRevealed = false;
+let _revealIndex    = 0;
+let _sortedCards    = [];
+let _skipRevealed   = false;
+let _showingRevealed = false; // true while the just-revealed card is animating
 
 const RARITY_SORT = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4 };
 
@@ -28,8 +29,9 @@ function openNextPack() {
   }
 
   // Reset reveal state before rendering
-  _revealIndex  = 0;
-  _skipRevealed = false;
+  _revealIndex    = 0;
+  _skipRevealed   = false;
+  _showingRevealed = false;
   _sortedCards  = [...cardIds].sort((a, b) => {
     const ra = RARITY_SORT[CARDS[a]?.rarity] ?? 0;
     const rb = RARITY_SORT[CARDS[b]?.rarity] ?? 0;
@@ -47,10 +49,16 @@ function openNextPack() {
 }
 
 function revealNextCard() {
-  if (_revealIndex < _sortedCards.length) {
+  if (_showingRevealed || _revealIndex >= _sortedCards.length) return;
+  // Show the current card with flip animation
+  _showingRevealed = true;
+  render();
+  // After animation, advance to next cardback
+  setTimeout(() => {
+    _showingRevealed = false;
     _revealIndex++;
     render();
-  }
+  }, 800);
 }
 
 function skipReveal() {
@@ -84,17 +92,32 @@ function renderPackReveal(pack) {
     </div>`;
   }).join('');
 
-  // Current card to reveal (cardback)
+  // Current card — either cardback or revealed
   const currentId = _sortedCards[_revealIndex];
   const currentCard = CARDS[currentId];
-  const stageHtml = `
-    <div class="reveal-cardback rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}" onclick="revealNextCard()">
-      <div class="cardback-silhouette">
+  let stageHtml;
+
+  if (_showingRevealed) {
+    const bonuses = Object.entries(currentCard.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No stat bonus';
+    stageHtml = `
+      <div class="pack-card reveal-flip rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}">
         ${cardImage(currentId, 'large')}
-      </div>
-      <div class="reveal-hint">Tap to reveal</div>
-      <div class="reveal-count">Card ${_revealIndex + 1} of ${total}</div>
-    </div>`;
+        ${rarityBadge(currentCard.rarity)}
+        <div class="pack-card-slot">${currentCard.slot.charAt(0).toUpperCase() + currentCard.slot.slice(1)}</div>
+        <div class="pack-card-name">${currentCard.name}</div>
+        <div class="pack-card-flavour">${currentCard.flavourText}</div>
+        <div class="pack-card-bonus">${bonuses}</div>
+      </div>`;
+  } else {
+    stageHtml = `
+      <div class="reveal-cardback rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}" onclick="revealNextCard()">
+        <div class="cardback-silhouette">
+          ${cardImage(currentId, 'large')}
+        </div>
+        <div class="reveal-hint">Tap to reveal</div>
+        <div class="reveal-count">Card ${_revealIndex + 1} of ${total}</div>
+      </div>`;
+  }
 
   return `
     <div class="screen packopen-screen">

@@ -4,7 +4,7 @@
 
 const _WELCOME_HEADLINES = [
   (mgr, team) => `NEW MANAGER TAKES THE REINS`,
-  (mgr, team) => `${team.toUpperCase()} ENTERS THE LEAGUE: "HOW BAD CAN IT BE?"`,
+  (mgr, team) => `${team.toUpperCase()} ENTER THE LEAGUE: "HOW BAD CAN IT BE?"`,
   (mgr, team) => `LOCAL CLUB HIRES ${mgr.toUpperCase()} — FANS CAUTIOUSLY OPTIMISTIC`,
   (mgr, team) => `${mgr.toUpperCase()} PROMISES ${team.toUpperCase()} FANS "WE'LL BE FINE, PROBABLY"`,
   (mgr, team) => `BREAKING: ${team.toUpperCase()} HAS A MANAGER NOW`,
