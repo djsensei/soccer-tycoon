@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markov Graph Editor — Soccer Tycoon</title>
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+  <div id="toolbar">
+    <label>Context:
+      <select id="context-filter"></select>
+    </label>
+    <button id="btn-add-state">Add State</button>
+    <button id="btn-add-edge">Add Edge</button>
+    <label><input type="checkbox" id="toggle-influences"> Stat Influences</label>
+    <button id="btn-import">Import</button>
+    <button id="btn-export">Export</button>
+    <button id="btn-validate">Validate</button>
+    <button id="btn-help">Help</button>
+    <span id="mode-indicator"></span>
+  </div>
+
+  <div id="main">
+    <div id="canvas-wrap">
+      <svg id="pitch" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="arrow-green" viewBox="0 0 10 8" refX="10" refY="4"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,4 L0,8 Z" fill="#3a3"/>
+          </marker>
+          <marker id="arrow-gold" viewBox="0 0 10 8" refX="10" refY="4"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,4 L0,8 Z" fill="#da2"/>
+          </marker>
+          <marker id="arrow-red" viewBox="0 0 10 8" refX="10" refY="4"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,4 L0,8 Z" fill="#c44"/>
+          </marker>
+          <marker id="arrow-purple" viewBox="0 0 10 8" refX="10" refY="4"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,4 L0,8 Z" fill="#a3a"/>
+          </marker>
+          <marker id="arrow-blue" viewBox="0 0 10 8" refX="10" refY="4"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,4 L0,8 Z" fill="#38c"/>
+          </marker>
+        </defs>
+        <!-- Pitch markings -->
+        <rect x="30" y="30" width="540" height="840" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" rx="4"/>
+        <line x1="30" y1="450" x2="570" y2="450" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <circle cx="300" cy="450" r="60" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <!-- Penalty areas -->
+        <rect x="150" y="30" width="300" height="120" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <rect x="150" y="750" width="300" height="120" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+        <!-- Goals -->
+        <rect x="220" y="20" width="160" height="10" fill="rgba(255,255,255,0.3)" rx="2"/>
+        <rect x="220" y="870" width="160" height="10" fill="rgba(255,255,255,0.3)" rx="2"/>
+
+        <g id="edges-layer"></g>
+        <g id="nodes-layer"></g>
+      </svg>
+    </div>
+
+    <div id="sidebar">
+      <div id="panel-overview" class="panel active">
+        <h3>Match Flow Editor</h3>
+        <p>Each circle on the pitch is a <b>moment in a match</b> — like "midfielder has the ball" or "shot on target." The arrows show what can happen next and how likely it is.</p>
+        <p style="margin-top:8px"><b>To explore:</b> Click any circle to see where the ball can go from there. Then click a <b>second circle</b> to see exactly how the game flows between those two moments.</p>
+        <p style="margin-top:8px; color:#aaa">You can also drag circles to rearrange the layout, or hover over arrows to see probabilities.</p>
+        <div id="overview-stats"></div>
+      </div>
+
+      <div id="panel-node" class="panel">
+        <h3><span id="node-name"></span></h3>
+        <div id="node-category"></div>
+        <div id="node-description" style="color:#aaa; font-size:13px; margin:8px 0"></div>
+        <p id="node-pair-hint" style="color:#e94560; font-size:13px; margin:8px 0"></p>
+        <h4>Where the ball goes next</h4>
+        <div id="node-outgoing"></div>
+        <h4>How the ball gets here</h4>
+        <div id="node-incoming"></div>
+        <button id="btn-delete-node" class="danger">Delete Node</button>
+      </div>
+
+      <div id="panel-edge" class="panel">
+        <h3 id="edge-title">Transition</h3>
+        <div id="edge-context-description" style="color:#aaa; font-size:13px; margin-bottom:8px"></div>
+        <div id="edge-prob-section">
+          <h4>Probabilities</h4>
+          <p style="color:#888; font-size:12px; margin-bottom:6px">What can happen next from this state, and how likely each outcome is. These must add up to 1.0 (100%).</p>
+          <div id="edge-dist-rows"></div>
+          <div id="edge-sum-bar"></div>
+          <button id="btn-normalize">Normalize</button>
+        </div>
+        <div id="edge-influence-section">
+          <h4>Player stat effects</h4>
+          <p style="color:#888; font-size:12px; margin-bottom:6px">Player stats that make this transition more or less likely during a match.</p>
+          <div id="edge-influence-detail"></div>
+        </div>
+        <button id="btn-delete-edge" class="danger">Delete Edge</button>
+      </div>
+
+      <div id="panel-add-state" class="panel">
+        <h3>Add State</h3>
+        <label>Name: <input type="text" id="new-state-name" placeholder="e.g. poss_wing_atk"></label>
+        <label>Category:
+          <select id="new-state-cat">
+            <option value="atk possession">atk possession</option>
+            <option value="def swap">def swap</option>
+            <option value="shots/goals">shots/goals</option>
+            <option value="saves/GK">saves/GK</option>
+            <option value="set pieces">set pieces</option>
+            <option value="match flow">match flow</option>
+          </select>
+        </label>
+        <p>Click on the pitch to place the node.</p>
+        <button id="btn-cancel-add-state">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Modal -->
+  <div id="import-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>Import Data</h3>
+      <label>MARKOV_TRANSITIONS:
+        <textarea id="import-transitions" rows="10" placeholder="Paste JS object literal..."></textarea>
+      </label>
+      <label>STAT_INFLUENCES:
+        <textarea id="import-influences" rows="6" placeholder="Paste JS object literal..."></textarea>
+      </label>
+      <div class="modal-buttons">
+        <button id="btn-import-apply">Apply</button>
+        <button id="btn-import-cancel">Cancel</button>
+      </div>
+      <div id="import-error" class="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- Export Modal -->
+  <div id="export-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>Export Data</h3>
+      <label>MARKOV_TRANSITIONS:
+        <textarea id="export-transitions" rows="10" readonly></textarea>
+        <button id="btn-copy-transitions">Copy to Clipboard</button>
+      </label>
+      <label>STAT_INFLUENCES:
+        <textarea id="export-influences" rows="6" readonly></textarea>
+        <button id="btn-copy-influences">Copy to Clipboard</button>
+      </label>
+      <div class="modal-buttons">
+        <button id="btn-export-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../data.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>
