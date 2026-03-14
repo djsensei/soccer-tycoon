@@ -11,15 +11,14 @@ function renderMatchScreen() {
         <div class="match-score" id="match-score">0 – 0</div>
         <div class="match-team">${m.opponentName}</div>
       </div>
-      <div class="fan-ticker" id="fan-ticker">
-        Fans: <span id="fan-ticker-count">${gameState.fans.toLocaleString()}</span>
-        <span id="fan-ticker-delta"></span>
+      <div class="fan-display" id="fan-display">
+        <div class="fan-count-row">
+          <span class="fan-icon">👥</span>
+          <span class="fan-count-value" id="fan-count-value">${gameState.fans.toLocaleString()}</span>
+        </div>
+        <div class="fan-deltas" id="fan-deltas"></div>
       </div>
       <div class="match-controls">
-        <label class="toggle-label">
-          <input type="checkbox" id="highlights-toggle" checked>
-          Highlights only
-        </label>
         <button class="btn-small" onclick="skipToEnd()">Skip</button>
       </div>
       <div class="event-log" id="event-log"></div>
@@ -35,28 +34,37 @@ function startMatchPlayback() {
   if (!m || !m.events) return;
 
   let idx = 0;
-  let runningFanDelta = 0;
-  const processedEvents = [];
-  const log     = document.getElementById('event-log');
-  const scoreEl = document.getElementById('match-score');
-  const toggle  = document.getElementById('highlights-toggle');
+  let runningFans = gameState.fans;
+  const log       = document.getElementById('event-log');
+  const scoreEl   = document.getElementById('match-score');
+  const fanVal    = document.getElementById('fan-count-value');
+  const fanDeltas = document.getElementById('fan-deltas');
 
-  function updateFanTicker(delta) {
-    const deltaEl = document.getElementById('fan-ticker-delta');
-    if (!deltaEl) return;
-    if (runningFanDelta === 0) {
-      deltaEl.textContent = '';
-      deltaEl.className = '';
-    } else {
-      const sign = runningFanDelta >= 0 ? '+' : '';
-      deltaEl.textContent = `(${sign}${runningFanDelta.toLocaleString()})`;
-      deltaEl.className = runningFanDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
-    }
+  // Timing: non-highlights fly by, highlights pause
+  const FAST_MS      = 150;  // normal events
+  const HIGHLIGHT_MS = 1400; // highlight breakout pause
+
+  function showFanDelta(delta) {
+    if (!delta || !fanDeltas) return;
+    // Update running total
+    runningFans = Math.max(50, runningFans + delta);
+    if (fanVal) fanVal.textContent = runningFans.toLocaleString();
+
+    // Floating delta badge
+    const badge = document.createElement('span');
+    const sign = delta >= 0 ? '+' : '';
+    badge.className = 'fan-delta-float ' + (delta >= 0 ? 'positive' : 'negative');
+    badge.textContent = sign + delta.toLocaleString();
+    fanDeltas.appendChild(badge);
+    // Remove after animation
+    setTimeout(() => badge.remove(), 2000);
+
+    // Flash the fan display on big swings
     if (Math.abs(delta) > 50) {
-      const ticker = document.getElementById('fan-ticker');
-      if (ticker) {
-        ticker.classList.add('fan-flash');
-        setTimeout(() => ticker?.classList.remove('fan-flash'), 800);
+      const display = document.getElementById('fan-display');
+      if (display) {
+        display.classList.add('fan-flash');
+        setTimeout(() => display?.classList.remove('fan-flash'), 800);
       }
     }
   }
@@ -65,61 +73,62 @@ function startMatchPlayback() {
     const text = renderEventText(event);
     if (!text) return null;
     const div = document.createElement('div');
-    div.className = `event-line ${event.isHighlight ? 'highlight' : ''} ${event.team || ''}`;
+    div.className = `event-line ${event.isHighlight ? 'highlight' : 'subdued'} ${event.team || ''}`;
     const minLabel = (event.minute != null && event.type !== 'kickoff')
       ? `<span class="event-min">${event.minute}'</span> ` : '';
     div.innerHTML = `${minLabel}${text}`;
     return div;
   }
 
-  function rebuildLog() {
-    log.innerHTML = '';
-    const highlightsOnly = toggle?.checked;
-    for (const event of processedEvents) {
-      if (highlightsOnly && !event.isHighlight) continue;
-      const div = eventDiv(event);
-      if (div) log.appendChild(div);
+  // Trim old non-highlight lines to keep the log focused
+  function trimLog() {
+    const MAX_LINES = 40;
+    while (log.children.length > MAX_LINES) {
+      log.removeChild(log.firstChild);
     }
-    log.scrollTop = log.scrollHeight;
   }
 
-  toggle?.addEventListener('change', rebuildLog);
-
-  function showNext() {
+  function scheduleNext() {
     if (idx >= m.events.length) {
       document.getElementById('match-end-btn').style.display = 'block';
-      if (matchPlayback) clearInterval(matchPlayback);
       return;
     }
 
     const event = m.events[idx++];
+
+    // Update score
     if (event.meta?.playerScore !== undefined) {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
 
-    const delta = event.fanDelta || 0;
-    runningFanDelta += delta;
-    updateFanTicker(delta);
+    // Fan delta
+    showFanDelta(event.fanDelta || 0);
 
-    processedEvents.push(event);
-
-    if (toggle?.checked && !event.isHighlight) return;
-
+    // Render the event line
     const div = eventDiv(event);
-    if (!div) return;
-    log.appendChild(div);
-    log.scrollTop = log.scrollHeight;
+    if (div) {
+      log.appendChild(div);
+      trimLog();
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // Schedule next: highlights get a pause, everything else flies by
+    const delay = event.isHighlight ? HIGHLIGHT_MS : FAST_MS;
+    matchPlayback = setTimeout(scheduleNext, delay);
   }
 
-  matchPlayback = setInterval(showNext, 600);
+  matchPlayback = setTimeout(scheduleNext, 400);
 }
 
 function skipToEnd() {
-  if (matchPlayback) { clearInterval(matchPlayback); matchPlayback = null; }
+  if (matchPlayback) { clearTimeout(matchPlayback); matchPlayback = null; }
   const m = gameState.currentMatch;
   const log     = document.getElementById('event-log');
   const scoreEl = document.getElementById('match-score');
+  const fanVal  = document.getElementById('fan-count-value');
+  const fanDeltas = document.getElementById('fan-deltas');
   log.innerHTML = '';
+  if (fanDeltas) fanDeltas.innerHTML = '';
 
   let totalDelta = 0;
   for (const event of m.events) {
@@ -139,11 +148,19 @@ function skipToEnd() {
   }
   log.scrollTop = log.scrollHeight;
 
-  const deltaEl = document.getElementById('fan-ticker-delta');
-  if (deltaEl && totalDelta !== 0) {
+  // Update fan count to final value
+  const finalFans = Math.max(50, gameState.fans + totalDelta);
+  if (fanVal) fanVal.textContent = finalFans.toLocaleString();
+
+  // Show net delta
+  if (fanDeltas && totalDelta !== 0) {
+    const badge = document.createElement('span');
     const sign = totalDelta >= 0 ? '+' : '';
-    deltaEl.textContent = `(${sign}${totalDelta.toLocaleString()})`;
-    deltaEl.className = totalDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
+    badge.className = 'fan-delta-float ' + (totalDelta >= 0 ? 'positive' : 'negative');
+    badge.style.animation = 'none';
+    badge.style.opacity = '1';
+    badge.textContent = `Net: ${sign}${totalDelta.toLocaleString()}`;
+    fanDeltas.appendChild(badge);
   }
 
   document.getElementById('match-end-btn').style.display = 'block';

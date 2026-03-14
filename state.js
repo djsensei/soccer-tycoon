@@ -3,7 +3,7 @@
 // ============================================================
 
 let gameState = null;
-let matchPlayback = null; // holds setInterval reference during match animation
+let matchPlayback = null; // holds setTimeout reference during match animation
 
 function updateState(patch) {
   Object.assign(gameState, patch);
@@ -12,7 +12,7 @@ function updateState(patch) {
 }
 
 function render() {
-  if (matchPlayback) { clearInterval(matchPlayback); matchPlayback = null; }
+  if (matchPlayback) { clearTimeout(matchPlayback); matchPlayback = null; }
   document.body.dataset.tier = gameState.currentLeague || 'local';
   const app = document.getElementById('app');
   switch (gameState.screen) {

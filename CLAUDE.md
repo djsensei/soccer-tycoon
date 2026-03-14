@@ -31,6 +31,7 @@ soccer-tycoon/
   style.css            # All styles
   state.js             # gameState, updateState(), render(), bootstrap + save migrations
   simulator.js         # Match engine — pure functions, zero DOM
+  transitions.js       # Markov chain probabilities + stat influences (loaded before data.js)
   data.js              # Content: teams, leagues, gear cards, narrative templates, packs
   init.js              # New game creation, league team + season generation
   utils.js             # Shared utilities (effectiveStats, UI helpers, findLeagueTeam)
