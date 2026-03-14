@@ -95,7 +95,7 @@ function renderResults() {
         <div class="milestone-card">
           <div class="milestone-player">${ms.playerName}</div>
           <div class="milestone-detail">
-            ${ms.threshold} career ${ms.careerStat} -> <strong>+1 ${ms.statUpgrade}</strong>
+            ${ms.threshold} career ${ms.careerStat} -> <strong>+${ms.bonus || 1} ${ms.statUpgrade}</strong>
           </div>
         </div>
       `).join('')}

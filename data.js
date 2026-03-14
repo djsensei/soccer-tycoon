@@ -45,12 +45,14 @@ const STAT_DESCRIPTIONS = {
 };
 
 // Per-stat milestone thresholds (tuned to event frequency)
+// Bonus per threshold: [+1, +1, +1, +1, +2, +3]
+const MILESTONE_BONUSES = [1, 1, 1, 1, 2, 3];
 const STAT_MILESTONES = {
-  goals:       { stat: 'shooting', thresholds: [10, 25, 50, 75, 120, 180] },
-  saves:       { stat: 'reflexes', thresholds: [15, 35, 75, 120, 180, 270] },
-  tackles:     { stat: 'strength', thresholds: [15, 35, 75, 120, 180, 270] },
-  passes:      { stat: 'passing',  thresholds: [200, 600, 1500, 3000, 5000, 7500] },
-  shotsMissed: { stat: 'luck',     thresholds: [30, 75, 150, 250, 360, 525] },
+  goals:       { stat: 'shooting', thresholds: [20, 60, 130, 250, 420, 650] },
+  saves:       { stat: 'reflexes', thresholds: [35, 90, 200, 380, 600, 900] },
+  tackles:     { stat: 'strength', thresholds: [35, 90, 200, 380, 600, 900] },
+  passes:      { stat: 'passing',  thresholds: [600, 1800, 4500, 9000, 15000, 25000] },
+  shotsMissed: { stat: 'luck',     thresholds: [70, 200, 430, 750, 1200, 1800] },
 };
 
 // --- Gear Cards -------------------------------------------------

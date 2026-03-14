@@ -186,13 +186,15 @@ function goToResults() {
       newCareer[careerKey] = newVal;
       const mileDef = STAT_MILESTONES[careerKey];
       if (!mileDef) continue;
-      for (const threshold of mileDef.thresholds) {
+      for (let ti = 0; ti < mileDef.thresholds.length; ti++) {
+        const threshold = mileDef.thresholds[ti];
         if (oldVal < threshold && newVal >= threshold) {
-          newBonuses[mileDef.stat] = (newBonuses[mileDef.stat] || 0) + 1;
+          const bonus = MILESTONE_BONUSES[ti] || 1;
+          newBonuses[mileDef.stat] = (newBonuses[mileDef.stat] || 0) + bonus;
           newMilestones.push({
             playerId: p.id, playerName: p.name,
             careerStat: careerKey, statUpgrade: mileDef.stat,
-            newTotal: newVal, threshold,
+            bonus, newTotal: newVal, threshold,
           });
         }
       }
@@ -200,7 +202,7 @@ function goToResults() {
     return { ...p, careerStats: newCareer, statBonuses: newBonuses };
   });
 
-  const newFans = Math.max(0, gameState.fans + m.fanDelta);
+  const newFans = Math.max(50, gameState.fans + m.fanDelta);
 
   const matchHistory = [...gameState.matchHistory, {
     opponentId:    m.opponentId,
