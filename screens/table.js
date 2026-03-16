@@ -111,11 +111,17 @@ function renderTable() {
         </div>
       </header>
       <div class="matchday-label">Matchday ${Math.min(currentMD, totalMatchdays)} of ${totalMatchdays}${seasonOver ? ' — Season Complete' : ''}</div>
-      ${tableHtml}
-      ${resultsHtml}
-      ${actionHtml}
-      <div class="table-bottom-actions">
-        <button class="btn-secondary btn-large" onclick="updateState({screen:'managegear'})">Gear Up</button>
+      <div class="table-split">
+        <div class="table-split-left">
+          ${resultsHtml}
+          ${actionHtml}
+          <div class="table-bottom-actions">
+            <button class="btn-secondary btn-large" onclick="updateState({screen:'managegear'})">Gear Up</button>
+          </div>
+        </div>
+        <div class="table-split-right">
+          ${tableHtml}
+        </div>
       </div>
       <div class="hub-footer">
         <button class="btn-small btn-danger" onclick="startOver()">Start Over</button>

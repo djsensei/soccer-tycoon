@@ -1186,6 +1186,14 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   }
   .results-col-left .match-stats,
   .results-col-right .milestone-section { max-width: none; }
+
+  /* Table/matchday — left-right split on tablet */
+  .table-split {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .table-split-left { flex: 1; min-width: 0; }
+  .table-split-right { flex: 1.2; min-width: 0; }
 }
 
 /* ---- League Indicator (M7) ---- */
@@ -1241,6 +1249,17 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .league-table .tbl-player { background: rgba(109, 191, 103, 0.12); font-weight: 600; }
 .league-table .tbl-promo td:first-child { border-left: 3px solid var(--accent); }
 .league-table .tbl-danger td:first-child { border-left: 3px solid var(--danger); }
+
+.table-split {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.table-split-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
 .table-bottom-actions {
   display: flex;
