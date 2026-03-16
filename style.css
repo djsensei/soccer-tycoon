@@ -1129,6 +1129,17 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   100% { background: var(--surface); }
 }
 
+.table-split {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.table-split-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 /* ---- Tablet / iPad landscape (768px+) ---- */
 @media (min-width: 768px) {
   .screen { max-width: 1024px; padding: 1rem 1.5rem; }
@@ -1256,16 +1267,6 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .league-table .tbl-promo td:first-child { border-left: 3px solid var(--accent); }
 .league-table .tbl-danger td:first-child { border-left: 3px solid var(--danger); }
 
-.table-split {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.table-split-left {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
 .league-table-wrap {
   overflow-x: auto;
 }
