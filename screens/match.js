@@ -21,7 +21,10 @@ function renderMatchScreen() {
     <div class="screen match-screen">
       <div class="match-header">
         <div class="match-team">${gameState.teamName}</div>
-        <div class="match-score" id="match-score">0 – 0</div>
+        <div class="match-score-block">
+          <div class="match-minute" id="match-minute">0'</div>
+          <div class="match-score" id="match-score">0 – 0</div>
+        </div>
         <div class="match-team">${m.opponentName}</div>
       </div>
       <div class="fan-display" id="fan-display">
@@ -85,6 +88,7 @@ function startMatchPlayback() {
   let runningFans = gameState.fans;
   const log       = document.getElementById('event-log');
   const scoreEl   = document.getElementById('match-score');
+  const minuteEl  = document.getElementById('match-minute');
   const fanVal    = document.getElementById('fan-count-value');
   const fanDeltas = document.getElementById('fan-deltas');
 
@@ -142,7 +146,8 @@ function startMatchPlayback() {
 
     const event = m.events[idx++];
 
-    // Update score
+    // Update minute and score
+    if (event.minute != null && minuteEl) minuteEl.textContent = `${event.minute}'`;
     if (event.meta?.playerScore !== undefined) {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
@@ -175,8 +180,10 @@ function skipToEnd() {
   _scheduleNext = null;
   _playbackPaused = false;
   const m = gameState.currentMatch;
-  const log     = document.getElementById('event-log');
-  const scoreEl = document.getElementById('match-score');
+  const log      = document.getElementById('event-log');
+  const scoreEl  = document.getElementById('match-score');
+  const minuteEl = document.getElementById('match-minute');
+  if (minuteEl) minuteEl.textContent = "90'";
   const fanVal  = document.getElementById('fan-count-value');
   const fanDeltas = document.getElementById('fan-deltas');
   log.innerHTML = '';

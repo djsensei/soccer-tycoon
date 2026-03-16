@@ -767,6 +767,8 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .match-team:first-child { text-align: left; }
 .match-team:last-child  { text-align: right; color: var(--danger); }
 .match-team { font-weight: bold; font-size: 1rem; }
+.match-score-block { text-align: center; }
+.match-minute { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.05em; }
 .match-score { font-size: 2.2rem; font-weight: 900; color: var(--gold); white-space: nowrap; }
 
 .match-controls {
