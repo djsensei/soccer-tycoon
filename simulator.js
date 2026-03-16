@@ -477,19 +477,26 @@ function simulateMatch(playerTeam, opponentTeam) {
 }
 
 
-// --- NPC Match Simulation (M7) ---------------------------------
-// Simple Poisson-based goal generator using team difficulty
+// --- NPC Match Simulation (M11) --------------------------------
+// Full Markov simulation for NPC-NPC matches (replaces old Poisson model)
+function simulateNPCMatchFull(homeTeam, awayTeam, leagueKey) {
+  // Build a team object compatible with simulateMatch
+  const homeTeamFull = { ...homeTeam, league: leagueKey || homeTeam.league };
+  const awayTeamFull = { ...awayTeam, league: leagueKey || awayTeam.league };
+  const result = simulateMatch(homeTeamFull, awayTeamFull);
+  return { homeScore: result.playerScore, awayScore: result.opponentScore };
+}
+
+// Deprecated: old Poisson-based NPC match simulation (M7)
+// Kept for reference; use simulateNPCMatchFull() instead.
 function simulateNPCMatch(homeTeam, awayTeam) {
-  // Expected goals based on difficulty: higher diff = more goals expected
   const homeExpected = 0.5 + homeTeam.difficulty * 0.15;
   const awayExpected = 0.5 + awayTeam.difficulty * 0.15;
-
   function poisson(lambda) {
     let L = Math.exp(-lambda), k = 0, p = 1;
     do { k++; p *= Math.random(); } while (p > L);
     return k - 1;
   }
-
   return { homeScore: poisson(homeExpected), awayScore: poisson(awayExpected) };
 }
 

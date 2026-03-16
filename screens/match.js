@@ -314,7 +314,7 @@ function goToResults() {
       const homeTeam = findLeagueTeam(match.home);
       const awayTeam = findLeagueTeam(match.away);
       if (!homeTeam || !awayTeam) continue;
-      const result = simulateNPCMatch(homeTeam, awayTeam);
+      const result = simulateNPCMatchFull(homeTeam, awayTeam, season.league);
       updateStandings(standings, match.home, result.homeScore, result.awayScore);
       updateStandings(standings, match.away, result.awayScore, result.homeScore);
       npcResults.push({ home: match.home, away: match.away, homeScore: result.homeScore, awayScore: result.awayScore });

@@ -2,6 +2,8 @@
 // data.js — Static game content. Never mutated at runtime.
 // ============================================================
 
+const GAME_VERSION = '0.11.0';
+
 const TEAM_SIZE = 5;
 const POSITIONS = ['GK', 'D', 'M1', 'M2', 'S'];
 const STATS = ['jumping', 'speed', 'strength', 'passing', 'shooting', 'reflexes', 'luck'];
@@ -261,8 +263,16 @@ const OPPONENT_DEFINITIONS = [
 
 // --- Name Generator --------------------------------------------
 const NAME_GEN = {
-  teamAdjectives: ['Wobbly','Muddy','Rusty','Dizzy','Sleepy','Sneaky','Bouncy','Wiggly','Lumpy','Grumpy','Chompy','Zippy','Floppy','Squishy','Wacky','Blobby','Soggy','Crusty','Frizzy','Gangly'],
-  teamNouns:      ['Narwhals','Capybaras','Wombats','Penguins','Badgers','Hedgehogs','Llamas','Platypuses','Sloths','Ferrets','Otters','Raccoons','Armadillos','Axolotls','Blobfish','Echidnas','Quokkas','Tapirs','Manatees','Numbats'],
+  teamAdjectives: [
+    'Wobbly','Muddy','Rusty','Dizzy','Sleepy','Sneaky','Bouncy','Wiggly','Lumpy','Grumpy',
+    'Chompy','Zippy','Floppy','Squishy','Wacky','Blobby','Soggy','Crusty','Frizzy','Gangly',
+    'Cranky','Spooky','Dopey','Funky','Clumsy','Rowdy','Nerdy','Lanky','Wonky','Zany',
+  ],
+  teamNouns: [
+    'Narwhals','Capybaras','Wombats','Penguins','Badgers','Hedgehogs','Llamas','Platypuses','Sloths','Ferrets',
+    'Otters','Raccoons','Armadillos','Axolotls','Blobfish','Echidnas','Quokkas','Tapirs','Manatees','Numbats',
+    'Flamingos','Pangolins','Tardigrades','Chinchillas','Chameleons','Puffins','Lemurs','Geckos','Pelicans','Corgis',
+  ],
   playerFirst: [
     'Bobbo','Jimbo','Fizzy','Buzzy','Zippy','Plonky','Boingo','Whumpo','Zappy','Dingus',
     'Flumbo','Grumbo','Sploosh','Blorb','Yoink','Kerfuffle','Snazzle','Fumble','Wobble','Zonk',
@@ -270,6 +280,10 @@ const NAME_GEN = {
     'Toots','Bonk','Squish','Rascal','Blinky','Chomps','Wiggles','Doodle','Spud','Frazzle',
     'Tater','Chonk','Blip','Goober','Twitch','Skipper','Pudding','Binky','Wombat','Crouton',
     'Clonk','Noobert','Zinger','Jellybean','Kazoo','Burrito','Snorkel','Toffee','Dibble','Pistachio',
+    'Boomer','Squelch','Pretzel','Wumbus','Biscuit','Nacho','Fondue','Gadget','Pebble','Trinket',
+    'Bumble','Clover','Donut','Flicker','Guppy','Hamster','Igloo','Juniper','Kiwi','Lentil',
+    'Marble','Nimbus','Olive','Parsnip','Queso','Riddle','Strudel','Tango','Umbrella','Vespa',
+    'Wonton','Xerox','Yodel','Zeppelin','Cosmo','Dumpling','Fizgig','Giggles','Hiccup','Jinx',
   ],
   playerLast: [
     'Jenkins','McBonk','Fumblesworth','Kicksalot','Dribbleson','Shooterman','Tackleton','O\'Goalie',
@@ -281,20 +295,73 @@ const NAME_GEN = {
     'Fluffington','Von Biscuit','Wobblebottom','Snoozleton','McSnack','Pancake','Giggles',
     'Bumbleton','Noodlearm','Tumbleweed','Dingbat','Snickerdoodle','Cabbagehead','Mudpie','Clodhopper',
     'Butterfingers','Fizzbomb','Splatsworth','Wafflehaus','Pretzelberg',
+    'Backheelson','Von Crumpet','McFlipkick','Overhead','Divesworth','Stoppage','Yellowcard',
+    'Penaltini','McScoreline','Offsideberg','Von Tackle','Dropkickson','Headington','Goalmouth',
+    'Blunderton','Benchwarmer','McSubstitute','Throwinburg','Raindelay','Chipshot','Cornerflag',
+    'Foulsworth','McPenalty','Booterson','Halvetime','Studdington','Pitchford','Referino',
+    'Kickoffski','Von Gegenpressing','Counterattack',
   ],
 };
 
+// Track used names within a generation batch to prevent duplicates
+const _usedTeamNames = new Set();
+const _usedFirstNames = new Set();
+const _usedLastNames = new Set();
+
+function resetNameTracking() {
+  _usedTeamNames.clear();
+  _usedFirstNames.clear();
+  _usedLastNames.clear();
+}
+
 function generateTeamName() {
-  const adj  = NAME_GEN.teamAdjectives[Math.floor(Math.random() * NAME_GEN.teamAdjectives.length)];
-  const noun = NAME_GEN.teamNouns[Math.floor(Math.random() * NAME_GEN.teamNouns.length)];
+  const { teamAdjectives, teamNouns } = NAME_GEN;
+  // Try to find a unique combo (up to 20 attempts, then allow repeats)
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const adj  = teamAdjectives[Math.floor(Math.random() * teamAdjectives.length)];
+    const noun = teamNouns[Math.floor(Math.random() * teamNouns.length)];
+    const name = `The ${adj} ${noun}`;
+    if (!_usedTeamNames.has(name)) {
+      _usedTeamNames.add(name);
+      return name;
+    }
+  }
+  // Fallback: just pick something
+  const adj  = teamAdjectives[Math.floor(Math.random() * teamAdjectives.length)];
+  const noun = teamNouns[Math.floor(Math.random() * teamNouns.length)];
   return `The ${adj} ${noun}`;
 }
 
 function generatePlayerName() {
-  const first = NAME_GEN.playerFirst[Math.floor(Math.random() * NAME_GEN.playerFirst.length)];
-  const last  = NAME_GEN.playerLast[Math.floor(Math.random() * NAME_GEN.playerLast.length)];
+  const { playerFirst, playerLast } = NAME_GEN;
+
+  // Pick a unique first name (up to 20 attempts)
+  let first;
+  for (let i = 0; i < 20; i++) {
+    first = playerFirst[Math.floor(Math.random() * playerFirst.length)];
+    if (!_usedFirstNames.has(first)) break;
+  }
+  _usedFirstNames.add(first);
+
+  // Pick a unique last name (up to 20 attempts)
+  let last;
+  for (let i = 0; i < 20; i++) {
+    last = playerLast[Math.floor(Math.random() * playerLast.length)];
+    if (!_usedLastNames.has(last)) break;
+  }
+  _usedLastNames.add(last);
+
   return `${first} ${last}`;
 }
+
+// --- NPC Gear Configuration (M11) -------------------------------
+const NPC_GEAR_CONFIG = {
+  local:         { rarities: [],                            slots: 0 },
+  regional:      { rarities: ['common'],                    slots: 2 },
+  state:         { rarities: ['common', 'uncommon'],        slots: 3 },
+  national:      { rarities: ['common', 'uncommon', 'rare'], slots: 3 },
+  international: { rarities: ['uncommon', 'rare', 'epic'],  slots: 3 },
+};
 
 // --- League System (M7) ----------------------------------------
 const LEAGUE_ORDER = ['local', 'regional', 'state', 'national', 'international'];
