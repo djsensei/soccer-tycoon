@@ -109,15 +109,18 @@ function runOnce(runIndex) {
           p.careerStats[careerKey] = newVal;
           const mileDef = ctx.STAT_MILESTONES[careerKey];
           if (!mileDef) continue;
-          for (const threshold of mileDef.thresholds) {
+          for (let ti = 0; ti < mileDef.thresholds.length; ti++) {
+            const threshold = mileDef.thresholds[ti];
             if (oldVal < threshold && newVal >= threshold) {
-              p.statBonuses[mileDef.stat] = (p.statBonuses[mileDef.stat] || 0) + 1;
+              const bonus = ctx.MILESTONE_BONUSES[ti] || 1;
+              p.statBonuses[mileDef.stat] = (p.statBonuses[mileDef.stat] || 0) + bonus;
               runStats.milestones.push({
                 match: gs.matchesPlayed + 1,
                 playerId: p.id,
                 playerName: p.name,
                 careerStat: careerKey,
                 statUpgrade: mileDef.stat,
+                bonus,
                 threshold,
               });
             }
@@ -126,7 +129,7 @@ function runOnce(runIndex) {
       }
 
       // Update fans
-      gs.fans = Math.max(0, gs.fans + totalFanDelta);
+      gs.fans = Math.max(50, gs.fans + totalFanDelta);
       gs.matchesPlayed++;
 
       // Track season match stats

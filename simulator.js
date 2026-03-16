@@ -6,9 +6,9 @@
 const POSITION_WEIGHTS = {
   GK: { reflexes: 4, jumping: 3, strength: 1, luck: 1 },
   D:  { strength: 3, jumping: 2, speed: 1,    luck: 1 },
-  M1: { passing: 3,  speed: 2,  strength: 1, luck: 1 },
-  M2: { passing: 3,  speed: 2,  strength: 1, luck: 1 },
-  S:  { shooting: 4, speed: 2,  luck: 2 },
+  M1: { passing: 3,  speed: 2,  strength: 1, shooting: 1, luck: 1 },
+  M2: { passing: 3,  speed: 2,  strength: 1, shooting: 1, luck: 1 },
+  S:  { shooting: 4, speed: 2,  passing: 1, luck: 1 },
 };
 
 // Score a player's contribution in a given position slot
@@ -53,17 +53,6 @@ function roll(teamStat, opponentStat, luckBonus = 0) {
   return Math.random() < chance;
 }
 
-// Fill a narrative template with variables
-function fill(template, vars) {
-  return template.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '?');
-}
-
-// Pick a random narrative string for an event
-function narrativeFor(key, vars) {
-  const templates = NARRATIVE[key];
-  if (!templates || templates.length === 0) return '';
-  return fill(pick(templates), vars);
-}
 
 // ---------------------------------------------------------------
 // Markov Chain helpers (Phase 2)
@@ -104,6 +93,61 @@ function buildTeamRoles(team) {
   }
 
   return { gk: gkStats, def: defStats, mid: midStats, str: strStats };
+}
+
+// Pick who takes the shot — mostly striker, but midfielders/defenders can too
+function pickShooter(team, prevState) {
+  const striker = slotPlayer(team, 'S');
+  const m1      = slotPlayer(team, 'M1');
+  const m2      = slotPlayer(team, 'M2');
+  const def     = slotPlayer(team, 'D');
+
+  // Positional bias weights (defender boosted on corners)
+  const isCorner = prevState && prevState.includes('corner');
+  const weights = [
+    { player: striker, bias: 6.5 },
+    { player: m1,      bias: 1.25 },
+    { player: m2,      bias: 1.25 },
+    { player: def,     bias: isCorner ? 2.0 : 0.5 },
+  ].filter(w => w.player);
+
+  // Weight by shooting stat × positional bias
+  const entries = weights.map(w => {
+    const stats = effectiveStats(w.player);
+    return { player: w.player, weight: (stats.shooting || 1) * w.bias };
+  });
+  const total = entries.reduce((s, e) => s + e.weight, 0);
+  let r = Math.random() * total;
+  for (const e of entries) {
+    r -= e.weight;
+    if (r <= 0) return e.player;
+  }
+  return striker; // fallback
+}
+
+// Pick who makes the tackle — mostly defender, but midfielders can intercept
+function pickTackler(team) {
+  const def = slotPlayer(team, 'D');
+  const m1  = slotPlayer(team, 'M1');
+  const m2  = slotPlayer(team, 'M2');
+
+  const weights = [
+    { player: def, bias: 3.5 },
+    { player: m1,  bias: 1.0 },
+    { player: m2,  bias: 1.0 },
+  ].filter(w => w.player);
+
+  const entries = weights.map(w => {
+    const stats = effectiveStats(w.player);
+    return { player: w.player, weight: (stats.strength || 1) * w.bias };
+  });
+  const total = entries.reduce((s, e) => s + e.weight, 0);
+  let r = Math.random() * total;
+  for (const e of entries) {
+    r -= e.weight;
+    if (r <= 0) return e.player;
+  }
+  return def; // fallback
 }
 
 // Look up a specific stat value from the role-based stats object
@@ -149,11 +193,10 @@ function buildEvent(minute, prevState, currentState, nextState,
                     playerScore, opponentScore) {
   const teamKey = atkIsPlayer ? 'player' : 'opponent';
 
-  const atkStriker = slotPlayer(atkTeam, 'S');
   const atkMid     = Math.random() < 0.5 ? slotPlayer(atkTeam, 'M1') : slotPlayer(atkTeam, 'M2');
   const atkDef     = slotPlayer(atkTeam, 'D');
   const atkGK      = slotPlayer(atkTeam, 'GK');
-  const defDef     = slotPlayer(defTeam, 'D');
+  const atkStriker = slotPlayer(atkTeam, 'S');
 
   const baseMeta = {
     teamName:         atkTeam.name,
@@ -171,22 +214,24 @@ function buildEvent(minute, prevState, currentState, nextState,
     };
   }
 
-  // --- Goal ---
+  // --- Goal (shooter picked by weighted random) ---
   if (nextState === 'goal_atk') {
-    return ev('goal', atkIsPlayer ? 'player' : 'opponent', true, atkStriker?.name, { playerId: atkStriker?.id });
+    const shooter = pickShooter(atkTeam, prevState);
+    return ev('goal', atkIsPlayer ? 'player' : 'opponent', true, shooter?.name, { playerId: shooter?.id });
   }
 
   // --- Shot saved (possibly great save) ---
   if (nextState === 'save_def') {
+    const shooter = pickShooter(atkTeam, prevState);
     const defGK = slotPlayer(defTeam, 'GK');
-    // Great save: if goal probability was >55% but keeper saved it
     const great = goalProbWhenShotWasTaken != null && goalProbWhenShotWasTaken > 0.55;
-    return ev('shot', great ? 'greatSave' : 'saved', great, atkStriker?.name, { playerId: atkStriker?.id, savingPlayerId: defGK?.id });
+    return ev('shot', great ? 'greatSave' : 'saved', great, shooter?.name, { playerId: shooter?.id, savingPlayerId: defGK?.id });
   }
 
   // --- Shot off target (miss) ---
   if (nextState === 'shot_off_atk') {
-    return ev('shot', 'miss', false, atkStriker?.name, { playerId: atkStriker?.id });
+    const shooter = pickShooter(atkTeam, prevState);
+    return ev('shot', 'miss', false, shooter?.name, { playerId: shooter?.id });
   }
 
   // --- shot_on_atk as next: quiet state, resolved inline in simulator ---
@@ -195,11 +240,15 @@ function buildEvent(minute, prevState, currentState, nextState,
   // --- Set pieces ---
   if (nextState === 'dead_corner_atk') return ev('corner',  'event', false, null);
   if (nextState === 'dead_throwin_atk') return ev('throwin', 'event', false, null);
-  if (nextState === 'dead_foul_atk')   return ev('foul',    'event', false, defDef?.name);
+  if (nextState === 'dead_foul_atk') {
+    const tackler = pickTackler(defTeam);
+    return ev('foul', 'event', false, tackler?.name);
+  }
 
-  // --- Tackle (defender wins the ball) ---
+  // --- Tackle (picked by weighted random) ---
   if (nextState === 'poss_def_def') {
-    return ev('tackle', 'success', false, defDef?.name, { playerId: defDef?.id });
+    const tackler = pickTackler(defTeam);
+    return ev('tackle', 'success', false, tackler?.name, { playerId: tackler?.id });
   }
 
   // --- Midfield interception (pass fail) ---
@@ -427,48 +476,6 @@ function simulateMatch(playerTeam, opponentTeam) {
   return { events, playerScore, opponentScore };
 }
 
-// Narrative text for an event (called by renderer, not simulator)
-function eventNarrativeKey(event) {
-  if (['kickoff','halftime','fulltime','corner','throwin','foul'].includes(event.type)) return event.type;
-  if (event.type === 'pass')   return `pass-${event.outcome}`;
-  if (event.type === 'tackle') return `tackle-${event.outcome}`;
-  if (event.type === 'shot' && event.outcome === 'miss')      return 'shot-miss';
-  if (event.type === 'shot' && event.outcome === 'saved')     return 'shot-saved';
-  if (event.type === 'shot' && event.outcome === 'greatSave') return 'shot-greatSave';
-  if (event.type === 'goal' && event.outcome === 'player')    return 'goal-player';
-  if (event.type === 'goal' && event.outcome === 'opponent')  return 'goal-opponent';
-  return null;
-}
-
-function renderEventText(event) {
-  const key = eventNarrativeKey(event);
-  if (!key) return null;
-  const m = event.meta;
-
-  // goal templates use absolute names
-  if (key === 'goal-player' || key === 'goal-opponent') {
-    return narrativeFor(key, {
-      player:   m.playerName        || 'Someone',
-      team:     m.playerTeamName    || 'Your team',
-      opponent: m.opponentTeamName  || 'Them',
-    });
-  }
-
-  // kickoff uses absolute names too
-  if (key === 'kickoff') {
-    return narrativeFor(key, {
-      team:     m.playerTeamName   || 'Your team',
-      opponent: m.opponentTeamName || 'Them',
-    });
-  }
-
-  // all other events: relative to attacker/defender
-  return narrativeFor(key, {
-    player:   m.playerName   || 'Someone',
-    team:     m.teamName     || 'Your team',
-    opponent: m.opponentName || 'Them',
-  });
-}
 
 // --- NPC Match Simulation (M7) ---------------------------------
 // Simple Poisson-based goal generator using team difficulty

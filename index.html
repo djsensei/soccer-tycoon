@@ -21,7 +21,9 @@
   <div id="app">Loading...</div>
 
   <!-- Load order matters: each file can only reference names from files above it -->
+  <script src="transitions.js"></script><!-- Markov chain probabilities + stat influences -->
   <script src="data.js"></script>       <!-- constants, content, name generators -->
+  <script src="commentary.js"></script> <!-- match commentary templates + selection -->
   <script src="save.js"></script>       <!-- localStorage read/write -->
   <script src="utils.js"></script>      <!-- shared utilities (effectiveStats, UI helpers) -->
   <script src="init.js"></script>       <!-- new game creation -->

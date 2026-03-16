@@ -10,6 +10,7 @@ const ROOT = path.resolve(__dirname, '..', '..');
 // Files to load in dependency order (mirrors index.html <script> order,
 // minus save.js and all screen/DOM files the bot doesn't need)
 const GAME_FILES = [
+  'transitions.js',
   'data.js',
   'utils.js',
   'init.js',
@@ -45,6 +46,8 @@ function createSandbox() {
   // const/let declarations are script-scoped in vm, not on the context object.
   // Run a helper to expose everything the bot needs as context properties.
   vm.runInContext(`
+    this.MARKOV_TRANSITIONS = MARKOV_TRANSITIONS;
+    this.STAT_INFLUENCES = STAT_INFLUENCES;
     this.TEAM_SIZE = TEAM_SIZE;
     this.POSITIONS = POSITIONS;
     this.STATS = STATS;
@@ -54,6 +57,7 @@ function createSandbox() {
     this.CARDS = CARDS;
     this.PACK_TYPES = PACK_TYPES;
     this.STAT_MILESTONES = STAT_MILESTONES;
+    this.MILESTONE_BONUSES = MILESTONE_BONUSES;
     this.LEAGUE_ORDER = LEAGUE_ORDER;
     this.LEAGUE_DEFINITIONS = LEAGUE_DEFINITIONS;
     this.LEAGUE_TEAMS = LEAGUE_TEAMS;

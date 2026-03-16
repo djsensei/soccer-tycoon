@@ -2,25 +2,44 @@
 // screens/match.js — Live match screen (playback and skip)
 // ============================================================
 
+// Speed presets: [normalMs, highlightMs]
+const PLAYBACK_SPEEDS = {
+  slow:    { normal: 300, highlight: 2400, label: '>'   },
+  medium:  { normal: 80,  highlight: 1000, label: '>>'  },
+  fast:    { normal: 20,  highlight: 400,  label: '>>>' },
+};
+const SPEED_ORDER = ['slow', 'medium', 'fast'];
+let _playbackSpeed = 'medium';  // default
+let _playbackPaused = false;
+let _scheduleNext = null;       // reference to playback loop for pause/resume
+
 function renderMatchScreen() {
   const m = gameState.currentMatch;
+  _playbackSpeed = 'medium';
+  _playbackPaused = false;
   return `
     <div class="screen match-screen">
       <div class="match-header">
         <div class="match-team">${gameState.teamName}</div>
-        <div class="match-score" id="match-score">0 – 0</div>
+        <div class="match-score-block">
+          <div class="match-minute" id="match-minute">0'</div>
+          <div class="match-score" id="match-score">0 – 0</div>
+        </div>
         <div class="match-team">${m.opponentName}</div>
       </div>
-      <div class="fan-ticker" id="fan-ticker">
-        Fans: <span id="fan-ticker-count">${gameState.fans.toLocaleString()}</span>
-        <span id="fan-ticker-delta"></span>
+      <div class="fan-display" id="fan-display">
+        <div class="fan-count-row">
+          <span class="fan-icon">👥</span>
+          <span class="fan-count-value" id="fan-count-value">${gameState.fans.toLocaleString()}</span>
+        </div>
+        <div class="fan-deltas" id="fan-deltas"></div>
       </div>
       <div class="match-controls">
-        <label class="toggle-label">
-          <input type="checkbox" id="highlights-toggle" checked>
-          Highlights only
-        </label>
-        <button class="btn-small" onclick="skipToEnd()">Skip</button>
+        <div class="speed-controls" id="speed-controls">
+          <button class="btn-speed" data-action="pause" onclick="togglePause()">⏸</button>
+          ${SPEED_ORDER.map(key => `<button class="btn-speed${key === _playbackSpeed ? ' active' : ''}" data-speed="${key}" onclick="setSpeed('${key}')">${PLAYBACK_SPEEDS[key].label}</button>`).join('')}
+          <button class="btn-speed btn-speed-skip" onclick="skipToEnd()">Skip</button>
+        </div>
       </div>
       <div class="event-log" id="event-log"></div>
       <div id="match-end-btn" style="display:none">
@@ -30,33 +49,70 @@ function renderMatchScreen() {
   `;
 }
 
+function updateSpeedButtons() {
+  const container = document.getElementById('speed-controls');
+  if (!container) return;
+  for (const btn of container.querySelectorAll('.btn-speed[data-speed]')) {
+    btn.classList.toggle('active', btn.dataset.speed === _playbackSpeed);
+  }
+  const pauseBtn = container.querySelector('[data-action="pause"]');
+  if (pauseBtn) pauseBtn.classList.toggle('active', _playbackPaused);
+}
+
+function setSpeed(key) {
+  _playbackSpeed = key;
+  _playbackPaused = false;
+  updateSpeedButtons();
+  // If we were paused, resume
+  if (matchPlayback === null && typeof _scheduleNext === 'function') {
+    _scheduleNext();
+  }
+}
+
+function togglePause() {
+  _playbackPaused = !_playbackPaused;
+  updateSpeedButtons();
+  if (!_playbackPaused && matchPlayback === null && typeof _scheduleNext === 'function') {
+    _scheduleNext();
+  } else if (_playbackPaused && matchPlayback) {
+    clearTimeout(matchPlayback);
+    matchPlayback = null;
+  }
+}
+
 function startMatchPlayback() {
   const m = gameState.currentMatch;
   if (!m || !m.events) return;
 
   let idx = 0;
-  let runningFanDelta = 0;
-  const processedEvents = [];
-  const log     = document.getElementById('event-log');
-  const scoreEl = document.getElementById('match-score');
-  const toggle  = document.getElementById('highlights-toggle');
+  let runningFans = gameState.fans;
+  const log       = document.getElementById('event-log');
+  const scoreEl   = document.getElementById('match-score');
+  const minuteEl  = document.getElementById('match-minute');
+  const fanVal    = document.getElementById('fan-count-value');
+  const fanDeltas = document.getElementById('fan-deltas');
 
-  function updateFanTicker(delta) {
-    const deltaEl = document.getElementById('fan-ticker-delta');
-    if (!deltaEl) return;
-    if (runningFanDelta === 0) {
-      deltaEl.textContent = '';
-      deltaEl.className = '';
-    } else {
-      const sign = runningFanDelta >= 0 ? '+' : '';
-      deltaEl.textContent = `(${sign}${runningFanDelta.toLocaleString()})`;
-      deltaEl.className = runningFanDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
-    }
+  function showFanDelta(delta) {
+    if (!delta || !fanDeltas) return;
+    // Update running total
+    runningFans = Math.max(50, runningFans + delta);
+    if (fanVal) fanVal.textContent = runningFans.toLocaleString();
+
+    // Floating delta badge
+    const badge = document.createElement('span');
+    const sign = delta >= 0 ? '+' : '';
+    badge.className = 'fan-delta-float ' + (delta >= 0 ? 'positive' : 'negative');
+    badge.textContent = sign + delta.toLocaleString();
+    fanDeltas.appendChild(badge);
+    // Remove after animation
+    setTimeout(() => badge.remove(), 2000);
+
+    // Flash the fan display on big swings
     if (Math.abs(delta) > 50) {
-      const ticker = document.getElementById('fan-ticker');
-      if (ticker) {
-        ticker.classList.add('fan-flash');
-        setTimeout(() => ticker?.classList.remove('fan-flash'), 800);
+      const display = document.getElementById('fan-display');
+      if (display) {
+        display.classList.add('fan-flash');
+        setTimeout(() => display?.classList.remove('fan-flash'), 800);
       }
     }
   }
@@ -65,61 +121,73 @@ function startMatchPlayback() {
     const text = renderEventText(event);
     if (!text) return null;
     const div = document.createElement('div');
-    div.className = `event-line ${event.isHighlight ? 'highlight' : ''} ${event.team || ''}`;
+    div.className = `event-line ${event.isHighlight ? 'highlight' : 'subdued'} ${event.team || ''}`;
     const minLabel = (event.minute != null && event.type !== 'kickoff')
-      ? `<span class="event-min">${event.minute}'</span> ` : '';
-    div.innerHTML = `${minLabel}${text}`;
+      ? `<span class="event-min">${event.minute}'</span>` : '';
+    div.innerHTML = `${minLabel}<span class="event-text">${text}</span>`;
     return div;
   }
 
-  function rebuildLog() {
-    log.innerHTML = '';
-    const highlightsOnly = toggle?.checked;
-    for (const event of processedEvents) {
-      if (highlightsOnly && !event.isHighlight) continue;
-      const div = eventDiv(event);
-      if (div) log.appendChild(div);
+  // Trim old non-highlight lines to keep the log focused
+  function trimLog() {
+    const MAX_LINES = 40;
+    while (log.children.length > MAX_LINES) {
+      log.removeChild(log.firstChild);
     }
-    log.scrollTop = log.scrollHeight;
   }
 
-  toggle?.addEventListener('change', rebuildLog);
-
-  function showNext() {
+  function scheduleNext() {
+    if (_playbackPaused) { matchPlayback = null; return; }
     if (idx >= m.events.length) {
       document.getElementById('match-end-btn').style.display = 'block';
-      if (matchPlayback) clearInterval(matchPlayback);
+      _scheduleNext = null;
       return;
     }
 
     const event = m.events[idx++];
+
+    // Update minute and score
+    if (event.minute != null && minuteEl) minuteEl.textContent = `${event.minute}'`;
     if (event.meta?.playerScore !== undefined) {
       scoreEl.textContent = `${event.meta.playerScore} – ${event.meta.opponentScore}`;
     }
 
-    const delta = event.fanDelta || 0;
-    runningFanDelta += delta;
-    updateFanTicker(delta);
+    // Fan delta
+    showFanDelta(event.fanDelta || 0);
 
-    processedEvents.push(event);
-
-    if (toggle?.checked && !event.isHighlight) return;
-
+    // Render the event line
     const div = eventDiv(event);
-    if (!div) return;
-    log.appendChild(div);
-    log.scrollTop = log.scrollHeight;
+    if (div) {
+      log.appendChild(div);
+      trimLog();
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // Schedule next using current speed setting
+    const speed = PLAYBACK_SPEEDS[_playbackSpeed] || PLAYBACK_SPEEDS.medium;
+    const delay = event.isHighlight ? speed.highlight : speed.normal;
+    matchPlayback = setTimeout(scheduleNext, delay);
   }
 
-  matchPlayback = setInterval(showNext, 600);
+  // Expose for pause/resume
+  _scheduleNext = scheduleNext;
+
+  matchPlayback = setTimeout(scheduleNext, 400);
 }
 
 function skipToEnd() {
-  if (matchPlayback) { clearInterval(matchPlayback); matchPlayback = null; }
+  if (matchPlayback) { clearTimeout(matchPlayback); matchPlayback = null; }
+  _scheduleNext = null;
+  _playbackPaused = false;
   const m = gameState.currentMatch;
-  const log     = document.getElementById('event-log');
-  const scoreEl = document.getElementById('match-score');
+  const log      = document.getElementById('event-log');
+  const scoreEl  = document.getElementById('match-score');
+  const minuteEl = document.getElementById('match-minute');
+  if (minuteEl) minuteEl.textContent = "90'";
+  const fanVal  = document.getElementById('fan-count-value');
+  const fanDeltas = document.getElementById('fan-deltas');
   log.innerHTML = '';
+  if (fanDeltas) fanDeltas.innerHTML = '';
 
   let totalDelta = 0;
   for (const event of m.events) {
@@ -133,17 +201,25 @@ function skipToEnd() {
     const div = document.createElement('div');
     div.className = `event-line highlight ${event.team || ''}`;
     const minLabel = (event.minute != null && event.type !== 'kickoff')
-      ? `<span class="event-min">${event.minute}'</span> ` : '';
-    div.innerHTML = `${minLabel}${text}`;
+      ? `<span class="event-min">${event.minute}'</span>` : '';
+    div.innerHTML = `${minLabel}<span class="event-text">${text}</span>`;
     log.appendChild(div);
   }
   log.scrollTop = log.scrollHeight;
 
-  const deltaEl = document.getElementById('fan-ticker-delta');
-  if (deltaEl && totalDelta !== 0) {
+  // Update fan count to final value
+  const finalFans = Math.max(50, gameState.fans + totalDelta);
+  if (fanVal) fanVal.textContent = finalFans.toLocaleString();
+
+  // Show net delta
+  if (fanDeltas && totalDelta !== 0) {
+    const badge = document.createElement('span');
     const sign = totalDelta >= 0 ? '+' : '';
-    deltaEl.textContent = `(${sign}${totalDelta.toLocaleString()})`;
-    deltaEl.className = totalDelta >= 0 ? 'ticker-positive' : 'ticker-negative';
+    badge.className = 'fan-delta-float ' + (totalDelta >= 0 ? 'positive' : 'negative');
+    badge.style.animation = 'none';
+    badge.style.opacity = '1';
+    badge.textContent = `Net: ${sign}${totalDelta.toLocaleString()}`;
+    fanDeltas.appendChild(badge);
   }
 
   document.getElementById('match-end-btn').style.display = 'block';
@@ -186,13 +262,15 @@ function goToResults() {
       newCareer[careerKey] = newVal;
       const mileDef = STAT_MILESTONES[careerKey];
       if (!mileDef) continue;
-      for (const threshold of mileDef.thresholds) {
+      for (let ti = 0; ti < mileDef.thresholds.length; ti++) {
+        const threshold = mileDef.thresholds[ti];
         if (oldVal < threshold && newVal >= threshold) {
-          newBonuses[mileDef.stat] = (newBonuses[mileDef.stat] || 0) + 1;
+          const bonus = MILESTONE_BONUSES[ti] || 1;
+          newBonuses[mileDef.stat] = (newBonuses[mileDef.stat] || 0) + bonus;
           newMilestones.push({
             playerId: p.id, playerName: p.name,
             careerStat: careerKey, statUpgrade: mileDef.stat,
-            newTotal: newVal, threshold,
+            bonus, newTotal: newVal, threshold,
           });
         }
       }
@@ -200,7 +278,7 @@ function goToResults() {
     return { ...p, careerStats: newCareer, statBonuses: newBonuses };
   });
 
-  const newFans = Math.max(0, gameState.fans + m.fanDelta);
+  const newFans = Math.max(50, gameState.fans + m.fanDelta);
 
   const matchHistory = [...gameState.matchHistory, {
     opponentId:    m.opponentId,

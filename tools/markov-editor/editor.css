@@ -1,0 +1,368 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Toolbar ---- */
+#toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: #16213e;
+  border-bottom: 1px solid #0f3460;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+#toolbar label { font-size: 15px; }
+#toolbar select { background: #0f3460; color: #e0e0e0; border: 1px solid #1a3a6a; padding: 4px 8px; border-radius: 3px; max-width: 500px; font-size: 14px; }
+#toolbar button {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a6a;
+  padding: 5px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#toolbar button:hover { background: #1a3a6a; }
+#toolbar button.active-mode { background: #e94560; border-color: #e94560; }
+
+#mode-indicator { font-size: 14px; color: #e94560; font-weight: 600; margin-left: auto; }
+
+/* ---- Main layout ---- */
+#main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---- SVG Canvas ---- */
+#canvas-wrap {
+  flex: 7;
+  background: #1b4d2e;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 44px, rgba(255,255,255,0.03) 44px, rgba(255,255,255,0.03) 45px),
+    repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(255,255,255,0.03) 44px, rgba(255,255,255,0.03) 45px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#pitch {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 900px;
+}
+
+/* ---- Nodes ---- */
+.node-circle {
+  cursor: pointer;
+  stroke-width: 2;
+  transition: r 0.1s;
+}
+.node-circle:hover { r: 28; }
+.node-circle.selected { stroke: #fff; stroke-width: 3; r: 28; }
+
+.node-label {
+  font-size: 11px;
+  fill: #fff;
+  text-anchor: middle;
+  pointer-events: none;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* ---- Edges ---- */
+.edge-path {
+  fill: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.edge-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 14;
+  cursor: pointer;
+}
+.edge-path.selected { stroke-dasharray: none; filter: brightness(1.4); }
+.edge-influence-dash {
+  fill: none;
+  pointer-events: none;
+  stroke-dasharray: 4 3;
+  opacity: 0.7;
+}
+
+/* ---- Tooltip ---- */
+#edge-tooltip {
+  position: absolute;
+  background: rgba(15, 52, 96, 0.95);
+  color: #e0e0e0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  pointer-events: none;
+  white-space: pre-line;
+  display: none;
+  z-index: 100;
+  max-width: 300px;
+  border: 1px solid #1a3a6a;
+}
+
+/* ---- Sidebar ---- */
+#sidebar {
+  flex: 3;
+  background: #16213e;
+  border-left: 1px solid #0f3460;
+  overflow-y: auto;
+  padding: 12px;
+  min-width: 240px;
+  max-width: 340px;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+#sidebar h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: #e94560;
+  border-bottom: 1px solid #0f3460;
+  padding-bottom: 4px;
+}
+#sidebar h4 {
+  font-size: 14px;
+  margin: 10px 0 4px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#sidebar label {
+  display: block;
+  font-size: 14px;
+  margin: 6px 0;
+}
+#sidebar input[type="text"],
+#sidebar input[type="number"],
+#sidebar select {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a6a;
+  padding: 4px 8px;
+  border-radius: 3px;
+  width: 100%;
+  font-size: 14px;
+}
+#sidebar input[type="number"] { width: 75px; }
+
+button.danger {
+  background: #8b0000;
+  color: #fff;
+  border: 1px solid #a00;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: 12px;
+}
+button.danger:hover { background: #a00; }
+
+/* Distribution rows */
+.dist-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 0;
+  font-size: 14px;
+}
+.dist-row .target-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dist-row input { width: 60px; text-align: right; }
+
+.sum-bar {
+  font-size: 14px;
+  padding: 4px 6px;
+  margin: 6px 0;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.sum-bar.valid { background: #1b4d2e; color: #7f7; }
+.sum-bar.invalid { background: #4d1b1b; color: #f77; }
+
+.incoming-item {
+  font-size: 13px;
+  padding: 2px 0;
+  color: #aaa;
+  cursor: pointer;
+}
+.incoming-item:hover { color: #fff; }
+
+.context-group { margin-bottom: 10px; border-bottom: 1px solid #0f3460; padding-bottom: 6px; }
+.context-group-header { font-size: 13px; color: #e94560; cursor: pointer; }
+.context-group-header:hover { color: #fff; }
+
+#overview-stats { font-size: 14px; color: #aaa; margin-top: 12px; line-height: 1.8; }
+
+/* Influence section */
+.influence-entry {
+  font-size: 13px;
+  background: #0f3460;
+  padding: 6px;
+  border-radius: 3px;
+  margin: 4px 0;
+}
+.influence-entry label { display: inline; margin: 0 4px; }
+.influence-entry select { width: auto; display: inline; }
+.influence-entry input[type="number"] { width: 55px; display: inline; }
+
+.influence-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 4px;
+  border-radius: 2px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.influence-badge.boost { background: #1b4d2e; color: #7f7; }
+.influence-badge.resist { background: #4d1b1b; color: #f77; }
+
+/* ---- Modals ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.modal-overlay.hidden { display: none; }
+
+.modal {
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal h3 { color: #e94560; margin-bottom: 12px; font-size: 18px; }
+.modal textarea {
+  width: 100%;
+  background: #0a0a1a;
+  color: #e0e0e0;
+  border: 1px solid #1a3a6a;
+  border-radius: 3px;
+  padding: 8px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 13px;
+  resize: vertical;
+}
+.modal label { display: block; margin: 8px 0 4px; font-size: 15px; }
+.modal-buttons { display: flex; gap: 8px; margin-top: 12px; }
+.modal-buttons button {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a6a;
+  padding: 6px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.modal-buttons button:hover { background: #1a3a6a; }
+
+.error-msg { color: #f77; font-size: 12px; margin-top: 8px; }
+
+/* Normalize button */
+#btn-normalize {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a6a;
+  padding: 4px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+}
+#btn-normalize:hover { background: #1a3a6a; }
+
+/* Tutorial overlay */
+.tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tutorial-overlay.hidden { display: none; }
+
+.tutorial-card {
+  background: #16213e;
+  border: 2px solid #e94560;
+  border-radius: 12px;
+  padding: 28px 32px;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+}
+.tutorial-card h2 {
+  color: #e94560;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.tutorial-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #ccc;
+  margin-bottom: 12px;
+  text-align: left;
+}
+.tutorial-card kbd {
+  background: #0f3460;
+  border: 1px solid #1a3a6a;
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.tutorial-card .step-indicator {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.tutorial-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.tutorial-buttons button {
+  background: #0f3460;
+  color: #e0e0e0;
+  border: 1px solid #1a3a6a;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.tutorial-buttons button:hover { background: #1a3a6a; }
+.tutorial-buttons button.primary { background: #e94560; border-color: #e94560; }
+.tutorial-buttons button.primary:hover { background: #c03050; }
+
+/* Scrollbar */
+#sidebar::-webkit-scrollbar { width: 6px; }
+#sidebar::-webkit-scrollbar-track { background: #16213e; }
+#sidebar::-webkit-scrollbar-thumb { background: #0f3460; border-radius: 3px; }

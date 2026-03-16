@@ -36,10 +36,12 @@ function renderTable() {
   }).join('');
 
   const tableHtml = `
-    <table class="league-table">
-      <thead><tr><th>#</th><th>Team</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+    <div class="league-table-wrap">
+      <table class="league-table">
+        <thead><tr><th>#</th><th>Team</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
 
   // Latest NPC results
   const lastResults = season.lastResults || [];
@@ -111,11 +113,17 @@ function renderTable() {
         </div>
       </header>
       <div class="matchday-label">Matchday ${Math.min(currentMD, totalMatchdays)} of ${totalMatchdays}${seasonOver ? ' — Season Complete' : ''}</div>
-      ${tableHtml}
-      ${resultsHtml}
-      ${actionHtml}
-      <div class="table-bottom-actions">
-        <button class="btn-secondary btn-large" onclick="updateState({screen:'managegear'})">Gear Up</button>
+      <div class="table-split">
+        <div class="table-split-left">
+          ${resultsHtml}
+          ${actionHtml}
+          <div class="table-bottom-actions">
+            <button class="btn-secondary btn-large" onclick="updateState({screen:'managegear'})">Gear Up</button>
+          </div>
+        </div>
+        <div class="table-split-right">
+          ${tableHtml}
+        </div>
       </div>
       <div class="hub-footer">
         <button class="btn-small btn-danger" onclick="startOver()">Start Over</button>
