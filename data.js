@@ -259,26 +259,6 @@ const OPPONENT_DEFINITIONS = [
   { id: 'shadow-squad',      name: 'Shadow Squad',      tier: 'special',       difficulty: 8, specialNote: 'Play at midnight. Very mysterious.',      playerNames: ['The Shadow',      'Dark Presence',  'Night Striker',  'Void Walker',    'Eclipse'         ], uniqueCardId: 'shadow-cloak'      },
 ];
 
-// --- Narrative Templates ----------------------------------------
-// Keys are "type-outcome". Renderer picks randomly and fills {player}, {team}, {opponent}.
-const NARRATIVE = {
-  'kickoff':          ["The whistle blows! {team} vs {opponent} is UNDERWAY!", "And we are OFF! {opponent} looks nervous. Good.", "HERE WE GO! The crowd goes wild!"],
-  'halftime':         ["HALF TIME! The teams head to the tunnel.", "The whistle goes! Half time already!", "HALF TIME. Catch your breath. It's been a ride."],
-  'fulltime':         ["FULL TIME! That's the match!", "And that's it! The referee blows for full time!", "IT'S OVER! What a game!"],
-  'pass-success':     ["{player} threads it through perfectly.", "Lovely ball from {player}!", "{player} finds their teammate — great vision!", "Crisp pass by {player}."],
-  'pass-fail':        ["{player}'s pass goes straight to the opposition. Oops.", "Wayward ball from {player}. Not their finest moment.", "{player} tries a through ball... intercepted!"],
-  'tackle-success':   ["{player} absolutely ROBS them! Clean tackle!", "{player} slides in and wins it!", "What a challenge from {player}!", "{player} nicks it away — brilliant!"],
-  'tackle-fail':      ["{player} goes in hard but misses completely.", "{player} couldn't get a touch. It slipped right past."],
-  'shot-miss':        ["{player} blasts it... over the bar by a mile!", "Oh! {player} puts that one into the stands. The birds are annoyed.", "{player} shoots — WIDE! So close and yet so not close at all.", "{player} skies it! That was optimistic."],
-  'shot-saved':       ["{player} SHOOTS — the keeper smothers it!", "Thunderous effort from {player}! Right at the goalkeeper.", "{player} tries their luck from distance. Comfortable save."],
-  'shot-greatSave':   ["INCREDIBLE SAVE!! The keeper denies {player} at point blank!", "How did they keep that out?! Phenomenal stop!", "{player}'s effort is tipped over brilliantly! Unbelievable!"],
-  'goal-player':      ["{player} GOOOOOAAAAAALLLLL!! THE NET IS BULGING!!", "IT'S IN!! {player} scores an absolute SCREAMER!!", "{player} FINISHES IT!! The crowd erupts!!", "GET IN!! {player} with an absolutely FILTHY finish!!", "YESSSSS!! {player} does it!! WHAT A PLAYER!!"],
-  'goal-opponent':    ["Oh no... {player} scores for {opponent}. That hurts.", "{opponent} find the net. {player} with the finish. Oof.", "THEY SCORE. {player} of {opponent} punishes a mistake. Painful."],
-  'corner':           ["Corner kick for {team}! Everyone in the box!", "{team} win a corner. This could be dangerous..."],
-  'throwin':          ["Ball out of play. Throw-in for {team}.", "It's a throw-in. {team} looking to build."],
-  'foul':             ["{player} goes in a bit too enthusiastically. Free kick.", "Oh, that's a foul! {player} will be having words with the ref."],
-};
-
 // --- Name Generator --------------------------------------------
 const NAME_GEN = {
   teamAdjectives: ['Wobbly','Muddy','Rusty','Dizzy','Sleepy','Sneaky','Bouncy','Wiggly','Lumpy','Grumpy','Chompy','Zippy','Floppy','Squishy','Wacky','Blobby','Soggy','Crusty','Frizzy','Gangly'],

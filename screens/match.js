@@ -75,8 +75,8 @@ function startMatchPlayback() {
     const div = document.createElement('div');
     div.className = `event-line ${event.isHighlight ? 'highlight' : 'subdued'} ${event.team || ''}`;
     const minLabel = (event.minute != null && event.type !== 'kickoff')
-      ? `<span class="event-min">${event.minute}'</span> ` : '';
-    div.innerHTML = `${minLabel}${text}`;
+      ? `<span class="event-min">${event.minute}'</span>` : '';
+    div.innerHTML = `${minLabel}<span class="event-text">${text}</span>`;
     return div;
   }
 
@@ -142,8 +142,8 @@ function skipToEnd() {
     const div = document.createElement('div');
     div.className = `event-line highlight ${event.team || ''}`;
     const minLabel = (event.minute != null && event.type !== 'kickoff')
-      ? `<span class="event-min">${event.minute}'</span> ` : '';
-    div.innerHTML = `${minLabel}${text}`;
+      ? `<span class="event-min">${event.minute}'</span>` : '';
+    div.innerHTML = `${minLabel}<span class="event-text">${text}</span>`;
     log.appendChild(div);
   }
   log.scrollTop = log.scrollHeight;

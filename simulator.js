@@ -53,17 +53,6 @@ function roll(teamStat, opponentStat, luckBonus = 0) {
   return Math.random() < chance;
 }
 
-// Fill a narrative template with variables
-function fill(template, vars) {
-  return template.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '?');
-}
-
-// Pick a random narrative string for an event
-function narrativeFor(key, vars) {
-  const templates = NARRATIVE[key];
-  if (!templates || templates.length === 0) return '';
-  return fill(pick(templates), vars);
-}
 
 // ---------------------------------------------------------------
 // Markov Chain helpers (Phase 2)
@@ -487,48 +476,6 @@ function simulateMatch(playerTeam, opponentTeam) {
   return { events, playerScore, opponentScore };
 }
 
-// Narrative text for an event (called by renderer, not simulator)
-function eventNarrativeKey(event) {
-  if (['kickoff','halftime','fulltime','corner','throwin','foul'].includes(event.type)) return event.type;
-  if (event.type === 'pass')   return `pass-${event.outcome}`;
-  if (event.type === 'tackle') return `tackle-${event.outcome}`;
-  if (event.type === 'shot' && event.outcome === 'miss')      return 'shot-miss';
-  if (event.type === 'shot' && event.outcome === 'saved')     return 'shot-saved';
-  if (event.type === 'shot' && event.outcome === 'greatSave') return 'shot-greatSave';
-  if (event.type === 'goal' && event.outcome === 'player')    return 'goal-player';
-  if (event.type === 'goal' && event.outcome === 'opponent')  return 'goal-opponent';
-  return null;
-}
-
-function renderEventText(event) {
-  const key = eventNarrativeKey(event);
-  if (!key) return null;
-  const m = event.meta;
-
-  // goal templates use absolute names
-  if (key === 'goal-player' || key === 'goal-opponent') {
-    return narrativeFor(key, {
-      player:   m.playerName        || 'Someone',
-      team:     m.playerTeamName    || 'Your team',
-      opponent: m.opponentTeamName  || 'Them',
-    });
-  }
-
-  // kickoff uses absolute names too
-  if (key === 'kickoff') {
-    return narrativeFor(key, {
-      team:     m.playerTeamName   || 'Your team',
-      opponent: m.opponentTeamName || 'Them',
-    });
-  }
-
-  // all other events: relative to attacker/defender
-  return narrativeFor(key, {
-    player:   m.playerName   || 'Someone',
-    team:     m.teamName     || 'Your team',
-    opponent: m.opponentName || 'Them',
-  });
-}
 
 // --- NPC Match Simulation (M7) ---------------------------------
 // Simple Poisson-based goal generator using team difficulty

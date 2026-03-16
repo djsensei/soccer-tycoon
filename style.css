@@ -791,6 +791,8 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 }
 
 .event-line {
+  display: flex;
+  align-items: baseline;
   font-size: 0.85rem;
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius-sm);
@@ -812,7 +814,8 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .event-line.opponent.subdued  { color: var(--border); }
 .event-line.highlight.opponent { border-color: var(--danger); color: var(--text); }
 
-.event-min { color: var(--accent-dim); font-size: 0.8rem; margin-right: 0.3rem; }
+.event-min { color: var(--accent-dim); font-size: 0.8rem; min-width: 2.2em; text-align: right; margin-right: 0.4rem; flex-shrink: 0; }
+.event-text { flex: 1; }
 
 @keyframes fastSlide {
   from { opacity: 0; }
@@ -965,7 +968,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .gameover-screen { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding-top: 3rem; }
 
 .newspaper {
-  background: #f5f0e8;
+  background: #d5d0c8;
   color: #1a1a1a;
   border: 3px double #1a1a1a;
   max-width: 540px;
@@ -1372,27 +1375,27 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 
 /* ---- Tier-Based Stadium Backgrounds (M9) ---- */
 body[data-tier="local"] {
-  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+  background: linear-gradient(rgba(16,24,16,0.72), rgba(16,24,16,0.72)),
               url(img/backgrounds/tier-local-1.jpg) center/cover no-repeat;
   background-attachment: fixed;
 }
 body[data-tier="regional"] {
-  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+  background: linear-gradient(rgba(16,24,16,0.72), rgba(16,24,16,0.72)),
               url(img/backgrounds/tier-regional-1.jpg) center/cover no-repeat;
   background-attachment: fixed;
 }
 body[data-tier="state"] {
-  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+  background: linear-gradient(rgba(16,24,16,0.72), rgba(16,24,16,0.72)),
               url(img/backgrounds/tier-state-1.jpg) center/cover no-repeat;
   background-attachment: fixed;
 }
 body[data-tier="national"] {
-  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+  background: linear-gradient(rgba(16,24,16,0.72), rgba(16,24,16,0.72)),
               url(img/backgrounds/tier-national-1.jpg) center/cover no-repeat;
   background-attachment: fixed;
 }
 body[data-tier="international"] {
-  background: linear-gradient(rgba(13,31,13,0.78), rgba(13,31,13,0.78)),
+  background: linear-gradient(rgba(16,24,16,0.72), rgba(16,24,16,0.72)),
               url(img/backgrounds/tier-international-1.jpg) center/cover no-repeat;
   background-attachment: fixed;
 }
