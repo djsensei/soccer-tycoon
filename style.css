@@ -1195,9 +1195,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
     gap: 1.5rem;
   }
   .table-split-left,
-  .table-split-right { min-width: 0; }
-  .table-split-right .league-table { width: 100%; table-layout: fixed; }
-  .table-screen { overflow-x: visible; }
+  .table-split-right { min-width: 0; overflow: hidden; }
 }
 
 /* ---- League Indicator (M7) ---- */

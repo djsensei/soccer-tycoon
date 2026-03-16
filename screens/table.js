@@ -36,10 +36,12 @@ function renderTable() {
   }).join('');
 
   const tableHtml = `
-    <table class="league-table">
-      <thead><tr><th>#</th><th>Team</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+    <div class="league-table-wrap">
+      <table class="league-table">
+        <thead><tr><th>#</th><th>Team</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
 
   // Latest NPC results
   const lastResults = season.lastResults || [];
