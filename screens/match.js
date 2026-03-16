@@ -2,8 +2,21 @@
 // screens/match.js — Live match screen (playback and skip)
 // ============================================================
 
+// Speed presets: [normalMs, highlightMs]
+const PLAYBACK_SPEEDS = {
+  slow:    { normal: 300, highlight: 2400, label: '>'   },
+  medium:  { normal: 150, highlight: 1400, label: '>>'  },
+  fast:    { normal: 50,  highlight: 700,  label: '>>>' },
+};
+const SPEED_ORDER = ['slow', 'medium', 'fast'];
+let _playbackSpeed = 'medium';  // default
+let _playbackPaused = false;
+let _scheduleNext = null;       // reference to playback loop for pause/resume
+
 function renderMatchScreen() {
   const m = gameState.currentMatch;
+  _playbackSpeed = 'medium';
+  _playbackPaused = false;
   return `
     <div class="screen match-screen">
       <div class="match-header">
@@ -19,7 +32,11 @@ function renderMatchScreen() {
         <div class="fan-deltas" id="fan-deltas"></div>
       </div>
       <div class="match-controls">
-        <button class="btn-small" onclick="skipToEnd()">Skip</button>
+        <div class="speed-controls" id="speed-controls">
+          <button class="btn-speed" data-action="pause" onclick="togglePause()">⏸</button>
+          ${SPEED_ORDER.map(key => `<button class="btn-speed${key === _playbackSpeed ? ' active' : ''}" data-speed="${key}" onclick="setSpeed('${key}')">${PLAYBACK_SPEEDS[key].label}</button>`).join('')}
+          <button class="btn-speed btn-speed-skip" onclick="skipToEnd()">Skip</button>
+        </div>
       </div>
       <div class="event-log" id="event-log"></div>
       <div id="match-end-btn" style="display:none">
@@ -27,6 +44,37 @@ function renderMatchScreen() {
       </div>
     </div>
   `;
+}
+
+function updateSpeedButtons() {
+  const container = document.getElementById('speed-controls');
+  if (!container) return;
+  for (const btn of container.querySelectorAll('.btn-speed[data-speed]')) {
+    btn.classList.toggle('active', btn.dataset.speed === _playbackSpeed);
+  }
+  const pauseBtn = container.querySelector('[data-action="pause"]');
+  if (pauseBtn) pauseBtn.classList.toggle('active', _playbackPaused);
+}
+
+function setSpeed(key) {
+  _playbackSpeed = key;
+  _playbackPaused = false;
+  updateSpeedButtons();
+  // If we were paused, resume
+  if (matchPlayback === null && typeof _scheduleNext === 'function') {
+    _scheduleNext();
+  }
+}
+
+function togglePause() {
+  _playbackPaused = !_playbackPaused;
+  updateSpeedButtons();
+  if (!_playbackPaused && matchPlayback === null && typeof _scheduleNext === 'function') {
+    _scheduleNext();
+  } else if (_playbackPaused && matchPlayback) {
+    clearTimeout(matchPlayback);
+    matchPlayback = null;
+  }
 }
 
 function startMatchPlayback() {
@@ -39,10 +87,6 @@ function startMatchPlayback() {
   const scoreEl   = document.getElementById('match-score');
   const fanVal    = document.getElementById('fan-count-value');
   const fanDeltas = document.getElementById('fan-deltas');
-
-  // Timing: non-highlights fly by, highlights pause
-  const FAST_MS      = 150;  // normal events
-  const HIGHLIGHT_MS = 1400; // highlight breakout pause
 
   function showFanDelta(delta) {
     if (!delta || !fanDeltas) return;
@@ -89,8 +133,10 @@ function startMatchPlayback() {
   }
 
   function scheduleNext() {
+    if (_playbackPaused) { matchPlayback = null; return; }
     if (idx >= m.events.length) {
       document.getElementById('match-end-btn').style.display = 'block';
+      _scheduleNext = null;
       return;
     }
 
@@ -112,16 +158,22 @@ function startMatchPlayback() {
       log.scrollTop = log.scrollHeight;
     }
 
-    // Schedule next: highlights get a pause, everything else flies by
-    const delay = event.isHighlight ? HIGHLIGHT_MS : FAST_MS;
+    // Schedule next using current speed setting
+    const speed = PLAYBACK_SPEEDS[_playbackSpeed] || PLAYBACK_SPEEDS.medium;
+    const delay = event.isHighlight ? speed.highlight : speed.normal;
     matchPlayback = setTimeout(scheduleNext, delay);
   }
+
+  // Expose for pause/resume
+  _scheduleNext = scheduleNext;
 
   matchPlayback = setTimeout(scheduleNext, 400);
 }
 
 function skipToEnd() {
   if (matchPlayback) { clearTimeout(matchPlayback); matchPlayback = null; }
+  _scheduleNext = null;
+  _playbackPaused = false;
   const m = gameState.currentMatch;
   const log     = document.getElementById('event-log');
   const scoreEl = document.getElementById('match-score');
