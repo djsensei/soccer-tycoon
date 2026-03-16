@@ -958,7 +958,13 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .reveal-cardback.rarity-epic      { box-shadow: 0 0 24px #9c27b066; }
 .reveal-cardback.rarity-legendary { box-shadow: 0 0 30px #ff980088; animation: legendaryPulse 2s ease-in-out infinite; }
 
-.cardback-silhouette { filter: brightness(0.08); pointer-events: none; }
+.cardback-rarity {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
 
 .reveal-hint {
   font-size: 0.85rem;

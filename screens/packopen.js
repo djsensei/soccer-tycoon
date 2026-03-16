@@ -49,16 +49,17 @@ function openNextPack() {
 }
 
 function revealNextCard() {
-  if (_showingRevealed || _revealIndex >= _sortedCards.length) return;
-  // Show the current card with flip animation
-  _showingRevealed = true;
-  render();
-  // After animation, advance to next cardback
-  setTimeout(() => {
+  if (_revealIndex >= _sortedCards.length) return;
+  if (_showingRevealed) {
+    // Card is showing — tap to dismiss and advance
     _showingRevealed = false;
     _revealIndex++;
     render();
-  }, 800);
+  } else {
+    // Cardback is showing — tap to flip and reveal
+    _showingRevealed = true;
+    render();
+  }
 }
 
 function skipReveal() {
@@ -100,20 +101,19 @@ function renderPackReveal(pack) {
   if (_showingRevealed) {
     const bonuses = Object.entries(currentCard.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No stat bonus';
     stageHtml = `
-      <div class="pack-card reveal-flip rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}">
+      <div class="pack-card reveal-flip rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}; cursor:pointer;" onclick="revealNextCard()">
         ${cardImage(currentId, 'large')}
         ${rarityBadge(currentCard.rarity)}
         <div class="pack-card-slot">${currentCard.slot.charAt(0).toUpperCase() + currentCard.slot.slice(1)}</div>
         <div class="pack-card-name">${currentCard.name}</div>
         <div class="pack-card-flavour">${currentCard.flavourText}</div>
         <div class="pack-card-bonus">${bonuses}</div>
+        <div class="reveal-hint">Tap to continue</div>
       </div>`;
   } else {
     stageHtml = `
       <div class="reveal-cardback rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}" onclick="revealNextCard()">
-        <div class="cardback-silhouette">
-          ${cardImage(currentId, 'large')}
-        </div>
+        <div class="cardback-rarity">${currentCard.rarity.toUpperCase()}</div>
         <div class="reveal-hint">Tap to reveal</div>
         <div class="reveal-count">Card ${_revealIndex + 1} of ${total}</div>
       </div>`;
