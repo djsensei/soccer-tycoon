@@ -133,13 +133,16 @@ function renderPackReveal(pack) {
 
 function renderPackGrid(pack) {
   const cards = _sortedCards.length ? _sortedCards : (gameState.lastOpenedCards || []);
-  const stagger = _skipRevealed ? 0.15 : 0.6;
+  // Skip used: staggered flip. Natural reveal complete: just show them.
+  const animate = _skipRevealed;
+  const stagger = 0.15;
 
   const cardsHtml = cards.map((cardId, i) => {
     const c       = CARDS[cardId];
     const bonuses = Object.entries(c.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No stat bonus';
+    const animStyle = animate ? `animation-delay:${i * stagger}s;` : 'animation:none;';
     return `
-      <div class="pack-card rarity-${c.rarity}" style="animation-delay:${i * stagger}s; border-color:${RARITY_COLOR[c.rarity]}">
+      <div class="pack-card rarity-${c.rarity}" style="${animStyle} border-color:${RARITY_COLOR[c.rarity]}">
         ${cardImage(cardId, 'large')}
         ${rarityBadge(c.rarity)}
         <div class="pack-card-slot">${c.slot.charAt(0).toUpperCase() + c.slot.slice(1)}</div>

@@ -5,8 +5,8 @@
 // Speed presets: [normalMs, highlightMs]
 const PLAYBACK_SPEEDS = {
   slow:    { normal: 300, highlight: 2400, label: '>'   },
-  medium:  { normal: 150, highlight: 1400, label: '>>'  },
-  fast:    { normal: 50,  highlight: 700,  label: '>>>' },
+  medium:  { normal: 80,  highlight: 1000, label: '>>'  },
+  fast:    { normal: 20,  highlight: 400,  label: '>>>' },
 };
 const SPEED_ORDER = ['slow', 'medium', 'fast'];
 let _playbackSpeed = 'medium';  // default
