@@ -1196,6 +1196,10 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   }
   .table-split-left,
   .table-split-right { min-width: 0; overflow: hidden; }
+  .table-split-right .league-table { font-size: 0.8rem; }
+  .table-split-right .league-table th,
+  .table-split-right .league-table td { padding: 0.3rem 0.3rem; }
+  .table-split-right .league-table .tbl-team-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
 
 /* ---- League Indicator (M7) ---- */
@@ -1262,7 +1266,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   flex-direction: column;
   gap: 1rem;
 }
-.table-split-right {
+.league-table-wrap {
   overflow-x: auto;
 }
 
