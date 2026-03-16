@@ -753,7 +753,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .trash-talk    { font-style: italic; color: var(--text-dim); border-left: 3px solid var(--border); padding-left: 0.8rem; text-align: left; }
 
 /* ---- Match Screen ---- */
-.match-screen { display: flex; flex-direction: column; height: 100vh; }
+.match-screen { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 
 .match-header {
   display: grid;
@@ -784,12 +784,15 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .event-log {
   flex: 1;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   text-align: left;
   gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .event-line {
