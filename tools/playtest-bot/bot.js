@@ -144,13 +144,13 @@ function runOnce(runIndex) {
       ctx.updateStandings(standings, 'player', result.playerScore, result.opponentScore);
       ctx.updateStandings(standings, oppId, result.opponentScore, result.playerScore);
 
-      // Simulate NPC-NPC matches
+      // Simulate NPC-NPC matches (M11: full Markov engine)
       for (const match of matchday.matches) {
         if (match.home === 'player' || match.away === 'player') continue;
         const homeTeam = ctx.findLeagueTeam(match.home);
         const awayTeam = ctx.findLeagueTeam(match.away);
         if (!homeTeam || !awayTeam) continue;
-        const npcResult = ctx.simulateNPCMatch(homeTeam, awayTeam);
+        const npcResult = ctx.simulateNPCMatchFull(homeTeam, awayTeam, season.league);
         ctx.updateStandings(standings, match.home, npcResult.homeScore, npcResult.awayScore);
         ctx.updateStandings(standings, match.away, npcResult.awayScore, npcResult.homeScore);
       }
@@ -196,9 +196,11 @@ function runOnce(runIndex) {
       gameOver = true;
     } else if (playerRank === 1) {
       seasonStats.outcome = 'promoted';
-      // Advance to next league
+      // Advance to next league — generate teams adaptively (M11)
       const leagueOrder = ctx.LEAGUE_ORDER;
       const nextLeague = leagueOrder[leagueOrder.indexOf(season.league) + 1];
+      const playerTeam = { players: gs.players, slots: gs.slots };
+      gs.leagueTeams[nextLeague] = ctx.generateLeagueTeams(nextLeague, playerTeam);
       gs.currentLeague = nextLeague;
       gs.season = ctx.generateSeason(nextLeague, 'player');
 
@@ -218,7 +220,8 @@ function runOnce(runIndex) {
       gameOver = true;
     } else {
       seasonStats.outcome = 'mid';
-      // Replay same league
+      // Replay same league with refreshed teams (M11)
+      ctx.refreshLeagueTeams(season.league);
       gs.season = ctx.generateSeason(season.league, 'player');
     }
 

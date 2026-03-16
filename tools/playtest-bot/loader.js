@@ -73,6 +73,11 @@ function createSandbox() {
     this.buildLeagueTeam = buildLeagueTeam;
     this.simulateMatch = simulateMatch;
     this.simulateNPCMatch = simulateNPCMatch;
+    this.simulateNPCMatchFull = simulateNPCMatchFull;
+    this.generateLeagueTeams = generateLeagueTeams;
+    this.refreshLeagueTeams = refreshLeagueTeams;
+    this.resetNameTracking = resetNameTracking;
+    this.NPC_GEAR_CONFIG = NPC_GEAR_CONFIG;
     this.updateStandings = updateStandings;
     this.computeOutcome = computeOutcome;
     this.getPackReward = getPackReward;
