@@ -52,6 +52,7 @@ function buildLeagueTeam(def, overrideDifficulty) {
       name,
       stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
       gear: { head: null, body: null, feet: null, gloves: null },
+      energy: ENERGY_CONFIG.maxEnergy,
     };
     assignNPCGear(p, leagueKey, i === 0); // p0 = GK
     return p;
@@ -63,6 +64,8 @@ function buildLeagueTeam(def, overrideDifficulty) {
     league:      def.league,
     difficulty:  d,
     specialNote: def.specialNote,
+    managerName: pick(NPC_MANAGER_NAMES),
+    personality: pick(NPC_MANAGER_PERSONALITIES),
     players,
     slots: {
       GK: `${def.id}-p0`,
@@ -119,6 +122,8 @@ function refreshLeagueTeams(leagueKey) {
         const jitter = Math.floor(Math.random() * 3) - 1;
         p.stats[s] = Math.max(1, Math.min(10, p.stats[s] + jitter));
       }
+      // Reset energy
+      p.energy = ENERGY_CONFIG.maxEnergy;
       // Re-roll gear from the same rarity pool
       p.gear = { head: null, body: null, feet: null, gloves: null };
       assignNPCGear(p, leagueKey, i === 0);
@@ -187,6 +192,7 @@ function createNewGame(teamName, managerName, playerDefs) {
     gear: { head: null, body: null, feet: null, gloves: null },
     careerStats: { goals: 0, saves: 0, tackles: 0, passes: 0, shotsMissed: 0 },
     statBonuses: {},
+    energy: ENERGY_CONFIG.maxEnergy,
   }));
 
   // Only build local league teams upfront (higher leagues generated at promotion)
@@ -224,4 +230,42 @@ function createNewGame(teamName, managerName, playerDefs) {
     lastOpenedPackId: null,
     selectedPlayerId: null,
   };
+}
+
+// NPC training decisions based on manager personality.
+// Pure logic — returns array of { playerId, action: 'train'|'rest', stat? }
+function npcTrainingDecisions(team) {
+  const personality = team.personality || 'balanced';
+  const thresholds = { taskmaster: 20, driven: 40, balanced: 50, relaxed: 75 };
+  const minEnergy = thresholds[personality] || 50;
+
+  return team.players.map(p => {
+    const energy = p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy;
+    if (energy >= minEnergy) {
+      // Train weakest stat (capped at 10)
+      const trainable = STATS.filter(s => (p.stats[s] || 0) < 10);
+      if (trainable.length > 0) {
+        const weakest = trainable.reduce((a, b) => (p.stats[a] || 0) <= (p.stats[b] || 0) ? a : b);
+        return { playerId: p.id, action: 'train', stat: weakest };
+      }
+    }
+    return { playerId: p.id, action: 'rest' };
+  });
+}
+
+// Apply NPC training decisions to a team (mutates players in place)
+function applyNPCTraining(team) {
+  const decisions = npcTrainingDecisions(team);
+  for (const dec of decisions) {
+    const p = team.players.find(pl => pl.id === dec.playerId);
+    if (!p) continue;
+    if (dec.action === 'train') {
+      p.energy = Math.max(0, (p.energy || ENERGY_CONFIG.maxEnergy) - ENERGY_CONFIG.trainingCost);
+      if (Math.random() < ENERGY_CONFIG.trainSuccessChance) {
+        p.stats[dec.stat] = Math.min(10, (p.stats[dec.stat] || 1) + 1);
+      }
+    } else {
+      p.energy = Math.min(ENERGY_CONFIG.maxEnergy, (p.energy || ENERGY_CONFIG.maxEnergy) + ENERGY_CONFIG.restRecovery);
+    }
+  }
 }

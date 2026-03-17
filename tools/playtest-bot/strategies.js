@@ -167,4 +167,27 @@ function forgeAvailable(ctx) {
   return forged;
 }
 
-module.exports = { randomStatAllocation, randomPlayerDefs, equipBestGear, forgeAvailable };
+// Bot training decision: rest if energy < 40, else train weakest stat
+function botTrainingDecision(ctx) {
+  const gs = ctx.gameState;
+  const cfg = ctx.ENERGY_CONFIG;
+  for (const p of gs.players) {
+    const energy = p.energy != null ? p.energy : cfg.maxEnergy;
+    if (energy < 40) {
+      // Rest
+      p.energy = Math.min(cfg.maxEnergy, energy + cfg.restRecovery);
+    } else {
+      // Train weakest stat
+      p.energy = Math.max(0, energy - cfg.trainingCost);
+      const trainable = ctx.STATS.filter(s => (p.stats[s] || 0) < 10);
+      if (trainable.length > 0) {
+        const weakest = trainable.reduce((a, b) => (p.stats[a] || 0) <= (p.stats[b] || 0) ? a : b);
+        if (Math.random() < cfg.trainSuccessChance) {
+          p.stats[weakest] = Math.min(10, (p.stats[weakest] || 1) + 1);
+        }
+      }
+    }
+  }
+}
+
+module.exports = { randomStatAllocation, randomPlayerDefs, equipBestGear, forgeAvailable, botTrainingDecision };

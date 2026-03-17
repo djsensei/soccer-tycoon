@@ -155,6 +155,11 @@ function renderPackGrid(pack) {
   let nextBtn;
   if (gameState.pendingPacks.length > 0) {
     nextBtn = `<button class="btn-primary" onclick="openNextPack()">Open Next Pack</button>`;
+  } else if (gameState.currentMatch && gameState.currentMatch.showTraining) {
+    nextBtn = `<div class="pack-nav-buttons">
+      <button class="btn-primary" onclick="initTrainingChoices(); updateState({screen:'training'})">Training Time!</button>
+      <button class="btn-secondary" onclick="updateState({screen:'managegear'})">Gear Up</button>
+    </div>`;
   } else {
     nextBtn = `<div class="pack-nav-buttons">
       <button class="btn-primary" onclick="updateState({screen:'table'})">View Table</button>

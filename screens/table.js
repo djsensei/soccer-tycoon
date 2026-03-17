@@ -154,6 +154,11 @@ function handleSeasonEnd() {
   const sorted = sortStandings(season.standings);
   const playerRank = sorted.findIndex(([id]) => id === 'player') + 1;
 
+  // Reset all player energy at season end
+  for (const p of gameState.players) {
+    p.energy = ENERGY_CONFIG.maxEnergy;
+  }
+
   if (playerRank === sorted.length) {
     // Relegated — game over
     updateState({ screen: 'gameover' });

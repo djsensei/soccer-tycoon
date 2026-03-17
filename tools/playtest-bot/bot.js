@@ -7,7 +7,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { createSandbox } = require('./loader');
-const { randomPlayerDefs, equipBestGear, forgeAvailable } = require('./strategies');
+const { randomPlayerDefs, equipBestGear, forgeAvailable, botTrainingDecision } = require('./strategies');
 const { createRunStats, createSeasonStats, aggregateRuns, formatSummary } = require('./stats');
 
 // --- CLI args ---
@@ -171,6 +171,31 @@ function runOnce(runIndex) {
         }
       }
 
+      // --- Energy deduction for player team ---
+      for (const p of gs.players) {
+        p.energy = Math.max(0, (p.energy != null ? p.energy : ctx.ENERGY_CONFIG.maxEnergy) - ctx.ENERGY_CONFIG.matchCost);
+      }
+
+      // --- Energy deduction for NPC teams that played + NPC training ---
+      const leagueNPCTeams = gs.leagueTeams[season.league] || [];
+      const playedIds = new Set();
+      for (const match of matchday.matches) {
+        if (match.home !== 'player') playedIds.add(match.home);
+        if (match.away !== 'player') playedIds.add(match.away);
+      }
+      playedIds.add(oppId);
+      for (const npcTeam of leagueNPCTeams) {
+        if (playedIds.has(npcTeam.id)) {
+          for (const p of npcTeam.players) {
+            p.energy = Math.max(0, (p.energy != null ? p.energy : ctx.ENERGY_CONFIG.maxEnergy) - ctx.ENERGY_CONFIG.matchCost);
+          }
+        }
+        ctx.applyNPCTraining(npcTeam);
+      }
+
+      // --- Bot training decision ---
+      botTrainingDecision(ctx);
+
       // --- Forge + equip after every match ---
       const forged = forgeAvailable(ctx);
       runStats.inventory.totalForged += forged;
@@ -188,6 +213,11 @@ function runOnce(runIndex) {
       ...rec,
     }));
     seasonStats.playerRank = playerRank;
+
+    // Reset player energy at season end
+    for (const p of gs.players) {
+      p.energy = ctx.ENERGY_CONFIG.maxEnergy;
+    }
 
     if (playerRank === 1 && season.league === 'international') {
       seasonStats.outcome = 'gameWin';

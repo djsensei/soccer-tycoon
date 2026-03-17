@@ -58,6 +58,15 @@ function effectiveStats(player) {
       }
     }
   }
+  // Fatigue penalty
+  const energy = player.energy != null ? player.energy : ENERGY_CONFIG.maxEnergy;
+  if (energy < ENERGY_CONFIG.fatigueThreshold) {
+    const deficit = ENERGY_CONFIG.fatigueThreshold - energy;
+    const penalty = deficit * ENERGY_CONFIG.fatiguePenaltyRate;
+    for (const s of Object.keys(stats)) {
+      stats[s] = Math.max(ENERGY_CONFIG.minStatFloor, Math.round(stats[s] * (1 - penalty)));
+    }
+  }
   return stats;
 }
 
@@ -106,6 +115,9 @@ function availableQty(cardId) {
 // --- Stat Detail Modal -----------------------------------------
 function statBreakdown(player) {
   const result = {};
+  const energy = player.energy != null ? player.energy : ENERGY_CONFIG.maxEnergy;
+  const fatigued = energy < ENERGY_CONFIG.fatigueThreshold;
+  const penalty = fatigued ? (ENERGY_CONFIG.fatigueThreshold - energy) * ENERGY_CONFIG.fatiguePenaltyRate : 0;
   for (const s of STATS) {
     const base = player.stats[s] || 0;
     const milestone = (player.statBonuses && player.statBonuses[s]) || 0;
@@ -115,9 +127,25 @@ function statBreakdown(player) {
         gear += CARDS[cardId].statBonuses[s];
       }
     }
-    result[s] = { base, gear, milestone, total: base + gear + milestone };
+    const preFatigue = base + gear + milestone;
+    const total = fatigued ? Math.max(ENERGY_CONFIG.minStatFloor, Math.round(preFatigue * (1 - penalty))) : preFatigue;
+    const fatigueLoss = fatigued ? total - preFatigue : 0;
+    result[s] = { base, gear, milestone, fatigueLoss, total };
   }
   return result;
+}
+
+// Energy UI helpers
+function energyBar(energy) {
+  const pct = Math.max(0, Math.min(100, energy));
+  const cls = energyClass(energy);
+  return `<div class="energy-bar ${cls}"><div class="energy-bar-fill" style="width:${pct}%"></div><span class="energy-bar-label">${energy}</span></div>`;
+}
+
+function energyClass(energy) {
+  if (energy >= 60) return 'energy-high';
+  if (energy >= 40) return 'energy-mid';
+  return 'energy-low';
 }
 
 let _statModalPlayerId = null;
@@ -150,6 +178,7 @@ function buildStatDetailModal() {
             <span>Base: ${d.base}</span>
             ${d.gear ? `<span class="sdm-gear">+${d.gear} gear</span>` : ''}
             ${d.milestone ? `<span class="sdm-milestone">+${d.milestone} milestone</span>` : ''}
+            ${d.fatigueLoss ? `<span class="sdm-fatigue">${d.fatigueLoss} fatigue</span>` : ''}
           </div>
           <div class="sdm-stat-desc">${desc}</div>
         </div>
