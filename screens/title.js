@@ -14,6 +14,7 @@ function renderTitle() {
         <button class="btn-primary btn-large" onclick="titleNewGame()">New Game</button>
         ${hasSave ? '<button class="btn-secondary btn-large" onclick="titleContinue()">Continue</button>' : ''}
       </div>
+      <div class="version-label">v${GAME_VERSION}</div>
     </div>
   `;
 }

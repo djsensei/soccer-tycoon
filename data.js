@@ -2,6 +2,8 @@
 // data.js — Static game content. Never mutated at runtime.
 // ============================================================
 
+const GAME_VERSION = '0.11.0';
+
 const TEAM_SIZE = 5;
 const POSITIONS = ['GK', 'D', 'M1', 'M2', 'S'];
 const STATS = ['jumping', 'speed', 'strength', 'passing', 'shooting', 'reflexes', 'luck'];
@@ -121,20 +123,20 @@ const CARDS = {
   'gazelle-vest': { id: 'gazelle-vest', name: 'Gazelle Vest', slot: 'body', rarity: 'uncommon', flavourText: "Graceful AND fast — defenders hate this one trick.", statBonuses: { speed: 2 } },
   'redwood-jersey': { id: 'redwood-jersey', name: 'Redwood Jersey', slot: 'body', rarity: 'uncommon', flavourText: "Been growing taller since the dinosaurs played footy.", statBonuses: { jumping: 2 } },
   'train-shirt': { id: 'train-shirt', name: 'Train Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Full steam ahead and no brakes whatsoever.", statBonuses: { speed: 1, strength: 1 } },
-  'cat-shirt': { id: 'cat-shirt', name: 'Cat Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Has nine lives and uses them all in one match.", statBonuses: { luck: 2 } },  // ⚠ image pending
+  // 'cat-shirt': { id: 'cat-shirt', name: 'Cat Shirt', slot: 'body', rarity: 'uncommon', flavourText: "Has nine lives and uses them all in one match.", statBonuses: { luck: 2 } },  // ⚠ image pending
   'scorpion-vest': { id: 'scorpion-vest', name: 'Scorpion Vest', slot: 'body', rarity: 'uncommon', flavourText: "The tail strikes when you least expect it.", statBonuses: { shooting: 2 } },
   'laser-cat-visor': { id: 'laser-cat-visor', name: 'Laser Cat Visor', slot: 'head', rarity: 'uncommon', flavourText: "Now you've got cat-like reflexes. Literally. The whiskers help.", statBonuses: { reflexes: 2 } },
   'laser-focus-goggles': { id: 'laser-focus-goggles', name: 'Laser Focus Goggles', slot: 'head', rarity: 'uncommon', flavourText: "Red tinted lenses make everything look like a target. You become unstoppable.", statBonuses: { luck: 1, shooting: 1 } },
   'compass-captains-hat': { id: 'compass-captains-hat', name: 'Compass Captains Hat', slot: 'head', rarity: 'uncommon', flavourText: "Always knows which way the goal is. Even backwards.", statBonuses: { passing: 2 } },
   'comet-helmet': { id: 'comet-helmet', name: 'Comet Helmet', slot: 'head', rarity: 'uncommon', flavourText: "Zooming across the pitch at impossible speeds. Passes blur through air.", statBonuses: { passing: 1, shooting: 1 } },
   'viking-thunderhorn': { id: 'viking-thunderhorn', name: 'Viking Thunderhorn', slot: 'head', rarity: 'uncommon', flavourText: "Twin horns, unbridled confidence, legendary hair volume.", statBonuses: { jumping: 1, strength: 1 } },
-  'rainbow-rabbit-ears': { id: 'rainbow-rabbit-ears', name: 'Rainbow Rabbit Ears', slot: 'head', rarity: 'uncommon', flavourText: "Hopping into luck. These ears bring perfect pass accuracy.", statBonuses: { luck: 1, passing: 1 } },  // ⚠ image pending
-  'rainbow-sherbet-crown': { id: 'rainbow-sherbet-crown', name: 'Rainbow Sherbet Crown', slot: 'head', rarity: 'uncommon', flavourText: "Tastes like luck. Wait, don't lick it. Please.", statBonuses: { luck: 2 } },  // ⚠ image pending
+  // 'rainbow-rabbit-ears': { id: 'rainbow-rabbit-ears', name: 'Rainbow Rabbit Ears', slot: 'head', rarity: 'uncommon', flavourText: "Hopping into luck. These ears bring perfect pass accuracy.", statBonuses: { luck: 1, passing: 1 } },  // ⚠ image pending
+  // 'rainbow-sherbet-crown': { id: 'rainbow-sherbet-crown', name: 'Rainbow Sherbet Crown', slot: 'head', rarity: 'uncommon', flavourText: "Tastes like luck. Wait, don't lick it. Please.", statBonuses: { luck: 2 } },  // ⚠ image pending
   'dragons-crown': { id: 'dragons-crown', name: 'Dragons Crown', slot: 'head', rarity: 'uncommon', flavourText: "Made from shed dragon scales. Still a little warm.", statBonuses: { shooting: 2 } },
-  'muscle-mushroom': { id: 'muscle-mushroom', name: 'Muscle Mushroom', slot: 'head', rarity: 'uncommon', flavourText: "A magical fungi cap that grows your passes AND your power-ups!", statBonuses: { passing: 1, strength: 1 } },  // ⚠ image pending
+  // 'muscle-mushroom': { id: 'muscle-mushroom', name: 'Muscle Mushroom', slot: 'head', rarity: 'uncommon', flavourText: "A magical fungi cap that grows your passes AND your power-ups!", statBonuses: { passing: 1, strength: 1 } },  // ⚠ image pending
   'sniper-sombrero': { id: 'sniper-sombrero', name: 'Sniper Sombrero', slot: 'head', rarity: 'uncommon', flavourText: "Mexican hat of precision. Goal scorer's delight.", statBonuses: { jumping: 1, shooting: 1 } },
   'stargazer-helm': { id: 'stargazer-helm', name: 'Stargazer Helm', slot: 'head', rarity: 'uncommon', flavourText: "Reads the cosmos. Predicts saves three seconds early.", statBonuses: { luck: 1, reflexes: 1 } },
-  'volcanic-coconut': { id: 'volcanic-coconut', name: 'Volcanic Coconut', slot: 'head', rarity: 'uncommon', flavourText: "Tropical toughness with explosive power inside.", statBonuses: { strength: 2 } },  // ⚠ image pending
+  // 'volcanic-coconut': { id: 'volcanic-coconut', name: 'Volcanic Coconut', slot: 'head', rarity: 'uncommon', flavourText: "Tropical toughness with explosive power inside.", statBonuses: { strength: 2 } },  // ⚠ image pending
   'owl-crown': { id: 'owl-crown', name: 'Owl Crown', slot: 'head', rarity: 'uncommon', flavourText: "Those giant eyes see everything. Even the sneaky goals.", statBonuses: { jumping: 1, reflexes: 1 } },
   'flamingo-fascinator': { id: 'flamingo-fascinator', name: 'Flamingo Fascinator', slot: 'head', rarity: 'uncommon', flavourText: "Pink, proud, and definitely taller.", statBonuses: { jumping: 2 } },
   'black-cat-boots': { id: 'black-cat-boots', name: 'Black Cat Boots', slot: 'feet', rarity: 'rare', flavourText: "Cross the path of defenders and curse their tackles.", statBonuses: { luck: 4 } },
@@ -145,15 +147,15 @@ const CARDS = {
   'phoenix-talons': { id: 'phoenix-talons', name: 'Phoenix Talons', slot: 'gloves', rarity: 'rare', flavourText: "Rise from every near-miss with fiery clutch saves.", statBonuses: { luck: 1, reflexes: 3 } },
   'viper-strikes': { id: 'viper-strikes', name: 'Viper Strikes', slot: 'gloves', rarity: 'uncommon', flavourText: "Two fangs of pure reaction speed in every save.", statBonuses: { reflexes: 2 } },
   'sushi-chef-hands': { id: 'sushi-chef-hands', name: 'Sushi Chef Hands', slot: 'gloves', rarity: 'uncommon', flavourText: "Fastest hands in the kitchen and the goal.", statBonuses: { passing: 1, reflexes: 1 } },
-  'cat-paws': { id: 'cat-paws', name: 'Cat Paws', slot: 'gloves', rarity: 'common', flavourText: "Land on your hands every single time.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
-  'scorpion-stingers': { id: 'scorpion-stingers', name: 'Scorpion Stingers', slot: 'gloves', rarity: 'uncommon', flavourText: "Quick sting and a crushing grip in one package.", statBonuses: { reflexes: 1, strength: 1 } },  // ⚠ image pending
+  // 'cat-paws': { id: 'cat-paws', name: 'Cat Paws', slot: 'gloves', rarity: 'common', flavourText: "Land on your hands every single time.", statBonuses: { reflexes: 1 } },  // ⚠ image pending
+  // 'scorpion-stingers': { id: 'scorpion-stingers', name: 'Scorpion Stingers', slot: 'gloves', rarity: 'uncommon', flavourText: "Quick sting and a crushing grip in one package.", statBonuses: { reflexes: 1, strength: 1 } },  // ⚠ image pending
   'carrier-pigeon-boots': { id: 'carrier-pigeon-boots', name: 'Carrier Pigeon Boots', slot: 'feet', rarity: 'rare', flavourText: "Feathered delivery service right from your talented feet.", statBonuses: { passing: 4 } },
   'mecha-dragon-claws': { id: 'mecha-dragon-claws', name: 'Mecha Dragon Claws', slot: 'gloves', rarity: 'epic', flavourText: "Cybernetic dragon tech for ultimate saves and power.", statBonuses: { reflexes: 4, strength: 2 } },
   'thunder-drum-boots': { id: 'thunder-drum-boots', name: 'Thunder Drum Boots', slot: 'feet', rarity: 'rare', flavourText: "Every shot makes a boom heard three fields away.", statBonuses: { shooting: 4 } },
   'pancake-pressers': { id: 'pancake-pressers', name: 'Pancake Pressers', slot: 'gloves', rarity: 'common', flavourText: "Flatten every shot like Sunday morning breakfast.", statBonuses: { strength: 1 } },
-  'mantis-shrimp-smacks': { id: 'mantis-shrimp-smacks', name: 'Mantis Shrimp Smacks', slot: 'gloves', rarity: 'rare', flavourText: "Fastest punch in the ocean now in glove form.", statBonuses: { reflexes: 3, strength: 1 } },  // ⚠ image pending
+  // 'mantis-shrimp-smacks': { id: 'mantis-shrimp-smacks', name: 'Mantis Shrimp Smacks', slot: 'gloves', rarity: 'rare', flavourText: "Fastest punch in the ocean now in glove form.", statBonuses: { reflexes: 3, strength: 1 } },  // ⚠ image pending
   'steel-titan-cleats': { id: 'steel-titan-cleats', name: 'Steel Titan Cleats', slot: 'feet', rarity: 'rare', flavourText: "Forged in a giant robot factory last Tuesday.", statBonuses: { strength: 4 } },
-  'thunderbird-talons': { id: 'thunderbird-talons', name: 'Thunderbird Talons', slot: 'gloves', rarity: 'epic', flavourText: "Mythical storm bird brings lightning saves and luck.", statBonuses: { reflexes: 3, luck: 2, passing: 1 } },  // ⚠ image pending
+  // 'thunderbird-talons': { id: 'thunderbird-talons', name: 'Thunderbird Talons', slot: 'gloves', rarity: 'epic', flavourText: "Mythical storm bird brings lightning saves and luck.", statBonuses: { reflexes: 3, luck: 2, passing: 1 } },  // ⚠ image pending
   'cannonball-express': { id: 'cannonball-express', name: 'Cannonball Express', slot: 'feet', rarity: 'rare', flavourText: "Fired from a cannon and still running at full speed.", statBonuses: { speed: 3, strength: 1 } },
   'grizzly-bolt-cleats': { id: 'grizzly-bolt-cleats', name: 'Grizzly Bolt Cleats', slot: 'feet', rarity: 'epic', flavourText: "Bear charging at lightning speed is unfair but legal.", statBonuses: { speed: 4, strength: 2 } },
   'hermes-express-kicks': { id: 'hermes-express-kicks', name: 'Hermes Express Kicks', slot: 'feet', rarity: 'epic', flavourText: "Overnight divine delivery service. Passes arrive before you kick.", statBonuses: { passing: 4, speed: 2 } },
@@ -178,7 +180,7 @@ const CARDS = {
   'sunflower-titan-hat': { id: 'sunflower-titan-hat', name: 'Sunflower Titan Hat', slot: 'head', rarity: 'epic', flavourText: "Grows toward the sun and blocks out the entire sky.", statBonuses: { jumping: 6 } },
   'bullet-ant-blitz-jersey': { id: 'bullet-ant-blitz-jersey', name: 'Bullet Ant Blitz Jersey', slot: 'body', rarity: 'epic', flavourText: "The most painful sting delivered at bullet speed.", statBonuses: { speed: 4, shooting: 2 } },
   'wizard-staff-vest': { id: 'wizard-staff-vest', name: 'Wizard Staff Vest', slot: 'body', rarity: 'rare', flavourText: "Cast pass spells then blast fireball goals.", statBonuses: { shooting: 3, passing: 1 } },
-  'archer-tower-visor': { id: 'archer-tower-visor', name: 'Archer Tower Visor', slot: 'head', rarity: 'rare', flavourText: "Elevation advantage plus perfect aim equals pure goals.", statBonuses: { jumping: 2, shooting: 2 } },  // ⚠ image pending
+  // 'archer-tower-visor': { id: 'archer-tower-visor', name: 'Archer Tower Visor', slot: 'head', rarity: 'rare', flavourText: "Elevation advantage plus perfect aim equals pure goals.", statBonuses: { jumping: 2, shooting: 2 } },  // ⚠ image pending
   'fortune-cookie-express': { id: 'fortune-cookie-express', name: 'Fortune Cookie Express', slot: 'body', rarity: 'rare', flavourText: "Delivers lucky fortunes at incredible speed.", statBonuses: { luck: 3, speed: 1 } },
   'wasabi-blast-cap': { id: 'wasabi-blast-cap', name: 'Wasabi Blast Cap', slot: 'head', rarity: 'rare', flavourText: "So spicy it makes the ball swerve into the net.", statBonuses: { shooting: 3, reflexes: 1 } },
   'horseshoe-helmet': { id: 'horseshoe-helmet', name: 'Horseshoe Helmet', slot: 'head', rarity: 'rare', flavourText: "Lucky enough to win every coin toss ever invented.", statBonuses: { luck: 4 } },
@@ -191,21 +193,21 @@ const CARDS = {
   'plasma-vortex-vest': { id: 'plasma-vortex-vest', name: 'Plasma Vortex Vest', slot: 'body', rarity: 'epic', flavourText: "A spinning plasma tornado that obliterates all defenders.", statBonuses: { speed: 6 } },
   'chili-pepper-charge': { id: 'chili-pepper-charge', name: 'Chili Pepper Charge', slot: 'body', rarity: 'rare', flavourText: "Spicy speed with a kick that really burns.", statBonuses: { speed: 3, strength: 1 } },
   'dolphin-pod-vest': { id: 'dolphin-pod-vest', name: 'Dolphin Pod Vest', slot: 'body', rarity: 'rare', flavourText: "Passes leap gracefully through the whole team.", statBonuses: { passing: 4 } },
-  'mystic-fox-hood': { id: 'mystic-fox-hood', name: 'Mystic Fox Hood', slot: 'head', rarity: 'epic', flavourText: "Nine-tailed fox spirit dodges destiny and catches everything.", statBonuses: { reflexes: 4, luck: 2 } },  // ⚠ image pending
+  // 'mystic-fox-hood': { id: 'mystic-fox-hood', name: 'Mystic Fox Hood', slot: 'head', rarity: 'epic', flavourText: "Nine-tailed fox spirit dodges destiny and catches everything.", statBonuses: { reflexes: 4, luck: 2 } },  // ⚠ image pending
   'cactus-saguaro-jersey': { id: 'cactus-saguaro-jersey', name: 'Cactus Saguaro Jersey', slot: 'body', rarity: 'rare', flavourText: "Tall, prickly, and nobody wants to tackle it.", statBonuses: { jumping: 3, strength: 1 } },
-  'control-tower-crown': { id: 'control-tower-crown', name: 'Control Tower Crown', slot: 'head', rarity: 'epic', flavourText: "Air traffic controller sees everything and directs every pass perfectly.", statBonuses: { passing: 4, jumping: 2 } },  // ⚠ image pending
+  // 'control-tower-crown': { id: 'control-tower-crown', name: 'Control Tower Crown', slot: 'head', rarity: 'epic', flavourText: "Air traffic controller sees everything and directs every pass perfectly.", statBonuses: { passing: 4, jumping: 2 } },  // ⚠ image pending
   'dreamcatcher-jersey': { id: 'dreamcatcher-jersey', name: 'Dreamcatcher Jersey', slot: 'body', rarity: 'rare', flavourText: "Catches bad luck and only lets good goals through.", statBonuses: { luck: 4 } },
   'nacho-supreme-blaster-vest': { id: 'nacho-supreme-blaster-vest', name: 'Nacho Supreme Blaster Vest', slot: 'body', rarity: 'epic', flavourText: "Loaded with extra cheese AND extra firepower.", statBonuses: { luck: 4, shooting: 2 } },
   'taco-truck-armor': { id: 'taco-truck-armor', name: 'Taco Truck Armor', slot: 'body', rarity: 'rare', flavourText: "Protected by layers of cheese, beef, and destiny.", statBonuses: { strength: 4 } },
   'firefly-dash-shirt': { id: 'firefly-dash-shirt', name: 'Firefly Dash Shirt', slot: 'body', rarity: 'rare', flavourText: "Glows with luck and darts through the night.", statBonuses: { speed: 2, luck: 2 } },
-  'polar-bear-rush-jersey': { id: 'polar-bear-rush-jersey', name: 'Polar Bear Rush Jersey', slot: 'body', rarity: 'epic', flavourText: "Arctic power at surprising predator speed.", statBonuses: { strength: 4, speed: 2 } },  // ⚠ image pending
+  // 'polar-bear-rush-jersey': { id: 'polar-bear-rush-jersey', name: 'Polar Bear Rush Jersey', slot: 'body', rarity: 'epic', flavourText: "Arctic power at surprising predator speed.", statBonuses: { strength: 4, speed: 2 } },  // ⚠ image pending
   'hot-sauce-bottle-cap': { id: 'hot-sauce-bottle-cap', name: 'Hot Sauce Bottle Cap', slot: 'head', rarity: 'rare', flavourText: "Spicy shots that burn through every net on earth.", statBonuses: { shooting: 4 } },
   'bamboo-warrior-hat': { id: 'bamboo-warrior-hat', name: 'Bamboo Warrior Hat', slot: 'head', rarity: 'rare', flavourText: "Grows tall and hits hard like a bamboo forest.", statBonuses: { jumping: 3, strength: 1 } },
   'cybernetic-reflex-array': { id: 'cybernetic-reflex-array', name: 'Cybernetic Reflex Array', slot: 'head', rarity: 'epic', flavourText: "Neural implants predict shots 3.7 seconds before they happen.", statBonuses: { reflexes: 6 } },
   'samurai-fortune-helm': { id: 'samurai-fortune-helm', name: 'Samurai Fortune Helm', slot: 'head', rarity: 'epic', flavourText: "Bushido discipline plus divine fortune equals perfect strikes.", statBonuses: { shooting: 4, luck: 2 } },
-  'beanstalk-king-jersey': { id: 'beanstalk-king-jersey', name: 'Beanstalk King Jersey', slot: 'body', rarity: 'rare', flavourText: "Fee fi fo fum. Headers from the sky are fun.", statBonuses: { jumping: 4 } },  // ⚠ image pending
-  'donut-destroyer-hat': { id: 'donut-destroyer-hat', name: 'Donut Destroyer Hat', slot: 'head', rarity: 'epic', flavourText: "Sugar-powered headbutts that flatten everything in sight completely.", statBonuses: { strength: 6 } },  // ⚠ image pending
-  'ice-cream-truck-express': { id: 'ice-cream-truck-express', name: 'Ice Cream Truck Express', slot: 'body', rarity: 'epic', flavourText: "Delivers scoops of perfection before they melt.", statBonuses: { passing: 4, speed: 2 } },  // ⚠ image pending
+  'beanstalk-king-jersey': { id: 'beanstalk-king-jersey', name: 'Beanstalk King Jersey', slot: 'body', rarity: 'rare', flavourText: "Fee fi fo fum. Headers from the sky are fun.", statBonuses: { jumping: 4 } },
+  'donut-destroyer-hat': { id: 'donut-destroyer-hat', name: 'Donut Destroyer Hat', slot: 'head', rarity: 'epic', flavourText: "Sugar-powered headbutts that flatten everything in sight completely.", statBonuses: { strength: 6 } },
+  'ice-cream-truck-express': { id: 'ice-cream-truck-express', name: 'Ice Cream Truck Express', slot: 'body', rarity: 'epic', flavourText: "Delivers scoops of perfection before they melt.", statBonuses: { passing: 4, speed: 2 } },
   // @forge:end
 };
 
@@ -261,8 +263,16 @@ const OPPONENT_DEFINITIONS = [
 
 // --- Name Generator --------------------------------------------
 const NAME_GEN = {
-  teamAdjectives: ['Wobbly','Muddy','Rusty','Dizzy','Sleepy','Sneaky','Bouncy','Wiggly','Lumpy','Grumpy','Chompy','Zippy','Floppy','Squishy','Wacky','Blobby','Soggy','Crusty','Frizzy','Gangly'],
-  teamNouns:      ['Narwhals','Capybaras','Wombats','Penguins','Badgers','Hedgehogs','Llamas','Platypuses','Sloths','Ferrets','Otters','Raccoons','Armadillos','Axolotls','Blobfish','Echidnas','Quokkas','Tapirs','Manatees','Numbats'],
+  teamAdjectives: [
+    'Wobbly','Muddy','Rusty','Dizzy','Sleepy','Sneaky','Bouncy','Wiggly','Lumpy','Grumpy',
+    'Chompy','Zippy','Floppy','Squishy','Wacky','Blobby','Soggy','Crusty','Frizzy','Gangly',
+    'Cranky','Spooky','Dopey','Funky','Clumsy','Rowdy','Nerdy','Lanky','Wonky','Zany',
+  ],
+  teamNouns: [
+    'Narwhals','Capybaras','Wombats','Penguins','Badgers','Hedgehogs','Llamas','Platypuses','Sloths','Ferrets',
+    'Otters','Raccoons','Armadillos','Axolotls','Blobfish','Echidnas','Quokkas','Tapirs','Manatees','Numbats',
+    'Flamingos','Pangolins','Tardigrades','Chinchillas','Chameleons','Puffins','Lemurs','Geckos','Pelicans','Corgis',
+  ],
   playerFirst: [
     'Bobbo','Jimbo','Fizzy','Buzzy','Zippy','Plonky','Boingo','Whumpo','Zappy','Dingus',
     'Flumbo','Grumbo','Sploosh','Blorb','Yoink','Kerfuffle','Snazzle','Fumble','Wobble','Zonk',
@@ -270,6 +280,10 @@ const NAME_GEN = {
     'Toots','Bonk','Squish','Rascal','Blinky','Chomps','Wiggles','Doodle','Spud','Frazzle',
     'Tater','Chonk','Blip','Goober','Twitch','Skipper','Pudding','Binky','Wombat','Crouton',
     'Clonk','Noobert','Zinger','Jellybean','Kazoo','Burrito','Snorkel','Toffee','Dibble','Pistachio',
+    'Boomer','Squelch','Pretzel','Wumbus','Biscuit','Nacho','Fondue','Gadget','Pebble','Trinket',
+    'Bumble','Clover','Donut','Flicker','Guppy','Hamster','Igloo','Juniper','Kiwi','Lentil',
+    'Marble','Nimbus','Olive','Parsnip','Queso','Riddle','Strudel','Tango','Umbrella','Vespa',
+    'Wonton','Xerox','Yodel','Zeppelin','Cosmo','Dumpling','Fizgig','Giggles','Hiccup','Jinx',
   ],
   playerLast: [
     'Jenkins','McBonk','Fumblesworth','Kicksalot','Dribbleson','Shooterman','Tackleton','O\'Goalie',
@@ -281,20 +295,73 @@ const NAME_GEN = {
     'Fluffington','Von Biscuit','Wobblebottom','Snoozleton','McSnack','Pancake','Giggles',
     'Bumbleton','Noodlearm','Tumbleweed','Dingbat','Snickerdoodle','Cabbagehead','Mudpie','Clodhopper',
     'Butterfingers','Fizzbomb','Splatsworth','Wafflehaus','Pretzelberg',
+    'Backheelson','Von Crumpet','McFlipkick','Overhead','Divesworth','Stoppage','Yellowcard',
+    'Penaltini','McScoreline','Offsideberg','Von Tackle','Dropkickson','Headington','Goalmouth',
+    'Blunderton','Benchwarmer','McSubstitute','Throwinburg','Raindelay','Chipshot','Cornerflag',
+    'Foulsworth','McPenalty','Booterson','Halvetime','Studdington','Pitchford','Referino',
+    'Kickoffski','Von Gegenpressing','Counterattack',
   ],
 };
 
+// Track used names within a generation batch to prevent duplicates
+const _usedTeamNames = new Set();
+const _usedFirstNames = new Set();
+const _usedLastNames = new Set();
+
+function resetNameTracking() {
+  _usedTeamNames.clear();
+  _usedFirstNames.clear();
+  _usedLastNames.clear();
+}
+
 function generateTeamName() {
-  const adj  = NAME_GEN.teamAdjectives[Math.floor(Math.random() * NAME_GEN.teamAdjectives.length)];
-  const noun = NAME_GEN.teamNouns[Math.floor(Math.random() * NAME_GEN.teamNouns.length)];
+  const { teamAdjectives, teamNouns } = NAME_GEN;
+  // Try to find a unique combo (up to 20 attempts, then allow repeats)
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const adj  = teamAdjectives[Math.floor(Math.random() * teamAdjectives.length)];
+    const noun = teamNouns[Math.floor(Math.random() * teamNouns.length)];
+    const name = `The ${adj} ${noun}`;
+    if (!_usedTeamNames.has(name)) {
+      _usedTeamNames.add(name);
+      return name;
+    }
+  }
+  // Fallback: just pick something
+  const adj  = teamAdjectives[Math.floor(Math.random() * teamAdjectives.length)];
+  const noun = teamNouns[Math.floor(Math.random() * teamNouns.length)];
   return `The ${adj} ${noun}`;
 }
 
 function generatePlayerName() {
-  const first = NAME_GEN.playerFirst[Math.floor(Math.random() * NAME_GEN.playerFirst.length)];
-  const last  = NAME_GEN.playerLast[Math.floor(Math.random() * NAME_GEN.playerLast.length)];
+  const { playerFirst, playerLast } = NAME_GEN;
+
+  // Pick a unique first name (up to 20 attempts)
+  let first;
+  for (let i = 0; i < 20; i++) {
+    first = playerFirst[Math.floor(Math.random() * playerFirst.length)];
+    if (!_usedFirstNames.has(first)) break;
+  }
+  _usedFirstNames.add(first);
+
+  // Pick a unique last name (up to 20 attempts)
+  let last;
+  for (let i = 0; i < 20; i++) {
+    last = playerLast[Math.floor(Math.random() * playerLast.length)];
+    if (!_usedLastNames.has(last)) break;
+  }
+  _usedLastNames.add(last);
+
   return `${first} ${last}`;
 }
+
+// --- NPC Gear Configuration (M11) -------------------------------
+const NPC_GEAR_CONFIG = {
+  local:         { rarities: [],                            slots: 0 },
+  regional:      { rarities: ['common'],                    slots: 2 },
+  state:         { rarities: ['common', 'uncommon'],        slots: 3 },
+  national:      { rarities: ['common', 'uncommon', 'rare'], slots: 3 },
+  international: { rarities: ['uncommon', 'rare', 'epic'],  slots: 3 },
+};
 
 // --- League System (M7) ----------------------------------------
 const LEAGUE_ORDER = ['local', 'regional', 'state', 'national', 'international'];

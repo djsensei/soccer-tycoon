@@ -2,26 +2,66 @@
 // init.js — New game creation, league team + season generation
 // ============================================================
 
-function buildLeagueTeam(def) {
-  const d = def.difficulty;
+// Assign gear cards to an NPC player based on league tier
+function assignNPCGear(player, leagueKey, isGK) {
+  const config = NPC_GEAR_CONFIG[leagueKey];
+  if (!config || config.slots === 0) return;
+
+  // Collect unique card IDs to exclude from NPC gear pool
+  const uniqueCardIds = new Set(
+    OPPONENT_DEFINITIONS.filter(d => d.uniqueCardId).map(d => d.uniqueCardId)
+  );
+
+  // Build eligible card pools per slot
+  function getPool(slot) {
+    return Object.values(CARDS).filter(c =>
+      c.slot === slot &&
+      config.rarities.includes(c.rarity) &&
+      Object.keys(c.statBonuses).length > 0 &&
+      !uniqueCardIds.has(c.id)
+    );
+  }
+
+  const slots = ['head', 'body', 'feet'];
+  // Shuffle and pick up to config.slots
+  const shuffled = slots.slice().sort(() => Math.random() - 0.5);
+  const slotsToFill = shuffled.slice(0, Math.min(config.slots, slots.length));
+
+  for (const slot of slotsToFill) {
+    const pool = getPool(slot);
+    if (pool.length) player.gear[slot] = pick(pool).id;
+  }
+
+  // GK always gets gloves as a bonus slot (if league has gear)
+  if (isGK) {
+    const glovePool = getPool('gloves');
+    if (glovePool.length) player.gear.gloves = pick(glovePool).id;
+  }
+}
+
+function buildLeagueTeam(def, overrideDifficulty) {
+  const d = overrideDifficulty != null ? overrideDifficulty : def.difficulty;
+  const leagueKey = def.league;
   const playerNames = [];
   for (let i = 0; i < TEAM_SIZE; i++) playerNames.push(generatePlayerName());
 
   const players = playerNames.map((name, i) => {
     const stat = () => Math.max(1, Math.min(10, d + Math.floor(Math.random() * 3) - 1));
-    return {
+    const p = {
       id: `${def.id}-p${i}`,
       name,
       stats: { jumping: stat(), speed: stat(), strength: stat(), passing: stat(), shooting: stat(), reflexes: stat(), luck: stat() },
       gear: { head: null, body: null, feet: null, gloves: null },
     };
+    assignNPCGear(p, leagueKey, i === 0); // p0 = GK
+    return p;
   });
 
   return {
     id:          def.id,
     name:        def.name,
     league:      def.league,
-    difficulty:  def.difficulty,
+    difficulty:  d,
     specialNote: def.specialNote,
     players,
     slots: {
@@ -32,6 +72,58 @@ function buildLeagueTeam(def) {
       S:  `${def.id}-p4`,
     },
   };
+}
+
+// Generate league teams with adaptive difficulty based on player power
+function generateLeagueTeams(leagueKey, playerTeam) {
+  resetNameTracking();
+  const leagueDef = LEAGUE_DEFINITIONS[leagueKey];
+  const defs = LEAGUE_TEAMS.filter(t => t.league === leagueKey);
+
+  // Compute player power = average effective stat across all 5 players
+  let playerPower = 5; // default if no player team
+  if (playerTeam && playerTeam.players) {
+    let totalStat = 0, statCount = 0;
+    for (const p of playerTeam.players) {
+      const es = effectiveStats(p);
+      for (const s of STATS) {
+        totalStat += es[s] || 0;
+        statCount++;
+      }
+    }
+    if (statCount > 0) playerPower = totalStat / statCount;
+  }
+
+  // Adaptive center clamped to league's difficulty range
+  const adaptiveCenter = Math.max(leagueDef.diffMin, Math.min(leagueDef.diffMax, Math.round(playerPower)));
+
+  return defs.map(def => {
+    // Per-team jitter of ±1 around adaptive center (clamped to league range)
+    const jitter = Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
+    const overrideDiff = Math.max(leagueDef.diffMin, Math.min(leagueDef.diffMax, adaptiveCenter + jitter));
+    return buildLeagueTeam(def, overrideDiff);
+  });
+}
+
+// Refresh existing NPC teams for a new season (mid-table replay)
+function refreshLeagueTeams(leagueKey) {
+  const teams = gameState.leagueTeams[leagueKey];
+  if (!teams) return;
+  const config = NPC_GEAR_CONFIG[leagueKey];
+
+  for (const team of teams) {
+    for (let i = 0; i < team.players.length; i++) {
+      const p = team.players[i];
+      // Jitter each base stat by ±1 (clamped 1-10)
+      for (const s of STATS) {
+        const jitter = Math.floor(Math.random() * 3) - 1;
+        p.stats[s] = Math.max(1, Math.min(10, p.stats[s] + jitter));
+      }
+      // Re-roll gear from the same rarity pool
+      p.gear = { head: null, body: null, feet: null, gloves: null };
+      assignNPCGear(p, leagueKey, i === 0);
+    }
+  }
 }
 
 // Round-robin schedule using circle method (all league sizes are even)
@@ -86,6 +178,7 @@ function generateSeason(leagueKey, playerTeamId) {
 }
 
 function createNewGame(teamName, managerName, playerDefs) {
+  resetNameTracking();
   // playerDefs: array of 5 { name, stats } in slot order [GK, D, M1, M2, S]
   const rosterPlayers = playerDefs.map((def, i) => ({
     id: `player-${i}`,
@@ -96,12 +189,10 @@ function createNewGame(teamName, managerName, playerDefs) {
     statBonuses: {},
   }));
 
-  // Build all league teams upfront
+  // Only build local league teams upfront (higher leagues generated at promotion)
   const leagueTeams = {};
-  for (const leagueKey of LEAGUE_ORDER) {
-    const defs = LEAGUE_TEAMS.filter(t => t.league === leagueKey);
-    leagueTeams[leagueKey] = defs.map(buildLeagueTeam);
-  }
+  const localDefs = LEAGUE_TEAMS.filter(t => t.league === 'local');
+  leagueTeams.local = localDefs.map(def => buildLeagueTeam(def));
 
   // Generate first season
   const season = generateSeason('local', 'player');

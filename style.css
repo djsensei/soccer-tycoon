@@ -312,9 +312,17 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .hub-footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
   padding: 0.75rem 0 0.25rem;
   border-top: 1px solid var(--border);
   margin-top: 0.5rem;
+}
+
+.version-label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  opacity: 0.5;
 }
 
 /* Swap mode */
@@ -751,6 +759,105 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .opp-stars.big { font-size: 1.3rem; color: var(--gold); margin-bottom: 0.5rem; }
 .opp-note-big  { font-size: 1rem; margin-bottom: 0.8rem; }
 .trash-talk    { font-style: italic; color: var(--text-dim); border-left: 3px solid var(--border); padding-left: 0.8rem; text-align: left; }
+
+/* Pre-match commentary */
+.prematch-commentary {
+  width: 100%; max-width: 700px;
+  background: var(--card); border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+}
+.prematch-commentary p {
+  color: var(--text-dim); font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+.prematch-commentary p:last-child { margin-bottom: 0; }
+
+/* Roster comparison */
+.prematch-roster {
+  width: 100%; max-width: 700px;
+}
+.prematch-roster-header {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  text-align: center; font-size: 0.75rem; font-weight: bold;
+  color: var(--text-dim); padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border); margin-bottom: 0.5rem;
+}
+
+.prematch-position-row {
+  background: var(--card); border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem; margin-bottom: 0.5rem;
+}
+.prematch-pos-label {
+  text-align: center; font-size: 0.7rem; font-weight: bold;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.prematch-comparison {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 0.5rem; align-items: start;
+}
+.prematch-player-side {
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.prematch-opp-side {
+  align-items: flex-end;
+}
+.prematch-player-name {
+  font-size: 0.8rem; font-weight: bold; margin-bottom: 0.3rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 100%;
+}
+.prematch-gear-row {
+  display: flex; gap: 3px; margin-top: 0.2rem;
+}
+.prematch-gear-thumb {
+  width: 24px; height: 24px; border-radius: 3px;
+  border: 2px solid var(--border); overflow: hidden;
+  background: var(--surface);
+}
+.prematch-gear-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.prematch-stats-center {
+  display: flex; flex-direction: column; gap: 0.25rem;
+  min-width: 180px;
+}
+.prematch-stat-row {
+  display: grid; grid-template-columns: 20px 1fr 32px 1fr 20px;
+  gap: 4px; align-items: center; font-size: 0.7rem;
+}
+.prematch-stat-val {
+  text-align: center; font-weight: bold; font-size: 0.7rem;
+}
+.prematch-stat-val.stat-advantage { color: var(--accent); }
+.prematch-stat-val.stat-disadvantage { color: var(--danger); }
+.prematch-stat-label {
+  text-align: center; font-size: 0.6rem; font-weight: bold;
+}
+.prematch-stat-bar-left, .prematch-stat-bar-right {
+  display: flex; align-items: center;
+}
+.prematch-stat-bar-left { justify-content: flex-end; }
+.prematch-stat-bar-right { justify-content: flex-start; }
+
+/* Responsive: stack on narrow screens */
+@media (max-width: 500px) {
+  .prematch-comparison {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .prematch-opp-side {
+    align-items: flex-start;
+    border-top: 1px solid var(--border);
+    padding-top: 0.3rem;
+  }
+  .prematch-stats-center {
+    min-width: unset;
+  }
+  .prematch-stat-row {
+    grid-template-columns: 20px 1fr 32px 1fr 20px;
+  }
+}
 
 /* ---- Match Screen ---- */
 .match-screen { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }

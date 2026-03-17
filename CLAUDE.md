@@ -32,27 +32,44 @@ soccer-tycoon/
   state.js             # gameState, updateState(), render(), bootstrap + save migrations
   simulator.js         # Match engine — pure functions, zero DOM
   transitions.js       # Markov chain probabilities + stat influences (loaded before data.js)
-  data.js              # Content: teams, leagues, gear cards, packs
+  data.js              # Content: teams, leagues, gear cards, packs, version constant
   commentary.js        # Match commentary templates (rarity-bucketed) + selection logic
-  init.js              # New game creation, league team + season generation
+  init.js              # New game creation, league team + season generation, NPC gear assignment
   utils.js             # Shared utilities (effectiveStats, UI helpers, findLeagueTeam)
   save.js              # localStorage save/load helpers
   screens/
-    newgame.js         # Multi-step creation wizard
     title.js           # Title screen (new game / continue)
     welcome.js         # "Welcome to the League" post-creation interstitial
     newgame.js         # Multi-step creation wizard
     hub.js             # Main hub (roster, league indicator, navigation)
     gear.js            # Gear Up + forge mode
-    table.js           # League standings, matchday, NPC results
-    prematch.js        # Pre-match hype screen
+    table.js           # League standings, matchday, NPC results, season-end handling
+    prematch.js        # Pre-match roster comparison + commentary
     match.js           # Live match playback + goToResults()
     results.js         # Post-match results + season-end messaging
     packopen.js        # Card pack opening
     gameover.js        # Game over (relegation) + game win
+  tools/
+    playtest-bot/      # Headless simulation bot (Node.js)
+      bot.js           # CLI entry: node tools/playtest-bot/bot.js [--runs N] [--verbose]
+      loader.js        # vm sandbox that loads game files without a browser
+      strategies.js    # Bot decision-making (random stats, equip best gear, auto-forge)
+      stats.js         # Per-run and aggregate stat collection + formatting
+    markov-editor/     # Visual Markov graph editor dev tool
+    bg-pipeline/       # Card art background generation pipeline
   docs/                # Design documentation
   CLAUDE.md            # This file
 ```
+
+## Playtest Bot
+Run headless simulations to check game balance:
+```
+node tools/playtest-bot/bot.js --runs 100 --verbose
+node tools/playtest-bot/bot.js --runs 50 --output tools/playtest-bot/results.json
+```
+The bot creates a random team, plays through all seasons (equipping gear, forging cards), and reports outcome distributions, win rates per league, milestone stats, and more.
+
+**Important:** The playtest bot mirrors game logic from `screens/match.js` (goToResults), `screens/table.js` (handleSeasonEnd), and `screens/prematch.js` (kickOff). If you change match simulation, season-end handling, NPC generation, or pack/forge logic, update `bot.js` and `loader.js` to match — they won't pick up screen-layer changes automatically.
 
 ## Conventions
 - Plain JS only — no frameworks, no npm, no bundler

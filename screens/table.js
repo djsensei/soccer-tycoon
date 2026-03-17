@@ -127,6 +127,7 @@ function renderTable() {
       </div>
       <div class="hub-footer">
         <button class="btn-small btn-danger" onclick="startOver()">Start Over</button>
+        <span class="version-label">v${GAME_VERSION}</span>
       </div>
     </div>
   `;
@@ -166,8 +167,13 @@ function handleSeasonEnd() {
       updateState({ screen: 'gameover', currentMatch: { ...cm, gameWin: true } });
       return;
     }
-    // Promotion — advance league, then open promotion pack
+    // Promotion — advance league, generate new league teams adaptively
     const nextLeague = LEAGUE_ORDER[LEAGUE_ORDER.indexOf(season.league) + 1];
+    const playerTeam = {
+      players: gameState.players,
+      slots: gameState.slots,
+    };
+    gameState.leagueTeams[nextLeague] = generateLeagueTeams(nextLeague, playerTeam);
     const newSeason = generateSeason(nextLeague, 'player');
     gameState.currentLeague = nextLeague;
     gameState.season = newSeason;
@@ -177,7 +183,8 @@ function handleSeasonEnd() {
     return;
   }
 
-  // Mid-table — replay same league
+  // Mid-table — replay same league with refreshed teams
+  refreshLeagueTeams(season.league);
   const newSeason = generateSeason(season.league, 'player');
   updateState({
     season: newSeason,
