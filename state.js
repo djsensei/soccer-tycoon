@@ -24,9 +24,11 @@ function render() {
     case 'table':      app.innerHTML = renderTable();        break;
     case 'prematch':   app.innerHTML = renderPreMatch();     break;
     case 'match':      app.innerHTML = renderMatchScreen();  startMatchPlayback(); break;
-    case 'results':    app.innerHTML = renderResults();      break;
-    case 'packopen':   app.innerHTML = renderPackOpening();  break;
-    case 'gameover':   app.innerHTML = renderGameOver();     break;
+    case 'results':         app.innerHTML = renderResults();         break;
+    case 'training':        app.innerHTML = renderTraining();        break;
+    case 'trainingResults': app.innerHTML = renderTrainingResults(); break;
+    case 'packopen':        app.innerHTML = renderPackOpening();     break;
+    case 'gameover':        app.innerHTML = renderGameOver();        break;
     default:           app.innerHTML = '<p>Unknown screen.</p>';
   }
 }
@@ -74,8 +76,25 @@ window.addEventListener('DOMContentLoaded', () => {
       delete gameState.opponentTeams;
       delete gameState.matchesUntilSpecialCheck;
     }
+    // M12: add energy to existing players + NPC teams; add manager info to NPC teams
+    if (gameState.players) {
+      for (const p of gameState.players) {
+        if (p.energy == null) p.energy = ENERGY_CONFIG.maxEnergy;
+      }
+    }
+    if (gameState.leagueTeams) {
+      for (const leagueKey of Object.keys(gameState.leagueTeams)) {
+        for (const team of gameState.leagueTeams[leagueKey]) {
+          if (!team.managerName) team.managerName = pick(NPC_MANAGER_NAMES);
+          if (!team.personality) team.personality = pick(NPC_MANAGER_PERSONALITIES);
+          for (const p of team.players) {
+            if (p.energy == null) p.energy = ENERGY_CONFIG.maxEnergy;
+          }
+        }
+      }
+    }
     // Reset screens that can't meaningfully resume mid-session
-    if (['match', 'prematch', 'packopen', 'matchselect', 'welcome'].includes(gameState.screen)) {
+    if (['match', 'prematch', 'packopen', 'matchselect', 'welcome', 'training', 'trainingResults'].includes(gameState.screen)) {
       gameState.screen = 'table';
     }
   } else {

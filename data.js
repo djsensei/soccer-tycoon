@@ -2,7 +2,28 @@
 // data.js — Static game content. Never mutated at runtime.
 // ============================================================
 
-const GAME_VERSION = '0.11.0';
+const GAME_VERSION = '0.12.0';
+
+const ENERGY_CONFIG = {
+  maxEnergy: 100,
+  matchCost: 18,
+  restRecovery: 35,
+  trainingCost: 8,
+  trainSuccessChance: 0.25,
+  fatigueThreshold: 40,
+  fatiguePenaltyRate: 0.02,
+  minStatFloor: 1,
+};
+
+const NPC_MANAGER_PERSONALITIES = ['taskmaster', 'driven', 'balanced', 'relaxed'];
+
+// Manager names for NPC teams
+const NPC_MANAGER_NAMES = [
+  'Pep Guardiola Jr.', 'Sir Whiskers', 'Coach Chaos', 'Vibes McManager',
+  'Tactic Tim', 'Brains O\'Reilly', 'The Professor', 'Captain Clipboard',
+  'Dame Strategy', 'Lord Benchsworth', 'Chief Kickball', 'Baron von Drill',
+  'General Formation', 'Admiral Offside', 'Count Substitution', 'Duchess Dribble',
+];
 
 const TEAM_SIZE = 5;
 const POSITIONS = ['GK', 'D', 'M1', 'M2', 'S'];

@@ -131,11 +131,16 @@ function renderPreMatch() {
       </div>`;
     }).join('');
 
+    // Energy bars
+    const pEnergy = playerPlayer ? (playerPlayer.energy != null ? playerPlayer.energy : ENERGY_CONFIG.maxEnergy) : 100;
+    const oEnergy = oppPlayer ? (oppPlayer.energy != null ? oppPlayer.energy : ENERGY_CONFIG.maxEnergy) : 100;
+
     return `<div class="prematch-position-row">
       <div class="prematch-pos-label">${slotName(pos)}</div>
       <div class="prematch-comparison">
         <div class="prematch-player-side">
           <div class="prematch-player-name">${playerPlayer?.name || '???'}</div>
+          <div class="prematch-player-energy">${energyBar(pEnergy)}</div>
           ${gearThumbs(playerPlayer)}
         </div>
         <div class="prematch-stats-center">
@@ -143,6 +148,7 @@ function renderPreMatch() {
         </div>
         <div class="prematch-player-side prematch-opp-side">
           <div class="prematch-player-name">${oppPlayer?.name || '???'}</div>
+          <div class="prematch-player-energy">${energyBar(oEnergy)}</div>
           ${gearThumbs(oppPlayer)}
         </div>
       </div>
@@ -153,6 +159,15 @@ function renderPreMatch() {
     ? `<div class="prematch-commentary">${commentary.map(l => `<p>${l}</p>`).join('')}</div>`
     : '';
 
+  // Fatigue warning
+  const fatiguedPlayers = gameState.players.filter(p => (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) < ENERGY_CONFIG.fatigueThreshold);
+  const fatigueHtml = fatiguedPlayers.length
+    ? `<div class="fatigue-warning">Warning: ${fatiguedPlayers.map(p => p.name).join(', ')} ${fatiguedPlayers.length === 1 ? 'is' : 'are'} fatigued! Stats will be reduced.</div>`
+    : '';
+
+  // Opponent manager
+  const oppManagerHtml = opp.managerName ? `<div class="vs-manager">Manager: ${opp.managerName}</div>` : '';
+
   return `
     <div class="screen prematch-screen">
       <div class="screen-header">
@@ -160,10 +175,11 @@ function renderPreMatch() {
         <h1>Pre-Match</h1>
       </div>
       <div class="prematch-layout">
+        ${fatigueHtml}
         <div class="vs-banner">
-          <div class="vs-team player-team">${gameState.teamName}</div>
+          <div class="vs-team player-team">${gameState.teamName}<div class="vs-manager">Manager: ${gameState.managerName || 'Coach'}</div></div>
           <div class="vs-divider">VS</div>
-          <div class="vs-team opp-team">${opp.name}</div>
+          <div class="vs-team opp-team">${opp.name}${oppManagerHtml}</div>
         </div>
         ${commentaryHtml}
         <div class="prematch-roster">

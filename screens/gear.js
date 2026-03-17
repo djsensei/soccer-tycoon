@@ -15,6 +15,15 @@ let _forgeResult = null;
 const SLOT_LABEL = { head: 'Head', body: 'Body', feet: 'Feet', gloves: 'Gloves' };
 const SLOT_ORDER = ['head', 'body', 'feet', 'gloves'];
 
+function gearBack() {
+  if (gameState.currentMatch && gameState.currentMatch.showTraining) {
+    initTrainingChoices();
+    updateState({ screen: 'training' });
+  } else {
+    updateState({ screen: 'table' });
+  }
+}
+
 function renderGearUp() {
   const startingEntries = POSITIONS.map(posSlot => ({
     p: getPlayer(gameState.slots[posSlot]),
@@ -137,7 +146,7 @@ function renderGearUp() {
   return `
     <div class="screen gearup-screen">
       <div class="screen-header">
-        <button class="btn-back" onclick="updateState({screen:'table'})">← Back</button>
+        <button class="btn-back" onclick="gearBack()">← Back</button>
         <h1>Gear Up</h1>
       </div>
       <div class="gearup-layout">

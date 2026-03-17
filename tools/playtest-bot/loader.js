@@ -78,6 +78,11 @@ function createSandbox() {
     this.refreshLeagueTeams = refreshLeagueTeams;
     this.resetNameTracking = resetNameTracking;
     this.NPC_GEAR_CONFIG = NPC_GEAR_CONFIG;
+    this.ENERGY_CONFIG = ENERGY_CONFIG;
+    this.NPC_MANAGER_PERSONALITIES = NPC_MANAGER_PERSONALITIES;
+    this.NPC_MANAGER_NAMES = NPC_MANAGER_NAMES;
+    this.npcTrainingDecisions = npcTrainingDecisions;
+    this.applyNPCTraining = applyNPCTraining;
     this.updateStandings = updateStandings;
     this.computeOutcome = computeOutcome;
     this.getPackReward = getPackReward;

@@ -278,6 +278,11 @@ function goToResults() {
     return { ...p, careerStats: newCareer, statBonuses: newBonuses };
   });
 
+  // --- Deduct energy from all players after match ---
+  for (const p of updatedPlayers) {
+    p.energy = Math.max(0, (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) - ENERGY_CONFIG.matchCost);
+  }
+
   const newFans = Math.max(50, gameState.fans + m.fanDelta);
 
   const matchHistory = [...gameState.matchHistory, {
@@ -321,6 +326,24 @@ function goToResults() {
     }
     // Add player result to results display
     npcResults.unshift({ home: 'player', away: m.opponentId, homeScore: m.playerScore, awayScore: m.opponentScore });
+
+    // Deduct energy from all NPC teams that played + run NPC training
+    const leagueNPCTeams = gameState.leagueTeams[season.league] || [];
+    const playedTeamIds = new Set();
+    for (const match of matchday.matches) {
+      if (match.home !== 'player') playedTeamIds.add(match.home);
+      if (match.away !== 'player') playedTeamIds.add(match.away);
+    }
+    // Also add the opponent the player faced
+    playedTeamIds.add(m.opponentId);
+    for (const npcTeam of leagueNPCTeams) {
+      if (playedTeamIds.has(npcTeam.id)) {
+        for (const p of npcTeam.players) {
+          p.energy = Math.max(0, (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) - ENERGY_CONFIG.matchCost);
+        }
+      }
+      applyNPCTraining(npcTeam);
+    }
 
     // Update season state
     const newSchedule = season.schedule.map((md, i) =>
@@ -366,6 +389,6 @@ function goToResults() {
     pendingPacks,
     players: updatedPlayers,
     season,
-    currentMatch: { ...m, milestones: newMilestones, seasonResult },
+    currentMatch: { ...m, milestones: newMilestones, seasonResult, showTraining: !seasonEnded },
   });
 }
