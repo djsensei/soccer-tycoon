@@ -55,9 +55,14 @@ function renderGameWin() {
   ];
   const headline = pick(headlines);
 
+  const fireworks = Array.from({length: 6}, (_, i) =>
+    `<div class="firework" style="--fx:${15 + (i % 3) * 35}vw;--fy:${15 + Math.floor(i / 3) * 30}vh;--fd:${0.3 + i * 0.4}s;--fc:${['var(--gold)','#e05555','#42b4e8','var(--accent)','#9c27b0','#ff9800'][i]}"></div>`
+  ).join('');
+
   return `
     <div class="screen gameover-screen game-win">
-      <div class="newspaper">
+      <div class="fireworks-container">${fireworks}</div>
+      <div class="newspaper game-win-newspaper">
         <div class="newspaper-header">THE DAILY BOOT — SPECIAL EDITION</div>
         <div class="newspaper-headline">${headline}</div>
         <div class="newspaper-subhead">
