@@ -204,8 +204,8 @@ function renderResults() {
 
   const perPlayerHtml = playerLines ? `<div class="results-per-player"><h3>Player Performance</h3>${playerLines}</div>` : '';
 
-  // Training recommendations
-  const recs = generateTrainingRecommendations(stats, gameState.players);
+  // Training recommendations (skip if season just ended — no training coming)
+  const recs = m.seasonResult ? [] : generateTrainingRecommendations(stats, gameState.players);
   const recsHtml = recs.length ? `<div class="training-recs"><h3>Training Tips</h3>${recs.map(r => `<div class="training-rec-item">${r}</div>`).join('')}</div>` : '';
 
   const milestones = m.milestones || [];
