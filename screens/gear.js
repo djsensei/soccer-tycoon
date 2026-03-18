@@ -12,6 +12,11 @@ let _forgeMode = false;
 let _forgeSlots = [null, null, null];
 let _forgeResult = null;
 
+// Drag-and-drop state
+let _drag = null;          // { cardId, sourceType, sourcePlayerId, sourceSlot, ghost, startX, startY, started }
+let _dragJustEnded = false; // suppress click after drag
+const DRAG_THRESHOLD = 10; // px before drag activates
+
 const SLOT_LABEL = { head: 'Head', body: 'Body', feet: 'Feet', gloves: 'Gloves' };
 const SLOT_ORDER = ['head', 'body', 'feet', 'gloves'];
 
@@ -40,8 +45,13 @@ function renderGearUp() {
     const onclick = card
       ? `selectGearSlot('${p.id}','${gs}'); openCardModal('${equippedId}')`
       : `selectGearSlot('${p.id}','${gs}')`;
+    const dragAttrs = card
+      ? `data-drag-card="${equippedId}" data-drag-source="equipped" data-drag-player="${p.id}" data-drag-slot="${gs}"`
+      : '';
     return `
       <div class="gear-slot-cell ${isSelected ? 'gsc-selected' : ''} ${card ? '' : 'gsc-empty'}"
+           data-drop-player="${p.id}" data-drop-slot="${gs}"
+           ${dragAttrs}
            onclick="${onclick}">
         ${card
           ? `<div class="gsc-card" title="${card.name}" style="border-color:${RARITY_COLOR[card.rarity]}">${cardImage(equippedId, 'small')}</div>`
@@ -128,7 +138,8 @@ function renderGearUp() {
       ? expandedTiles.map(cardId => {
           const c = CARDS[cardId];
           return `
-            <div class="inv-tile" onclick="openCardModal('${c.id}')" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.name}">
+            <div class="inv-tile" data-drag-card="${c.id}" data-drag-source="inventory"
+                 onclick="openCardModal('${c.id}')" style="border-color:${RARITY_COLOR[c.rarity]}" title="${c.name}">
               ${cardImage(c.id, 'small')}
             </div>`;
         }).join('')
@@ -211,6 +222,7 @@ function buildCardModal(cardId) {
 // --- Interaction handlers ---
 
 function selectGearSlot(playerId, slot) {
+  if (_dragJustEnded) return;
   _gearSel = { playerId, slot };
   // Auto-set filter to match selected slot
   _invFilter = slot;
@@ -223,6 +235,7 @@ function setInvFilter(filter) {
 }
 
 function openCardModal(cardId) {
+  if (_dragJustEnded) return;
   _modalCard = cardId;
   render();
 }
@@ -417,3 +430,214 @@ function dismissForgeResult() {
   _forgeResult = null;
   render();
 }
+
+// ============================================================
+// Drag-and-drop gear assignment (touch + mouse)
+// ============================================================
+
+function _canDrag() {
+  return gameState.screen === 'managegear' && !_forgeMode && !_modalCard && !_statModalPlayerId;
+}
+
+function _getCoords(e) {
+  if (e.touches && e.touches.length) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  if (e.changedTouches && e.changedTouches.length) return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+  return { x: e.clientX, y: e.clientY };
+}
+
+function _findDraggable(target) {
+  return target.closest?.('[data-drag-card]');
+}
+
+function _findDropTarget(x, y, ghost) {
+  // Hide ghost so elementFromPoint sees what's beneath
+  if (ghost) ghost.style.display = 'none';
+  const el = document.elementFromPoint(x, y);
+  if (ghost) ghost.style.display = '';
+  if (!el) return null;
+  // Check for gear slot drop target
+  const slotEl = el.closest('[data-drop-slot]');
+  if (slotEl) return { type: 'slot', playerId: slotEl.dataset.dropPlayer, slot: slotEl.dataset.dropSlot, el: slotEl };
+  // Check for inventory panel (unequip target)
+  const invEl = el.closest('.gearup-inventory');
+  if (invEl) return { type: 'inventory', el: invEl };
+  return null;
+}
+
+function _createGhost(cardId, x, y) {
+  const ghost = document.createElement('div');
+  ghost.className = 'drag-ghost';
+  const card = CARDS[cardId];
+  if (card) ghost.style.borderColor = RARITY_COLOR[card.rarity];
+  ghost.innerHTML = cardImage(cardId, 'small');
+  ghost.style.left = (x - 28) + 'px';
+  ghost.style.top = (y - 28) + 'px';
+  document.body.appendChild(ghost);
+  return ghost;
+}
+
+function _clearHighlights() {
+  for (const el of document.querySelectorAll('.gsc-drop-valid')) el.classList.remove('gsc-drop-valid');
+  for (const el of document.querySelectorAll('.drop-target-active')) el.classList.remove('drop-target-active');
+}
+
+function _highlightValidTargets(cardId, x, y, ghost) {
+  _clearHighlights();
+  const card = CARDS[cardId];
+  if (!card) return;
+  const target = _findDropTarget(x, y, ghost);
+  if (!target) return;
+  if (target.type === 'slot' && target.slot === card.slot) {
+    target.el.classList.add('gsc-drop-valid');
+  } else if (target.type === 'inventory') {
+    target.el.classList.add('drop-target-active');
+  }
+}
+
+function _startDrag(el, x, y) {
+  if (!_canDrag()) return;
+  const cardId = el.dataset.dragCard;
+  const sourceType = el.dataset.dragSource;
+  if (!cardId || !CARDS[cardId]) return;
+  _drag = {
+    cardId,
+    sourceType,
+    sourcePlayerId: el.dataset.dragPlayer || null,
+    sourceSlot: el.dataset.dragSlot || null,
+    ghost: null,
+    startX: x, startY: y,
+    started: false,
+    sourceEl: el,
+  };
+}
+
+function _moveDrag(x, y, e) {
+  if (!_drag) return;
+  const dx = x - _drag.startX;
+  const dy = y - _drag.startY;
+  if (!_drag.started) {
+    if (Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
+    _drag.started = true;
+    _drag.ghost = _createGhost(_drag.cardId, x, y);
+    _drag.sourceEl?.classList.add('drag-source');
+    document.body.classList.add('drag-active');
+  }
+  if (e) e.preventDefault(); // suppress scroll during drag
+  _drag.ghost.style.left = (x - 28) + 'px';
+  _drag.ghost.style.top = (y - 28) + 'px';
+  _highlightValidTargets(_drag.cardId, x, y, _drag.ghost);
+}
+
+function _endDrag(x, y, e) {
+  if (!_drag) return;
+  if (!_drag.started) {
+    // Was a tap, not a drag — let onclick fire
+    _drag = null;
+    return;
+  }
+  // Suppress the synthesized click that follows touchend
+  if (e) e.preventDefault();
+  _dragJustEnded = true;
+  setTimeout(() => { _dragJustEnded = false; }, 50);
+
+  const target = _findDropTarget(x, y, _drag.ghost);
+  _executeDrop(_drag, target);
+
+  // Cleanup
+  if (_drag.ghost) _drag.ghost.remove();
+  _clearHighlights();
+  document.body.classList.remove('drag-active');
+  // Remove drag-source class (may not exist if DOM re-rendered)
+  _drag.sourceEl?.classList.remove('drag-source');
+  _drag = null;
+}
+
+function _executeDrop(drag, target) {
+  if (!target) return;
+  const card = CARDS[drag.cardId];
+  if (!card) return;
+
+  if (target.type === 'slot') {
+    // Validate slot type matches
+    if (card.slot !== target.slot) return;
+
+    if (drag.sourceType === 'inventory') {
+      // Inventory -> gear slot: equip
+      if (availableQty(drag.cardId) <= 0) return;
+      equipGear(target.playerId, target.slot, drag.cardId);
+    } else if (drag.sourceType === 'equipped') {
+      // Equipped -> another slot: move/swap
+      if (drag.sourcePlayerId === target.playerId && drag.sourceSlot === target.slot) return; // same slot, no-op
+
+      // Batch update to avoid double render
+      const targetPlayer = getPlayer(target.playerId);
+      const existingInTarget = targetPlayer?.gear[target.slot];
+
+      const players = gameState.players.map(p => {
+        const newGear = { ...p.gear };
+        // Remove from source
+        if (p.id === drag.sourcePlayerId && newGear[drag.sourceSlot] === drag.cardId) {
+          // If target slot had a card, swap it to source
+          newGear[drag.sourceSlot] = (drag.sourcePlayerId === target.playerId)
+            ? existingInTarget || null
+            : null;
+        }
+        // Place in target
+        if (p.id === target.playerId) {
+          newGear[target.slot] = drag.cardId;
+        }
+        // If different players and target had a card, put it on source player's slot
+        if (existingInTarget && drag.sourcePlayerId !== target.playerId && p.id === drag.sourcePlayerId) {
+          newGear[drag.sourceSlot] = existingInTarget;
+        }
+        if (p.gear.head === newGear.head && p.gear.body === newGear.body &&
+            p.gear.feet === newGear.feet && p.gear.gloves === newGear.gloves) return p;
+        return { ...p, gear: newGear };
+      });
+      updateState({ players });
+    }
+  } else if (target.type === 'inventory') {
+    // Dropping on inventory = unequip
+    if (drag.sourceType === 'equipped' && drag.sourcePlayerId && drag.sourceSlot) {
+      unequipGear(drag.sourcePlayerId, drag.sourceSlot);
+    }
+  }
+}
+
+// --- Event listeners (document-level delegation) ---
+document.addEventListener('touchstart', function(e) {
+  if (!_canDrag()) return;
+  const el = _findDraggable(e.target);
+  if (!el) return;
+  const { x, y } = _getCoords(e);
+  _startDrag(el, x, y);
+}, { passive: true });
+
+document.addEventListener('touchmove', function(e) {
+  if (!_drag) return;
+  const { x, y } = _getCoords(e);
+  _moveDrag(x, y, e);
+}, { passive: false });
+
+document.addEventListener('touchend', function(e) {
+  if (!_drag) return;
+  const { x, y } = _getCoords(e);
+  _endDrag(x, y, e);
+});
+
+document.addEventListener('mousedown', function(e) {
+  if (!_canDrag()) return;
+  const el = _findDraggable(e.target);
+  if (!el) return;
+  _startDrag(el, e.clientX, e.clientY);
+});
+
+document.addEventListener('mousemove', function(e) {
+  if (!_drag) return;
+  _moveDrag(e.clientX, e.clientY, e);
+});
+
+document.addEventListener('mouseup', function(e) {
+  if (!_drag) return;
+  _endDrag(e.clientX, e.clientY, e);
+});
