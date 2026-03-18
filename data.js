@@ -87,18 +87,12 @@ const CARDS = {
   'ratty-headband':   { id: 'ratty-headband',    name: 'Ratty Headband',   slot: 'head',   rarity: 'common', flavourText: 'Found it behind the bleachers.',      statBonuses: {} },
   'holey-gloves':     { id: 'holey-gloves',      name: 'Holey Gloves',     slot: 'gloves', rarity: 'common', flavourText: 'Half the fingers are missing.',       statBonuses: {} },
 
-  // === LEGENDARY ===
-  'clone-jersey':     { id: 'clone-jersey',      name: 'Clone Jersey',     slot: 'body',   rarity: 'legendary', flavourText: 'The player is everywhere at once. Somehow legal.', statBonuses: { speed: 2, strength: 2, shooting: 2, passing: 2 } },
-  'blackhole-gloves': { id: 'blackhole-gloves',  name: 'Black Hole Gloves',slot: 'gloves', rarity: 'legendary', flavourText: 'Nothing gets past. Nothing. Ever.',                statBonuses: { reflexes: 5, jumping: 3 } },
-  'hyperspeed-cleats':{ id: 'hyperspeed-cleats', name: 'Hyperspeed Cleats',slot: 'feet',   rarity: 'legendary', flavourText: 'You briefly become invisible between steps.',      statBonuses: { speed: 5, shooting: 3 } },
-  'crown-of-luck':    { id: 'crown-of-luck',     name: 'Crown of Luck',    slot: 'head',   rarity: 'legendary', flavourText: 'Forged from four-leaf clovers and wishbones.',     statBonuses: { luck: 5, passing: 3 } },
-
   // === SPECIAL TEAM UNIQUES (Phase 4) ===
-  'robo-arm':          { id: 'robo-arm',          name: 'Robo Arm',          slot: 'gloves', rarity: 'legendary', flavourText: 'Catches everything. EVERYTHING.',                       statBonuses: { reflexes: 5, strength: 3 } },
-  'gravity-boots':     { id: 'gravity-boots',     name: 'Gravity Boots',     slot: 'feet',   rarity: 'legendary', flavourText: 'Defies physics. Physicists are upset.',                 statBonuses: { speed: 5, shooting: 3 } },
-  'dino-stomp-cleats': { id: 'dino-stomp-cleats', name: 'Dino Stomp Cleats', slot: 'feet',   rarity: 'legendary', flavourText: 'Left craters on the pitch. Ref allowed it.',            statBonuses: { strength: 5, jumping: 3 } },
-  'lucky-scarf':       { id: 'lucky-scarf',       name: "Grandma's Lucky Scarf", slot: 'head', rarity: 'legendary', flavourText: 'Knitted with love. Radiates pure luck.',            statBonuses: { luck: 5, passing: 3 } },
-  'shadow-cloak':      { id: 'shadow-cloak',      name: 'Shadow Cloak',      slot: 'body',   rarity: 'legendary', flavourText: 'Players phase through you. Somehow legal.',           statBonuses: { speed: 4, passing: 4 } },
+  // 'robo-arm':          { id: 'robo-arm',          name: 'Robo Arm',          slot: 'gloves', rarity: 'legendary', flavourText: 'Catches everything. EVERYTHING.',                       statBonuses: { reflexes: 5, strength: 3 } },
+  // 'gravity-boots':     { id: 'gravity-boots',     name: 'Gravity Boots',     slot: 'feet',   rarity: 'legendary', flavourText: 'Defies physics. Physicists are upset.',                 statBonuses: { speed: 5, shooting: 3 } },
+  // 'dino-stomp-cleats': { id: 'dino-stomp-cleats', name: 'Dino Stomp Cleats', slot: 'feet',   rarity: 'legendary', flavourText: 'Left craters on the pitch. Ref allowed it.',            statBonuses: { strength: 5, jumping: 3 } },
+  // 'lucky-scarf':       { id: 'lucky-scarf',       name: "Grandma's Lucky Scarf", slot: 'head', rarity: 'legendary', flavourText: 'Knitted with love. Radiates pure luck.',            statBonuses: { luck: 5, passing: 3 } },
+  // 'shadow-cloak':      { id: 'shadow-cloak',      name: 'Shadow Cloak',      slot: 'body',   rarity: 'legendary', flavourText: 'Players phase through you. Somehow legal.',           statBonuses: { speed: 4, passing: 4 } },
 
   // @forge:start — managed by `forge.py export --apply` — do not edit manually
   'zephyr-kicks': { id: 'zephyr-kicks', name: 'Zephyr Kicks', slot: 'feet', rarity: 'common', flavourText: "Channeling the ancient spirit of wind itself.", statBonuses: { speed: 1 } },
@@ -229,6 +223,17 @@ const CARDS = {
   'beanstalk-king-jersey': { id: 'beanstalk-king-jersey', name: 'Beanstalk King Jersey', slot: 'body', rarity: 'rare', flavourText: "Fee fi fo fum. Headers from the sky are fun.", statBonuses: { jumping: 4 } },
   'donut-destroyer-hat': { id: 'donut-destroyer-hat', name: 'Donut Destroyer Hat', slot: 'head', rarity: 'epic', flavourText: "Sugar-powered headbutts that flatten everything in sight completely.", statBonuses: { strength: 6 } },
   'ice-cream-truck-express': { id: 'ice-cream-truck-express', name: 'Ice Cream Truck Express', slot: 'body', rarity: 'epic', flavourText: "Delivers scoops of perfection before they melt.", statBonuses: { passing: 4, speed: 2 } },
+  'chelseas-compass-rose-shirt': { id: 'chelseas-compass-rose-shirt', name: 'Chelseas Compass Rose Shirt', slot: 'body', rarity: 'legendary', flavourText: "Every pass knows exactly where its going.", statBonuses: { passing: 4, shooting: 4 } },
+  'grammys-cookie-jar-helm': { id: 'grammys-cookie-jar-helm', name: 'Grammys Cookie Jar Helm', slot: 'head', rarity: 'legendary', flavourText: "Grammys secret recipe: reflexes plus fresh cookies.", statBonuses: { passing: 5, reflexes: 3 } },
+  'andys-firework-fountain-hat': { id: 'andys-firework-fountain-hat', name: 'Andys Firework Fountain Hat', slot: 'head', rarity: 'legendary', flavourText: "Every header launches a celebration. Every one.", statBonuses: { jumping: 5, luck: 3 } },
+  'big-ds-dragon-stompers': { id: 'big-ds-dragon-stompers', name: 'Big Ds Dragon Stompers', slot: 'feet', rarity: 'legendary', flavourText: "Forged in actual dragon fire. Probably.", statBonuses: { speed: 4, strength: 4 } },
+  'mollys-iron-maiden-mitts': { id: 'mollys-iron-maiden-mitts', name: 'Mollys Iron Maiden Mitts', slot: 'gloves', rarity: 'legendary', flavourText: "Catches everything. Crushes what it doesnt need.", statBonuses: { reflexes: 4, strength: 4 } },
+  'patricks-golden-arrow-boots': { id: 'patricks-golden-arrow-boots', name: 'Patricks Golden Arrow Boots', slot: 'feet', rarity: 'legendary', flavourText: "Every pass is a bullseye. Every shot is a legend.", statBonuses: { shooting: 3, speed: 5 } },
+  'terras-grasshopper-jersey': { id: 'terras-grasshopper-jersey', name: 'Terras Grasshopper Jersey', slot: 'body', rarity: 'legendary', flavourText: "Springs over headers like they are speed bumps.", statBonuses: { jumping: 5, luck: 3 } },
+  'patricks-jackpot-gauntlets': { id: 'patricks-jackpot-gauntlets', name: 'Patricks Jackpot Gauntlets', slot: 'gloves', rarity: 'legendary', flavourText: "Every save wins the jackpot. Cha-ching.", statBonuses: { luck: 4, reflexes: 4 } },
+  'dmos-dice-roller-boots': { id: 'dmos-dice-roller-boots', name: 'Dmos Dice Roller Boots', slot: 'feet', rarity: 'legendary', flavourText: "Always rolls a natural twenty. Every. Single. Time.", statBonuses: { luck: 4, passing: 4 } },
+  'papas-conductor-cap': { id: 'papas-conductor-cap', name: 'Papas Conductor Cap', slot: 'head', rarity: 'legendary', flavourText: "All aboard the passing express. Next stop: GOAL.", statBonuses: { passing: 5, shooting: 3 } },
+  'rubys-berserker-plate': { id: 'rubys-berserker-plate', name: 'Rubys Berserker Plate', slot: 'body', rarity: 'legendary', flavourText: "Diplomacy was never an option on this pitch.", statBonuses: { speed: 5, strength: 3 } },
   // @forge:end
 };
 
