@@ -184,7 +184,7 @@ function handleSeasonEnd() {
     const newSeason = generateSeason(nextLeague, 'player');
     gameState.currentLeague = nextLeague;
     gameState.season = newSeason;
-    gameState.pendingPacks = [{ packId: 'promotion', opponentId: null }];
+    gameState.pendingPacks = [{ packId: 'promotion', opponentId: null, fromLeague: season.league }];
     saveGame(gameState);
     openNextPack();
     return;

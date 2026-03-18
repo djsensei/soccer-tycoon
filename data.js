@@ -319,6 +319,15 @@ const PACK_TYPES = {
   promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 4, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
 };
 
+// League-specific promotion pack weights: [common, uncommon, rare, epic, legendary]
+// Rarity scales up as you advance through leagues
+const PROMOTION_PACK_WEIGHTS = {
+  local:         [0.30, 0.45, 0.25, 0.00, 0.00],  // best = rare
+  regional:      [0.10, 0.35, 0.40, 0.15, 0.00],  // best = epic
+  state:         [0.05, 0.25, 0.35, 0.25, 0.10],  // original weights
+  national:      [0.00, 0.15, 0.30, 0.35, 0.20],  // heavy epic/legendary
+};
+
 const TIER_PACK_REWARDS = {
   local:         { win: 'basic',  tie: null,     loss: null    },
   national:      { win: 'silver', tie: 'basic',  loss: null    },

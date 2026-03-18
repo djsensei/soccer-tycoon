@@ -234,8 +234,8 @@ function runOnce(runIndex) {
       gs.currentLeague = nextLeague;
       gs.season = ctx.generateSeason(nextLeague, 'player');
 
-      // Promotion pack
-      const promoCards = ctx.openPack('promotion');
+      // Promotion pack (league-specific weights)
+      const promoCards = ctx.openPack('promotion', null, { fromLeague: season.league });
       for (const cardId of promoCards) {
         const existing = gs.inventory.find(i => i.cardId === cardId);
         if (existing) existing.quantity++;

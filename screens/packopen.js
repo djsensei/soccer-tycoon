@@ -20,8 +20,9 @@ function openNextPack() {
   // Support both old format (string) and new format ({ packId, opponentId })
   const packId     = typeof pending === 'string' ? pending : pending.packId;
   const opponentId = typeof pending === 'string' ? null    : pending.opponentId;
+  const fromLeague = typeof pending === 'object' ? pending.fromLeague : null;
 
-  const cardIds = openPack(packId, opponentId);
+  const cardIds = openPack(packId, opponentId, { fromLeague });
   // Track which cards the player didn't own before this pack
   const ownedBefore = new Set(gameState.inventory.map(i => i.cardId));
   _newCardIds = new Set(cardIds.filter(id => !ownedBefore.has(id)));
