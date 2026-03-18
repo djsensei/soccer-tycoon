@@ -45,6 +45,8 @@ function renderMatchScreen() {
       <div id="match-end-btn" style="display:none">
         <button class="btn-primary btn-large" onclick="goToResults()">See Results</button>
       </div>
+      ${buildHelpButton('match')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }

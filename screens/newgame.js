@@ -3,6 +3,7 @@
 // ============================================================
 
 // Module-level wizard state (not persisted)
+let _showStatExplainer = false;
 let _creationStep = 0;  // 0 = team+manager, 1–5 = player creation by position
 let _creationData = {
   teamName: '',
@@ -139,7 +140,7 @@ function _renderPlayerStep() {
         </div>
         <div class="alloc-section">
           <div class="alloc-header">
-            <h3>Allocate Stats</h3>
+            <h3>Allocate Stats <button class="stat-explain-btn" onclick="_savePlayerName(); _showStatExplainer = true; render()">?</button></h3>
             <div class="alloc-remaining ${remaining === 0 ? 'alloc-done' : ''}">
               ${remaining} point${remaining !== 1 ? 's' : ''} left
             </div>
@@ -152,8 +153,26 @@ function _renderPlayerStep() {
           <button class="btn-primary ${remaining > 0 ? 'btn-disabled' : ''}" onclick="wizNextFromPlayer()" ${remaining > 0 ? 'disabled' : ''}>${btnLabel}</button>
         </div>
       </div>
+      ${_showStatExplainer ? _buildStatExplainerModal() : ''}
     </div>
   `;
+}
+
+function _buildStatExplainerModal() {
+  const rows = STATS.map(s =>
+    `<div class="stat-explain-row">
+      <span class="stat-explain-abbr" style="color:${STAT_COLORS[s]}">${STAT_ABBR[s]}</span>
+      <span class="stat-explain-desc">${STAT_DESCRIPTIONS[s]}</span>
+    </div>`
+  ).join('');
+  return `
+    <div class="modal-backdrop" onclick="_showStatExplainer = false; _savePlayerName(); render()">
+      <div class="modal-content help-modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="_showStatExplainer = false; _savePlayerName(); render()">✕</button>
+        <div class="help-modal-title">Stats Explained</div>
+        ${rows}
+      </div>
+    </div>`;
 }
 
 // --- Interaction handlers ---

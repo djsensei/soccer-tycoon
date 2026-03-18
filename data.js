@@ -2,7 +2,7 @@
 // data.js — Static game content. Never mutated at runtime.
 // ============================================================
 
-const GAME_VERSION = '0.12.0';
+const GAME_VERSION = '0.13.0';
 
 const ENERGY_CONFIG = {
   maxEnergy: 100,
@@ -65,6 +65,73 @@ const STAT_DESCRIPTIONS = {
   shooting: 'Finishing ability — shot power, placement, long-range strikes.',
   reflexes: 'Reaction speed — saves, quick turns, reading the play.',
   luck:     'Pure randomness — deflections, bounces, last-minute miracles.',
+};
+
+// --- Help Content (per-screen tips) --------------------------------
+const HELP_CONTENT = {
+  table: {
+    title: 'League Table',
+    tips: [
+      'Finish 1st to get promoted to the next league!',
+      'Finish last and you get relegated — game over!',
+      'After each match you can train your players or gear up.',
+      'Check the schedule on the right to see who you play next.',
+    ],
+  },
+  prematch: {
+    title: 'Pre-Match',
+    tips: [
+      'Compare your players to the opponent before kick-off.',
+      'Stats bars show who has the edge at each position.',
+      'Tired players (low energy) will play worse — consider resting them!',
+      'Gear boosts your stats — equip better gear before big matches.',
+    ],
+  },
+  managegear: {
+    title: 'Gear Up',
+    tips: [
+      'Tap a gear slot on a player, then pick a card from your inventory.',
+      'Better gear = higher stats in matches.',
+      'Use the Forge to combine 3 cards of the same rarity into a better one!',
+      'Goalkeepers have an extra slot: gloves.',
+    ],
+  },
+  training: {
+    title: 'Training',
+    tips: [
+      'Pick one stat for the whole team to train.',
+      'Training costs energy but has a chance to permanently boost a stat.',
+      'Resting recovers energy — tired players should rest!',
+      'You can mix and match: some players train, others rest.',
+    ],
+  },
+  packopen: {
+    title: 'Pack Opening',
+    tips: [
+      'Packs contain new gear cards for your team.',
+      'Win matches and get promoted to earn better packs!',
+      'Cards come in 5 rarities: Common, Uncommon, Rare, Epic, Legendary.',
+      'Tap the card to reveal it, or hit Skip to see them all at once.',
+    ],
+  },
+  match: {
+    title: 'Match Day',
+    tips: [
+      'Watch the play-by-play as your team battles it out!',
+      'Use the speed buttons to go faster or slower.',
+      'Goals, saves, and tackles earn your players milestone bonuses over time.',
+      'More fans = more hype! Win matches to grow your fanbase.',
+    ],
+  },
+  results: {
+    title: 'Results',
+    tips: [
+      'Check the stats breakdown to see how each player did.',
+      'Player Upgrades happen when your players hit career milestones.',
+      'Training Tips suggest what to work on next.',
+      'Win = fans go up. Lose = fans go down. Draw = small boost.',
+    ],
+  },
 };
 
 // Per-stat milestone thresholds (tuned to event frequency)

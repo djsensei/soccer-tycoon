@@ -127,6 +127,8 @@ function renderPackReveal(pack) {
       <div class="pack-actions">
         <button class="btn-secondary" onclick="skipReveal()">Skip</button>
       </div>
+      ${buildHelpButton('packopen')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }
@@ -172,6 +174,8 @@ function renderPackGrid(pack) {
       <h1>${pack?.name || 'Pack Opening'}</h1>
       <div class="pack-cards">${cardsHtml}</div>
       <div class="pack-actions">${nextBtn}</div>
+      ${buildHelpButton('packopen')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }

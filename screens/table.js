@@ -129,6 +129,8 @@ function renderTable() {
         <button class="btn-small btn-danger" onclick="startOver()">Start Over</button>
         <span class="version-label">v${GAME_VERSION}</span>
       </div>
+      ${buildHelpButton('table')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }

@@ -6,6 +6,7 @@ let gameState = null;
 let matchPlayback = null; // holds setTimeout reference during match animation
 
 function updateState(patch) {
+  if (patch.screen) _helpModalScreen = null;
   Object.assign(gameState, patch);
   saveGame(gameState);
   render();
