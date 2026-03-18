@@ -111,7 +111,7 @@ function executeTraining() {
     const energy = updated.energy != null ? updated.energy : ENERGY_CONFIG.maxEnergy;
 
     if (action === 'train' && (updated.stats[stat] || 0) < 10) {
-      updated.energy = Math.max(0, energy - ENERGY_CONFIG.trainingCost);
+      updated.energy = Math.max(0, energy - noisyCost(ENERGY_CONFIG.trainingCost));
       const success = Math.random() < ENERGY_CONFIG.trainSuccessChance;
       if (success) {
         updated.stats[stat] = (updated.stats[stat] || 1) + 1;

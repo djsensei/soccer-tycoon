@@ -280,9 +280,9 @@ function goToResults() {
     return { ...p, careerStats: newCareer, statBonuses: newBonuses };
   });
 
-  // --- Deduct energy from all players after match ---
+  // --- Deduct energy from all players after match (with noise) ---
   for (const p of updatedPlayers) {
-    p.energy = Math.max(0, (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) - ENERGY_CONFIG.matchCost);
+    p.energy = Math.max(0, (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) - noisyCost(ENERGY_CONFIG.matchCost));
   }
 
   const newFans = Math.max(50, gameState.fans + m.fanDelta);
@@ -341,7 +341,7 @@ function goToResults() {
     for (const npcTeam of leagueNPCTeams) {
       if (playedTeamIds.has(npcTeam.id)) {
         for (const p of npcTeam.players) {
-          p.energy = Math.max(0, (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) - ENERGY_CONFIG.matchCost);
+          p.energy = Math.max(0, (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) - noisyCost(ENERGY_CONFIG.matchCost));
         }
       }
       applyNPCTraining(npcTeam);

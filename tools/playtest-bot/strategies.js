@@ -178,7 +178,7 @@ function botTrainingDecision(ctx) {
       p.energy = Math.min(cfg.maxEnergy, energy + cfg.restRecovery);
     } else {
       // Train weakest stat
-      p.energy = Math.max(0, energy - cfg.trainingCost);
+      p.energy = Math.max(0, energy - ctx.noisyCost(cfg.trainingCost));
       const trainable = ctx.STATS.filter(s => (p.stats[s] || 0) < 10);
       if (trainable.length > 0) {
         const weakest = trainable.reduce((a, b) => (p.stats[a] || 0) <= (p.stats[b] || 0) ? a : b);

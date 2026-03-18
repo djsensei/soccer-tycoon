@@ -174,26 +174,30 @@ function renderPreMatch() {
         <button class="btn-back" onclick="updateState({screen:'table'})">← Back</button>
         <h1>Pre-Match</h1>
       </div>
-      <div class="prematch-layout">
-        ${fatigueHtml}
-        <div class="vs-banner">
-          <div class="vs-team player-team">${gameState.teamName}<div class="vs-manager">Manager: ${gameState.managerName || 'Coach'}</div></div>
-          <div class="vs-divider">VS</div>
-          <div class="vs-team opp-team">${opp.name}${oppManagerHtml}</div>
-        </div>
-        ${commentaryHtml}
-        <div class="prematch-roster">
-          <div class="prematch-roster-header">
-            <span>${gameState.teamName}</span>
-            <span>Matchup</span>
-            <span>${opp.name}</span>
+      ${fatigueHtml}
+      <div class="prematch-two-col">
+        <div class="prematch-col-left">
+          <div class="vs-banner">
+            <div class="vs-team player-team">${gameState.teamName}<div class="vs-manager">Manager: ${gameState.managerName || 'Coach'}</div></div>
+            <div class="vs-divider">VS</div>
+            <div class="vs-team opp-team">${opp.name}${oppManagerHtml}</div>
           </div>
-          ${rosterRows}
+          ${commentaryHtml}
+          <div class="card prematch-card">
+            <blockquote class="trash-talk">${talk}</blockquote>
+          </div>
+          <button class="btn-primary btn-large" onclick="kickOff()">KICK OFF!</button>
         </div>
-        <div class="card prematch-card">
-          <blockquote class="trash-talk">${talk}</blockquote>
+        <div class="prematch-col-right">
+          <div class="prematch-roster">
+            <div class="prematch-roster-header">
+              <span>${gameState.teamName}</span>
+              <span>Matchup</span>
+              <span>${opp.name}</span>
+            </div>
+            ${rosterRows}
+          </div>
         </div>
-        <button class="btn-primary btn-large" onclick="kickOff()">KICK OFF!</button>
       </div>
       ${buildHelpButton('prematch')}
       ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}

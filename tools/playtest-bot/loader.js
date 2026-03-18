@@ -89,6 +89,7 @@ function createSandbox() {
     this.openPack = openPack;
     this.forgeCards = forgeCards;
     this.effectiveStats = effectiveStats;
+    this.noisyCost = noisyCost;
     this.sortStandings = sortStandings;
     this.findLeagueTeam = findLeagueTeam;
     this.getTeamName = getTeamName;

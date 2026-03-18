@@ -275,15 +275,15 @@ function renderResults() {
       <div class="results-columns">
         <div class="results-col-left">
           ${newspaperHtml}
-          ${statsHtml}
-          ${perPlayerHtml}
-        </div>
-        <div class="results-col-right">
           ${fanHtml}
           ${milestoneHtml}
-          ${recsHtml}
           ${seasonMsg}
           ${navHtml}
+        </div>
+        <div class="results-col-right">
+          ${statsHtml}
+          ${perPlayerHtml}
+          ${recsHtml}
         </div>
       </div>
       ${buildHelpButton('results')}
