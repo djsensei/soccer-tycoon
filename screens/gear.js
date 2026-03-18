@@ -11,6 +11,7 @@ let _modalCard = null;     // cardId or null
 let _forgeMode = false;
 let _forgeSlots = [null, null, null];
 let _forgeResult = null;
+let _forgeResultIsNew = false;
 
 // Drag-and-drop state
 let _drag = null;          // { cardId, sourceType, sourcePlayerId, sourceSlot, ghost, startX, startY, started }
@@ -283,10 +284,12 @@ function buildForgePanel() {
   // If showing result, display it
   if (_forgeResult) {
     const rc = CARDS[_forgeResult];
+    const newBadge = _forgeResultIsNew ? '<div class="reveal-new-badge">NEW!</div>' : '';
     return `
       <div class="forge-result">
         <div class="forge-result-label">You forged:</div>
-        <div class="forge-result-card" style="animation: cardReveal 0.5s ease both">
+        <div class="forge-result-card" style="animation: cardReveal 0.5s ease both; position:relative">
+          ${newBadge}
           ${cardImage(_forgeResult, 'large')}
           ${rarityBadge(rc.rarity)}
           <div class="modal-card-name">${rc.name}</div>
@@ -372,6 +375,7 @@ function toggleForgeMode() {
   _forgeMode = !_forgeMode;
   _forgeSlots = [null, null, null];
   _forgeResult = null;
+  _forgeResultIsNew = false;
   if (_forgeMode) _gearSel = { playerId: null, slot: null };
   render();
 }
@@ -418,6 +422,7 @@ function executeForge() {
   }
   // Add result card
   const existing = inv.find(i => i.cardId === result.resultCardId);
+  _forgeResultIsNew = !existing;
   if (existing) { existing.quantity++; }
   else { inv.push({ cardId: result.resultCardId, quantity: 1 }); }
 
@@ -428,6 +433,7 @@ function executeForge() {
 
 function dismissForgeResult() {
   _forgeResult = null;
+  _forgeResultIsNew = false;
   render();
 }
 
