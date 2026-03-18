@@ -286,6 +286,8 @@ function renderResults() {
           ${navHtml}
         </div>
       </div>
+      ${buildHelpButton('results')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }

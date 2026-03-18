@@ -198,6 +198,38 @@ function buildStatDetailModal() {
     </div>`;
 }
 
+// --- Help System ------------------------------------------------
+let _helpModalScreen = null;
+
+function openHelp(screenKey, evt) {
+  if (evt) evt.stopPropagation();
+  _helpModalScreen = screenKey;
+  render();
+}
+
+function closeHelp() {
+  _helpModalScreen = null;
+  render();
+}
+
+function buildHelpButton(screenKey) {
+  return `<button class="help-btn" onclick="openHelp('${screenKey}', event)">?</button>`;
+}
+
+function buildHelpModal(screenKey) {
+  const content = HELP_CONTENT[screenKey];
+  if (!content) return '';
+  const tipsHtml = content.tips.map(t => `<li>${t}</li>`).join('');
+  return `
+    <div class="modal-backdrop" onclick="closeHelp()">
+      <div class="modal-content help-modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeHelp()">✕</button>
+        <div class="help-modal-title">${content.title}</div>
+        <ul class="help-modal-tips">${tipsHtml}</ul>
+      </div>
+    </div>`;
+}
+
 // --- Fan Tier Helpers (Phase 1) ---------------------------------
 function currentFanTier(fans) {
   for (const key of TIER_ORDER) {

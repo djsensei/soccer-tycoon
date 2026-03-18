@@ -166,6 +166,8 @@ function renderGearUp() {
       </div>
       ${modalHtml}
       ${buildStatDetailModal()}
+      ${buildHelpButton('managegear')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }

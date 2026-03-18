@@ -48,9 +48,9 @@ function renderTraining() {
   // Stat selector (team-wide)
   const trainable = STATS.filter(s => gameState.players.some(p => (p.stats[s] || 0) < 10));
   const statSelectorHtml = trainable.map(s => {
-    const avg = Math.round(gameState.players.reduce((sum, p) => sum + (p.stats[s] || 0), 0) / gameState.players.length * 10) / 10;
     const active = s === _trainingStat ? 'btn-active' : 'btn-secondary';
-    return `<button class="btn-small ${active}" onclick="setTeamTrainingStat('${s}')" style="border-color:${STAT_COLORS[s]}">${STAT_ABBR[s]} (${avg})</button>`;
+    const label = s.charAt(0).toUpperCase() + s.slice(1);
+    return `<button class="btn-small ${active}" onclick="setTeamTrainingStat('${s}')" style="border-color:${STAT_COLORS[s]}">${label}</button>`;
   }).join('');
 
   const rows = gameState.players.map(p => {
@@ -95,6 +95,8 @@ function renderTraining() {
       <div class="training-go-btn">
         <button class="btn-primary btn-large" onclick="executeTraining()">Go!</button>
       </div>
+      ${buildHelpButton('training')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }

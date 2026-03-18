@@ -195,6 +195,8 @@ function renderPreMatch() {
         </div>
         <button class="btn-primary btn-large" onclick="kickOff()">KICK OFF!</button>
       </div>
+      ${buildHelpButton('prematch')}
+      ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>
   `;
 }
