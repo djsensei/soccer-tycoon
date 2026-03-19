@@ -79,12 +79,13 @@ button { cursor: pointer; border: none; border-radius: var(--radius-sm); font-si
 .btn-primary:hover { background: #82d47c; }
 
 .btn-secondary {
-  background: var(--card);
+  background: var(--accent-dim);
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent-dim);
   padding: 0.6rem 1.4rem;
+  font-weight: bold;
 }
-.btn-secondary:hover { background: var(--card-hover); }
+.btn-secondary:hover { background: #4a8f44; }
 
 .btn-small {
   background: var(--accent-dim);
