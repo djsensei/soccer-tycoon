@@ -111,7 +111,7 @@ function executeTraining() {
     const energy = updated.energy != null ? updated.energy : ENERGY_CONFIG.maxEnergy;
 
     if (action === 'train' && (updated.stats[stat] || 0) < 10) {
-      updated.energy = Math.max(0, energy - ENERGY_CONFIG.trainingCost);
+      updated.energy = Math.max(0, energy - noisyCost(ENERGY_CONFIG.trainingCost));
       const success = Math.random() < ENERGY_CONFIG.trainSuccessChance;
       if (success) {
         updated.stats[stat] = (updated.stats[stat] || 1) + 1;
@@ -140,20 +140,31 @@ function executeTraining() {
 }
 
 function renderTrainingResults() {
-  const rows = _trainingResults.map(r => {
+  const rows = _trainingResults.map((r, i) => {
     const p = getPlayer(r.playerId);
     const energy = p ? (p.energy != null ? p.energy : ENERGY_CONFIG.maxEnergy) : 100;
+    const color = r.stat ? (STAT_COLORS[r.stat] || 'var(--accent)') : '';
 
     let outcomeHtml;
     if (r.action === 'rest') {
       outcomeHtml = `<span class="training-result-outcome rested">Rested</span>`;
     } else if (r.success) {
-      outcomeHtml = `<span class="training-result-outcome success">${STAT_ABBR[r.stat]} <span class="stat-up-anim">+1!</span> (now ${r.newVal})</span>`;
+      const barPct = Math.min(100, Math.round((r.newVal / 10) * 100));
+      outcomeHtml = `
+        <span class="training-result-outcome success">
+          <span class="training-stat-bar-anim" style="--bar-color:${color}">
+            <span class="training-stat-bar-fill-anim" style="width:${barPct}%;background:${color};animation-delay:${i * 0.15}s"></span>
+          </span>
+          <span class="training-stat-pop" style="--pop-color:${color};animation-delay:${i * 0.15 + 0.3}s">
+            ${STAT_ABBR[r.stat]} +1!
+          </span>
+          <span class="training-stat-now">(now ${r.newVal})</span>
+        </span>`;
     } else {
       outcomeHtml = `<span class="training-result-outcome fail">Trained ${STAT_ABBR[r.stat]} — no improvement</span>`;
     }
 
-    return `<div class="training-result-row">
+    return `<div class="training-result-row" style="animation-delay:${i * 0.08}s">
       <div class="training-player-name">${r.name}</div>
       <div class="training-result-energy">${energyBar(energy)}</div>
       ${outcomeHtml}

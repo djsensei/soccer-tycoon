@@ -204,22 +204,25 @@ function renderResults() {
 
   const perPlayerHtml = playerLines ? `<div class="results-per-player"><h3>Player Performance</h3>${playerLines}</div>` : '';
 
-  // Training recommendations
-  const recs = generateTrainingRecommendations(stats, gameState.players);
+  // Training recommendations (skip if season just ended — no training coming)
+  const recs = m.seasonResult ? [] : generateTrainingRecommendations(stats, gameState.players);
   const recsHtml = recs.length ? `<div class="training-recs"><h3>Training Tips</h3>${recs.map(r => `<div class="training-rec-item">${r}</div>`).join('')}</div>` : '';
 
   const milestones = m.milestones || [];
   const milestoneHtml = milestones.length ? `
     <div class="milestone-section">
       <h2>Player Upgrades!</h2>
-      ${milestones.map(ms => `
-        <div class="milestone-card">
+      ${milestones.map((ms, i) => {
+        const color = STAT_COLORS[ms.statUpgrade] || 'var(--accent)';
+        return `
+        <div class="milestone-card" style="animation-delay:${i * 0.25}s">
+          <div class="milestone-beam" style="--beam-color:${color}"></div>
           <div class="milestone-player">${ms.playerName}</div>
           <div class="milestone-detail">
-            ${ms.threshold} career ${ms.careerStat} -> <strong>+${ms.bonus || 1} ${ms.statUpgrade}</strong>
+            ${ms.threshold} career ${ms.careerStat} -> <strong style="color:${color}">+${ms.bonus || 1} ${ms.statUpgrade}</strong>
           </div>
-        </div>
-      `).join('')}
+        </div>`;
+      }).join('')}
     </div>` : '';
 
   // Season status message
@@ -227,7 +230,16 @@ function renderResults() {
   if (m.seasonResult === 'promoted') {
     const nextLeague = LEAGUE_ORDER[LEAGUE_ORDER.indexOf(gameState.currentLeague) + 1];
     const nextName = nextLeague ? LEAGUE_DEFINITIONS[nextLeague]?.name : 'the next league';
-    seasonMsg = `<div class="season-msg season-promo">PROMOTED! Moving up to ${nextName}!</div>`;
+    seasonMsg = `
+      <div class="promo-celebration">
+        <div class="confetti-container">${Array.from({length: 30}, (_, i) =>
+          `<div class="confetti-piece" style="--i:${i};--x:${Math.random()*100}vw;--r:${Math.random()*360}deg;--d:${1.5+Math.random()*2}s;--c:${['var(--accent)','var(--gold)','#42b4e8','#9c27b0','#e05555'][i%5]}"></div>`
+        ).join('')}</div>
+        <div class="promo-banner">
+          <div class="promo-label">PROMOTED!</div>
+          <div class="promo-league">${nextName}</div>
+        </div>
+      </div>`;
   } else if (m.seasonResult === 'gameWin') {
     seasonMsg = `<div class="season-msg season-win">YOU WON THE WORLD LEAGUE! CHAMPION!</div>`;
   } else if (m.seasonResult === 'mid') {
@@ -275,15 +287,15 @@ function renderResults() {
       <div class="results-columns">
         <div class="results-col-left">
           ${newspaperHtml}
-          ${statsHtml}
-          ${perPlayerHtml}
-        </div>
-        <div class="results-col-right">
           ${fanHtml}
           ${milestoneHtml}
-          ${recsHtml}
           ${seasonMsg}
           ${navHtml}
+        </div>
+        <div class="results-col-right">
+          ${statsHtml}
+          ${perPlayerHtml}
+          ${recsHtml}
         </div>
       </div>
       ${buildHelpButton('results')}

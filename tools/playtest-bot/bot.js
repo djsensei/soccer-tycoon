@@ -173,7 +173,7 @@ function runOnce(runIndex) {
 
       // --- Energy deduction for player team ---
       for (const p of gs.players) {
-        p.energy = Math.max(0, (p.energy != null ? p.energy : ctx.ENERGY_CONFIG.maxEnergy) - ctx.ENERGY_CONFIG.matchCost);
+        p.energy = Math.max(0, (p.energy != null ? p.energy : ctx.ENERGY_CONFIG.maxEnergy) - ctx.noisyCost(ctx.ENERGY_CONFIG.matchCost));
       }
 
       // --- Energy deduction for NPC teams that played + NPC training ---
@@ -187,7 +187,7 @@ function runOnce(runIndex) {
       for (const npcTeam of leagueNPCTeams) {
         if (playedIds.has(npcTeam.id)) {
           for (const p of npcTeam.players) {
-            p.energy = Math.max(0, (p.energy != null ? p.energy : ctx.ENERGY_CONFIG.maxEnergy) - ctx.ENERGY_CONFIG.matchCost);
+            p.energy = Math.max(0, (p.energy != null ? p.energy : ctx.ENERGY_CONFIG.maxEnergy) - ctx.noisyCost(ctx.ENERGY_CONFIG.matchCost));
           }
         }
         ctx.applyNPCTraining(npcTeam);
@@ -234,8 +234,8 @@ function runOnce(runIndex) {
       gs.currentLeague = nextLeague;
       gs.season = ctx.generateSeason(nextLeague, 'player');
 
-      // Promotion pack
-      const promoCards = ctx.openPack('promotion');
+      // Promotion pack (league-specific weights)
+      const promoCards = ctx.openPack('promotion', null, { fromLeague: season.league });
       for (const cardId of promoCards) {
         const existing = gs.inventory.find(i => i.cardId === cardId);
         if (existing) existing.quantity++;

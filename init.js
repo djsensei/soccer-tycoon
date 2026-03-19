@@ -260,7 +260,7 @@ function applyNPCTraining(team) {
     const p = team.players.find(pl => pl.id === dec.playerId);
     if (!p) continue;
     if (dec.action === 'train') {
-      p.energy = Math.max(0, (p.energy || ENERGY_CONFIG.maxEnergy) - ENERGY_CONFIG.trainingCost);
+      p.energy = Math.max(0, (p.energy || ENERGY_CONFIG.maxEnergy) - noisyCost(ENERGY_CONFIG.trainingCost));
       if (Math.random() < ENERGY_CONFIG.trainSuccessChance) {
         p.stats[dec.stat] = Math.min(10, (p.stats[dec.stat] || 1) + 1);
       }

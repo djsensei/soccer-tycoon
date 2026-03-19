@@ -7,6 +7,7 @@ let _revealIndex    = 0;
 let _sortedCards    = [];
 let _skipRevealed   = false;
 let _showingRevealed = false; // true while the just-revealed card is animating
+let _newCardIds     = null;   // Set of cardIds the player didn't own before this pack
 
 const RARITY_SORT = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4 };
 
@@ -19,8 +20,12 @@ function openNextPack() {
   // Support both old format (string) and new format ({ packId, opponentId })
   const packId     = typeof pending === 'string' ? pending : pending.packId;
   const opponentId = typeof pending === 'string' ? null    : pending.opponentId;
+  const fromLeague = typeof pending === 'object' ? pending.fromLeague : null;
 
-  const cardIds = openPack(packId, opponentId);
+  const cardIds = openPack(packId, opponentId, { fromLeague });
+  // Track which cards the player didn't own before this pack
+  const ownedBefore = new Set(gameState.inventory.map(i => i.cardId));
+  _newCardIds = new Set(cardIds.filter(id => !ownedBefore.has(id)));
   const newInventory = [...gameState.inventory];
   for (const cardId of cardIds) {
     const existing = newInventory.find(i => i.cardId === cardId);
@@ -100,8 +105,14 @@ function renderPackReveal(pack) {
 
   if (_showingRevealed) {
     const bonuses = Object.entries(currentCard.statBonuses).map(([s, v]) => `+${v} ${s}`).join(' · ') || 'No stat bonus';
+    const isNew = _newCardIds && _newCardIds.has(currentId);
+    const newBadge = isNew ? '<div class="reveal-new-badge">NEW!</div>' : '';
+    const rarityAnim = currentCard.rarity === 'epic' ? 'reveal-flip-epic'
+      : currentCard.rarity === 'legendary' ? 'reveal-flip-legendary'
+      : 'reveal-flip';
     stageHtml = `
-      <div class="pack-card reveal-flip rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}; cursor:pointer;" onclick="revealNextCard()">
+      <div class="pack-card ${rarityAnim} rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}; cursor:pointer;" onclick="revealNextCard()">
+        ${newBadge}
         ${cardImage(currentId, 'large')}
         ${rarityBadge(currentCard.rarity)}
         <div class="pack-card-slot">${currentCard.slot.charAt(0).toUpperCase() + currentCard.slot.slice(1)}</div>
@@ -111,8 +122,12 @@ function renderPackReveal(pack) {
         <div class="reveal-hint">Tap to continue</div>
       </div>`;
   } else {
+    const rarityClass = currentCard.rarity === 'rare' ? 'reveal-cardback-rare'
+      : currentCard.rarity === 'epic' ? 'reveal-cardback-epic'
+      : currentCard.rarity === 'legendary' ? 'reveal-cardback-legendary'
+      : '';
     stageHtml = `
-      <div class="reveal-cardback rarity-${currentCard.rarity}" style="border-color:${RARITY_COLOR[currentCard.rarity]}" onclick="revealNextCard()">
+      <div class="reveal-cardback rarity-${currentCard.rarity} ${rarityClass}" style="border-color:${RARITY_COLOR[currentCard.rarity]}" onclick="revealNextCard()">
         <div class="cardback-rarity">${currentCard.rarity.toUpperCase()}</div>
         <div class="reveal-hint">Tap to reveal</div>
         <div class="reveal-count">Card ${_revealIndex + 1} of ${total}</div>

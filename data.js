@@ -2,7 +2,7 @@
 // data.js — Static game content. Never mutated at runtime.
 // ============================================================
 
-const GAME_VERSION = '0.13.0';
+const GAME_VERSION = '0.15.0';
 
 const ENERGY_CONFIG = {
   maxEnergy: 100,
@@ -317,6 +317,15 @@ const PACK_TYPES = {
   gold:      { id: 'gold',      name: 'Gold Pack',      description: "Now we're talking.",                       cardsPerPack: 3, weights: [0.15, 0.30, 0.35, 0.15, 0.05] },
   special:   { id: 'special',   name: 'Special Pack',   description: 'Only from the weird teams.',               cardsPerPack: 4, weights: [0.05, 0.20, 0.35, 0.28, 0.12] },
   promotion: { id: 'promotion', name: 'Promotion Pack', description: 'Earned by finishing first! Big rewards.',  cardsPerPack: 4, weights: [0.05, 0.25, 0.35, 0.25, 0.10] },
+};
+
+// League-specific promotion pack weights: [common, uncommon, rare, epic, legendary]
+// Rarity scales up as you advance through leagues
+const PROMOTION_PACK_WEIGHTS = {
+  local:         [0.30, 0.45, 0.25, 0.00, 0.00],  // best = rare
+  regional:      [0.10, 0.35, 0.40, 0.15, 0.00],  // best = epic
+  state:         [0.05, 0.25, 0.35, 0.25, 0.10],  // original weights
+  national:      [0.00, 0.15, 0.30, 0.35, 0.20],  // heavy epic/legendary
 };
 
 const TIER_PACK_REWARDS = {

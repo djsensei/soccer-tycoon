@@ -2,6 +2,12 @@
 // utils.js — Shared utilities used by screens and simulator
 // ============================================================
 
+// Add random noise to an energy cost (+/- up to variance points)
+function noisyCost(baseCost, variance = 3) {
+  const noise = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
+  return Math.max(1, baseCost + noise);
+}
+
 // State accessors
 function getPlayer(id) { return gameState.players.find(p => p.id === id); }
 function getOpponent(id) {

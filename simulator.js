@@ -561,9 +561,14 @@ function forgeCards(cardIds) {
 // Open a pack — returns array of card ids (no duplicates; gloves weighted lower)
 // Phase 4: if defeatedOpponentId is provided and that opponent has a uniqueCardId,
 // inject the unique card in place of the last drawn card.
-function openPack(packTypeId, defeatedOpponentId = null) {
+function openPack(packTypeId, defeatedOpponentId = null, options = {}) {
   const pack = PACK_TYPES[packTypeId];
   if (!pack) return [];
+
+  // Use league-specific weights for promotion packs
+  const weights = (packTypeId === 'promotion' && options.fromLeague && PROMOTION_PACK_WEIGHTS[options.fromLeague])
+    ? PROMOTION_PACK_WEIGHTS[options.fromLeague]
+    : pack.weights;
 
   // Eligible cards: anything with actual stat bonuses (exclude zero-stat starting gear)
   // Also exclude special unique cards from the general pool
@@ -580,7 +585,7 @@ function openPack(packTypeId, defeatedOpponentId = null) {
     let cumulative = 0;
     let chosenRarity = 'common';
     for (let j = 0; j < RARITIES.length; j++) {
-      cumulative += pack.weights[j];
+      cumulative += weights[j];
       if (r < cumulative) { chosenRarity = RARITIES[j]; break; }
     }
 

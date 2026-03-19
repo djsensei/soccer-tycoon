@@ -56,6 +56,7 @@ function createSandbox() {
     this.RARITIES = RARITIES;
     this.CARDS = CARDS;
     this.PACK_TYPES = PACK_TYPES;
+    this.PROMOTION_PACK_WEIGHTS = PROMOTION_PACK_WEIGHTS;
     this.STAT_MILESTONES = STAT_MILESTONES;
     this.MILESTONE_BONUSES = MILESTONE_BONUSES;
     this.LEAGUE_ORDER = LEAGUE_ORDER;
@@ -89,6 +90,7 @@ function createSandbox() {
     this.openPack = openPack;
     this.forgeCards = forgeCards;
     this.effectiveStats = effectiveStats;
+    this.noisyCost = noisyCost;
     this.sortStandings = sortStandings;
     this.findLeagueTeam = findLeagueTeam;
     this.getTeamName = getTeamName;
