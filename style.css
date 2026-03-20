@@ -1343,16 +1343,19 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 }
 .fan-deltas {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
   min-width: 60px;
+  height: 1.4rem;
+  overflow: visible;
 }
 .fan-delta-float {
   font-size: 0.95rem;
   font-weight: 700;
-  animation: floatUp 2s ease forwards;
+  animation: fadeRight 1.2s ease forwards;
   white-space: nowrap;
+  position: absolute;
+  left: 0;
 }
 .fan-delta-float.positive { color: var(--accent); }
 .fan-delta-float.negative { color: var(--danger); }
@@ -1361,10 +1364,10 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   animation: fanFlash 0.6s ease;
 }
 
-@keyframes floatUp {
-  0%   { opacity: 1; transform: translateY(0); }
-  70%  { opacity: 0.8; }
-  100% { opacity: 0; transform: translateY(-18px); }
+@keyframes fadeRight {
+  0%   { opacity: 1; transform: translateX(0); }
+  60%  { opacity: 0.7; }
+  100% { opacity: 0; transform: translateX(50px); }
 }
 @keyframes fanFlash {
   0%   { background: var(--card-hover); }
@@ -1380,6 +1383,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 .table-split-left {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -1533,6 +1537,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   width: 100%;
   max-width: 280px;
   box-sizing: border-box;
+  align-self: center;
 }
 
 .npc-results {
