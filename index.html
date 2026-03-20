@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚽ Soccer Tycoon</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <script>
+    // Soft access gate — not cryptographically secure
+    !function(){
+      var PW='HBBD', K='st-auth';
+      if(localStorage.getItem(K)===PW) return;
+      var p=prompt('⚽ Soccer Tycoon — enter the access code:');
+      if(p!==PW){document.documentElement.innerHTML='<body style="padding:3rem;font-family:sans-serif;background:#0d1f0d;color:#e4f0e4;text-align:center"><h2>Wrong code.</h2><p>Reload the page to try again.</p></body>';throw'denied';}
+      localStorage.setItem(K,p);
+    }();
+  </script>
+
+  <div id="app">Loading...</div>
+
+  <!-- Load order matters: each file can only reference names from files above it -->
+  <script src="transitions.js"></script><!-- Markov chain probabilities + stat influences -->
+  <script src="data.js"></script>       <!-- constants, content, name generators -->
+  <script src="commentary.js"></script> <!-- match commentary templates + selection -->
+  <script src="save.js"></script>       <!-- localStorage read/write -->
+  <script src="utils.js"></script>      <!-- shared utilities (effectiveStats, UI helpers) -->
+  <script src="init.js"></script>       <!-- new game creation -->
+  <script src="simulator.js"></script>  <!-- match engine (pure functions, no DOM) -->
+
+  <!-- One file per screen — add new screens here -->
+  <script src="screens/title.js"></script>
+  <script src="screens/welcome.js"></script>
+  <script src="screens/newgame.js"></script>
+  <script src="screens/hub.js"></script>
+  <script src="screens/gear.js"></script>
+  <script src="screens/table.js"></script>
+  <script src="screens/prematch.js"></script>
+  <script src="screens/match.js"></script>
+  <script src="screens/results.js"></script>
+  <script src="screens/training.js"></script>
+  <script src="screens/packopen.js"></script>
+  <script src="screens/gameover.js"></script>
+
+  <script src="state.js"></script>      <!-- gameState, updateState(), render(), bootstrap -->
+</body>
+</html>
