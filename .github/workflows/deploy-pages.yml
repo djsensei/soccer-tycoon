@@ -1,3 +1,14 @@
+# Deploys the game to GitHub Pages.
+#   - Main branch  → djsensei.github.io/soccer-tycoon/
+#   - Other branches → djsensei.github.io/soccer-tycoon/dev/
+#
+# /dev/ always reflects the LAST pushed non-main branch. If you push two
+# different feature branches, the second overwrites the first in /dev/.
+# This is fine when playtesting one branch at a time.
+#
+# The workflow file must exist on a branch for pushes to trigger deployment.
+# Branches created from main inherit it automatically.
+
 name: Deploy to GitHub Pages
 
 on:
