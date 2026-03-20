@@ -102,7 +102,6 @@ function renderGearUp() {
   }).join('');
 
   // Inventory panel — always visible
-  const forgeBtnLabel = _forgeMode ? 'Back to Inventory' : 'Forge';
   let inventoryBodyHtml;
 
   if (_forgeMode) {
@@ -167,11 +166,11 @@ function renderGearUp() {
           ${playerRowsHtml}
         </div>
         <div class="gearup-inv-col">
-          <div class="inv-header">
-            <h2>${_forgeMode ? 'Forge' : 'Inventory'}</h2>
-            <button class="btn-small" onclick="toggleForgeMode()">${forgeBtnLabel}</button>
+          <div class="inv-tabs">
+            <button class="inv-tab ${!_forgeMode ? 'inv-tab--active' : ''}" onclick="if(_forgeMode) toggleForgeMode()">Inventory</button>
+            <button class="inv-tab ${_forgeMode ? 'inv-tab--active' : ''}" onclick="if(!_forgeMode) toggleForgeMode()">Forge</button>
           </div>
-          <div class="gearup-inventory">
+          <div class="gearup-inventory ${_forgeMode ? 'gearup-inventory--forge' : ''}">
             ${inventoryBodyHtml}
           </div>
         </div>

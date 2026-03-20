@@ -189,17 +189,17 @@ function renderResults() {
       ${statRow(stats.playerPoss+'%', 'Possession',      stats.oppPoss+'%')}
     </div>`;
 
-  // Per-player stat lines
+  // Per-player stat lines with spelled-out labels and color coding
   const playerLines = gameState.players.map(p => {
     const pp = stats.perPlayer[p.id];
     if (!pp) return '';
     const parts = [];
-    if (pp.goals) parts.push(`${pp.goals}G`);
-    if (pp.passes) parts.push(`${pp.passSuccess}/${pp.passes} P`);
-    if (pp.tackles) parts.push(`${pp.tackles} T`);
-    if (pp.saves) parts.push(`${pp.saves} S`);
+    if (pp.goals) parts.push(`<span class="psl-chip" style="color:${STAT_COLORS.shooting}">${pp.goals} goal${pp.goals !== 1 ? 's' : ''}</span>`);
+    if (pp.passes) parts.push(`<span class="psl-chip" style="color:${STAT_COLORS.passing}">${pp.passSuccess}/${pp.passes} passes</span>`);
+    if (pp.tackles) parts.push(`<span class="psl-chip" style="color:${STAT_COLORS.strength}">${pp.tackles} tackle${pp.tackles !== 1 ? 's' : ''}</span>`);
+    if (pp.saves) parts.push(`<span class="psl-chip" style="color:${STAT_COLORS.reflexes}">${pp.saves} save${pp.saves !== 1 ? 's' : ''}</span>`);
     if (!parts.length) return '';
-    return `<div class="player-stat-line"><span class="psl-name">${p.name}</span><span class="psl-stats">${parts.join(' | ')}</span></div>`;
+    return `<div class="player-stat-line"><span class="psl-name">${p.name}</span><span class="psl-stats">${parts.join('<span class="psl-sep">|</span>')}</span></div>`;
   }).filter(Boolean).join('');
 
   const perPlayerHtml = playerLines ? `<div class="results-per-player"><h3>Player Performance</h3>${playerLines}</div>` : '';
@@ -284,13 +284,13 @@ function renderResults() {
   return `
     <div class="screen results-screen">
       ${scoreHtml}
+      ${fanHtml}
+      ${navHtml}
       <div class="results-columns">
         <div class="results-col-left">
           ${newspaperHtml}
-          ${fanHtml}
           ${milestoneHtml}
           ${seasonMsg}
-          ${navHtml}
         </div>
         <div class="results-col-right">
           ${statsHtml}

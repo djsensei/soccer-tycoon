@@ -6,9 +6,11 @@
 let _trainingChoices = {};  // { playerId: 'train' | 'rest' }
 let _trainingStat = null;   // single stat the whole team trains on
 let _trainingResults = [];
+let _restMode = false;      // true = whole team rests, stat buttons grayed
 
 function initTrainingChoices() {
   _trainingChoices = {};
+  _restMode = false;
   for (const p of gameState.players) {
     _trainingChoices[p.id] = 'rest';
   }
@@ -30,12 +32,18 @@ function toggleTrainingAction(playerId) {
 
 function setTeamTrainingStat(stat) {
   _trainingStat = stat;
+  _restMode = false;
+  // When selecting a stat, set all players to train
+  for (const p of gameState.players) {
+    _trainingChoices[p.id] = 'train';
+  }
   render();
 }
 
-function bulkTrainingAction(action) {
+function setRestMode() {
+  _restMode = true;
   for (const p of gameState.players) {
-    _trainingChoices[p.id] = action;
+    _trainingChoices[p.id] = 'rest';
   }
   render();
 }
@@ -45,12 +53,13 @@ function renderTraining() {
     initTrainingChoices();
   }
 
-  // Stat selector (team-wide)
+  // Stat selector (team-wide) — grayed out when rest mode is active
   const trainable = STATS.filter(s => gameState.players.some(p => (p.stats[s] || 0) < 10));
   const statSelectorHtml = trainable.map(s => {
-    const active = s === _trainingStat ? 'btn-active' : 'btn-secondary';
+    const active = !_restMode && s === _trainingStat ? 'btn-active' : 'btn-secondary';
+    const disabled = _restMode ? 'training-btn-dimmed' : '';
     const label = s.charAt(0).toUpperCase() + s.slice(1);
-    return `<button class="btn-small ${active}" onclick="setTeamTrainingStat('${s}')" style="border-color:${STAT_COLORS[s]}">${label}</button>`;
+    return `<button class="btn-small ${active} ${disabled}" onclick="setTeamTrainingStat('${s}')" style="border-color:${STAT_COLORS[s]}">${label}</button>`;
   }).join('');
 
   const rows = gameState.players.map(p => {
@@ -87,9 +96,8 @@ function renderTraining() {
         <div class="training-stat-label">Team trains:</div>
         <div class="training-stat-btns">${statSelectorHtml}</div>
       </div>
-      <div class="training-bulk-btns">
-        <button class="btn-secondary btn-small" onclick="bulkTrainingAction('rest')">Rest All</button>
-        <button class="btn-secondary btn-small" onclick="bulkTrainingAction('train')">Train All</button>
+      <div class="training-rest-row">
+        <button class="btn-rest-standalone ${_restMode ? 'btn-rest-active' : ''}" onclick="setRestMode()">Rest Everyone</button>
       </div>
       ${rows}
       <div class="training-go-btn">
@@ -158,10 +166,9 @@ function renderTrainingResults() {
           <span class="training-stat-pop" style="--pop-color:${color};animation-delay:${i * 0.15 + 0.3}s">
             ${STAT_ABBR[r.stat]} +1!
           </span>
-          <span class="training-stat-now">(now ${r.newVal})</span>
         </span>`;
     } else {
-      outcomeHtml = `<span class="training-result-outcome fail">Trained ${STAT_ABBR[r.stat]} — no improvement</span>`;
+      outcomeHtml = `<span class="training-result-outcome fail">No improvement</span>`;
     }
 
     return `<div class="training-result-row" style="animation-delay:${i * 0.08}s">
