@@ -840,7 +840,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   align-items: flex-end;
 }
 .prematch-player-name {
-  font-size: 0.8rem; font-weight: bold; margin-bottom: 0.3rem;
+  font-size: 0.9rem; font-weight: bold; margin-bottom: 0.3rem;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 100%;
 }
@@ -857,14 +857,14 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 }
 .prematch-stats-center {
   display: flex; flex-direction: column; gap: 0.25rem;
-  min-width: 180px;
+  min-width: 140px; max-width: 220px;
 }
 .prematch-stat-row {
   display: grid; grid-template-columns: 20px 1fr 32px 1fr 20px;
-  gap: 4px; align-items: center; font-size: 0.7rem;
+  gap: 4px; align-items: center; font-size: 0.8rem;
 }
 .prematch-stat-val {
-  text-align: center; font-weight: bold; font-size: 0.7rem;
+  text-align: center; font-weight: bold; font-size: 0.8rem;
 }
 .prematch-stat-val.stat-advantage { color: var(--accent); }
 .prematch-stat-val.stat-disadvantage { color: var(--danger); }
@@ -1432,7 +1432,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   /* Pre-match — two-column layout on tablet */
   .prematch-two-col {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 1fr minmax(auto, 520px);
     align-items: start;
     gap: 1.5rem;
   }
@@ -1527,6 +1527,11 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
   justify-content: center;
   padding: 1rem 0;
   gap: 1rem;
+}
+.table-split-left .btn-large {
+  width: 100%;
+  max-width: 280px;
+  box-sizing: border-box;
 }
 
 .npc-results {
@@ -1924,12 +1929,12 @@ body[data-tier="international"] {
 .training-results-screen { max-width: 700px; }
 .training-results-screen h1 { text-align: center; margin-bottom: 1rem; }
 .training-result-row {
-  display: flex; align-items: center; gap: 0.75rem;
+  display: grid; grid-template-columns: 1fr 70px auto;
+  align-items: center; gap: 0.75rem;
   background: var(--card); border-radius: var(--radius-sm);
   padding: 0.6rem 0.75rem; margin-bottom: 0.5rem;
   animation: fadeIn 0.3s ease both;
 }
-.training-result-row .training-player-name { flex: 1; }
 .training-result-outcome { font-weight: 600; }
 .training-result-outcome.success { color: #4caf50; }
 .training-result-outcome.fail { color: var(--text-dim); }
@@ -2129,13 +2134,15 @@ body[data-tier="international"] {
 
 /* ---- Intro Slides ---- */
 .intro-slides { text-align: center; }
-.intro-slide-icon { font-size: 3rem; margin-bottom: 0.5rem; }
-.intro-slide-headline { font-size: 1.4rem; font-weight: bold; color: var(--gold); margin-bottom: 0.8rem; }
-.intro-slide-bullets { text-align: left; max-width: 360px; margin: 0 auto; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 1rem; line-height: 1.4; color: var(--text); }
+.intro-slide-icon { font-size: 4.5rem; margin-bottom: 0.75rem; }
+.intro-slide-headline { font-size: 2rem; font-weight: bold; color: var(--gold); margin-bottom: 1rem; }
+.intro-slide-bullets { text-align: left; max-width: 500px; margin: 0 auto; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; font-size: 1.4rem; line-height: 1.5; color: var(--text); }
 .intro-slide-bullets li::marker { color: var(--accent); }
-.intro-slide-nav { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
-.intro-slide-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
-.intro-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+.intro-slide-nav { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+.intro-slide-nav .btn-primary,
+.intro-slide-nav .btn-secondary { font-size: 1.2rem; padding: 0.7rem 1.5rem; }
+.intro-slide-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.2rem; }
+.intro-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
 .intro-dot.active { background: var(--gold); }
 
 /* ---- Scrollbar ---- */

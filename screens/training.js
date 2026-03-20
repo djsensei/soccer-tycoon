@@ -158,10 +158,9 @@ function renderTrainingResults() {
           <span class="training-stat-pop" style="--pop-color:${color};animation-delay:${i * 0.15 + 0.3}s">
             ${STAT_ABBR[r.stat]} +1!
           </span>
-          <span class="training-stat-now">(now ${r.newVal})</span>
         </span>`;
     } else {
-      outcomeHtml = `<span class="training-result-outcome fail">Trained ${STAT_ABBR[r.stat]} — no improvement</span>`;
+      outcomeHtml = `<span class="training-result-outcome fail">No improvement</span>`;
     }
 
     return `<div class="training-result-row" style="animation-delay:${i * 0.08}s">
