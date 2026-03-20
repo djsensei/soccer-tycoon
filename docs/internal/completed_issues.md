@@ -2,6 +2,23 @@
 
 Archive of resolved backlog items, grouped by date.
 
+## 2026-03-19 (M15 playtest batch 2)
+
+### [P0] [UX] Post-game Player Performance readability
+**Fix**: Spelled out stat labels ("2 goals", "5/8 passes", "3 tackles", "1 save") instead of cryptic abbreviations ("2G", "5/8 P"). Color-coded each stat chip by type (goals=shooting gold, passes=green, tackles=red, saves=purple) using STAT_COLORS.
+
+### [P0] [UX] Training screen button hierarchy redesign
+**Fix**: Removed "Train All" button. Added standalone "Rest Everyone" button with distinct blue styling and active state. Clicking a stat button now auto-sets all players to train that stat. When Rest mode is active, stat buttons are dimmed/disabled. Simplified to two clear modes: pick a stat (trains everyone) or rest everyone.
+
+### [P0] [UX] Results screen vertical overflow
+**Fix**: Moved fan delta and navigation buttons (Open Pack, Training Time, etc.) above the two-column layout so they're immediately visible without scrolling. Newspaper, milestones, and season messages remain in the columns below.
+
+### [P0] [UX] Promotion pack flow unclear
+**Fix**: Added promotion pack signposting in two places: (1) after opening the match pack, a gold-highlighted banner says "You've been promoted! A special Promotion Pack awaits!" before the "Open Next Pack" button, and (2) a "Congratulations on your promotion!" header appears above the Promotion Pack title during card reveal.
+
+### [P0] [UX] Gear Up: Inventory/Forge as equal toggle tabs
+**Fix**: Replaced the "Inventory" h2 + "Forge" button with two equal folder-style tab buttons at the top of the panel. Active tab gets highlighted background matching the content area. Forge mode gets a subtle gold-tinted border. Removed the old inv-header layout.
+
 ## 2026-03-19 (M15 playtest batch 1)
 
 ### [P0] [UI] Welcome screen font sizes too small

@@ -134,8 +134,12 @@ function renderPackReveal(pack) {
       </div>`;
   }
 
+  const isPromo = gameState.lastOpenedPackId === 'promotion';
+  const promoHeader = isPromo ? '<div class="promo-pack-banner">Congratulations on your promotion!</div>' : '';
+
   return `
     <div class="screen packopen-screen">
+      ${promoHeader}
       <h1>${pack?.name || 'Pack Opening'}</h1>
       ${prevHtml ? `<div class="reveal-prev-row">${prevHtml}</div>` : ''}
       <div class="reveal-stage">${stageHtml}</div>
@@ -169,9 +173,16 @@ function renderPackGrid(pack) {
       </div>`;
   }).join('');
 
+  // Signpost upcoming promotion pack
   let nextBtn;
   if (gameState.pendingPacks.length > 0) {
-    nextBtn = `<button class="btn-primary" onclick="openNextPack()">Open Next Pack</button>`;
+    const nextPending = gameState.pendingPacks[0];
+    const nextPackId = typeof nextPending === 'string' ? nextPending : nextPending.packId;
+    const isPromo = nextPackId === 'promotion';
+    const promoHint = isPromo
+      ? `<div class="promo-pack-signpost">You've been promoted! A special <strong>Promotion Pack</strong> awaits!</div>`
+      : '';
+    nextBtn = `${promoHint}<button class="btn-primary" onclick="openNextPack()">Open Next Pack</button>`;
   } else if (gameState.currentMatch && gameState.currentMatch.showTraining) {
     nextBtn = `<div class="pack-nav-buttons">
       <button class="btn-primary" onclick="initTrainingChoices(); updateState({screen:'training'})">Training Time!</button>

@@ -10,25 +10,6 @@ Priority: **P0** (bug) → **P1** (core feel) → **P2** (polish) → **P3** (fu
 
 ---
 
-## P0b — Batch 2 (meatier redesigns)
-
-### [UX] Post-game Player Performance readability
-Stat abbreviations are cryptic ("22p", "s"). Spell out labels ("passes completed", "saves"). Color-code by stat type (goals=gold, passes=green). Add tackles if tracked.
-
-### [UX] Training screen button hierarchy redesign
-Remove Train All button (each stat button already functions as train-all). Make Rest a visually distinct standalone button (own row or special styling). Gray out stat buttons when Rest is selected; show them as active otherwise.
-
-### [UX] Results screen vertical overflow
-Too much vertical content in the left column — hard to scroll down to reach Open Pack button. May need to separate newspaper from the rest or restructure layout.
-
-### [UX] Promotion pack flow unclear
-After opening the basic match pack, the promotion pack appears suddenly with no lead-in. Add clear signposting so the player knows a promotion pack is coming.
-
-### [UX] Gear Up: Inventory/Forge as equal toggle tabs
-Currently shows "Inventory" as text and "Forge" as a button. Make these two equal folder-style tab buttons showing which mode is selected. Change the box background color depending on Inventory vs Forge mode.
-
----
-
 ## P1 — Core Feel
 
 *(none)*

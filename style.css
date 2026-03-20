@@ -562,6 +562,7 @@ input[type="text"]:focus { outline: none; border-color: var(--accent); }
 /* ---- Gear Up: Inventory header ---- */
 .inv-header { display: flex; align-items: flex-end; justify-content: space-between; padding: 0 0 0.3rem; }
 .inv-header h2 { margin-bottom: 0; }
+.gearup-inventory { border-top-left-radius: 0; border-top-right-radius: 0; }
 
 /* ---- Gear Up: Forge ---- */
 .forge-slots { display: flex; gap: 0.5rem; justify-content: center; margin: 0.75rem 0; }
@@ -1892,6 +1893,7 @@ body[data-tier="international"] {
 .training-bulk-btns {
   display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;
 }
+/* Rest-mode: dim player rows to signal resting */
 .training-player-row {
   display: flex; align-items: center; gap: 0.75rem;
   background: var(--card); border-radius: var(--radius-sm);
@@ -2144,6 +2146,60 @@ body[data-tier="international"] {
 .intro-slide-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.2rem; }
 .intro-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
 .intro-dot.active { background: var(--gold); }
+
+/* ---- Player Performance color-coded chips (P0 fix) ---- */
+.psl-chip { font-weight: 600; }
+.psl-sep { color: var(--border); margin: 0 0.2rem; }
+
+/* ---- Gear Up: Inventory/Forge toggle tabs (P0 fix) ---- */
+.inv-tabs {
+  display: flex; gap: 0;
+}
+.inv-tab {
+  flex: 1; padding: 0.5rem 0.75rem;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-dim); font-weight: 600; font-size: 0.95rem;
+  cursor: pointer; text-align: center;
+  border-bottom: none;
+}
+.inv-tab:first-child { border-radius: var(--radius) 0 0 0; }
+.inv-tab:last-child  { border-radius: 0 var(--radius) 0 0; }
+.inv-tab--active {
+  background: var(--card); color: var(--text);
+  border-bottom-color: transparent;
+}
+.inv-tab:not(.inv-tab--active):hover { background: var(--card); }
+.gearup-inventory--forge { border-color: #5a4a20; }
+
+/* ---- Training: Rest button standalone (P0 fix) ---- */
+.training-rest-row {
+  display: flex; justify-content: center; margin-bottom: 1rem;
+}
+.btn-rest-standalone {
+  padding: 0.5rem 1.5rem; border-radius: var(--radius-sm);
+  background: #1a3a4a; color: #42b4e8;
+  border: 2px solid #2a5a6a; font-weight: 700; font-size: 0.95rem;
+  cursor: pointer; transition: 0.15s;
+}
+.btn-rest-standalone:hover { background: #224a5a; }
+.btn-rest-active {
+  background: #42b4e8; color: var(--bg);
+  border-color: #42b4e8;
+}
+.training-btn-dimmed { opacity: 0.35; pointer-events: none; }
+
+/* ---- Promotion pack signposting (P0 fix) ---- */
+.promo-pack-signpost {
+  background: linear-gradient(135deg, #2a4a1a, #1a3a2a);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem; margin-bottom: 0.75rem;
+  color: var(--gold); font-size: 1rem; text-align: center;
+}
+.promo-pack-banner {
+  color: var(--gold); font-size: 1.1rem; font-weight: 700;
+  text-align: center; margin-bottom: 0.5rem;
+}
 
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar       { width: 6px; }
