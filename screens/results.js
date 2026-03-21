@@ -1,6 +1,25 @@
 // ============================================================
-// screens/results.js — Post-match results screen
+// screens/results.js — Post-match results (newspaper flip-through)
 // ============================================================
+
+let _resultsPage = 0;
+const _RESULTS_TOTAL_PAGES = 4;
+
+function resultsNextPage() {
+  if (_resultsPage < _RESULTS_TOTAL_PAGES - 1) {
+    _resultsPage++;
+    render();
+  }
+}
+
+function resultsPrevPage() {
+  if (_resultsPage > 0) {
+    _resultsPage--;
+    render();
+  }
+}
+
+// ---- Stat helpers (unchanged) ----
 
 function computeMatchStats(events) {
   let playerShots = 0, playerOnTarget = 0;
@@ -134,15 +153,44 @@ function generateTrainingRecommendations(stats, players) {
   return recs.slice(0, 4); // max 4 recommendations
 }
 
-function renderResults() {
-  const m = gameState.currentMatch;
+// ---- Page builders ----
 
-  const deltaSign  = m.fanDelta >= 0 ? '+' : '';
-  const deltaClass = m.fanDelta >= 0 ? 'fan-gain' : 'fan-loss';
+function _resultsPageNav(m) {
+  const dots = Array.from({ length: _RESULTS_TOTAL_PAGES }, (_, i) =>
+    `<div class="results-dot ${i === _resultsPage ? 'active' : ''}"></div>`
+  ).join('');
 
-  const stats = computeMatchStats(m.events || []);
+  const isFirst = _resultsPage === 0;
+  const isLast = _resultsPage === _RESULTS_TOTAL_PAGES - 1;
 
-  // Newspaper headline + flavor
+  let rightBtn;
+  if (isLast) {
+    rightBtn = _resultsDestinationButton(m);
+  } else {
+    rightBtn = `<button class="btn-primary" onclick="resultsNextPage()">Turn Page &gt;</button>`;
+  }
+
+  return `
+    <div class="results-page-nav">
+      ${isFirst ? '<div class="results-page-nav-spacer"></div>' : `<button class="btn-secondary" onclick="resultsPrevPage()">&lt; Back</button>`}
+      <div class="results-page-dots">${dots}</div>
+      ${rightBtn}
+    </div>`;
+}
+
+function _resultsDestinationButton(m) {
+  if (m.packEarned) {
+    return `<button class="btn-primary" onclick="openNextPack()">Open Pack!</button>`;
+  } else if (m.seasonResult === 'promoted' || m.seasonResult === 'gameWin') {
+    return `<button class="btn-primary" onclick="updateState({screen:'table'})">View Table</button>`;
+  } else if (m.showTraining) {
+    return `<button class="btn-primary" onclick="initTrainingChoices(); updateState({screen:'training'})">Training!</button>`;
+  } else {
+    return `<button class="btn-primary" onclick="updateState({screen:'table'})">Continue</button>`;
+  }
+}
+
+function _renderResultsPage1(m) {
   const outcome = m.outcome || 'tie';
   const headlineTemplates = RESULT_HEADLINES[outcome] || RESULT_HEADLINES.tie;
   const flavorTemplates   = RESULT_FLAVOR[outcome]   || RESULT_FLAVOR.tie;
@@ -155,41 +203,47 @@ function renderResults() {
   const headline = fillTemplate(pick(headlineTemplates));
   const flavor   = fillTemplate(pick(flavorTemplates));
 
-  const newspaperHtml = `
+  return `
     <div class="newspaper results-newspaper">
       <div class="newspaper-header">THE DAILY BOOT</div>
       <div class="newspaper-headline">${headline}</div>
-      <div class="newspaper-subhead">${flavor}</div>
-      <div class="newspaper-stats">
-        <span>${gameState.teamName} ${m.playerScore} – ${m.opponentScore} ${m.opponentName}</span>
+      <div class="newspaper-scoreline">
+        <span class="np-team">${gameState.teamName}</span>
+        <span class="np-score">${m.playerScore} – ${m.opponentScore}</span>
+        <span class="np-team">${m.opponentName}</span>
       </div>
+      <div class="newspaper-subhead">${flavor}</div>
     </div>`;
+}
 
+function _renderResultsPage2(m, stats) {
   function statRow(pVal, label, oVal) {
-    return `<div class="stats-row">
-      <span class="stats-val player">${pVal}</span>
-      <span class="stats-label">${label}</span>
-      <span class="stats-val opponent">${oVal}</span>
+    return `<div class="np-stat-row">
+      <span class="np-stat-val np-left">${pVal}</span>
+      <span class="np-stat-label">${label}</span>
+      <span class="np-stat-val np-right">${oVal}</span>
     </div>`;
   }
 
-  const statsHtml = `
-    <div class="match-stats">
-      <div class="stats-header">
+  return `
+    <div class="newspaper results-newspaper">
+      <div class="newspaper-header">THE DAILY BOOT — MATCH REPORT</div>
+      <div class="np-stats-header">
         <span>${gameState.teamName}</span>
         <span></span>
         <span>${m.opponentName}</span>
       </div>
-      ${statRow(stats.playerShots,    'Shots',           stats.oppShots)}
-      ${statRow(stats.playerOnTarget, 'On Target',       stats.oppOnTarget)}
-      ${statRow(stats.shootPct+'%',   'Shot Accuracy',   stats.oppShootPct+'%')}
-      ${statRow(stats.passPct+'%',    'Pass Completion', stats.oppPassPct+'%')}
-      ${statRow(stats.playerTackles,  'Tackles Won',     stats.oppTackles)}
-      ${statRow(stats.playerSaves,    'Saves',           stats.oppSaves)}
-      ${statRow(stats.playerPoss+'%', 'Possession',      stats.oppPoss+'%')}
+      ${statRow(stats.playerPoss + '%', 'Possession', stats.oppPoss + '%')}
+      ${statRow(stats.playerShots, 'Shots', stats.oppShots)}
+      ${statRow(stats.playerOnTarget, 'On Target', stats.oppOnTarget)}
+      ${statRow(stats.shootPct + '%', 'Shot Accuracy', stats.oppShootPct + '%')}
+      ${statRow(stats.passPct + '%', 'Pass Completion', stats.oppPassPct + '%')}
+      ${statRow(stats.playerTackles, 'Tackles Won', stats.oppTackles)}
+      ${statRow(stats.playerSaves, 'Saves', stats.oppSaves)}
     </div>`;
+}
 
-  // Per-player stat lines with spelled-out labels and color coding
+function _renderResultsPage3(m, stats) {
   const playerLines = gameState.players.map(p => {
     const pp = stats.perPlayer[p.id];
     if (!pp) return '';
@@ -199,105 +253,104 @@ function renderResults() {
     if (pp.tackles) parts.push(`<span class="psl-chip" style="color:${STAT_COLORS.strength}">${pp.tackles} tackle${pp.tackles !== 1 ? 's' : ''}</span>`);
     if (pp.saves) parts.push(`<span class="psl-chip" style="color:${STAT_COLORS.reflexes}">${pp.saves} save${pp.saves !== 1 ? 's' : ''}</span>`);
     if (!parts.length) return '';
-    return `<div class="player-stat-line"><span class="psl-name">${p.name}</span><span class="psl-stats">${parts.join('<span class="psl-sep">|</span>')}</span></div>`;
+    return `<div class="np-player-line"><span class="np-player-name">${p.name}</span><span class="np-player-stats">${parts.join('<span class="psl-sep">|</span>')}</span></div>`;
   }).filter(Boolean).join('');
-
-  const perPlayerHtml = playerLines ? `<div class="results-per-player"><h3>Player Performance</h3>${playerLines}</div>` : '';
-
-  // Training recommendations (skip if season just ended — no training coming)
-  const recs = m.seasonResult ? [] : generateTrainingRecommendations(stats, gameState.players);
-  const recsHtml = recs.length ? `<div class="training-recs"><h3>Training Tips</h3>${recs.map(r => `<div class="training-rec-item">${r}</div>`).join('')}</div>` : '';
 
   const milestones = m.milestones || [];
   const milestoneHtml = milestones.length ? `
-    <div class="milestone-section">
-      <h2>Player Upgrades!</h2>
-      ${milestones.map((ms, i) => {
-        const color = STAT_COLORS[ms.statUpgrade] || 'var(--accent)';
-        return `
-        <div class="milestone-card" style="animation-delay:${i * 0.25}s">
-          <div class="milestone-beam" style="--beam-color:${color}"></div>
-          <div class="milestone-player">${ms.playerName}</div>
-          <div class="milestone-detail">
-            ${ms.threshold} career ${ms.careerStat} -> <strong style="color:${color}">+${ms.bonus || 1} ${ms.statUpgrade}</strong>
-          </div>
-        </div>`;
-      }).join('')}
-    </div>` : '';
+    <div class="np-section-divider"></div>
+    <div class="np-section-title">Player Upgrades!</div>
+    ${milestones.map((ms, i) => {
+      const color = STAT_COLORS[ms.statUpgrade] || 'var(--accent)';
+      return `
+      <div class="np-milestone">
+        <span class="np-milestone-beam" style="background:${color}"></span>
+        <span class="np-milestone-name">${ms.playerName}</span>
+        <span class="np-milestone-detail">${ms.threshold} career ${ms.careerStat} &rarr; <strong style="color:${color}">+${ms.bonus || 1} ${ms.statUpgrade}</strong></span>
+      </div>`;
+    }).join('')}` : '';
 
-  // Season status message
-  let seasonMsg = '';
+  const recs = m.seasonResult ? [] : generateTrainingRecommendations(stats, gameState.players);
+  const recsHtml = recs.length ? `
+    <div class="np-section-divider"></div>
+    <div class="np-section-title">Training Tips</div>
+    ${recs.map(r => `<div class="np-tip">${r}</div>`).join('')}` : '';
+
+  return `
+    <div class="newspaper results-newspaper">
+      <div class="newspaper-header">THE DAILY BOOT — PLAYER WATCH</div>
+      ${playerLines ? `<div class="np-section-title">Performance</div>${playerLines}` : '<div class="np-section-title">No standout performances today.</div>'}
+      ${milestoneHtml}
+      ${recsHtml}
+    </div>`;
+}
+
+function _renderResultsPage4(m) {
+  const deltaSign  = m.fanDelta >= 0 ? '+' : '';
+  const deltaClass = m.fanDelta >= 0 ? 'np-fan-gain' : 'np-fan-loss';
+
+  let packHtml = '';
+  if (m.packEarned) {
+    packHtml = `<div class="np-pack-earned">Pack Earned: <strong>${PACK_TYPES[m.packEarned]?.name}</strong></div>`;
+  }
+
+  let seasonHtml = '';
   if (m.seasonResult === 'promoted') {
     const nextLeague = LEAGUE_ORDER[LEAGUE_ORDER.indexOf(gameState.currentLeague) + 1];
     const nextName = nextLeague ? LEAGUE_DEFINITIONS[nextLeague]?.name : 'the next league';
-    seasonMsg = `
+    seasonHtml = `
+      <div class="np-section-divider"></div>
+      <div class="np-promo-banner">PROMOTED!</div>
+      <div class="np-promo-league">Next stop: ${nextName}</div>
       <div class="promo-celebration">
         <div class="confetti-container">${Array.from({length: 30}, (_, i) =>
           `<div class="confetti-piece" style="--i:${i};--x:${Math.random()*100}vw;--r:${Math.random()*360}deg;--d:${1.5+Math.random()*2}s;--c:${['var(--accent)','var(--gold)','#42b4e8','#9c27b0','#e05555'][i%5]}"></div>`
         ).join('')}</div>
-        <div class="promo-banner">
-          <div class="promo-label">PROMOTED!</div>
-          <div class="promo-league">${nextName}</div>
-        </div>
       </div>`;
   } else if (m.seasonResult === 'gameWin') {
-    seasonMsg = `<div class="season-msg season-win">YOU WON THE WORLD LEAGUE! CHAMPION!</div>`;
+    seasonHtml = `
+      <div class="np-section-divider"></div>
+      <div class="np-promo-banner" style="color:var(--gold)">WORLD CHAMPIONS!</div>`;
   } else if (m.seasonResult === 'mid') {
-    seasonMsg = `<div class="season-msg">Season over. Same league next season.</div>`;
+    seasonHtml = `
+      <div class="np-section-divider"></div>
+      <div class="np-season-mid">Season over. Same league next season.</div>`;
   }
 
-  // Navigation buttons
-  let navHtml = '';
-  if (m.packEarned) {
-    navHtml = `
-      <div class="pack-earned">
-        You earned a <strong>${PACK_TYPES[m.packEarned]?.name}</strong>!
-      </div>
-      <button class="btn-primary btn-large" onclick="openNextPack()">Open Pack!</button>`;
-  } else if (m.seasonResult === 'promoted' || m.seasonResult === 'gameWin') {
-    navHtml = `<button class="btn-primary btn-large" onclick="updateState({screen:'table'})">View Table</button>`;
-  } else if (m.showTraining) {
-    navHtml = `
-      <div class="results-nav">
-        <button class="btn-primary btn-large" onclick="initTrainingChoices(); updateState({screen:'training'})">Training Time!</button>
-        <button class="btn-secondary" onclick="updateState({screen:'managegear'})">Gear Up</button>
-      </div>`;
-  } else {
-    navHtml = `
-      <div class="results-nav">
-        <button class="btn-primary" onclick="updateState({screen:'table'})">View Table</button>
-        <button class="btn-secondary" onclick="updateState({screen:'managegear'})">Gear Up</button>
-      </div>`;
+  // Extra nav row (Gear Up shortcut) when training is the main action
+  let extraNav = '';
+  if (!m.packEarned && m.showTraining) {
+    extraNav = `<div class="np-extra-nav"><button class="btn-secondary btn-small" onclick="updateState({screen:'managegear'})">Gear Up</button></div>`;
   }
 
-  const fanHtml = `
-    <div class="fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
-    <div class="fans-total">Total: ${gameState.fans.toLocaleString()} fans</div>`;
-
-  const scoreHtml = `
-    <div class="results-scoreline">
-      <span class="results-team-name">${gameState.teamName}</span>
-      <span class="results-score">${m.playerScore} – ${m.opponentScore}</span>
-      <span class="results-team-name">${m.opponentName}</span>
+  return `
+    <div class="newspaper results-newspaper">
+      <div class="newspaper-header">THE DAILY BOOT — FANS &amp; REWARDS</div>
+      <div class="np-fan-delta ${deltaClass}">${deltaSign}${m.fanDelta.toLocaleString()} fans</div>
+      <div class="np-fans-total">Total: ${gameState.fans.toLocaleString()} fans</div>
+      ${packHtml}
+      ${seasonHtml}
+      ${extraNav}
     </div>`;
+}
+
+// ---- Main render ----
+
+function renderResults() {
+  const m = gameState.currentMatch;
+  const stats = computeMatchStats(m.events || []);
+
+  const pages = [
+    _renderResultsPage1(m),
+    _renderResultsPage2(m, stats),
+    _renderResultsPage3(m, stats),
+    _renderResultsPage4(m),
+  ];
 
   return `
     <div class="screen results-screen">
-      ${scoreHtml}
-      ${fanHtml}
-      ${navHtml}
-      <div class="results-columns">
-        <div class="results-col-left">
-          ${newspaperHtml}
-          ${milestoneHtml}
-          ${seasonMsg}
-        </div>
-        <div class="results-col-right">
-          ${statsHtml}
-          ${perPlayerHtml}
-          ${recsHtml}
-        </div>
-      </div>
+      ${pages[_resultsPage]}
+      ${_resultsPageNav(m)}
       ${buildHelpButton('results')}
       ${_helpModalScreen ? buildHelpModal(_helpModalScreen) : ''}
     </div>

@@ -107,7 +107,7 @@ function startMatchPlayback() {
     badge.textContent = sign + delta.toLocaleString();
     fanDeltas.appendChild(badge);
     // Remove after animation
-    setTimeout(() => badge.remove(), 2000);
+    setTimeout(() => badge.remove(), 1200);
 
     // Flash the fan display on big swings
     if (Math.abs(delta) > 50) {
@@ -228,6 +228,7 @@ function skipToEnd() {
 }
 
 function goToResults() {
+  _resultsPage = 0;
   const m   = gameState.currentMatch;
 
   // --- Tally career stats from match events ---

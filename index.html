@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>⚽ Soccer Tycoon</title>
-  <link rel="stylesheet" href="style.css" />
+  <!-- Cache-busting: the ?v= query strings force browsers to re-fetch on version bumps.
+       Run `node tools/version-stamp.js` to sync these with GAME_VERSION in data.js. -->
+  <link rel="stylesheet" href="style.css?v=0.16.0" />
 </head>
 <body>
   <script>
@@ -21,28 +23,28 @@
   <div id="app">Loading...</div>
 
   <!-- Load order matters: each file can only reference names from files above it -->
-  <script src="transitions.js"></script><!-- Markov chain probabilities + stat influences -->
-  <script src="data.js"></script>       <!-- constants, content, name generators -->
-  <script src="commentary.js"></script> <!-- match commentary templates + selection -->
-  <script src="save.js"></script>       <!-- localStorage read/write -->
-  <script src="utils.js"></script>      <!-- shared utilities (effectiveStats, UI helpers) -->
-  <script src="init.js"></script>       <!-- new game creation -->
-  <script src="simulator.js"></script>  <!-- match engine (pure functions, no DOM) -->
+  <script src="transitions.js?v=0.16.0"></script><!-- Markov chain probabilities + stat influences -->
+  <script src="data.js?v=0.16.0"></script>       <!-- constants, content, name generators -->
+  <script src="commentary.js?v=0.16.0"></script> <!-- match commentary templates + selection -->
+  <script src="save.js?v=0.16.0"></script>       <!-- localStorage read/write -->
+  <script src="utils.js?v=0.16.0"></script>      <!-- shared utilities (effectiveStats, UI helpers) -->
+  <script src="init.js?v=0.16.0"></script>       <!-- new game creation -->
+  <script src="simulator.js?v=0.16.0"></script>  <!-- match engine (pure functions, no DOM) -->
 
   <!-- One file per screen — add new screens here -->
-  <script src="screens/title.js"></script>
-  <script src="screens/welcome.js"></script>
-  <script src="screens/newgame.js"></script>
-  <script src="screens/hub.js"></script>
-  <script src="screens/gear.js"></script>
-  <script src="screens/table.js"></script>
-  <script src="screens/prematch.js"></script>
-  <script src="screens/match.js"></script>
-  <script src="screens/results.js"></script>
-  <script src="screens/training.js"></script>
-  <script src="screens/packopen.js"></script>
-  <script src="screens/gameover.js"></script>
+  <script src="screens/title.js?v=0.16.0"></script>
+  <script src="screens/welcome.js?v=0.16.0"></script>
+  <script src="screens/newgame.js?v=0.16.0"></script>
+  <script src="screens/hub.js?v=0.16.0"></script>
+  <script src="screens/gear.js?v=0.16.0"></script>
+  <script src="screens/table.js?v=0.16.0"></script>
+  <script src="screens/prematch.js?v=0.16.0"></script>
+  <script src="screens/match.js?v=0.16.0"></script>
+  <script src="screens/results.js?v=0.16.0"></script>
+  <script src="screens/training.js?v=0.16.0"></script>
+  <script src="screens/packopen.js?v=0.16.0"></script>
+  <script src="screens/gameover.js?v=0.16.0"></script>
 
-  <script src="state.js"></script>      <!-- gameState, updateState(), render(), bootstrap -->
+  <script src="state.js?v=0.16.0"></script>      <!-- gameState, updateState(), render(), bootstrap -->
 </body>
 </html>

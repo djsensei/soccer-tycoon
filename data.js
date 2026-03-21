@@ -2,7 +2,7 @@
 // data.js — Static game content. Never mutated at runtime.
 // ============================================================
 
-const GAME_VERSION = '0.15.1';
+const GAME_VERSION = '0.16.0';
 
 const ENERGY_CONFIG = {
   maxEnergy: 100,
