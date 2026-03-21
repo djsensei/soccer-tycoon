@@ -82,3 +82,4 @@ The bot creates a random team, plays through all seasons (equipping gear, forgin
 ## Git Instructions
 - Only commit changes to a feature branch, PRs are required to merge to main
 - Check which folder you are in before executing git commands - you probably don't need to `cd` and trigger a user approval
+- **Before creating a PR**, bump `GAME_VERSION` in `data.js` and run `node tools/version-stamp.js` to update cache-busting query strings in `index.html`. Commit this as part of the branch.
