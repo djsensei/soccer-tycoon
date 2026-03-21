@@ -228,6 +228,7 @@ function skipToEnd() {
 }
 
 function goToResults() {
+  _resultsPage = 0;
   const m   = gameState.currentMatch;
 
   // --- Tally career stats from match events ---
